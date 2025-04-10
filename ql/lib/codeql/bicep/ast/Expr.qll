@@ -25,69 +25,74 @@ final class Expr extends AstNode instanceof ExprImpl { }
 /**
  * A AssignmentExpression expression in the AST.
  */
-final class AssignmentExpressionExpr extends Expr instanceof AssignmentExpressionImpl { }
+final class AssignmentExpression extends Expr instanceof AssignmentExpressionImpl { }
 
 /**
  * A BinaryExpression expression in the AST.
  */
-final class BinaryExpressionExpr extends Expr instanceof BinaryExpressionImpl { }
+final class BinaryExpression extends Expr instanceof BinaryExpressionImpl { }
 
 /**
  * A CallExpression expression in the AST.
  */
-final class CallExpressionExpr extends Expr instanceof CallExpressionImpl { }
+final class CallExpression extends Expr instanceof CallExpressionImpl { }
 
 /**
  * A Expression expression in the AST.
  */
-final class ExpressionExpr extends Expr instanceof ExpressionImpl { }
+final class Expression extends Expr instanceof ExpressionImpl { }
 
 /**
  * A Interpolation literal in the AST.
  */
-final class InterpolationLiteral extends Expr instanceof InterpolationImpl { }
+final class Interpolation extends Expr instanceof InterpolationImpl { }
 
 /**
  * A LambdaExpression expression in the AST.
  */
-final class LambdaExpressionExpr extends Expr instanceof LambdaExpressionImpl { }
+final class LambdaExpression extends Expr instanceof LambdaExpressionImpl { }
 
 /**
  * A MemberExpression expression in the AST.
  */
-final class MemberExpressionExpr extends Expr instanceof MemberExpressionImpl { }
+final class MemberExpression extends Expr instanceof MemberExpressionImpl { }
+
+/**
+ * An alias for MemberExpression.
+ */
+final class MemberExpr = MemberExpression;
 
 /**
  * A NullableType literal in the AST.
  */
-final class NullableTypeLiteral extends Expr instanceof NullableTypeImpl { }
+final class NullableType extends Expr instanceof NullableTypeImpl { }
 
 /**
  * A ParenthesizedExpression expression in the AST.
  */
-final class ParenthesizedExpressionExpr extends Expr instanceof ParenthesizedExpressionImpl { }
+final class ParenthesizedExpression extends Expr instanceof ParenthesizedExpressionImpl { }
 
 /**
  * A PrimaryExpression expression in the AST.
  */
-final class PrimaryExpressionExpr extends Expr instanceof PrimaryExpressionImpl { }
+final class PrimaryExpression extends Expr instanceof PrimaryExpressionImpl { }
 
 /**
  * A ResourceExpression expression in the AST.
  */
-final class ResourceExpressionExpr extends Expr instanceof ResourceExpressionImpl { }
+final class ResourceExpression extends Expr instanceof ResourceExpressionImpl { }
 
 /**
  * A SubscriptExpression expression in the AST.
  */
-final class SubscriptExpressionExpr extends Expr instanceof SubscriptExpressionImpl { }
+final class SubscriptExpression extends Expr instanceof SubscriptExpressionImpl { }
 
 /**
  * A TernaryExpression expression in the AST.
  */
-final class TernaryExpressionExpr extends Expr instanceof TernaryExpressionImpl { }
+final class TernaryExpression extends Expr instanceof TernaryExpressionImpl { }
 
 /**
  * A UnaryExpression expression in the AST.
  */
-final class UnaryExpressionExpr extends Expr instanceof UnaryExpressionImpl { }
+final class UnaryExpression extends Expr instanceof UnaryExpressionImpl { }
