@@ -1,5 +1,3 @@
-private import codeql.bicep.AST
+private import bicep
 
-query predicate astNodes(AstNode n) { any() }
-
-query predicate literals(Literals l) { any() }
+query predicate ast(AstNode ast) { any() }
