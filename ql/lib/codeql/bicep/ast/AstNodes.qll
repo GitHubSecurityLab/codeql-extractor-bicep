@@ -1,12 +1,18 @@
 private import codeql.Locations
 private import codeql.files.FileSystem
+private import codeql.bicep.ast.internal.TreeSitter
 private import codeql.bicep.ast.internal.AstNodes
 private import codeql.bicep.ast.internal.TreeSitter
+private import codeql.bicep.controlflow.ControlFlowGraph
 
 /**
  * An AST node of a Bicep program
  */
 class AstNode extends TAstNode {
+  private BICEP::AstNode node;
+
+  AstNode() { toTreeSitter(this) = node }
+
   string toString() { result = this.getAPrimaryQlClass() }
 
   /** Gets the location of the AST node. */
@@ -39,17 +45,25 @@ class AstNode extends TAstNode {
    * Gets the parent in the AST for this node.
    */
   cached
-  AstNode getParent() { result.getAChild(_) = this }
+  AstNode getParent() { result.getAChild() = this }
 
   /**
    * Gets a child of this node, which can also be retrieved using a predicate
    * named `pred`.
    */
   cached
-  AstNode getAChild(string pred) { none() }
+  AstNode getAChild() { toTreeSitter(result) = node.getAFieldOrChild() }
 
-  /** Gets any child of this node. */
-  AstNode getAChild() { result = this.getAChild(_) }
+  /** Gets the CFG scope that encloses this node, if any. */
+  cached
+  CfgScope getEnclosingCfgScope() {
+    exists(AstNode p | p = this.getParent*() |
+      result = p
+      or
+      not p instanceof CfgScope and
+      result = p.getEnclosingCfgScope()
+    )
+  }
 
   /**
    * Gets the primary QL class for the ast node.
