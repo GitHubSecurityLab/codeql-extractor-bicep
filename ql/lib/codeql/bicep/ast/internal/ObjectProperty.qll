@@ -6,6 +6,7 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Expr
 
 /**
  *  A ObjectProperty AST Node.
@@ -19,6 +20,7 @@ class ObjectPropertyImpl extends TObjectProperty, AstNode {
 
   override string toString() { result = ast.toString() }
 
-
-
+  ExprImpl getName() { toTreeSitter(result) = ast.getChild(0) }
+  
+  ExprImpl getValue() { toTreeSitter(result) = ast.getChild(1) }
 }

@@ -3,14 +3,16 @@
  *
  *  WARNING: this file is generated, do not edit manually
  */
+
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Idents
 
 /**
  *  A PropertyIdentifier AST Node.
  */
-class PropertyIdentifierImpl extends TPropertyIdentifier, AstNode {
+class PropertyIdentifierImpl extends TPropertyIdentifier, IdentsImpl {
   private BICEP::PropertyIdentifier ast;
 
   override string getAPrimaryQlClass() { result = "PropertyIdentifier" }
@@ -19,6 +21,5 @@ class PropertyIdentifierImpl extends TPropertyIdentifier, AstNode {
 
   override string toString() { result = ast.toString() }
 
-
-
+  override string getName() { result = ast.getValue() }
 }

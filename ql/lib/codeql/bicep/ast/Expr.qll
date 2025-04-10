@@ -17,6 +17,8 @@ private import internal.SubscriptExpression
 private import internal.TernaryExpression
 private import internal.UnaryExpression
 
+private import Resources
+
 /**
  * An expression in the AST.
  */
@@ -55,7 +57,9 @@ final class LambdaExpression extends Expr instanceof LambdaExpressionImpl { }
 /**
  * A MemberExpression expression in the AST.
  */
-final class MemberExpression extends Expr instanceof MemberExpressionImpl { }
+class MemberExpression extends Expr instanceof MemberExpressionImpl {
+    Object getObject() { result = super.getObject() }
+}
 
 /**
  * An alias for MemberExpression.

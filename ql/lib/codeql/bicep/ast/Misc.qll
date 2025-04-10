@@ -18,8 +18,6 @@ private import internal.LoopVariable
 private import internal.MetadataDeclaration
 private import internal.ModuleDeclaration
 private import internal.NegatedType
-private import internal.Number
-private import internal.Object
 private import internal.ObjectProperty
 private import internal.OutputDeclaration
 private import internal.Parameter
@@ -29,7 +27,6 @@ private import internal.Parameters
 private import internal.ParenthesizedType
 private import internal.PrimitiveType
 private import internal.PropertyIdentifier
-private import internal.ResourceDeclaration
 private import internal.TargetScopeAssignment
 private import internal.TestBlock
 private import internal.Type
@@ -43,11 +40,6 @@ private import internal.VariableDeclaration
  *  A Arguments unknown AST node.
  */
 class Arguments extends AstNode instanceof ArgumentsImpl { }
-
-/**
- *  A Array unknown AST node.
- */
-class Array extends AstNode instanceof ArrayImpl { }
 
 /**
  *  A ArrayType unknown AST node.
@@ -130,21 +122,6 @@ class ModuleDeclaration extends AstNode instanceof ModuleDeclarationImpl { }
 class NegatedType extends AstNode instanceof NegatedTypeImpl { }
 
 /**
- *  A Number unknown AST node.
- */
-class Number extends AstNode instanceof NumberImpl { }
-
-/**
- *  A Object unknown AST node.
- */
-class Object extends AstNode instanceof ObjectImpl { }
-
-/**
- *  A ObjectProperty unknown AST node.
- */
-class ObjectProperty extends AstNode instanceof ObjectPropertyImpl { }
-
-/**
  *  A OutputDeclaration unknown AST node.
  */
 class OutputDeclaration extends AstNode instanceof OutputDeclarationImpl { }
@@ -178,16 +155,6 @@ class ParenthesizedType extends AstNode instanceof ParenthesizedTypeImpl { }
  *  A PrimitiveType unknown AST node.
  */
 class PrimitiveType extends AstNode instanceof PrimitiveTypeImpl { }
-
-/**
- *  A PropertyIdentifier unknown AST node.
- */
-class PropertyIdentifier extends AstNode instanceof PropertyIdentifierImpl { }
-
-/**
- *  A ResourceDeclaration unknown AST node.
- */
-class ResourceDeclaration extends AstNode instanceof ResourceDeclarationImpl { }
 
 /**
  *  A TargetScopeAssignment unknown AST node.
