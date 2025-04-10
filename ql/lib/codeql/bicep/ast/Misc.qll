@@ -46,10 +46,6 @@ class Arguments extends AstNode instanceof ArgumentsImpl { }
  */
 class ArrayType extends AstNode instanceof ArrayTypeImpl { }
 
-/**
- *  A Boolean unknown AST node.
- */
-class Boolean extends AstNode instanceof BooleanImpl { }
 
 /**
  *  A CompatibleIdentifier unknown AST node.

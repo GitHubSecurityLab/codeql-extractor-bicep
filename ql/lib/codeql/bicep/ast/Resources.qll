@@ -58,25 +58,25 @@ class ResourceDeclaration extends AstNode instanceof ResourceDeclarationImpl {
   Expr getProperty(string name) { result = this.getBody().getProperty(name) }
 }
 
-// Resource resolveResource(Expr expr) {
-//   exists(Resource resource |
-//     // Object having an id property needs to be resolved
-//     // {resource.id}.id
-//     exists(MemberExpr memexpr |
-//       memexpr = expr.(Object).getProperty("id") and
-//       memexpr.getObject().(Identifier).getName() = resource.getIdentifier().(Identifier).getName()
-//     |
-//       result = resource
-//     )
-//     or
-//     exists(Identifier ident |
-//       ident = expr and
-//       ident.getName() = resource.getIdentifier().(Identifier).getName()
-//     |
-//       result = resource
-//     )
-//   )
-// }
+Resource resolveResource(Expr expr) {
+  exists(ResourceDeclaration resource |
+    // Object having an id property needs to be resolved
+    // {resource.id}.id
+    exists(MemberExpr memexpr |
+      memexpr = expr.(Object).getProperty("id") and
+      memexpr.getProperty().getName() = resource.getIdentifier().getName()
+    |
+      result = TResourceDeclaration(resource)
+    )
+    or
+    exists(Identifier ident |
+      ident = expr and
+      ident.getName() = resource.getIdentifier().(Identifier).getName()
+    |
+      result = TResourceDeclaration(resource)
+    )
+  )
+}
 
 
 class Resource extends TResource {

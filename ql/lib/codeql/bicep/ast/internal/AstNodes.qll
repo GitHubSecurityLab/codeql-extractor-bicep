@@ -75,8 +75,8 @@ newtype TAstNode =
  * A literal value in a Bicep program
  */
 class TLiterals =
-  TArray or TInterpolation or TNull or TNullableReturnType or TNullableType or TNumber or TString or
-      TStringContent;
+  TArray or TBoolean or TInterpolation or TNull or TNullableReturnType or TNullableType or
+      TNumber or TString or TStringContent;
 
 /**
  *  A identifier in a SQL program

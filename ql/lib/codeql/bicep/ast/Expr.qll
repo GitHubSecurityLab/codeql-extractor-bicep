@@ -17,6 +17,7 @@ private import internal.SubscriptExpression
 private import internal.TernaryExpression
 private import internal.UnaryExpression
 
+private import Idents
 private import Resources
 
 /**
@@ -59,6 +60,8 @@ final class LambdaExpression extends Expr instanceof LambdaExpressionImpl { }
  */
 class MemberExpression extends Expr instanceof MemberExpressionImpl {
     Object getObject() { result = super.getObject() }
+
+    Idents getProperty() { result = super.getProperty() }
 }
 
 /**
