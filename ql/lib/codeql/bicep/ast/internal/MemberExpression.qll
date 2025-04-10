@@ -8,7 +8,6 @@ private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Expr
-private import Object
 private import PropertyIdentifier
 
 /**
@@ -23,7 +22,7 @@ class MemberExpressionImpl extends TMemberExpression, ExprImpl {
 
   override string toString() { result = ast.toString() }
 
-  ObjectImpl getObject() { toTreeSitter(result) = ast.getObject() }
+  ExprImpl getObject() { toTreeSitter(result) = ast.getObject() }
 
   PropertyIdentifierImpl getProperty() { toTreeSitter(result) = ast.getProperty() }
 }

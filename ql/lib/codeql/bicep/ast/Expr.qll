@@ -59,9 +59,16 @@ final class LambdaExpression extends Expr instanceof LambdaExpressionImpl { }
  * A MemberExpression expression in the AST.
  */
 class MemberExpression extends Expr instanceof MemberExpressionImpl {
-    Object getObject() { result = super.getObject() }
 
-    Idents getProperty() { result = super.getProperty() }
+    /**
+     * The namespace of the member expression.
+     */
+    Expr getNamespace() { result = MemberExpressionImpl.super.getObject() }
+
+    /**
+     * The member of the member expression.
+     */
+    Idents getName() { result = MemberExpressionImpl.super.getProperty() }
 }
 
 /**

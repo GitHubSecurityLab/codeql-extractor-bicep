@@ -65,7 +65,7 @@ Resource resolveResource(Expr expr) {
     // {resource.id}.id
     exists(MemberExpr memexpr |
       memexpr = expr.(Object).getProperty("id") and
-      memexpr.getProperty().getName() = resource.getIdentifier().getName()
+      memexpr.getNamespace().(Idents).getName() = resource.getIdentifier().getName()
     |
       result = TResourceDeclaration(resource)
     )
@@ -92,6 +92,8 @@ class Resource extends TResource {
   Expr getProperty(string name) {
     result = resource.getProperty(name)
   }
+
+  Resource getParent() { result = resolveResource(this.getProperty("parent")) }
 
   string toString() { result = resource.toString() }
 
