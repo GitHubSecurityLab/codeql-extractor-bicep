@@ -14,8 +14,12 @@ module Storage {
 
     StorageAccountsProperties() { this = storageAccounts.getProperty("properties") }
 
+    /**
+     * The property "supportsHttpsTrafficOnly" indicates whether the storage account
+     * supports only HTTPS traffic. If this property is not set, it defaults to true.
+     */
     boolean getSupportsHttpsTrafficOnly() {
-      result = this.getProperty("supportsHttpsTrafficOnly").(Boolean).getBool()
+      exists(Boolean bl | bl = this.getProperty("supportsHttpsTrafficOnly") | result = bl.getBool())
     }
   }
 

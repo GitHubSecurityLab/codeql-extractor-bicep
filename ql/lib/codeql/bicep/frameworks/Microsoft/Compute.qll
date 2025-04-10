@@ -1,5 +1,4 @@
 private import bicep
-private import Network
 
 /**
  * A resource of type Microsoft.Compute/virtualMachines

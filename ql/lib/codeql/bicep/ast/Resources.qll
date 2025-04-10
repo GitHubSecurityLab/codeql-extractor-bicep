@@ -1,4 +1,5 @@
 private import AstNodes
+private import codeql.Locations
 private import Expr
 private import Idents
 private import Literals
@@ -92,9 +93,11 @@ class Resource extends TResource {
     result = resource.getProperty(name)
   }
 
-  string toString() { result = "Resource[" + resource.getIdentifier().getName() + "]" }
+  string toString() { result = resource.toString() }
 
   string getAPrimaryQlClass() { result = "Resource" }
+
+  Location getLocation() { result = resource.getLocation() }
 }
 
 cached
