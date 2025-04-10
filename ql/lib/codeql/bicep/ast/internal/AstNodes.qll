@@ -78,6 +78,11 @@ class TLiterals =
   TInterpolation or TNull or TNullableReturnType or TNullableType or TString or TStringContent;
 
 /**
+ *  A identifier in a SQL program
+ */
+class TIdents = TIdentifier;
+
+/**
  * A statement in a Bicep program
  */
 class TStmts =
@@ -88,10 +93,10 @@ class TStmts =
  * A expersion value in a Bicep program
  */
 class TExpr =
-  TLiterals or TConditionalExpr or TAssignmentExpression or TBinaryExpression or TCallExpression or
-      TExpression or TLambdaExpression or TMemberExpression or TParenthesizedExpression or
-      TPrimaryExpression or TResourceExpression or TSubscriptExpression or TTernaryExpression or
-      TUnaryExpression;
+  TLiterals or TConditionalExpr or TStmts or TIdents or TAssignmentExpression or
+      TBinaryExpression or TCallExpression or TExpression or TLambdaExpression or
+      TMemberExpression or TParenthesizedExpression or TPrimaryExpression or TResourceExpression or
+      TSubscriptExpression or TTernaryExpression or TUnaryExpression;
 
 /**
  * A expersion value in a Bicep program
