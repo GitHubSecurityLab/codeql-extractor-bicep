@@ -47,7 +47,7 @@ private module Implementation implements InputSig<Location> {
   /** Holds if `first` is first executed when entering `scope`. */
   predicate scopeFirst(CfgScope scope, AstNode first) { scope.scopeFirst(first) }
 
- /** Holds if `scope` is exited when `last` finishes with completion `c`. */
+  /** Holds if `scope` is exited when `last` finishes with completion `c`. */
   predicate scopeLast(CfgScope scope, AstNode last, Completion c) { scope.scopeLast(last, c) }
 
   predicate successorTypeIsSimple(SuccessorType t) { t instanceof Cfg::NormalSuccessor }
@@ -67,26 +67,22 @@ import CfgImpl
  * A literal value in a Bicep program.
  */
 class LiteralTree extends LeafTree instanceof Literals { }
-/**
- * A Interpolation literal value in a Bicep program.
- */
-class InterpolationLiteralTree extends LeafTree instanceof InterpolationLiteral { }
+
 /**
  * A Null literal value in a Bicep program.
  */
 class NullLiteralTree extends LeafTree instanceof NullLiteral { }
+
 /**
  * A NullableReturnType literal value in a Bicep program.
  */
 class NullableReturnTypeLiteralTree extends LeafTree instanceof NullableReturnTypeLiteral { }
-/**
- * A NullableType literal value in a Bicep program.
- */
-class NullableTypeLiteralTree extends LeafTree instanceof NullableTypeLiteral { }
+
 /**
  * A String literal value in a Bicep program.
  */
 class StringLiteralTree extends LeafTree instanceof StringLiteral { }
+
 /**
  * A StringContent literal value in a Bicep program.
  */

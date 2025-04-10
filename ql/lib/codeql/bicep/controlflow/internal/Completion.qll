@@ -1,6 +1,6 @@
 private import codeql.util.Boolean
 private import codeql.bicep.controlflow.ControlFlowGraph
-private import bicep
+private import codeql.bicep.ast.AstNodes
 private import SuccessorType
 
 newtype TCompletion =
