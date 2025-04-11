@@ -1,0 +1,25 @@
+name: 'CodeQL Bicep Extractor'
+description: 'CodeQL Bicep Extractor GitHub Action'
+author: 'GitHub Security Lab'
+branding:
+  color: 'blue'
+  icon: 'lock'
+
+inputs:
+  token:
+    description: >
+      The GitHub token used to make authenticated API requests.
+    default: ${{ github.token }}
+    required: false
+
+runs:
+  using: 'composite'
+  steps:
+    - name: "CodeQL Extractor Action"
+      uses: advanced-security/codeql-extractor-action@v0.0.2
+      with:
+        token: ${{ inputs.token }}
+        extractor: "GitHubSecurityLab/codeql-extractor-bicep@0.1.0"
+        languages: "bicep"
+        # Assumes GH is installed
+        attestation: true
