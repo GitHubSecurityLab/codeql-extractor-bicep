@@ -1,0 +1,87 @@
+name: Build and Compile Extractor Pack
+
+on:
+  pull_request:
+    branches: ["main", "develop"]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  packages: read
+  pull-requests: read
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        test-folders: ["library-tests", "queries-tests"]
+    steps:
+      - name: "Checkout"
+        uses: actions/checkout@v4
+
+      - name: "Check for changes"
+        uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36
+        id: extractor-changes
+        with:
+          filters: |
+            src:
+              - 'extractor/**'
+              - 'rust-toolchain.toml'
+              - 'Cargo.*'
+
+      - name: "Download Extracter"
+        if: steps.extractor-changes.outputs.src == 'false'
+        env:
+          GH_TOKEN: ${{ github.token }}
+          GITHUB_REPOSITORY: ${{ github.repository }}
+        run: |
+          set -e
+
+          gh release list -L 1 -R "$GITHUB_REPOSITORY"
+
+          gh release download \
+              -R "$GITHUB_REPOSITORY" \
+              --clobber \
+              --pattern 'extractor-bicep.tar.gz'
+
+          tar -zxf extractor-bicep.tar.gz
+
+      - name: "Set up Rust"
+        uses: dtolnay/rust-toolchain@nightly
+        if: steps.extractor-changes.outputs.src == 'true'
+
+      - name: "Build Extractor"
+        if: steps.extractor-changes.outputs.src == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh extensions install github/gh-codeql
+          gh codeql set-version latest
+
+          ./scripts/create-extractor-pack.sh
+
+          gh codeql resolve languages --format=json --search-path ./extractor-pack
+
+      - name: "Run Tests"
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ./scripts/run-tests.sh "ql/test/${{ matrix.test-folders }}"
+
+  docs:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: dorny/paths-filter@de90cc6fb38fc0963ad72b210f1f284cd68cea36
+        id: changes
+        with:
+          filters: |
+            src:
+              - '**.md'
+      # lint markdown
+      - name: "Lint Markdown"
+        if: steps.changes.outputs.src == 'true'
+        run: |
+          npm install -g markdownlint-cli
+          markdownlint '**.md' --ignore node_modules --disable MD013
