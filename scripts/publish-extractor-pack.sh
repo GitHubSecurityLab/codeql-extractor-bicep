@@ -20,9 +20,8 @@ if [ "$LATEST_RELEASE" != "$EXTRACTOR_VERSION" ]; then
         exit 1
     fi
 
-    # TODO: Add queries to extractor-pack
-    # echo "[+] Add queries to extractor-pack"
-    # codeql pack create --output=./extractor-pack/queries ./ql/src
+    echo "[+] Add queries to extractor-pack"
+    codeql pack create --output=./extractor-pack/queries ./ql/src
 
     # bundle extractor
     tar czf extractor-$EXTRACTOR_NAME.tar.gz extractor-pack
@@ -31,10 +30,10 @@ if [ "$LATEST_RELEASE" != "$EXTRACTOR_VERSION" ]; then
 
     ls -ls ./extractor-pack/tools
 
-    # # create release
-    # gh release create "v$EXTRACTOR_VERSION" \
-    #     --notes "$EXTRACTOR_NAME Extractor v$EXTRACTOR_VERSION" \
-    #     extractor-$EXTRACTOR_NAME.tar.gz
+    # create release
+    gh release create "v$EXTRACTOR_VERSION" \
+        --notes "$EXTRACTOR_NAME Extractor v$EXTRACTOR_VERSION" \
+        extractor-$EXTRACTOR_NAME.tar.gz
 
 else
     echo "[+] Extractor is up to date"
