@@ -12,3 +12,9 @@ locations:
       - 'action.yml'
     patterns:
       - '{repo}@v?{version}'
+
+  - name: "CodeQL Extractor"
+    paths:
+      - 'codeql-extractor.yml'
+    patterns:
+      - 'version:\s+{version}'
