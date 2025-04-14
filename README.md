@@ -32,6 +32,8 @@ For use in private repositories and code, you will need to [purchase a GitHub Ad
 
 ## Contributors
 
+Contributors are welcome! Please see the [Contributing Guide](CONTRIBUTING.md) for more information.
+
 <!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
 <!-- prettier-ignore-start -->
 <!-- markdownlint-disable -->
