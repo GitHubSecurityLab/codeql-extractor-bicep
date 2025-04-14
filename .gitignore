@@ -1,5 +1,6 @@
 target
-extractor-pack
+extractor-pack/
+extractor-pack-*/
 .vscode/launch.json
 .cache
 .codeql
