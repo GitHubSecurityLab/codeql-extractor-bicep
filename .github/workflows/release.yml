@@ -54,6 +54,8 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: "Set up Rust"
         uses: dtolnay/rust-toolchain@nightly
@@ -80,6 +82,8 @@ jobs:
     steps:
       - name: "Checkout"
         uses: actions/checkout@v4
+        with:
+          submodules: true
 
       - name: "Downloadd all artifacts"
         uses: actions/download-artifact@v4
