@@ -20,8 +20,8 @@ if [ "$LATEST_RELEASE" != "$EXTRACTOR_VERSION" ]; then
         exit 1
     fi
 
-    echo "[+] Add queries to extractor-pack"
-    codeql pack create --output=./extractor-pack/queries ./ql/src
+    # echo "[+] Add queries to extractor-pack"
+    # $CODEQL_BINARY pack create --output=./extractor-pack/queries ./ql/src
 
     # bundle extractor
     tar czf extractor-$EXTRACTOR_NAME.tar.gz extractor-pack
