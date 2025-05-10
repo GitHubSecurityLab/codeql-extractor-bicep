@@ -16,10 +16,11 @@ runs:
   using: 'composite'
   steps:
     - name: "CodeQL Extractor Action"
-      uses: advanced-security/codeql-extractor-action@v0.0.2
+      uses: advanced-security/codeql-extractor-action@v0.0.5
       with:
         token: ${{ inputs.token }}
-        extractor: "GitHubSecurityLab/codeql-extractor-bicep@0.1.0"
+        extractors: "GitHubSecurityLab/codeql-extractor-bicep@0.1.0"
+        packs: GitHubSecurityLab/bicep-queries
         languages: "bicep"
         # Assumes GH is installed
         attestation: true
