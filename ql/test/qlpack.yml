@@ -1,8 +1,8 @@
-name: githubsecuritylab/codeql-bicep-tests
+name: githubsecuritylab/bicep-tests
 groups: [bicep, test]
 dependencies:
-  githubsecuritylab/codeql-bicep-all: ${workspace}
-  githubsecuritylab/codeql-bicep-queries: ${workspace}
+  githubsecuritylab/bicep-all: ${workspace}
+  githubsecuritylab/bicep-queries: ${workspace}
 extractor: bicep
 tests: .
 warnOnImplicitThis: true

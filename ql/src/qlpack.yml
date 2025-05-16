@@ -1,9 +1,9 @@
-name: githubsecuritylab/codeql-bicep-queries
+name: githubsecuritylab/bicep-queries
 version: 0.1.0
 groups: 
   - bicep
   - queries
 dependencies:
-  githubsecuritylab/codeql-bicep-all: ${workspace}
+  githubsecuritylab/bicep-all: ${workspace}
 extractor: bicep
 defaultSuiteFile: codeql-suites/code-scanning.qls
