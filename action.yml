@@ -26,7 +26,7 @@ runs:
       with:
         token: ${{ inputs.token }}
         extractors: "GitHubSecurityLab/codeql-extractor-bicep@0.1.0"
-        packs: GitHubSecurityLab/bicep-queries
+        packs: githubsecuritylab/bicep-queries
         languages: "bicep"
         # Assumes GH is installed
         # attestation: true
