@@ -1,0 +1,9 @@
+| app.bicep:2:1:9:1 | DatabaseResource[sql] |
+| app.bicep:12:1:18:1 | DatabaseResource[cosmosdb] |
+| app.bicep:21:1:29:1 | DatabaseResource[postgresql] |
+| app.bicep:32:1:40:1 | DatabaseResource[mysql] |
+| app.bicep:43:1:51:1 | DatabaseResource[mariadb] |
+| app.bicep:54:1:58:1 | DatabaseResource[datalakestore] |
+| app.bicep:61:1:71:1 | DatabaseResource[redis] |
+| app.bicep:74:1:83:1 | DatabaseResource[kusto] |
+| app.bicep:86:1:93:1 | DatabaseResource[arc-sql-managed-instance] |
