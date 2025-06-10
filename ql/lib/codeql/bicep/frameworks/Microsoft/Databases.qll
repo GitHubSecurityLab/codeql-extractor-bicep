@@ -10,8 +10,28 @@ module Databases {
      */
     abstract string databaseType();
 
-    override string toString() {
-      result = "DatabaseResource[" + this.databaseType() + "]"
+    override string toString() { result = "DatabaseResource[" + this.databaseType() + "]" }
+
+    DatabaseProperties::Properties getProperties() { result = this.getProperty("properties") }
+
+    string version() {
+      result = this.getProperties().getProperty("version").(StringLiteral).getValue()
+    }
+
+    string sslEnforcement() {
+      result = this.getProperties().getProperty("sslEnforcement").(StringLiteral).getValue()
+    }
+
+    string infrastructureEncryption() {
+      result = this.getProperties().getProperty("infrastructureEncryption").(StringLiteral).getValue()
+    }
+
+    string minimalTlsVersion() {
+      result = this.getProperties().getProperty("minimalTlsVersion").(StringLiteral).getValue()
+    }
+
+    DatabaseProperties::StorageProfile getStorageProfile() {
+      result = this.getProperties().getProperty("storageProfile")
     }
   }
 
@@ -33,6 +53,19 @@ module Databases {
     }
 
     override string databaseType() { result = "cosmosdb" }
+
+    string databaseAccountOfferType() {
+      result =
+        this.getProperties().getProperty("databaseAccountOfferType").(StringLiteral).getValue()
+    }
+
+    boolean isEnableMultipleWriteLocations() {
+      result = this.getProperties().getProperty("enableMultipleWriteLocations").(Boolean).getBool()
+    }
+
+    DatabaseProperties::BackupPolicy getBackupPolicy() {
+      result = this.getProperties().getProperty("backupPolicy")
+    }
   }
 
   /**
@@ -102,5 +135,57 @@ module Databases {
     }
 
     override string databaseType() { result = "arc-sql-managed-instance" }
+  }
+
+  module DatabaseProperties {
+    class Properties extends Object {
+      private Resource resource;
+
+      Properties() { this = resource.getProperty("properties") }
+
+      Resource getResource() { result = resource }
+    }
+
+    class Backup extends Object {
+      private Properties properties;
+
+      Backup() { this = properties.getProperty("backup") }
+
+      string toString() { result = "Backup" }
+
+      string geoRedundantBackup() {
+        result = this.getProperty("geoRedundantBackup").(StringLiteral).getValue()
+      }
+    }
+
+    class BackupPolicy extends Object {
+      private Properties properties;
+
+      BackupPolicy() { this = properties.getProperty("backupPolicy") }
+
+      string toString() { result = "BackupPolicy" }
+
+      string getBackupPolicyType() { result = this.getProperty("type").(StringLiteral).getValue() }
+
+      Expr getBackupRetentionDays() { result = this.getProperty("backupRetentionDays") }
+
+      Expr getBackupStorageRedundancy() { result = this.getProperty("backupStorageRedundancy") }
+    }
+
+    class StorageProfile extends Object {
+      private Properties properties;
+
+      StorageProfile() { this = properties.getProperty("storageProfile") }
+
+      string toString() { result = "StorageProfile" }
+
+      int storageMB() {
+        result = this.getProperty("storageMB").(Number).getValue()
+      }
+
+      string autoGrow() {
+        result = this.getProperty("autoGrow").(StringLiteral).getValue()
+      }
+    }
   }
 }
