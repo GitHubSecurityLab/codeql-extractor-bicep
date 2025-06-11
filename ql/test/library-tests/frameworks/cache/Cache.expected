@@ -1,0 +1,4 @@
+cache
+| app.bicep:1:1:17:1 | RedisCacheResource |
+cacheConfig
+| app.bicep:1:1:17:1 | RedisCacheResource | app.bicep:13:25:15:5 | RedisConfiguration |
