@@ -166,7 +166,45 @@ module Network {
 
     string transport() { result = this.getTransport().getValue() }
 
+    CorsPolicy getCorsPolicy() { result = this.getProperty("corsPolicy") }
+
+    Boolean getAllowInsecure() { result = this.getProperty("allowInsecure") }
+
+    boolean allowInsecure() { result = this.getAllowInsecure().getBool() }
+
     string toString() { result = "NetworkIngress" }
+  }
+
+  class CorsPolicy extends Object {
+    private Object properties;
+
+    CorsPolicy() { this = properties.getProperty("corsPolicy") }
+
+    Boolean getAllowCredentials() {
+      result = this.getProperty("allowCredentials")
+    }
+
+    boolean allowCredentials() { result = this.getAllowCredentials().getBool() }
+
+    Array getAllowedOrigins() {
+      result = this.getProperty("allowedOrigins")
+    }
+
+    Array getAllowedMethods() {
+      result = this.getProperty("allowedMethods")
+    }
+
+    Array getAllowedHeaders() {
+      result = this.getProperty("allowedHeaders")
+    }
+
+    Array getExposedHeaders() {
+      result = this.getProperty("exposedHeaders")
+    }
+
+    Number getMaxAge() { result = this.getProperty("maxAge") }
+
+    string toString() { result = "CorsPolicy" }
   }
 
   module VirtualNetworkProperties {

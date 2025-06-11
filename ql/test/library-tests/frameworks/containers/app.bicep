@@ -9,6 +9,26 @@ resource myContainerApp 'Microsoft.App/containerApps@2022-03-01' = {
         external: true
         targetPort: 80
         transport: 'auto'
+        corsPolicy: {
+          allowCredentials: true
+          allowedOrigins: [
+            'https://example.com'
+            'https://another.com'
+          ]
+          allowedMethods: [
+            'GET'
+            'POST'
+            'OPTIONS'
+          ]
+          allowedHeaders: [
+            'Authorization'
+            'Content-Type'
+          ]
+          exposeHeaders: [
+            'X-Custom-Header'
+          ]
+          maxAge: 3600
+        }
       }
       secrets: [
         {
