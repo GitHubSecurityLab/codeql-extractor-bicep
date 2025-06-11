@@ -23,21 +23,45 @@ module Databases {
     DatabaseProperties::Properties getProperties() { result = this.getProperty("properties") }
 
     /**
+     * Returns the version property as a StringLiteral, if present.
+     */
+    StringLiteral getVersion() {
+      result = this.getProperties().getProperty("version")
+    }
+
+    /**
      * Returns the version property of the database resource, if present.
      */
     string version() {
-      result = this.getProperties().getProperty("version").(StringLiteral).getValue()
+      result = this.getVersion().getValue()
     }
 
+    /**
+     * Returns the publicNetworkAccess property as a StringLiteral, if present.
+     */
+    StringLiteral getPublicNetworkAccess() {
+      result = this.getProperties().getProperty("publicNetworkAccess")
+    }
+
+    /**
+     * Returns the value of the publicNetworkAccess property, if present.
+     */
     string publicNetworkAccess() {
-      result = this.getProperties().getProperty("publicNetworkAccess").(StringLiteral).getValue()
+      result = this.getPublicNetworkAccess().getValue()
+    }
+
+    /**
+     * Returns the sslEnforcement property as a StringLiteral, if present.
+     */
+    StringLiteral getSslEnforcement() {
+      result = this.getProperties().getProperty("sslEnforcement")
     }
 
     /**
      * Returns the sslEnforcement property of the database resource, if present.
      */
     string sslEnforcement() {
-      result = this.getProperties().getProperty("sslEnforcement").(StringLiteral).getValue()
+      result = this.getSslEnforcement().getValue()
     }
 
     /**
@@ -48,10 +72,17 @@ module Databases {
     }
 
     /**
+     * Returns the minimalTlsVersion property as a StringLiteral, if present.
+     */
+    StringLiteral getMinimalTlsVersion() {
+      result = this.getProperties().getProperty("minimalTlsVersion")
+    }
+
+    /**
      * Returns the minimalTlsVersion property of the database resource, if present.
      */
     string minimalTlsVersion() {
-      result = this.getProperties().getProperty("minimalTlsVersion").(StringLiteral).getValue()
+      result = this.getMinimalTlsVersion().getValue()
     }
 
     /**
@@ -230,17 +261,29 @@ module Databases {
   class PublicDatabaseResource extends PublicResource {
     private DatabaseResource database;
 
+    /**
+     * Constructs a PublicDatabaseResource if the database has public network access enabled.
+     */
     PublicDatabaseResource() {
       database.publicNetworkAccess() = "Enabled" and
       this = database
     }
 
+    /**
+     * Returns the property that indicates public access for the database resource.
+     */
     override Expr getPublicAccessProperty() {
       result = database.getProperties().getProperty("publicNetworkAccess")
     }
   }
 
+  /**
+   * Represents a database resource with a weak TLS version configuration.
+   */
   class WeakDatabaseTlsVersion extends Cryptography::WeakTlsVersion instanceof DatabaseResource {
+    /**
+     * Returns the minimalTlsVersion property as a StringLiteral for weak TLS version detection.
+     */
     override StringLiteral getWeakTlsVersionProperty() {
       result = DatabaseResource.super.getProperties().getProperty("minimalTlsVersion")
     }
