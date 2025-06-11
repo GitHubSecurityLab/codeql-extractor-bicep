@@ -1,0 +1,5 @@
+mcr
+| app.bicep:2:1:70:1 | ManagedContainerResource |
+mcrAgents
+| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:9:7:18:7 | AgentPoolProfiles |
+| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:19:7:26:7 | AgentPoolProfiles |
