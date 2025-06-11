@@ -321,4 +321,27 @@ module Network {
       }
     }
   }
+
+  class NetworkProfile extends Object {
+    private Resource resource;
+
+    NetworkProfile() {
+      exists(Object props |
+        props = resource.getProperty("properties") and
+        this = props.getProperty("networkProfile")
+      )
+    }
+
+    Resource getResource() { result = resource }
+
+    StringLiteral getNetworkPlugin() { result = this.getProperty("networkPlugin") }
+
+    string networkPlugin() { result = this.getNetworkPlugin().getValue() }
+
+    StringLiteral getNetworkPolicy() { result = this.getProperty("networkPolicy") }
+
+    string networkPolicy() { result = this.getNetworkPolicy().getValue() }
+
+    string toString() { result = "NetworkProfile" }
+  }
 }
