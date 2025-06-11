@@ -46,6 +46,8 @@ jobs:
               --pattern 'extractor-bicep.tar.gz'
 
           tar -zxf extractor-bicep.tar.gz
+          chmod +x extractor-pack/tools/*.sh
+          chmod +x extractor-pack/tools/**/*
 
       - name: "Set up Rust"
         uses: dtolnay/rust-toolchain@nightly
