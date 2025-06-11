@@ -13,7 +13,7 @@ abstract class PublicResource extends Resource {
 
 module Cryptography {
   abstract class WeakTlsVersion extends Resource {
-    abstract Expr getWeakTlsVersionProperty();
+    abstract StringLiteral getWeakTlsVersionProperty();
 
     /**
      *  Returns true if the resource has a weak TLS version.
