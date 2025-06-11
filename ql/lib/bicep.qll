@@ -2,5 +2,8 @@ import codeql.Locations
 import codeql.files.FileSystem
 // AST
 import codeql.bicep.AST
+// CFG
+import codeql.bicep.CFG
 // Frameworks
 import codeql.bicep.Frameworks
+import codeql.bicep.Concepts
