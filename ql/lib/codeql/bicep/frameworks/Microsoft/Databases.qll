@@ -212,21 +212,6 @@ module Databases {
   }
 
   /**
-   * Represents an Azure Cache for Redis resource.
-   */
-  class RedisCaches extends DatabaseResource, Resource {
-    /**
-     * Constructs an instance for Azure Cache for Redis resources.
-     */
-    RedisCaches() { this.getResourceType().regexpMatch("^Microsoft.Cache/Redis@.*") }
-
-    /**
-     * Returns the type of the database resource ("redis").
-     */
-    override string databaseType() { result = "redis" }
-  }
-
-  /**
    * Represents an Azure Data Explorer (Kusto) cluster resource.
    */
   class KustoClusters extends DatabaseResource, Resource {
