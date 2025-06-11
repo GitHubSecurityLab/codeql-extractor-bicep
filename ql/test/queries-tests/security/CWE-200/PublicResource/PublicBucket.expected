@@ -1,0 +1,3 @@
+| app.bicep:6:26:6:34 | String | Resource 'publicdbserver' is publicly accessible to the Internet. |
+| app.bicep:6:26:6:34 | String | Resource 'publicdbserver' is publicly accessible to the Internet. |
+| app.bicep:6:26:6:34 | String | Resource 'publicdbserver' is publicly accessible to the Internet. |
