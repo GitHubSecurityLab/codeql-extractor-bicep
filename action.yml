@@ -21,7 +21,7 @@ runs:
   using: 'composite'
   steps:
     - name: "CodeQL Extractor Action"
-      uses: advanced-security/codeql-extractor-action@v0.0.10
+      uses: advanced-security/codeql-extractor-action@v0.0.11
       id: extractor
       with:
         token: ${{ inputs.token }}
