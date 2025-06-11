@@ -12,6 +12,10 @@ abstract class PublicResource extends Resource {
 }
 
 module Cryptography {
+  abstract class TlsDisabled extends Resource {
+    abstract boolean isTlsDisabled();
+  }
+
   abstract class WeakTlsVersion extends Resource {
     abstract StringLiteral getWeakTlsVersionProperty();
 

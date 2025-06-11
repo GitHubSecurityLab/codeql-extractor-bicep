@@ -76,6 +76,18 @@ module Cache {
     }
   }
 
+  class RedisCacheTlsDisabled extends RedisCacheResource, Cryptography::TlsDisabled {
+    override boolean isTlsDisabled() {
+      exists(boolean tlsPortDisabled | tlsPortDisabled = this.enableNonSslPort() |
+        tlsPortDisabled = true and
+        result = false
+        or
+        tlsPortDisabled = false and
+        result = true
+      )
+    }
+  }
+
   module CacheProperties {
     /**
      * Represents the properties object for a Redis cache resource.
