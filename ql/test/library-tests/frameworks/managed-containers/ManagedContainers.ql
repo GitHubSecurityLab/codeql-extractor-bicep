@@ -1,5 +1,10 @@
 import bicep
 
-query predicate kubernetes(ManagedContainers::ManagedContainerResource mcr) {
-  any()
+query predicate mcr(ManagedContainers::ManagedContainerResource mcr) { any() }
+
+query predicate mcrAgents(
+  ManagedContainers::ManagedContainerResource mcr,
+  ManagedContainers::ManagedContainerProperties::AgentPoolProfiles agents
+) {
+  mcr.getAgentPoolProfiles() = agents
 }
