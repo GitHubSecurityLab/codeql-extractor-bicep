@@ -240,6 +240,12 @@ module Databases {
     }
   }
 
+  class WeakDatabaseTlsVersion extends Cryptography::WeakTlsVersion instanceof DatabaseResource {
+    override Expr getWeakTlsVersionProperty() {
+      result = DatabaseResource.super.getProperties().getProperty("minimalTlsVersion")
+    }
+  }
+
   module DatabaseProperties {
     /**
      * Represents the properties object for a database resource.
