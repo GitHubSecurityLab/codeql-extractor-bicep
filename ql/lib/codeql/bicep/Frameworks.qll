@@ -1,5 +1,6 @@
 import frameworks.Microsoft.Cache
 import frameworks.Microsoft.Compute
+import frameworks.Microsoft.Containers
 import frameworks.Microsoft.General
 import frameworks.Microsoft.Network
 import frameworks.Microsoft.Storage

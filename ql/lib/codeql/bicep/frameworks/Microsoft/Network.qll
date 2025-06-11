@@ -112,7 +112,6 @@ module Network {
     }
   }
 
-
   class NetworkAcl extends Object {
     private Resource resource;
 
@@ -125,47 +124,49 @@ module Network {
 
     Resource getResource() { result = resource }
 
-    StringLiteral getBypass() {
-      result = this.getProperty("bypass")
-    }
+    StringLiteral getBypass() { result = this.getProperty("bypass") }
 
-    string bypass() {
-      result = this.getBypass().getValue()
-    }
+    string bypass() { result = this.getBypass().getValue() }
 
-    StringLiteral getDefaultAction() {
-      result = this.getProperty("defaultAction")
-    }
+    StringLiteral getDefaultAction() { result = this.getProperty("defaultAction") }
 
-    string defaultAction() {
-      result = this.getDefaultAction().getValue()
-    }
+    string defaultAction() { result = this.getDefaultAction().getValue() }
 
-    IpRule getIpRules() {
-      result = this.getProperty("ipRules").(Array).getElements()
-    }
+    IpRule getIpRules() { result = this.getProperty("ipRules").(Array).getElements() }
 
-    string toString() {
-      result = "Network ACL"
-    }
+    string toString() { result = "Network ACL" }
   }
 
   class IpRule extends Object {
     private NetworkAcl acl;
 
-    IpRule() {
-      this = acl.getProperty("ipRules").(Array).getElements()
-    }
+    IpRule() { this = acl.getProperty("ipRules").(Array).getElements() }
 
     NetworkAcl getNetworkAcl() { result = acl }
 
-    StringLiteral getValue() {
-      result = this.getProperty("value")
-    }
+    StringLiteral getValue() { result = this.getProperty("value") }
 
-    string toString() {
-      result = "IP Rule"
-    }
+    string toString() { result = "IP Rule" }
+  }
+
+  class Ingress extends Object {
+    private Object properties;
+
+    Ingress() { this = properties.getProperty("ingress") }
+
+    Boolean getExternal() { result = this.getProperty("external") }
+
+    boolean external() { result = this.getExternal().(Boolean).getBool() }
+
+    Number getTargetPort() { result = this.getProperty("targetPort") }
+
+    int targetPort() { result = this.getTargetPort().getValue() }
+
+    StringLiteral getTransport() { result = this.getProperty("transport") }
+
+    string transport() { result = this.getTransport().getValue() }
+
+    string toString() { result = "NetworkIngress" }
   }
 
   module VirtualNetworkProperties {
