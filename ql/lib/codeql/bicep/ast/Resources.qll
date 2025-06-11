@@ -3,7 +3,6 @@ private import codeql.Locations
 private import Expr
 private import Idents
 private import Literals
-
 private import internal.ResourceDeclaration
 private import internal.ObjectProperty
 private import internal.Object
@@ -79,7 +78,6 @@ Resource resolveResource(Expr expr) {
   )
 }
 
-
 class Resource extends TResource {
   private ResourceDeclaration resource;
 
@@ -89,9 +87,14 @@ class Resource extends TResource {
     exists(StringLiteral sl | sl = resource.getName() | result = sl.getValue())
   }
 
-  Expr getProperty(string name) {
-    result = resource.getProperty(name)
+  string getName() {
+    exists(StringLiteral name |
+      name = resource.getProperty("name") and
+      result = name.getValue()
+    )
   }
+
+  Expr getProperty(string name) { result = resource.getProperty(name) }
 
   Resource getParent() { result = resolveResource(this.getProperty("parent")) }
 

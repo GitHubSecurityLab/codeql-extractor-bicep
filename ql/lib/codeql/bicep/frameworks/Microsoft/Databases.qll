@@ -1,4 +1,5 @@
 private import bicep
+private import codeql.bicep.Concepts
 
 module Databases {
   /**
@@ -26,6 +27,10 @@ module Databases {
      */
     string version() {
       result = this.getProperties().getProperty("version").(StringLiteral).getValue()
+    }
+
+    string publicNetworkAccess() {
+      result = this.getProperties().getProperty("publicNetworkAccess").(StringLiteral).getValue()
     }
 
     /**
@@ -220,6 +225,19 @@ module Databases {
      * Returns the type of the database resource ("arc-sql-managed-instance").
      */
     override string databaseType() { result = "arc-sql-managed-instance" }
+  }
+
+  class PublicDatabaseResource extends PublicResource {
+    private DatabaseResource database;
+
+    PublicDatabaseResource() {
+      database.publicNetworkAccess() = "Enabled" and
+      this = database
+    }
+
+    override Expr getPublicAccessProperty() {
+      result = database.getProperties().getProperty("publicNetworkAccess")
+    }
   }
 
   module DatabaseProperties {
