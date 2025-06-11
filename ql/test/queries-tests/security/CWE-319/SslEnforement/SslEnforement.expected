@@ -1,0 +1,1 @@
+| app.bicep:19:21:19:30 | String | SSL / TLS is not enforced on the database resource 'publicdbserver'. |
