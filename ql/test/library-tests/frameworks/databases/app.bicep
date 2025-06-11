@@ -130,19 +130,6 @@ resource datalakeStore 'Microsoft.DataLakeStore/accounts@2016-11-01' = {
   properties: {}
 }
 
-// Azure Cache for Redis
-resource redisCache 'Microsoft.Cache/Redis@2023-04-01' = {
-  name: 'rediscache1'
-  location: 'eastus'
-  properties: {
-    sku: {
-      name: 'Basic'
-      family: 'C'
-      capacity: 0
-    }
-  }
-}
-
 // Azure Data Explorer (Kusto)
 resource kustoCluster 'Microsoft.Kusto/Clusters@2023-05-02' = {
   name: 'kustocluster1'
