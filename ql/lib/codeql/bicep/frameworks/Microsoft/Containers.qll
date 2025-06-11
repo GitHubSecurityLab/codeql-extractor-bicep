@@ -44,6 +44,14 @@ module Containers {
       result = this.getTemplate().getContainer(index)
     }
 
+    Network::Ingress getNetworkIngress() {
+      result = this.getConfiguration().getNetworkIngress()
+    }
+
+    Network::CorsPolicy getCorsPolicy() {
+      result = this.getNetworkIngress().getCorsPolicy()
+    }
+
     /**
      * Returns a string representation of the container app resource.
      */
