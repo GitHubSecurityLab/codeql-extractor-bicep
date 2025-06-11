@@ -1,0 +1,5 @@
+keyvault
+| app.bicep:1:1:37:1 | Key Vault Resource |
+keyvaultPolicies
+| app.bicep:1:1:37:1 | Key Vault Resource | app.bicep:11:7:19:7 | AccessPolicy |
+| app.bicep:1:1:37:1 | Key Vault Resource | app.bicep:20:7:28:7 | AccessPolicy |
