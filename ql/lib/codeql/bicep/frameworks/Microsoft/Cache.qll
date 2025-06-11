@@ -96,24 +96,10 @@ module Cache {
       string toString() { result = "CacheProperties" }
     }
 
-    // redisConfiguration: {
-    //   aad-enabled: 'string'
-    //   aof-backup-enabled: 'string'
-    //   aof-storage-connection-string-0: 'string'
-    //   aof-storage-connection-string-1: 'string'
-    //   authnotrequired: 'string'
-    //   maxfragmentationmemory-reserved: 'string'
-    //   maxmemory-delta: 'string'
-    //   maxmemory-policy: 'string'
-    //   maxmemory-reserved: 'string'
-    //   notify-keyspace-events: 'string'
-    //   preferred-data-persistence-auth-method: 'string'
-    //   rdb-backup-enabled: 'string'
-    //   rdb-backup-frequency: 'string'
-    //   rdb-backup-max-snapshot-count: 'string'
-    //   rdb-storage-connection-string: 'string'
-    //   storage-subscription-id: 'string'
-    // }
+    /**
+     * Represents the redisConfiguration object for Azure Cache for Redis.
+     * Provides accessors for all supported redisConfiguration properties.
+     */
     class RedisConfiguration extends Object {
       private Properties properties;
 
@@ -122,103 +108,131 @@ module Cache {
        */
       RedisConfiguration() { this = properties.getProperty("redisConfiguration") }
 
-      /**
-       * Returns the 'aad-enabled' property as a StringLiteral, if present.
-       */
+      /** Returns the 'aad-enabled' property as a StringLiteral, if present. */
       StringLiteral getAadEnabled() { result = this.getProperty("aad-enabled") }
 
       /** Returns the 'aad-enabled' property as a string, if present. */
       string aadEnabled() { result = this.getAadEnabled().getValue() }
 
-      /**
-       * Returns the 'aof-backup-enabled' property as a StringLiteral, if present.
-       */
+      /** Returns the 'aof-backup-enabled' property as a StringLiteral, if present. */
       StringLiteral getAofBackupEnabled() { result = this.getProperty("aof-backup-enabled") }
 
+      /** Returns the 'aof-backup-enabled' property as a string, if present. */
       string aofBackupEnabled() { result = this.getAofBackupEnabled().getValue() }
 
+      /** Returns the 'aof-storage-connection-string-0' property as a StringLiteral, if present. */
       StringLiteral getAofStorageConnectionString0() {
         result = this.getProperty("aof-storage-connection-string-0")
       }
 
+      /** Returns the 'aof-storage-connection-string-0' property as a string, if present. */
       string aofStorageConnectionString0() {
         result = this.getAofStorageConnectionString0().getValue()
       }
 
+      /** Returns the 'aof-storage-connection-string-1' property as a StringLiteral, if present. */
       StringLiteral getAofStorageConnectionString1() {
         result = this.getProperty("aof-storage-connection-string-1")
       }
 
+      /** Returns the 'aof-storage-connection-string-1' property as a string, if present. */
       string aofStorageConnectionString1() {
         result = this.getAofStorageConnectionString1().getValue()
       }
 
+      /** Returns the 'authnotrequired' property as a StringLiteral, if present. */
       StringLiteral getAuthNotRequired() { result = this.getProperty("authnotrequired") }
 
+      /** Returns the 'authnotrequired' property as a string, if present. */
       string authNotRequired() { result = this.getAuthNotRequired().getValue() }
 
+      /** Returns the 'maxfragmentationmemory-reserved' property as a StringLiteral, if present. */
       StringLiteral getMaxFragmentationMemoryReserved() {
         result = this.getProperty("maxfragmentationmemory-reserved")
       }
 
+      /** Returns the 'maxfragmentationmemory-reserved' property as a string, if present. */
       string maxFragmentationMemoryReserved() {
         result = this.getMaxFragmentationMemoryReserved().getValue()
       }
 
+      /** Returns the 'maxmemory-delta' property as a StringLiteral, if present. */
       StringLiteral getMaxMemoryDelta() { result = this.getProperty("maxmemory-delta") }
 
+      /** Returns the 'maxmemory-delta' property as a string, if present. */
       string maxMemoryDelta() { result = this.getMaxMemoryDelta().getValue() }
 
+      /** Returns the 'maxmemory-policy' property as a StringLiteral, if present. */
       StringLiteral getMaxMemoryPolicy() { result = this.getProperty("maxmemory-policy") }
 
+      /** Returns the 'maxmemory-policy' property as a string, if present. */
       string maxMemoryPolicy() { result = this.getMaxMemoryPolicy().getValue() }
 
+      /** Returns the 'maxmemory-reserved' property as a StringLiteral, if present. */
       StringLiteral getMaxMemoryReserved() { result = this.getProperty("maxmemory-reserved") }
 
+      /** Returns the 'maxmemory-reserved' property as a string, if present. */
       string maxMemoryReserved() { result = this.getMaxMemoryReserved().getValue() }
 
+      /** Returns the 'notify-keyspace-events' property as a StringLiteral, if present. */
       StringLiteral getNotifyKeyspaceEvents() {
         result = this.getProperty("notify-keyspace-events")
       }
 
+      /** Returns the 'notify-keyspace-events' property as a string, if present. */
       string notifyKeyspaceEvents() { result = this.getNotifyKeyspaceEvents().getValue() }
 
+      /** Returns the 'preferred-data-persistence-auth-method' property as a StringLiteral, if present. */
       StringLiteral getPreferredDataPersistenceAuthMethod() {
         result = this.getProperty("preferred-data-persistence-auth-method")
       }
 
+      /** Returns the 'preferred-data-persistence-auth-method' property as a string, if present. */
       string preferredDataPersistenceAuthMethod() {
         result = this.getPreferredDataPersistenceAuthMethod().getValue()
       }
 
+      /** Returns the 'rdb-backup-enabled' property as a StringLiteral, if present. */
       StringLiteral getRdbBackupEnabled() { result = this.getProperty("rdb-backup-enabled") }
 
+      /** Returns the 'rdb-backup-enabled' property as a string, if present. */
       string rdbBackupEnabled() { result = this.getRdbBackupEnabled().getValue() }
 
+      /** Returns the 'rdb-backup-frequency' property as a StringLiteral, if present. */
       StringLiteral getRdbBackupFrequency() { result = this.getProperty("rdb-backup-frequency") }
 
+      /** Returns the 'rdb-backup-frequency' property as a string, if present. */
       string rdbBackupFrequency() { result = this.getRdbBackupFrequency().getValue() }
 
+      /** Returns the 'rdb-backup-max-snapshot-count' property as a StringLiteral, if present. */
       StringLiteral getRdbBackupMaxSnapshotCount() {
         result = this.getProperty("rdb-backup-max-snapshot-count")
       }
 
+      /** Returns the 'rdb-backup-max-snapshot-count' property as a string, if present. */
       string rdbBackupMaxSnapshotCount() { result = this.getRdbBackupMaxSnapshotCount().getValue() }
 
+      /** Returns the 'rdb-storage-connection-string' property as a StringLiteral, if present. */
       StringLiteral getRdbStorageConnectionString() {
         result = this.getProperty("rdb-storage-connection-string")
       }
 
+      /** Returns the 'rdb-storage-connection-string' property as a string, if present. */
       string rdbStorageConnectionString() {
         result = this.getRdbStorageConnectionString().getValue()
       }
 
+      /** Returns the 'storage-subscription-id' property as a StringLiteral, if present. */
       StringLiteral getStorageSubscriptionId() {
         result = this.getProperty("storage-subscription-id")
       }
 
+      /** Returns the 'storage-subscription-id' property as a string, if present. */
       string storageSubscriptionId() { result = this.getStorageSubscriptionId().getValue() }
 
+      /**
+       * Returns a string representation of the RedisConfiguration object.
+       */
       string toString() { result = "RedisConfiguration" }
     }
   }
