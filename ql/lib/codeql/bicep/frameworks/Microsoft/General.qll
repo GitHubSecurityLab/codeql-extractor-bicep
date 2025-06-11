@@ -11,18 +11,28 @@ class Sku extends Object {
   /**
    * Returns the SKU name (e.g., Basic, Standard, Premium).
    */
-  string getName() {
-    result = this.getProperty("name").(StringLiteral).getValue()
-  }
+  string getName() { result = this.getProperty("name").(StringLiteral).getValue() }
 
   /**
    * Returns the SKU tier (e.g., Basic, Standard, Premium).
    */
-  string getTier() {
-    result = this.getProperty("tier").(StringLiteral).getValue()
-  }
+  string getTier() { result = this.getProperty("tier").(StringLiteral).getValue() }
 
-  string toString() {
-    result = "SKU"
-  }
+  string toString() { result = "SKU" }
+}
+
+class Tags extends Object {
+  private Resource resource;
+
+  /**
+   * Constructs a Tags object for the given resource.
+   */
+  Tags() { this = resource.getProperty("tags") }
+
+  /**
+   * Returns the value of a tag by its key.
+   */
+  Literals getTag(string key) { result = this.getProperty(key) }
+
+  string toString() { result = "Tags" }
 }

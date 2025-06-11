@@ -1,3 +1,15 @@
+resource myRegistry 'Microsoft.ContainerRegistry/registries@2025-04-01' = {
+  name: 'myregistry'
+  location: 'eastus'
+  sku: {
+    name: 'Standard'
+  }
+  adminUserEnabled: true
+  tags: {
+    environment: 'dev'
+  }
+}
+
 // Example Bicep file for a Container App with various settings
 resource myContainerApp 'Microsoft.App/containerApps@2022-03-01' = {
   name: 'my-container-app'
@@ -34,6 +46,17 @@ resource myContainerApp 'Microsoft.App/containerApps@2022-03-01' = {
         {
           name: 'my-secret'
           value: 'supersecretvalue'
+        }
+        {
+          name: 'acr-password'
+          value: 'myacrpassword'
+        }
+      ]
+      registries: [
+        {
+          server: 'myregistry.azurecr.io'
+          username: 'myacrusername'
+          passwordSecretRef: 'acr-password'
         }
       ]
       activeRevisionsMode: 'Multiple'

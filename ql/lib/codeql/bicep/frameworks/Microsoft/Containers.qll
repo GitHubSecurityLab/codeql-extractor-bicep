@@ -2,7 +2,7 @@ private import bicep
 
 module Containers {
   /**
-   * Represents a Microsoft.ContainerApp/containerApps resource.
+   * Represents a Microsoft.ContainerApp/containerApps resource (2025-02-02-preview).
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.app/containerapps
    */
   class ContainerResource extends Resource {
@@ -10,6 +10,31 @@ module Containers {
      * Constructs a ContainerResource for Microsoft.App/containerApps resources.
      */
     ContainerResource() { this.getResourceType().regexpMatch("^Microsoft.App/containerApps@.*") }
+
+    /**
+     * Returns the extendedLocation property.
+     */
+    Expr getExtendedLocation() { result = this.getProperty("extendedLocation") }
+
+    /**
+     * Returns the identity property.
+     */
+    Expr getIdentity() { result = this.getProperty("identity") }
+
+    /**
+     * Returns the kind property.
+     */
+    StringLiteral getKind() { result = this.getProperty("kind") }
+
+    /**
+     * Returns the managedBy property.
+     */
+    StringLiteral getManagedBy() { result = this.getProperty("managedBy") }
+
+    /**
+     * Returns the name property (overrides base Resource).
+     */
+    override string getName() { result = super.getName() }
 
     /**
      * Returns the properties object for the container app resource.
@@ -44,13 +69,16 @@ module Containers {
       result = this.getTemplate().getContainer(index)
     }
 
-    Network::Ingress getNetworkIngress() {
-      result = this.getConfiguration().getNetworkIngress()
-    }
+    Network::Ingress getNetworkIngress() { result = this.getConfiguration().getNetworkIngress() }
 
-    Network::CorsPolicy getCorsPolicy() {
-      result = this.getNetworkIngress().getCorsPolicy()
-    }
+    Network::CorsPolicy getCorsPolicy() { result = this.getNetworkIngress().getCorsPolicy() }
+
+    /**
+     * Returns the SKU object for the container registry resource.
+     */
+    Sku getSku() { result = this.getProperty("sku") }
+
+    Tags getTags() { result = this.getProperty("tags") }
 
     /**
      * Returns a string representation of the container app resource.
@@ -58,9 +86,27 @@ module Containers {
     override string toString() { result = "ContainerResource" }
   }
 
+  class ContainerRegistry extends Resource {
+    /**
+     * Constructs a ContainerRegistry for Microsoft.ContainerRegistry/containerRegistries resources (2025-02-02-preview).
+     */
+    ContainerRegistry() {
+      this.getResourceType().regexpMatch("^Microsoft.ContainerRegistry/registries@.*$")
+    }
+
+    /**
+     * Returns the SKU object for the container registry resource.
+     */
+    Sku getSku() { result = this.getProperty("sku") }
+
+    Tags getTags() { result = this.getProperty("tags") }
+
+    override string toString() { result = "ContainerRegistry" }
+  }
+
   module ContainerProperties {
     /**
-     * Represents the properties object for a container app resource.
+     * Represents the properties object for a container app resource (2025-02-02-preview).
      */
     class Properties extends Object {
       private ContainerResource containerResource;
@@ -81,9 +127,29 @@ module Containers {
       ContainerConfiguration getConfiguration() { result = this.getProperty("configuration") }
 
       /**
+       * Returns the environmentId property.
+       */
+      StringLiteral getEnvironmentId() { result = this.getProperty("environmentId") }
+
+      /**
+       * Returns the managedEnvironmentId property.
+       */
+      StringLiteral getManagedEnvironmentId() { result = this.getProperty("managedEnvironmentId") }
+
+      /**
+       * Returns the patchingConfiguration property.
+       */
+      Expr getPatchingConfiguration() { result = this.getProperty("patchingConfiguration") }
+
+      /**
        * Returns the template property.
        */
       ContainerTemplate getTemplate() { result = this.getProperty("template") }
+
+      /**
+       * Returns the workloadProfileName property.
+       */
+      StringLiteral getWorkloadProfileName() { result = this.getProperty("workloadProfileName") }
 
       string toString() { result = "ContainerProperties" }
     }
@@ -109,6 +175,15 @@ module Containers {
        */
       ContainerSecret getSecrets() { result = this.getProperty("secrets").(Array).getElements() }
 
+      ContainerSecret getSecret(string name) {
+        exists(ContainerSecret secret |
+          secret = this.getSecrets() and
+          secret.getName().getValue() = name
+        |
+          result = secret
+        )
+      }
+
       /**
        * Returns the active revisions mode as a StringLiteral.
        */
@@ -123,6 +198,67 @@ module Containers {
        * Returns the template property.
        */
       Expr getTemplate() { result = this.getProperty("template") }
+
+      /**
+       * Returns the Dapr configuration object, if present.
+       *
+       * @return The Dapr configuration expression.
+       */
+      Expr getDapr() { result = this.getProperty("dapr") }
+
+      /**
+       * Returns the identity settings object, if present.
+       *
+       * @return The identity settings expression.
+       */
+      Expr getIdentitySettings() { result = this.getProperty("identitySettings") }
+
+      /**
+       * Returns the ingress configuration object, if present.
+       *
+       * @return The ingress configuration expression.
+       */
+      Expr getIngress() { result = this.getProperty("ingress") }
+
+      /**
+       * Returns all container registries defined in the configuration.
+       *
+       * @return The container registry objects as an array.
+       */
+      ContainerRegistry getRegistries() {
+        result = this.getProperty("registries").(Array).getElements()
+      }
+
+      /**
+       * Returns a specific container registry by index.
+       *
+       * @param index The index of the registry.
+       * @return The container registry at the specified index.
+       */
+      ContainerRegistry getRegistry(int index) {
+        result = this.getProperty("registries").(Array).getElement(index)
+      }
+
+      /**
+       * Returns the runtime configuration object, if present.
+       *
+       * @return The runtime configuration expression.
+       */
+      Expr getRuntime() { result = this.getProperty("runtime") }
+
+      /**
+       * Returns the service configuration object, if present.
+       *
+       * @return The service configuration expression.
+       */
+      Expr getService() { result = this.getProperty("service") }
+
+      /**
+       * Returns the target label property, if present.
+       *
+       * @return The target label string literal.
+       */
+      StringLiteral getTargetLabel() { result = this.getProperty("targetLabel") }
 
       string toString() { result = "ContainerConfiguration" }
     }
@@ -171,6 +307,38 @@ module Containers {
        * Returns the containers defined in the template.
        */
       ContainerApp getContainers() { result = this.getProperty("containers").(Array).getElements() }
+
+      /**
+       * Returns the initContainers defined in the template.
+       */
+      Expr getInitContainers() { result = this.getProperty("initContainers") }
+
+      /**
+       * Returns the revisionSuffix property.
+       */
+      StringLiteral getRevisionSuffix() { result = this.getProperty("revisionSuffix") }
+
+      /**
+       * Returns the scale property.
+       */
+      Expr getScale() { result = this.getProperty("scale") }
+
+      /**
+       * Returns the serviceBinds property.
+       */
+      Expr getServiceBinds() { result = this.getProperty("serviceBinds") }
+
+      /**
+       * Returns the terminationGracePeriodSeconds property.
+       */
+      Expr getTerminationGracePeriodSeconds() {
+        result = this.getProperty("terminationGracePeriodSeconds")
+      }
+
+      /**
+       * Returns the volumes property.
+       */
+      Expr getVolumes() { result = this.getProperty("volumes") }
 
       /**
        * Returns a specific container by index from the template.
@@ -291,6 +459,38 @@ module Containers {
       StringLiteral getValue() { result = this.getProperty("value") }
 
       string toString() { result = "ContainerEnv" }
+    }
+
+    class ContainerRegistry extends Object {
+      private ContainerConfiguration configuration;
+
+      /**
+       * Constructs a ContainerRegistry for the given configuration.
+       */
+      ContainerRegistry() { this = configuration.getProperty("registries").(Array).getElements() }
+
+      /**
+       * Returns the registry server URL.
+       */
+      StringLiteral getServer() { result = this.getProperty("server") }
+
+      /**
+       * Returns the username for the registry.
+       */
+      StringLiteral getUsername() { result = this.getProperty("username") }
+
+      /**
+       * Returns the password for the registry.
+       */
+      StringLiteral getPassword() {
+        exists(StringLiteral ref | ref = this.getProperty("passwordSecretRef") |
+          result = configuration.getSecret(ref.getValue()).getValue()
+        )
+        or
+        result = this.getProperty("password")
+      }
+
+      string toString() { result = "ContainerRegistry" }
     }
   }
 }

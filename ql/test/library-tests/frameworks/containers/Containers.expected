@@ -1,1 +1,11 @@
-| app.bicep:2:1:78:1 | ContainerResource |
+containers
+| app.bicep:14:1:101:1 | ContainerResource |
+containerConfig
+| app.bicep:14:1:101:1 | ContainerResource | app.bicep:19:20:63:5 | ContainerConfiguration |
+containerIngress
+| app.bicep:14:1:101:1 | ContainerResource | app.bicep:20:16:44:7 | NetworkIngress |
+containerSecrets
+| app.bicep:14:1:101:1 | ContainerResource | app.bicep:46:9:49:9 | ContainerSecret |
+| app.bicep:14:1:101:1 | ContainerResource | app.bicep:50:9:53:9 | ContainerSecret |
+containerReg
+| app.bicep:14:1:101:1 | ContainerResource | app.bicep:56:9:60:9 | ContainerRegistry |
