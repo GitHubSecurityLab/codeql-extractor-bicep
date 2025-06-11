@@ -1,0 +1,58 @@
+// Example Bicep file for a Container App with various settings
+resource myContainerApp 'Microsoft.App/containerApps@2022-03-01' = {
+  name: 'my-container-app'
+  location: 'eastus'
+  properties: {
+    managedEnvironmentId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/my-rg/providers/Microsoft.App/managedEnvironments/my-env'
+    configuration: {
+      ingress: {
+        external: true
+        targetPort: 80
+        transport: 'auto'
+      }
+      secrets: [
+        {
+          name: 'my-secret'
+          value: 'supersecretvalue'
+        }
+      ]
+      activeRevisionsMode: 'Multiple'
+    }
+    template: {
+      containers: [
+        {
+          name: 'myapp'
+          image: 'mcr.microsoft.com/azuredocs/containerapps-helloworld:latest'
+          resources: {
+            cpu: 0.5
+            memory: '1.0Gi'
+          }
+          env: [
+            {
+              name: 'ENV_VAR_1'
+              value: 'value1'
+            }
+            {
+              name: 'ENV_VAR_2'
+              secretRef: 'my-secret'
+            }
+          ]
+        }
+      ]
+      scale: {
+        minReplicas: 1
+        maxReplicas: 5
+        rules: [
+          {
+            name: 'http-scaling'
+            http: {
+              metadata: {
+                concurrentRequests: '50'
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}
