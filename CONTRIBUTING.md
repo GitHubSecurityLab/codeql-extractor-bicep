@@ -28,6 +28,7 @@ If you have an idea for a new feature or enhancement, [please open an issue on G
 3. Make your changes
 4. Write tests for your changes (if applicable)
 5. Run the tests to make sure everything is working
+6. Submit a [pull request][pr] with a clear description of your changes
 
 ### Requirements
 
