@@ -112,7 +112,6 @@ module Network {
     }
   }
 
-
   class NetworkAcl extends Object {
     private Resource resource;
 
@@ -125,47 +124,149 @@ module Network {
 
     Resource getResource() { result = resource }
 
-    StringLiteral getBypass() {
-      result = this.getProperty("bypass")
-    }
+    StringLiteral getBypass() { result = this.getProperty("bypass") }
 
-    string bypass() {
-      result = this.getBypass().getValue()
-    }
+    string bypass() { result = this.getBypass().getValue() }
 
-    StringLiteral getDefaultAction() {
-      result = this.getProperty("defaultAction")
-    }
+    StringLiteral getDefaultAction() { result = this.getProperty("defaultAction") }
 
-    string defaultAction() {
-      result = this.getDefaultAction().getValue()
-    }
+    string defaultAction() { result = this.getDefaultAction().getValue() }
 
-    IpRule getIpRules() {
-      result = this.getProperty("ipRules").(Array).getElements()
-    }
+    IpRule getIpRules() { result = this.getProperty("ipRules").(Array).getElements() }
 
-    string toString() {
-      result = "Network ACL"
-    }
+    string toString() { result = "Network ACL" }
   }
 
   class IpRule extends Object {
     private NetworkAcl acl;
 
-    IpRule() {
-      this = acl.getProperty("ipRules").(Array).getElements()
-    }
+    IpRule() { this = acl.getProperty("ipRules").(Array).getElements() }
 
     NetworkAcl getNetworkAcl() { result = acl }
 
-    StringLiteral getValue() {
-      result = this.getProperty("value")
+    StringLiteral getValue() { result = this.getProperty("value") }
+
+    string toString() { result = "IP Rule" }
+  }
+
+  /**
+   * Represents the ingress configuration for a resource (e.g., container app).
+   * Provides access to ingress properties such as external, targetPort, transport, CORS policy, and allowInsecure.
+   */
+  class Ingress extends Object {
+    private Object properties;
+
+    /**
+     * Constructs an Ingress object for the given properties.
+     */
+    Ingress() { this = properties.getProperty("ingress") }
+
+    /**
+     * Returns the 'external' property as a Boolean.
+     */
+    Boolean getExternal() { result = this.getProperty("external") }
+
+    /**
+     * Returns the 'external' property as a boolean.
+     */
+    boolean external() { result = this.getExternal().(Boolean).getBool() }
+
+    /**
+     * Returns the 'targetPort' property as a Number.
+     */
+    Number getTargetPort() { result = this.getProperty("targetPort") }
+
+    /**
+     * Returns the 'targetPort' property as an int.
+     */
+    int targetPort() { result = this.getTargetPort().getValue() }
+
+    /**
+     * Returns the 'transport' property as a StringLiteral.
+     */
+    StringLiteral getTransport() { result = this.getProperty("transport") }
+
+    /**
+     * Returns the 'transport' property as a string.
+     */
+    string transport() { result = this.getTransport().getValue() }
+
+    /**
+     * Returns the 'corsPolicy' property as a CorsPolicy object.
+     */
+    CorsPolicy getCorsPolicy() { result = this.getProperty("corsPolicy") }
+
+    /**
+     * Returns the 'allowInsecure' property as a Boolean.
+     */
+    Boolean getAllowInsecure() { result = this.getProperty("allowInsecure") }
+
+    /**
+     * Returns the 'allowInsecure' property as a boolean.
+     */
+    boolean allowInsecure() { result = this.getAllowInsecure().getBool() }
+
+    string toString() { result = "NetworkIngress" }
+  }
+
+  /**
+   * Represents a CORS policy for ingress.
+   * Provides access to CORS-related properties such as allowCredentials, allowedOrigins, allowedMethods, allowedHeaders, exposedHeaders, and maxAge.
+   */
+  class CorsPolicy extends Object {
+    private Object properties;
+
+    /**
+     * Constructs a CorsPolicy object for the given properties.
+     */
+    CorsPolicy() { this = properties.getProperty("corsPolicy") }
+
+    /**
+     * Returns the 'allowCredentials' property as a Boolean.
+     */
+    Boolean getAllowCredentials() {
+      result = this.getProperty("allowCredentials")
     }
 
-    string toString() {
-      result = "IP Rule"
+    /**
+     * Returns the 'allowCredentials' property as a boolean.
+     */
+    boolean allowCredentials() { result = this.getAllowCredentials().getBool() }
+
+    /**
+     * Returns the 'allowedOrigins' property as an array of StringLiterals.
+     */
+    Array getAllowedOrigins() {
+      result = this.getProperty("allowedOrigins")
     }
+
+    /**
+     * Returns the 'allowedMethods' property as an array of StringLiterals.
+     */
+    Array getAllowedMethods() {
+      result = this.getProperty("allowedMethods")
+    }
+
+    /**
+     * Returns the 'allowedHeaders' property as an array of StringLiterals.
+     */
+    Array getAllowedHeaders() {
+      result = this.getProperty("allowedHeaders")
+    }
+
+    /**
+     * Returns the 'exposedHeaders' property as an array of StringLiterals.
+     */
+    Array getExposedHeaders() {
+      result = this.getProperty("exposedHeaders")
+    }
+
+    /**
+     * Returns the 'maxAge' property as a Number.
+     */
+    Number getMaxAge() { result = this.getProperty("maxAge") }
+
+    string toString() { result = "CorsPolicy" }
   }
 
   module VirtualNetworkProperties {
