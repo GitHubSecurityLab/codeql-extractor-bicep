@@ -1,0 +1,1 @@
+| app.bicep:42:27:42:33 | Array | CORS policy allows all headers ("*"), which can increase attack surface. |
