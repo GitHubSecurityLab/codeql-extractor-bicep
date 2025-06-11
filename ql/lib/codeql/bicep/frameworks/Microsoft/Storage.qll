@@ -1,6 +1,10 @@
 private import bicep
 
 module Storage {
+  /**
+   * Represents a resource of type Microsoft.Storage/storageAccounts in Bicep.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts
+   */
   class StorageAccounts extends Resource {
     StorageAccounts() {
       this.getResourceType().regexpMatch("^Microsoft.Storage/storageAccounts@.*")
@@ -9,6 +13,10 @@ module Storage {
     Expr getKind() { result = this.getProperty("kind") }
   }
 
+  /**
+   * Represents the properties object for Microsoft.Storage/storageAccounts in Bicep.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts#storageaccountsproperties
+   */
   class StorageAccountsProperties extends Object {
     private StorageAccounts storageAccounts;
 
@@ -24,14 +32,16 @@ module Storage {
   }
 
   /**
-   * A resource of type Microsoft.Compute/disks
+   * Represents a resource of type Microsoft.Compute/disks in Bicep.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.compute/disks
    */
   class Disks extends Resource {
     Disks() { this.getResourceType().regexpMatch("^Microsoft.Compute/disks@.*") }
   }
 
   /**
-   * The Disk Properties object for the Microsoft.Compute/disks type
+   * Represents the properties object for Microsoft.Compute/disks in Bicep.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.compute/disks#diskproperties
    */
   class DisksProperties extends Object {
     private Disks disks;
@@ -45,6 +55,10 @@ module Storage {
     }
   }
 
+  /**
+   * Represents a resource of type Microsoft.Storage/storageAccounts/blobServices/containers in Bicep.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers
+   */
   class BlobServiceContainers extends Resource {
     BlobServiceContainers() {
       this.getResourceType()
