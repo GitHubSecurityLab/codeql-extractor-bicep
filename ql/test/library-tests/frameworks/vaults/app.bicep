@@ -33,5 +33,19 @@ resource keyVault 'Microsoft.KeyVault/vaults@2021-06-01-preview' = {
     enableSoftDelete: true
     enablePurgeProtection: true
     publicNetworkAccess: 'Disabled' // Recommended: restrict public access
+    networkAcls: {
+      bypass: 'AzureServices'
+      defaultAction: 'Deny'
+      ipRules: [
+        {
+          value: '203.0.113.0/24'
+        }
+      ]
+      virtualNetworkRules: [
+        {
+          id: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet'
+        }
+      ]
+    }
   }
 }

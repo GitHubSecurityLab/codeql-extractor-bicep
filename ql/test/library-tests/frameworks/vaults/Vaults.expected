@@ -1,5 +1,7 @@
 keyvault
-| app.bicep:1:1:37:1 | Key Vault Resource |
+| app.bicep:1:1:51:1 | Key Vault Resource |
 keyvaultPolicies
-| app.bicep:1:1:37:1 | Key Vault Resource | app.bicep:11:7:19:7 | AccessPolicy |
-| app.bicep:1:1:37:1 | Key Vault Resource | app.bicep:20:7:28:7 | AccessPolicy |
+| app.bicep:1:1:51:1 | Key Vault Resource | app.bicep:11:7:19:7 | AccessPolicy |
+| app.bicep:1:1:51:1 | Key Vault Resource | app.bicep:20:7:28:7 | AccessPolicy |
+keyvaultNetworkAcls
+| app.bicep:1:1:51:1 | Key Vault Resource | app.bicep:36:18:49:5 | Network ACL |

@@ -112,6 +112,62 @@ module Network {
     }
   }
 
+
+  class NetworkAcl extends Object {
+    private Resource resource;
+
+    NetworkAcl() {
+      exists(Object props |
+        props = resource.getProperty("properties") and
+        this = props.getProperty(["networkAcl", "networkAcls"])
+      )
+    }
+
+    Resource getResource() { result = resource }
+
+    StringLiteral getBypass() {
+      result = this.getProperty("bypass")
+    }
+
+    string bypass() {
+      result = this.getBypass().getValue()
+    }
+
+    StringLiteral getDefaultAction() {
+      result = this.getProperty("defaultAction")
+    }
+
+    string defaultAction() {
+      result = this.getDefaultAction().getValue()
+    }
+
+    IpRule getIpRules() {
+      result = this.getProperty("ipRules").(Array).getElements()
+    }
+
+    string toString() {
+      result = "Network ACL"
+    }
+  }
+
+  class IpRule extends Object {
+    private NetworkAcl acl;
+
+    IpRule() {
+      this = acl.getProperty("ipRules").(Array).getElements()
+    }
+
+    NetworkAcl getNetworkAcl() { result = acl }
+
+    StringLiteral getValue() {
+      result = this.getProperty("value")
+    }
+
+    string toString() {
+      result = "IP Rule"
+    }
+  }
+
   module VirtualNetworkProperties {
     /**
      * The properties object for the Microsoft.Network/virtualNetworks/subnets type.

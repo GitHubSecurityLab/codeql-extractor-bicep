@@ -1,5 +1,6 @@
 private import bicep
 private import codeql.bicep.Concepts
+private import Network
 
 module KeyVault {
   class VaultResource extends Resource {
@@ -14,6 +15,10 @@ module KeyVault {
 
     KeyVaultProperties::AccessPolicy getAccessPolicies() {
       result = this.getProperties().getAccessPolicies()
+    }
+
+    Network::NetworkAcl getNetworkAcls() {
+      result = this.getProperties().getNetworkAcls()
     }
 
     override string toString() { result = "Key Vault Resource" }
@@ -92,6 +97,10 @@ module KeyVault {
       StringLiteral getPublicNetworkAccess() { result = this.getProperty("publicNetworkAccess") }
 
       string publicNetworkAccess() { result = this.getPublicNetworkAccess().getValue() }
+
+      Network::NetworkAcl getNetworkAcls() {
+        result = this.getProperty("networkAcls")
+      }
 
       AccessPolicy getAccessPolicies() {
         result = this.getProperty("accessPolicies").(Array).getElements()
