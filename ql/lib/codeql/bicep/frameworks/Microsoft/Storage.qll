@@ -3,19 +3,35 @@ private import bicep
 module Storage {
   /**
    * Represents a resource of type Microsoft.Storage/storageAccounts in Bicep.
+   * Provides access to storage account properties, kind, network ACLs, and SKU.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts
    */
   class StorageAccounts extends Resource {
+    /**
+     * Constructs a StorageAccounts resource.
+     */
     StorageAccounts() {
       this.getResourceType().regexpMatch("^Microsoft.Storage/storageAccounts@.*")
     }
 
+    /**
+     * Gets the properties object for the storage account.
+     */
     StorageAccountProperies::Properties getProperties() { result = this.getProperty("properties") }
 
+    /**
+     * Gets the kind of the storage account (e.g., StorageV2, BlobStorage).
+     */
     StringLiteral getKind() { result = this.getProperty("kind") }
 
+    /**
+     * Gets the network ACLs for the storage account.
+     */
     Network::NetworkAcl getNetworkAcls() { result = this.getProperties().getNetworkAcls() }
 
+    /**
+     * Gets the SKU for the storage account.
+     */
     Sku getSku() { result = this.getProperty("sku") }
 
     override string toString() { result = "StorageAccount" }
@@ -23,21 +39,66 @@ module Storage {
 
   /**
    * Represents a resource of type Microsoft.Compute/disks in Bicep.
+   * Provides access to disk pools and disk properties.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.compute/disks
    */
   class Disks extends Resource {
+    /**
+     * Constructs a Disks resource.
+     */
     Disks() { this.getResourceType().regexpMatch("^Microsoft.Compute/disks@.*") }
 
+    DisksProperties::Properties getProperties() { result = this.getProperty("properties") }
+
+    StringLiteral getZones() {
+      result = this.getProperty("zones").(Array).getElements()
+    }
+  
+    DisksProperties::EncryptionSettings getEncryptionSettings() {
+      result = this.getProperties().getEncryptionSettings()
+    }
+
+    /**
+     * Gets the disk pools that this disk is attached to.
+     */
     DiskPools getDiskPools() { exists(DiskPools pools | pools.getDisks() = this | result = pools) }
 
     override string toString() { result = "Disks" }
   }
 
+  private class PublicDisks extends PublicResource {
+    private StorageAccounts accounts;
+
+    PublicDisks() {
+      accounts.getProperties().allowBlobPublicAccess() = true
+      and
+      this = accounts
+    }
+
+    override Expr getPublicAccessProperty() { 
+      result = accounts.getProperties().getAllowBlobPublicAccess()
+    }
+  }
+
+  /**
+   * Represents a resource of type Microsoft.StoragePool/diskPools in Bicep.
+   * Provides access to disk pool properties, attached disks, and SKU.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storagepool/diskpools
+   */
   class DiskPools extends Resource {
+    /**
+     * Constructs a DiskPools resource.
+     */
     DiskPools() { this.getResourceType().regexpMatch("^Microsoft.StoragePool/diskPools@.*") }
 
+    /**
+     * Gets the properties object for the disk pool.
+     */
     DiskPoolProperties::Properties getProperties() { result = this.getProperty("properties") }
 
+    /**
+     * Gets the disks attached to this disk pool.
+     */
     Disks getDisks() {
       exists(DiskPoolProperties::DiskRef refs, Disks disks |
         refs = this.getProperties().getDisksRef() and
@@ -47,6 +108,9 @@ module Storage {
       )
     }
 
+    /**
+     * Gets the SKU for the disk pool.
+     */
     Sku getSku() { result = this.getProperty("sku") }
 
     override string toString() { result = "DiskPools" }
@@ -54,16 +118,26 @@ module Storage {
 
   /**
    * Represents a resource of type Microsoft.Storage/storageAccounts/blobServices/containers in Bicep.
+   * Provides access to container properties and public access settings.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers
    */
   class BlobServiceContainers extends Resource {
+    /**
+     * Constructs a BlobServiceContainers resource.
+     */
     BlobServiceContainers() {
       this.getResourceType()
           .regexpMatch("^Microsoft.Storage/storageAccounts/blobServices/containers@.*")
     }
 
+    /**
+     * Gets the properties object for the blob service container.
+     */
     Object getProperties() { result = this.getProperty("properties") }
 
+    /**
+     * Gets the public access setting for the container.
+     */
     string getPublicAccess() {
       result = this.getProperties().getProperty("publicAccess").(StringLiteral).getValue()
     }
@@ -122,7 +196,7 @@ module Storage {
       Properties() { this = disks.getProperty("properties") }
 
       EncryptionSettings getEncryptionSettings() {
-        result = this.getProperty("encryptionSettingsCollection")
+        result = this.getProperty("encryption")
       }
 
       boolean getEncryptionEnabled() {
@@ -130,12 +204,14 @@ module Storage {
       }
 
       Number getDiskSizeGB() { result = this.getProperty("diskSizeGB") }
+
+      string toString() { result = "DiskProperties" }
     }
 
-    class EncryptionSettings extends Properties {
+    class EncryptionSettings extends Object {
       private Object encryptionSettings;
 
-      EncryptionSettings() { this = encryptionSettings.getProperty("encryptionSettings") }
+      EncryptionSettings() { this = encryptionSettings.getProperty("encryption") }
 
       StringLiteral getType() { result = this.getProperty("type") }
 
