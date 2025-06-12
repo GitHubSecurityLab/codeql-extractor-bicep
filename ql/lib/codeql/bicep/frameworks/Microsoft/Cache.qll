@@ -92,7 +92,7 @@ module Cache {
     /**
      * Represents the properties object for a Redis cache resource.
      */
-    class Properties extends Object {
+    class Properties extends ResourceProperties {
       private RedisCacheResource redisCache;
 
       /**

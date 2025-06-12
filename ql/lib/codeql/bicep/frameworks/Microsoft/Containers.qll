@@ -108,7 +108,7 @@ module Containers {
     /**
      * Represents the properties object for a container app resource (2025-02-02-preview).
      */
-    class Properties extends Object {
+    class Properties extends ResourceProperties {
       private ContainerResource containerResource;
 
       /**

@@ -278,7 +278,7 @@ module Databases {
     /**
      * Represents the properties object for a database resource.
      */
-    class Properties extends Object {
+    class Properties extends ResourceProperties {
       private Resource resource;
 
       /**
