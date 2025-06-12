@@ -24,6 +24,10 @@ module Storage {
      */
     StringLiteral getKind() { result = this.getProperty("kind") }
 
+    DiskEncryption::EncryptionSettings getEncryptionSettings() {
+      result = this.getProperties().getProperty("encryption")
+    }
+
     /**
      * Gets the network ACLs for the storage account.
      */
@@ -34,7 +38,7 @@ module Storage {
      */
     Sku getSku() { result = this.getProperty("sku") }
 
-    override string toString() { result = "StorageAccount" }
+    override string toString() { result = "StorageAccount[" + this.getName() + "]" }
   }
 
   /**
@@ -63,7 +67,7 @@ module Storage {
     /**
      * Gets the encryption settings for the disk.
      */
-    DisksProperties::EncryptionSettings getEncryptionSettings() {
+    DiskEncryption::EncryptionSettings getEncryptionSettings() {
       result = this.getProperties().getEncryptionSettings()
     }
 
@@ -235,7 +239,7 @@ module Storage {
       /**
        * Converts the properties object to a string representation.
        */
-      string toString() { result = "StorageAccountsProperties" }
+      override string toString() { result = "StorageAccountsProperties[" + storageAccounts.getName() + "]"}
     }
   }
 
@@ -255,7 +259,7 @@ module Storage {
       /**
        * Gets the encryption settings for the disk.
        */
-      EncryptionSettings getEncryptionSettings() {
+      Storage::DiskEncryption::EncryptionSettings getEncryptionSettings() {
         result = this.getProperty("encryption")
       }
 
@@ -274,42 +278,9 @@ module Storage {
       /**
        * Converts the properties object to a string representation.
        */
-      string toString() { result = "DiskProperties" }
+      override string toString() { result = "DiskProperties" }
     }
 
-    /**
-     * Represents the encryption settings object for disks in Bicep.
-     */
-    class EncryptionSettings extends Object {
-      private Object encryptionSettings;
-
-      /**
-       * Constructs an EncryptionSettings object for disks.
-       */
-      EncryptionSettings() { this = encryptionSettings.getProperty("encryption") }
-
-      /**
-       * Gets the type of encryption used for the disk.
-       */
-      StringLiteral getType() { result = this.getProperty("type") }
-
-      /**
-       * Gets whether encryption is enabled for the disk.
-       */
-      boolean isEncryptionEnabled() { result = this.getProperty("enabled").(Boolean).getBool() }
-
-      /**
-       * Gets the URI of the key vault key used for encryption.
-       */
-      string getKeyVaultKeyUri() {
-        result = this.getProperty("keyVaultKeyUri").(StringLiteral).getValue()
-      }
-
-      /**
-       * Converts the encryption settings object to a string representation.
-       */
-      string toString() { result = "DiskEncryptionSettings" }
-    }
   }
 
   module DiskPoolProperties {
@@ -338,7 +309,7 @@ module Storage {
       /**
        * Converts the properties object to a string representation.
        */
-      string toString() { result = "DiskPoolProperties" }
+      override string toString() { result = "DiskPoolProperties" }
     }
 
     /**
@@ -367,5 +338,143 @@ module Storage {
        */
       string toString() { result = "DiskRef" }
     }
+  }
+
+  module DiskEncryption {
+
+    /**
+     * Represents the encryption settings object for disks or storage accounts in Bicep.
+     * Supports nested identity, key source, key vault properties, infrastructure encryption, and service-specific encryption.
+     */
+    class EncryptionSettings extends Object {
+      private ResourceProperties encryptionSettings;
+
+      /**
+       * Constructs an EncryptionSettings object for disks or storage accounts.
+       */
+      EncryptionSettings() { this = encryptionSettings.getProperty("encryption") }
+
+      /**
+       * Gets the identity object for encryption.
+       */
+      EncryptionIdentity getIdentity() { result = this.getProperty("identity") }
+
+      /**
+       * Gets the key source for encryption (e.g., 'Microsoft.Storage', 'Microsoft.Keyvault').
+       */
+      StringLiteral getKeySource() { result = this.getProperty("keySource") }
+
+      /**
+       * Gets the key vault properties object for encryption.
+       */
+      KeyVaultProperties getKeyVaultProperties() { result = this.getProperty("keyvaultproperties") }
+
+      /**
+       * Gets whether infrastructure encryption is required.
+       */
+      Boolean getRequireInfrastructureEncryption() { result = this.getProperty("requireInfrastructureEncryption") }
+
+      /**
+       * Gets the services object for encryption (per-service settings).
+       */
+      Services getServices() { result = this.getProperty("services") }
+
+      string toString() { result = "EncryptionSettings" }
+    }
+
+    /**
+     * Represents the identity object for encryption.
+     */
+    class EncryptionIdentity extends Object {
+      private EncryptionSettings settings;
+
+      EncryptionIdentity() { this = settings.getProperty("identity") }
+
+      /**
+       * Gets the federated identity client ID.
+       */
+      StringLiteral getFederatedIdentityClientId() { result = this.getProperty("federatedIdentityClientId") }
+
+      /**
+       * Gets the user assigned identity.
+       */
+      StringLiteral getUserAssignedIdentity() { result = this.getProperty("userAssignedIdentity") }
+    }
+
+    /**
+     * Represents the key vault properties object for encryption.
+     */
+    class KeyVaultProperties extends Object {
+      private EncryptionSettings settings;
+
+      KeyVaultProperties() { this = settings.getProperty("keyvaultproperties") }
+
+      /**
+       * Gets the key name.
+       */
+      StringLiteral getKeyName() { result = this.getProperty("keyname") }
+
+      /**
+       * Gets the key vault URI.
+       */
+      StringLiteral getKeyVaultUri() { result = this.getProperty("keyvaulturi") }
+
+      /**
+       * Gets the key version.
+       */
+      StringLiteral getKeyVersion() { result = this.getProperty("keyversion") }
+    }
+
+    /**
+     * Represents the services object for encryption (per-service settings).
+     */
+    class Services extends Object {
+      private EncryptionSettings settings;
+
+      Services() { this = settings.getProperty("services") }
+
+      /**
+       * Gets the blob service encryption settings.
+       */
+      ServiceEncryption getBlob() { result = this.getProperty("blob") }
+
+      /**
+       * Gets the file service encryption settings.
+       */
+      ServiceEncryption getFile() { result = this.getProperty("file") }
+
+      /**
+       * Gets the queue service encryption settings.
+       */
+      ServiceEncryption getQueue() { result = this.getProperty("queue") }
+
+      /**
+       * Gets the table service encryption settings.
+       */
+      ServiceEncryption getTable() { result = this.getProperty("table") }
+    }
+
+    /**
+     * Represents encryption settings for a specific service (blob, file, queue, table).
+     */
+    class ServiceEncryption extends Object {
+      private Services services;
+
+      /**
+       * Characteristic predicate for ServiceEncryption. This class is constructed via property access in Services.
+       */
+      ServiceEncryption() { this = this }
+
+      /**
+       * Gets whether encryption is enabled for the service.
+       */
+      Boolean getEnabled() { result = this.getProperty("enabled") }
+
+      /**
+       * Gets the key type for the service encryption.
+       */
+      StringLiteral getKeyType() { result = this.getProperty("keyType") }
+    }
+
   }
 }
