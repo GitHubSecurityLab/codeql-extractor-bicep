@@ -1,6 +1,10 @@
 private import bicep
 
-abstract class ResourceProperties extends Object {}
+abstract class ResourceProperties extends Object {
+  string toString() {
+    result = super.toString()
+  }
+}
 
 class Sku extends Object {
   private Resource resource;

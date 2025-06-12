@@ -81,6 +81,10 @@ module Compute {
        * Returns the OS profile object for the virtual machine.
        */
       Compute::Profiles::OsProfile getOsProfile() { result = this.getProperty("osProfile") }
+
+      override string toString() {
+        result = "VirtualMachinesProperties[" + virtualMachines.getName() + "]"
+      }
     }
 
     /**

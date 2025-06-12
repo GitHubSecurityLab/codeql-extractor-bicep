@@ -151,7 +151,7 @@ module Containers {
        */
       StringLiteral getWorkloadProfileName() { result = this.getProperty("workloadProfileName") }
 
-      string toString() { result = "ContainerProperties" }
+      override string toString() { result = "ContainerProperties" }
     }
 
     /**

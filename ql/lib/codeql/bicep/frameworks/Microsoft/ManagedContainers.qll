@@ -164,7 +164,7 @@ module ManagedContainers {
        */
       Tags getTags() { result = this.getProperty("tags") }
 
-      string toString() { result = "ManagedContainerProperties" }
+      override string toString() { result = "ManagedContainerProperties" }
     }
 
     /**

@@ -243,7 +243,7 @@ module Databases {
     override string databaseType() { result = "arc-sql-managed-instance" }
   }
 
-  class PublicDatabaseResource extends PublicResource {
+  private class PublicDatabaseResource extends PublicResource {
     private DatabaseResource database;
 
     /**
@@ -265,7 +265,7 @@ module Databases {
   /**
    * Represents a database resource with a weak TLS version configuration.
    */
-  class WeakDatabaseTlsVersion extends Cryptography::WeakTlsVersion instanceof DatabaseResource {
+  private class WeakDatabaseTlsVersion extends Cryptography::WeakTlsVersion instanceof DatabaseResource {
     /**
      * Returns the minimalTlsVersion property as a StringLiteral for weak TLS version detection.
      */
@@ -279,7 +279,7 @@ module Databases {
      * Represents the properties object for a database resource.
      */
     class Properties extends ResourceProperties {
-      private Resource resource;
+      private DatabaseResource resource;
 
       /**
        * Constructs a Properties object for the given resource.
@@ -290,6 +290,10 @@ module Databases {
        * Returns the underlying resource for these properties.
        */
       Resource getResource() { result = resource }
+
+      override string toString() {
+        result = "DatabaseProperties[" + resource.databaseType() + "]"
+      }
     }
 
     /**
