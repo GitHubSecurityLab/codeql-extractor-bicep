@@ -1,0 +1,1 @@
+| aks-security-examples.bicep:32:1:62:1 | ManagedContainerResource | AKS cluster API server is private (private cluster enabled). |
