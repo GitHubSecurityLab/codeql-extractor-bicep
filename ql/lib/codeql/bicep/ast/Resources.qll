@@ -87,6 +87,10 @@ class Resource extends TResource {
     exists(StringLiteral sl | sl = resource.getName() | result = sl.getValue())
   }
 
+  Identifier getIdentifier() {
+    result = resource.getIdentifier()
+  }
+
   string getName() {
     exists(StringLiteral name |
       name = resource.getProperty("name") and
