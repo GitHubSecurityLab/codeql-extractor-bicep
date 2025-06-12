@@ -70,7 +70,7 @@ module KeyVault {
      * The properties object for the Microsoft.KeyVault/vaults type.
      * Provides access to Key Vault configuration and settings.
      */
-    class Properties extends Object {
+    class Properties extends ResourceProperties {
       private VaultResource vaultResource;
 
       /**
@@ -188,6 +188,10 @@ module KeyVault {
        */
       AccessPolicy getAccessPolicy(int index) {
         result = this.getProperty("accessPolicies").(Array).getElement(index)
+      }
+
+      override string toString() {
+        result = "Key Vault Properties"
       }
     }
 

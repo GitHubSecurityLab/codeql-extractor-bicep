@@ -105,7 +105,7 @@ module Cache {
        */
       RedisCacheResource getRedisCacheResource() { result = redisCache }
 
-      string toString() { result = "CacheProperties" }
+      override string toString() { result = "CacheProperties[" + redisCache.getName() + "]" }
     }
 
     /**
