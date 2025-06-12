@@ -6,7 +6,7 @@ module AKS {
    * Represents a Microsoft.ContainerService/managedClusters resource (AKS) in a Bicep file.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters
    */
-  class ManagedContainerResource extends Resource {
+  class ManagedContainerResource extends AzureResource {
     /**
      * Constructs a ManagedContainerResource for Microsoft.ContainerService/managedClusters resources.
      */
@@ -157,11 +157,6 @@ module AKS {
        * Gets the storage profile for the cluster.
        */
       Expr getStorageProfile() { result = this.getProperty("storageProfile") }
-
-      /**
-       * Gets the SKU for the cluster.
-       */
-      Sku getSku() { result = this.getProperty("sku") }
 
       /**
        * Gets the tags for the cluster.

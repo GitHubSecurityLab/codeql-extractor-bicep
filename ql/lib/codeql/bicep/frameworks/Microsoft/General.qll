@@ -1,5 +1,15 @@
 private import bicep
 
+abstract class AzureResource extends Resource {
+  string resourceLocation() {
+    result = this.getProperty("location").(StringLiteral).getValue()
+  }
+
+  Sku getSku() { result = this.getProperty("sku") }
+
+  Tags getTags() { result = this.getProperty("tags") }
+}
+
 abstract class ResourceProperties extends Object {
   string toString() {
     result = super.toString()

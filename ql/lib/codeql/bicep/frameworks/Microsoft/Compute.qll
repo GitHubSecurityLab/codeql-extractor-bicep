@@ -8,7 +8,7 @@ module Compute {
    * Represents a generic Microsoft.Compute resource.
    * Matches any resource of type Microsoft.Compute/*.
    */
-  class ComputeResource extends Resource {
+  class ComputeResource extends AzureResource {
     /**
      * Constructs a ComputeResource for any Microsoft.Compute resource type.
      */

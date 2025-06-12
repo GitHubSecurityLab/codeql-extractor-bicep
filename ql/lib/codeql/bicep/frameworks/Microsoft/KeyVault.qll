@@ -6,7 +6,7 @@ module KeyVault {
    * Represents a Microsoft.KeyVault resource in a Bicep file.
    * Provides access to Key Vault properties, access policies, and network ACLs.
    */
-  class VaultResource extends Resource {
+  class VaultResource extends AzureResource {
     /**
      * Constructs a VaultResource for any Microsoft.KeyVault resource type.
      * Matches resources with type starting with "Microsoft.KeyVault/".

@@ -6,7 +6,7 @@ module Storage {
    * Provides access to storage account properties, kind, network ACLs, and SKU.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts
    */
-  class StorageAccounts extends Resource {
+  class StorageAccounts extends AzureResource {
     /**
      * Constructs a StorageAccounts resource.
      */
@@ -33,11 +33,6 @@ module Storage {
      */
     Network::NetworkAcl getNetworkAcls() { result = this.getProperties().getNetworkAcls() }
 
-    /**
-     * Gets the SKU for the storage account.
-     */
-    Sku getSku() { result = this.getProperty("sku") }
-
     override string toString() { result = "StorageAccount[" + this.getName() + "]" }
   }
 
@@ -46,7 +41,7 @@ module Storage {
    * Provides access to disk properties, encryption, zones, and disk pools.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.compute/disks
    */
-  class Disks extends Resource {
+  class Disks extends AzureResource {
     /**
      * Constructs a Disks resource.
      */
@@ -107,7 +102,7 @@ module Storage {
    * Provides access to disk pool properties, attached disks, and SKU.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storagepool/diskpools
    */
-  class DiskPools extends Resource {
+  class DiskPools extends AzureResource {
     /**
      * Constructs a DiskPools resource.
      */
@@ -130,11 +125,6 @@ module Storage {
       )
     }
 
-    /**
-     * Gets the SKU for the disk pool.
-     */
-    Sku getSku() { result = this.getProperty("sku") }
-
     override string toString() { result = "DiskPools" }
   }
 
@@ -143,7 +133,7 @@ module Storage {
    * Provides access to container properties and public access settings.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.storage/storageaccounts/blobservices/containers
    */
-  class BlobServiceContainers extends Resource {
+  class BlobServiceContainers extends AzureResource {
     /**
      * Constructs a BlobServiceContainers resource.
      */

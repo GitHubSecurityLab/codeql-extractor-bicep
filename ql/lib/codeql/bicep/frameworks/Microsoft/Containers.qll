@@ -5,7 +5,7 @@ module Containers {
    * Represents a Microsoft.ContainerApp/containerApps resource (2025-02-02-preview).
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.app/containerapps
    */
-  class ContainerResource extends Resource {
+  class ContainerResource extends AzureResource {
     /**
      * Constructs a ContainerResource for Microsoft.App/containerApps resources.
      */
@@ -74,32 +74,18 @@ module Containers {
     Network::CorsPolicy getCorsPolicy() { result = this.getNetworkIngress().getCorsPolicy() }
 
     /**
-     * Returns the SKU object for the container registry resource.
-     */
-    Sku getSku() { result = this.getProperty("sku") }
-
-    Tags getTags() { result = this.getProperty("tags") }
-
-    /**
      * Returns a string representation of the container app resource.
      */
     override string toString() { result = "ContainerResource" }
   }
 
-  class ContainerRegistry extends Resource {
+  class ContainerRegistry extends AzureResource {
     /**
      * Constructs a ContainerRegistry for Microsoft.ContainerRegistry/containerRegistries resources (2025-02-02-preview).
      */
     ContainerRegistry() {
       this.getResourceType().regexpMatch("^Microsoft.ContainerRegistry/registries@.*$")
     }
-
-    /**
-     * Returns the SKU object for the container registry resource.
-     */
-    Sku getSku() { result = this.getProperty("sku") }
-
-    Tags getTags() { result = this.getProperty("tags") }
 
     override string toString() { result = "ContainerRegistry" }
   }
