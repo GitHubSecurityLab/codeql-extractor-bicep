@@ -46,3 +46,59 @@ resource storageAccount3 'Microsoft.Storage/storageAccounts@2022-09-01' = {
     isHnsEnabled: true
   }
 }
+
+// Example 1: Managed disk with Standard_LRS
+resource disk1 'Microsoft.Compute/disks@2022-07-02' = {
+  name: 'exampledisk1'
+  location: 'eastus'
+  sku: {
+    name: 'Standard_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 128
+    osType: 'Windows'
+  }
+}
+
+// Example 2: Premium SSD disk with zone and encryption
+resource disk2 'Microsoft.Compute/disks@2022-07-02' = {
+  name: 'exampledisk2'
+  location: 'westeurope'
+  zones: ['1']
+  sku: {
+    name: 'Premium_LRS'
+  }
+  properties: {
+    creationData: {
+      createOption: 'Empty'
+    }
+    diskSizeGB: 256
+    encryption: {
+      type: 'EncryptionAtRestWithPlatformKey'
+    }
+  }
+}
+
+// Example 3: Disk pool with two attached disks
+resource diskPool 'Microsoft.StoragePool/diskPools@2021-08-01' = {
+  name: 'examplediskpool'
+  location: 'centralus'
+  sku: {
+    name: 'Basic'
+  }
+  properties: {
+    subnetId: '/subscriptions/00000000-0000-0000-0000-000000000000/resourceGroups/myrg/providers/Microsoft.Network/virtualNetworks/myvnet/subnets/mysubnet'
+    disks: [
+      {
+        id: disk1.id
+      }
+      {
+        id: disk2.id
+      }
+    ]
+    availabilityZones: ['1']
+  }
+}
