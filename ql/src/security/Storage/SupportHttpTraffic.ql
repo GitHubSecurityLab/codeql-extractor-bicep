@@ -14,7 +14,7 @@
 
 import bicep
 
-from Storage::StorageAccountsProperties properties
-where properties.getSupportsHttpsTrafficOnly() = false
-select properties.getProperty("supportsHttpsTrafficOnly"),
+from Storage::StorageAccounts storageAccount
+where storageAccount.getProperties().supportsHttpsTrafficOnly() = false
+select storageAccount.getProperties().getSupportsHttpsTrafficOnly(),
   "Supports non-HTTPS traffic for storage accounts."
