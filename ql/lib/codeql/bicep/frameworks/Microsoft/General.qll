@@ -1,5 +1,7 @@
 private import bicep
 
+abstract class ResourceProperties extends Object {}
+
 class Sku extends Object {
   private Resource resource;
 

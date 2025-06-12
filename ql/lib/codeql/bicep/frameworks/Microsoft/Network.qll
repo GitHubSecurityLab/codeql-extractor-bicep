@@ -273,7 +273,7 @@ module Network {
     /**
      * The properties object for the Microsoft.Network/virtualNetworks/subnets type.
      */
-    class Properties extends Object {
+    class Properties extends ResourceProperties {
       private VirtualNetworkSubnets virtualNetworkSubnets;
 
       /**
