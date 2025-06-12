@@ -295,6 +295,10 @@ module AKS {
        */
       Boolean getEnabled() { result = this.getProperty("enabled") }
 
+      boolean enabled() {
+        result = this.getEnabled().getBool()
+      }
+
       string toString() { result = "AddonKubeDashboard" }
     }
 
