@@ -1,7 +1,7 @@
 private import bicep
 private import codeql.bicep.Concepts
 
-module ManagedContainers {
+module AKS {
   /**
    * Represents a Microsoft.ContainerService/managedClusters resource (AKS) in a Bicep file.
    * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.containerservice/managedclusters
@@ -74,6 +74,10 @@ module ManagedContainers {
        * Gets the Kubernetes version property.
        */
       StringLiteral getKubernetesVersion() { result = this.getProperty("kubernetesVersion") }
+
+      string kubernetesVersion() {
+        result = this.getKubernetesVersion().getValue()
+      }
 
       /**
        * Gets the DNS prefix property.
@@ -241,7 +245,11 @@ module ManagedContainers {
       /**
        * Gets the enablePrivateCluster property.
        */
-      StringLiteral getEnablePrivateCluster() { result = this.getProperty("enablePrivateCluster") }
+      Boolean getEnablePrivateCluster() { result = this.getProperty("enablePrivateCluster") }
+
+      boolean enablePrivateCluster() {
+        result = this.getEnablePrivateCluster().getBool()
+      }
 
       /**
        * Gets the privateDnsZone property.
