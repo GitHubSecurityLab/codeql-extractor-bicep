@@ -47,6 +47,75 @@ resource storageAccount3 'Microsoft.Storage/storageAccounts@2022-09-01' = {
   }
 }
 
+// Example 4: Storage account with Microsoft-managed keys (default encryption)
+resource storageAccount4 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+  name: 'examplestorage4'
+  location: 'eastus2'
+  sku: {
+    name: 'Standard_LRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    encryption: {
+      keySource: 'Microsoft.Storage'
+    }
+  }
+}
+
+// Example 5: Storage account with customer-managed keys from Key Vault
+resource storageAccount5 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+  name: 'examplestorage5'
+  location: 'uksouth'
+  sku: {
+    name: 'Standard_GRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    encryption: {
+      keySource: 'Microsoft.Keyvault'
+      keyvaultproperties: {
+        keyname: 'my-key'
+        keyvaulturi: 'https://myvault.vault.azure.net/'
+        keyversion: '1234567890abcdef'
+      }
+    }
+  }
+}
+
+// Example 6: Storage account with per-service encryption and infrastructure encryption
+resource storageAccount6 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+  name: 'examplestorage6'
+  location: 'australiaeast'
+  sku: {
+    name: 'Standard_ZRS'
+  }
+  kind: 'StorageV2'
+  properties: {
+    encryption: {
+      keySource: 'Microsoft.Storage'
+      requireInfrastructureEncryption: true
+      services: {
+        blob: {
+          enabled: true
+          keyType: 'Account'
+        }
+        file: {
+          enabled: true
+          keyType: 'Service'
+        }
+        queue: {
+          enabled: false
+          keyType: 'Account'
+        }
+        table: {
+          enabled: true
+          keyType: 'Account'
+        }
+      }
+    }
+  }
+}
+
 // Example 1: Managed disk with Standard_LRS
 resource disk1 'Microsoft.Compute/disks@2022-07-02' = {
   name: 'exampledisk1'
