@@ -6,7 +6,7 @@ module Databases {
    * Base class for all database resources in Azure.
    * Provides common properties and methods for Azure database resources.
    */
-  abstract class DatabaseResource extends Resource {
+  abstract class DatabaseResource extends AzureResource {
     /**
      * Returns the type of the database resource (e.g., sql, postgresql, etc).
      */

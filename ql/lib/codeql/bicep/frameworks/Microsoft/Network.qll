@@ -5,7 +5,7 @@ module Network {
    * Represents a generic Microsoft.Network resource.
    * Matches any resource of type Microsoft.Network/*.
    */
-  class NetworkResource extends Resource {
+  class NetworkResource extends AzureResource {
     /**
      * Constructs a NetworkResource for any Microsoft.Network resource type.
      */
@@ -103,7 +103,7 @@ module Network {
   /**
    * Represents a Microsoft.Network/virtualNetworks/subnets resource.
    */
-  class VirtualNetworkSubnets extends Resource {
+  class VirtualNetworkSubnets extends AzureResource {
     /**
      * Constructs a VirtualNetworkSubnets resource.
      */

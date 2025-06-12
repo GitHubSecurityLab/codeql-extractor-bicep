@@ -2,7 +2,7 @@ private import bicep
 private import codeql.bicep.Concepts
 
 module Cache {
-  abstract class CacheResource extends Resource { }
+  abstract class CacheResource extends AzureResource { }
 
   /**
    * Represents an Azure Cache for Redis resource.
@@ -21,11 +21,6 @@ module Cache {
     CacheProperties::RedisConfiguration getRedisConfiguration() {
       result = this.getProperties().getProperty("redisConfiguration")
     }
-
-    /**
-     * Returns the SKU of the Redis cache.
-     */
-    Sku getSku() { result = this.getProperty("sku") }
 
     /**
      * Returns the Redis version.
