@@ -63,7 +63,7 @@ class MemberExpression extends Expr instanceof MemberExpressionImpl {
     /**
      * The namespace of the member expression.
      */
-    Expr getNamespace() { result = MemberExpressionImpl.super.getObject() }
+    Idents getNamespace() { result = MemberExpressionImpl.super.getObject() }
 
     /**
      * The member of the member expression.
