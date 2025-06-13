@@ -1,0 +1,5 @@
+dominates
+| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:1:103:1 | enter Infrastructure |
+postDominance
+| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:1:103:1 | enter Infrastructure |
+immediateDominator
