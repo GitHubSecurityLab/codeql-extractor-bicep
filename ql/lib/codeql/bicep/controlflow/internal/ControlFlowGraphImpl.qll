@@ -63,6 +63,10 @@ private module CfgImpl = Make<Location, Implementation>;
 
 import CfgImpl
 
+class InfrastructureScopeTree extends StandardTree, PreOrderTree, PostOrderTree, Scope::InfrastructureScope {
+  override AstNode getChildNode(int i) { result = super.getStatement(i) }
+}
+
 /**
  * A literal value in a Bicep program.
  */
@@ -87,3 +91,38 @@ class StringLiteralTree extends LeafTree instanceof StringLiteral { }
  * A StringContent literal value in a Bicep program.
  */
 class StringContentLiteralTree extends LeafTree instanceof StringContentLiteral { }
+
+/**
+ *  ParameterDeclarationTree represents a parameter declaration in a Bicep program.
+ */
+class ParameterDeclarationTree extends StandardPostOrderTree instanceof ParameterDeclaration {
+  override AstNode getChildNode(int i) {
+    i = 0 and result = super.getIdentifier()
+    or
+    i = 1 and result = super.getType()
+    or
+    i = 2 and result = super.getDefaultValue()
+  }
+}
+
+class UserDefinedFunctionTree extends StandardPostOrderTree instanceof UserDefinedFunction {
+  override AstNode getChildNode(int i) {
+    i = 0 and result = super.getIdentifier()
+    or
+    i = 1 and result = super.getParameters()
+    or
+    i = 2 and result = super.getReturnType()
+    or
+    i = 3 and result = super.getBody()
+  }
+}
+
+class OutputDeclarationTree extends StandardPostOrderTree instanceof OutputDeclaration {
+  override AstNode getChildNode(int i) {
+    i = 0 and result = super.getIdentifier()
+    or
+    i = 1 and result = super.getType()
+    or
+    i = 2 and result = super.getValue()
+  }
+}
