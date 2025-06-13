@@ -6,6 +6,9 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Idents
+private import Expr
+private import Type
 
 /**
  *  A OutputDeclaration AST Node.
@@ -19,6 +22,15 @@ class OutputDeclarationImpl extends TOutputDeclaration, AstNode {
 
   override string toString() { result = ast.toString() }
 
+  IdentsImpl getIdentifier() {
+    toTreeSitter(result) = ast.getChild(0)
+  }
 
+  TypeImpl getType() {
+    toTreeSitter(result) = ast.getChild(1)
+  }
 
+  ExprImpl getValue() {
+    toTreeSitter(result) = ast.getChild(2)
+  }
 }
