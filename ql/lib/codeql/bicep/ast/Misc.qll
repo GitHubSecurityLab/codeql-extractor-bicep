@@ -18,7 +18,6 @@ private import internal.MetadataDeclaration
 private import internal.ModuleDeclaration
 private import internal.NegatedType
 private import internal.ObjectProperty
-private import internal.OutputDeclaration
 private import internal.ParameterizedType
 private import internal.ParenthesizedType
 private import internal.PrimitiveType
@@ -102,10 +101,6 @@ class ModuleDeclaration extends AstNode instanceof ModuleDeclarationImpl { }
  */
 class NegatedType extends AstNode instanceof NegatedTypeImpl { }
 
-/**
- *  A OutputDeclaration unknown AST node.
- */
-class OutputDeclaration extends AstNode instanceof OutputDeclarationImpl { }
 
 /**
  *  A ParameterizedType unknown AST node.

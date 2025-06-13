@@ -7,6 +7,7 @@ private import internal.CallExpression
 private import internal.Parameter
 private import internal.Parameters
 private import internal.ParameterDeclaration
+private import internal.OutputDeclaration
 private import internal.UserDefinedFunction
 
 abstract class Callable extends Expr {
@@ -29,109 +30,84 @@ abstract class Callable extends Expr {
 /**
  * A CallExpression expression in the AST.
  */
-class CallExpression extends Callable instanceof CallExpressionImpl {
-  override Idents getIdentifier() {
-    result = CallExpressionImpl.super.getIdentifier()
-  }
+class CallExpression extends Expr instanceof CallExpressionImpl {
+  Idents getIdentifier() { result = CallExpressionImpl.super.getIdentifier() }
 
-  Expr getArgument(int index) {
-    result = this.getDeclaredArguments().getArgument(index)
-  }
+  string getName() { result = this.getIdentifier().getName() }
 
-  Expr getArguments() {
-    result = this.getDeclaredArguments().getArguments()
-  }
+  Expr getArgument(int index) { result = this.getDeclaredArguments().getArgument(index) }
 
-  Arguments getDeclaredArguments() {
-    result = CallExpressionImpl.super.getArguments()
-  }
+  Expr getArguments() { result = this.getDeclaredArguments().getArguments() }
+
+  Arguments getDeclaredArguments() { result = CallExpressionImpl.super.getArguments() }
 }
-
 
 /**
  *  A Arguments unknown AST node.
  */
 class Arguments extends AstNode instanceof ArgumentsImpl {
+  Expr getArgument(int index) { result = ArgumentsImpl.super.getArgument(index) }
 
-  Expr getArgument(int index) {
-    result = ArgumentsImpl.super.getArgument(index)
-  }
-
-  Expr getArguments() {
-    result = ArgumentsImpl.super.getArguments()
-  }
+  Expr getArguments() { result = ArgumentsImpl.super.getArguments() }
 }
 
 /**
  *  A Parameter unknown AST node.
  */
 class Parameter extends AstNode instanceof ParameterImpl {
+  Idents getName() { result = ParameterImpl.super.getName() }
 
-  Idents getName() {
-    result = ParameterImpl.super.getName()
-  }
-
-  Type getType() {
-    result = ParameterImpl.super.getType()
-  }
+  Type getType() { result = ParameterImpl.super.getType() }
 }
 
 /**
  *  A Parameters unknown AST node.
  */
 class Parameters extends AstNode instanceof ParametersImpl {
-  Parameter getParameter(int index) {
-    result = ParametersImpl.super.getParameter(index)
-  }
+  Parameter getParameter(int index) { result = ParametersImpl.super.getParameter(index) }
 }
-
 
 /**
  *  A ParameterDeclaration unknown AST node.
  */
-class ParameterDeclaration extends AstNode instanceof ParameterDeclarationImpl { 
-  Identifier getName() {
-    result = ParameterDeclarationImpl.super.getName()
-  }
+class ParameterDeclaration extends AstNode instanceof ParameterDeclarationImpl {
+  Identifier getIdentifier() { result = ParameterDeclarationImpl.super.getName() }
 
-  Type getType() {
-    result = ParameterDeclarationImpl.super.getType()
-  }
+  string getName() { result = this.getIdentifier().getName() }
 
-  Expr getDefaultValue() {
-    result = ParameterDeclarationImpl.super.getDefaultValue()
-  }
+  Type getType() { result = ParameterDeclarationImpl.super.getType() }
+
+  Expr getDefaultValue() { result = ParameterDeclarationImpl.super.getDefaultValue() }
+}
+
+/**
+ *  A OutputDeclaration unknown AST node.
+ */
+class OutputDeclaration extends AstNode instanceof OutputDeclarationImpl {
+  Identifier getIdentifier() { result = OutputDeclarationImpl.super.getIdentifier() }
+
+  string getName() { result = this.getIdentifier().getName() }
+
+  Type getType() { result = OutputDeclarationImpl.super.getType() }
+
+  Expr getValue() { result = OutputDeclarationImpl.super.getValue() }
 }
 
 /**
  *  A UserDefinedFunction unknown AST node.
  */
 class UserDefinedFunction extends AstNode instanceof UserDefinedFunctionImpl {
-  Identifier getIdentifier() {
-    result = UserDefinedFunctionImpl.super.getName()
-  }
+  Identifier getIdentifier() { result = UserDefinedFunctionImpl.super.getName() }
 
-  string getName() {
-    result = this.getIdentifier().getName()
-  }
+  string getName() { result = this.getIdentifier().getName() }
 
-  Type getReturnType() {
-    result = UserDefinedFunctionImpl.super.getReturnType()
-  }
+  Type getReturnType() { result = UserDefinedFunctionImpl.super.getReturnType() }
 
-  Parameters getDeclaredParameters() {
-    result = UserDefinedFunctionImpl.super.getParameters()
-  }
+  Parameters getDeclaredParameters() { result = UserDefinedFunctionImpl.super.getParameters() }
 
-  Parameter getParameters() {
-    result = this.getDeclaredParameters().getParameter(_)
-  }
+  Parameter getParameters() { result = this.getDeclaredParameters().getParameter(_) }
 
-  Parameter getParameter(int index) {
-    result = this.getDeclaredParameters().getParameter(index)
-  }
+  Parameter getParameter(int index) { result = this.getDeclaredParameters().getParameter(index) }
 
-  Expr getBody() {
-    result = UserDefinedFunctionImpl.super.getBody()
-  }
+  Expr getBody() { result = UserDefinedFunctionImpl.super.getBody() }
 }
