@@ -67,6 +67,19 @@ class InfrastructureScopeTree extends StandardTree, PreOrderTree, PostOrderTree,
   override AstNode getChildNode(int i) { result = super.getStatement(i) }
 }
 
+class StmtsTree extends StandardPostOrderTree instanceof Stmts {
+  override AstNode getChildNode(int i) {
+    //
+    i = 0 and result = super.getAChild()
+  }
+}
+
+class ExprTree extends StandardPostOrderTree instanceof Expr {
+  override AstNode getChildNode(int i) {
+    i = 0 and result = super.getAChild()
+  }
+}
+
 /**
  * A literal value in a Bicep program.
  */
@@ -95,13 +108,18 @@ class StringContentLiteralTree extends LeafTree instanceof StringContentLiteral 
 /**
  *  ParameterDeclarationTree represents a parameter declaration in a Bicep program.
  */
-class ParameterDeclarationTree extends StandardPostOrderTree instanceof ParameterDeclaration {
-  override AstNode getChildNode(int i) {
-    i = 0 and result = super.getIdentifier()
+class ParameterDeclarationTree extends PreOrderTree instanceof ParameterDeclaration {
+  final override predicate propagatesAbnormal(AstNode child) { child = super.getIdentifier() }
+
+  override predicate succ(AstNode pred, AstNode succ, Completion c) {
+    // Start with the identifier
+    pred = this and first(super.getIdentifier(), succ) and completionIsSimple(c)
     or
-    i = 1 and result = super.getType()
-    or
-    i = 2 and result = super.getDefaultValue()
+    last(super.getIdentifier(), pred, c) and first(super.getDefaultValue(), succ) and completionIsNormal(c)
+  }
+
+  override predicate last(AstNode node, Completion c) {
+    node = super.getDefaultValue() and completionIsNormal(c)
   }
 }
 
@@ -117,12 +135,17 @@ class UserDefinedFunctionTree extends StandardPostOrderTree instanceof UserDefin
   }
 }
 
-class OutputDeclarationTree extends StandardPostOrderTree instanceof OutputDeclaration {
-  override AstNode getChildNode(int i) {
-    i = 0 and result = super.getIdentifier()
+class OutputDeclarationTree extends PreOrderTree instanceof OutputDeclaration {
+  final override predicate propagatesAbnormal(AstNode child) { child = super.getIdentifier() }
+
+  override predicate succ(AstNode pred, AstNode succ, Completion c) {
+    // Start with the identifier
+    pred = this and first(super.getIdentifier(), succ) and completionIsSimple(c)
     or
-    i = 1 and result = super.getType()
-    or
-    i = 2 and result = super.getValue()
+    last(super.getIdentifier(), pred, c) and first(super.getValue(), succ) and completionIsNormal(c)
+  }
+
+  override predicate last(AstNode node, Completion c) {
+    node = super.getValue() and completionIsNormal(c)
   }
 }
