@@ -52,6 +52,7 @@ newtype TAstNode =
   TParenthesizedType(BICEP::ParenthesizedType r) or
   TPrimaryExpression(BICEP::PrimaryExpression r) or
   TPrimitiveType(BICEP::PrimitiveType r) or
+  TReservedWord(BICEP::ReservedWord r) or
   TPropertyIdentifier(BICEP::PropertyIdentifier r) or
   TResourceDeclaration(BICEP::ResourceDeclaration r) or
   TResourceExpression(BICEP::ResourceExpression r) or
@@ -154,6 +155,7 @@ BICEP::AstNode toTreeSitter(TAstNode n) {
   n = TPrimaryExpression(result) or
   n = TPrimitiveType(result) or
   n = TPropertyIdentifier(result) or
+  n = TReservedWord(result) or
   n = TResourceDeclaration(result) or
   n = TResourceExpression(result) or
   n = TStatement(result) or

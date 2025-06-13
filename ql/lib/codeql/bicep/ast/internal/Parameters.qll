@@ -6,6 +6,7 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Parameter
 
 /**
  *  A Parameters AST Node.
@@ -19,6 +20,8 @@ class ParametersImpl extends TParameters, AstNode {
 
   override string toString() { result = ast.toString() }
 
-
+  ParameterImpl getParameter(int index) {
+    toTreeSitter(result) = ast.getChild(index)
+  }
 
 }
