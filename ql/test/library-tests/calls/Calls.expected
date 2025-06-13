@@ -1,4 +1,4 @@
-callable
+call
 | calls.bicep:1:32:1:63 | CallExpression |
 | calls.bicep:1:45:1:59 | CallExpression |
 | calls.bicep:4:111:4:121 | CallExpression |
