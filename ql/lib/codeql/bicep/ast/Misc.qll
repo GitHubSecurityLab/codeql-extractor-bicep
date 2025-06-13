@@ -20,7 +20,6 @@ private import internal.NegatedType
 private import internal.ObjectProperty
 private import internal.OutputDeclaration
 private import internal.ParameterizedType
-private import internal.Parameters
 private import internal.ParenthesizedType
 private import internal.PrimitiveType
 private import internal.PropertyIdentifier
@@ -113,10 +112,6 @@ class OutputDeclaration extends AstNode instanceof OutputDeclarationImpl { }
  */
 class ParameterizedType extends AstNode instanceof ParameterizedTypeImpl { }
 
-/**
- *  A Parameters unknown AST node.
- */
-class Parameters extends AstNode instanceof ParametersImpl { }
 
 /**
  *  A ParenthesizedType unknown AST node.
@@ -141,7 +136,14 @@ class TestBlock extends AstNode instanceof TestBlockImpl { }
 /**
  *  A Type unknown AST node.
  */
-class Type extends AstNode instanceof TypeImpl { }
+class Type extends AstNode instanceof TypeImpl {
+    /**
+     *  Returns the type of this AST node.
+     */
+    string getType() {
+        result = TypeImpl.super.getType()
+    }
+}
 
 /**
  *  A TypeArguments unknown AST node.

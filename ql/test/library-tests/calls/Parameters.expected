@@ -1,0 +1,16 @@
+parameters
+| calls.bicep:4:15:4:24 | Parameter |
+| calls.bicep:4:27:4:41 | Parameter |
+| calls.bicep:4:44:4:54 | Parameter |
+| calls.bicep:6:21:6:31 | Parameter |
+| calls.bicep:8:21:8:31 | Parameter |
+| calls.bicep:12:16:12:26 | Parameter |
+| calls.bicep:16:19:16:29 | Parameter |
+parameter
+| calls.bicep:4:15:4:24 | Parameter | calls.bicep:4:15:4:19 | https | bool |
+| calls.bicep:4:27:4:41 | Parameter | calls.bicep:4:27:4:34 | hostname | string |
+| calls.bicep:4:44:4:54 | Parameter | calls.bicep:4:44:4:47 | path | string |
+| calls.bicep:6:21:6:31 | Parameter | calls.bicep:6:21:6:24 | name | string |
+| calls.bicep:8:21:8:31 | Parameter | calls.bicep:8:21:8:24 | name | string |
+| calls.bicep:12:16:12:26 | Parameter | calls.bicep:12:16:12:19 | name | string |
+| calls.bicep:16:19:16:29 | Parameter | calls.bicep:16:19:16:22 | name | string |

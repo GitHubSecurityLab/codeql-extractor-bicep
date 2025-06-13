@@ -1,0 +1,14 @@
+functions
+| calls.bicep:4:1:4:141 | UserDefinedFunction |
+| calls.bicep:6:1:6:56 | UserDefinedFunction |
+| calls.bicep:8:1:10:1 | UserDefinedFunction |
+| calls.bicep:12:1:14:1 | UserDefinedFunction |
+| calls.bicep:16:1:20:1 | UserDefinedFunction |
+functionParameters
+| calls.bicep:4:1:4:141 | UserDefinedFunction | calls.bicep:4:15:4:24 | Parameter |
+| calls.bicep:4:1:4:141 | UserDefinedFunction | calls.bicep:4:27:4:41 | Parameter |
+| calls.bicep:4:1:4:141 | UserDefinedFunction | calls.bicep:4:44:4:54 | Parameter |
+| calls.bicep:6:1:6:56 | UserDefinedFunction | calls.bicep:6:21:6:31 | Parameter |
+| calls.bicep:8:1:10:1 | UserDefinedFunction | calls.bicep:8:21:8:31 | Parameter |
+| calls.bicep:12:1:14:1 | UserDefinedFunction | calls.bicep:12:16:12:26 | Parameter |
+| calls.bicep:16:1:20:1 | UserDefinedFunction | calls.bicep:16:19:16:29 | Parameter |
