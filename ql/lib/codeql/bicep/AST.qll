@@ -1,5 +1,6 @@
 import ast.AstNodes
 import ast.Literals
+import ast.Calls
 import ast.Expr
 import ast.Stmts
 import ast.Loops
