@@ -6,6 +6,7 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Expr
 
 /**
  *  A Arguments AST Node.
@@ -19,6 +20,11 @@ class ArgumentsImpl extends TArguments, AstNode {
 
   override string toString() { result = ast.toString() }
 
+  ExprImpl getArgument(int index ) {
+    toTreeSitter(result) = ast.getChild(index)
+  }
 
-
+  ExprImpl getArguments() {
+    toTreeSitter(result) = ast.getChild(_)
+  }
 }

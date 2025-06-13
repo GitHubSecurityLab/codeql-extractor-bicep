@@ -6,6 +6,8 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Stmts
+
 
 /**
  *  A Infrastructure AST Node.
@@ -19,6 +21,7 @@ class InfrastructureImpl extends TInfrastructure, AstNode {
 
   override string toString() { result = ast.toString() }
 
-
-
+  StmtsImpl getStatement(int index) {
+    toTreeSitter(result) = ast.getChild(index)
+  }
 }

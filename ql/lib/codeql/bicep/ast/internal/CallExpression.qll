@@ -7,7 +7,10 @@ private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Expr
-
+private import Expression
+private import Idents
+private import Arguments
+private import NullableReturnType
 
 /**
  *  A CallExpression AST Node.
@@ -21,6 +24,15 @@ class CallExpressionImpl extends TCallExpression, ExprImpl {
 
   override string toString() { result = ast.toString() }
 
+  IdentsImpl getIdentifier() {
+    toTreeSitter(result) = ast.getFunction()
+  }
 
+  ArgumentsImpl getArguments() {
+    toTreeSitter(result) = ast.getArguments()
+  }
 
+  NullableReturnTypeImpl getReturnType() {
+    toTreeSitter(result) = ast.getChild()
+  }
 }
