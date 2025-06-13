@@ -6,7 +6,6 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
-private import ReservedWord
 
 /**
  *  A Type AST Node.
