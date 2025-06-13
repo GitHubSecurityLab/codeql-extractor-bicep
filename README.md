@@ -4,7 +4,7 @@
 <h1>CodeQL Bicep Extractor</h1>
 
 [![GitHub](https://img.shields.io/badge/github-%23121011.svg?style=for-the-badge&logo=github&logoColor=white)](https://github.com/GitHubSecurityLab/codeql-extractor-bicep)
-[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/GitHubSecurityLab/codeql-extractor-bicep/publish.yml?style=for-the-badge)](https://github.com/GitHubSecurityLab/codeql-extractor-bicep/actions/workflows/publish.yml?query=branch%3Amain)
+[![GitHub Actions](https://img.shields.io/github/actions/workflow/status/GitHubSecurityLab/codeql-extractor-bicep/build.yml?style=for-the-badge)](https://github.com/GitHubSecurityLab/codeql-extractor-bicep/actions/workflows/build.yml?query=branch%3Amain)
 [![GitHub Issues](https://img.shields.io/github/issues/GitHubSecurityLab/codeql-extractor-bicep?style=for-the-badge)](https://github.com/GitHubSecurityLab/codeql-extractor-bicep/issues)
 [![GitHub Stars](https://img.shields.io/github/stars/GitHubSecurityLab/codeql-extractor-bicep?style=for-the-badge)](https://github.com/GitHubSecurityLab/codeql-extractor-bicep)
 [![License](https://img.shields.io/github/license/Ileriayo/markdown-badges?style=for-the-badge)](./LICENSE)
