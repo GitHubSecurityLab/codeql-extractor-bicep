@@ -6,6 +6,7 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import ReservedWord
 
 /**
  *  A Type AST Node.
@@ -19,6 +20,7 @@ class TypeImpl extends TType, AstNode {
 
   override string toString() { result = ast.toString() }
 
-
-
+  string getType() {
+    result = ast.getChild().toString()
+  }
 }
