@@ -1,5 +1,5 @@
 private import AstNodes
-private import internal.Arguments
+
 private import internal.Array
 private import internal.ArrayType
 private import internal.Boolean
@@ -12,7 +12,6 @@ private import internal.EscapeSequence
 private import internal.ForLoopParameters
 private import internal.Identifier
 private import internal.ImportFunctionality
-private import internal.Infrastructure
 private import internal.LoopEnumerator
 private import internal.LoopVariable
 private import internal.MetadataDeclaration
@@ -20,8 +19,6 @@ private import internal.ModuleDeclaration
 private import internal.NegatedType
 private import internal.ObjectProperty
 private import internal.OutputDeclaration
-private import internal.Parameter
-private import internal.ParameterDeclaration
 private import internal.ParameterizedType
 private import internal.Parameters
 private import internal.ParenthesizedType
@@ -33,13 +30,7 @@ private import internal.Type
 private import internal.TypeArguments
 private import internal.TypeDeclaration
 private import internal.UnionType
-private import internal.UserDefinedFunction
 private import internal.VariableDeclaration
-
-/**
- *  A Arguments unknown AST node.
- */
-class Arguments extends AstNode instanceof ArgumentsImpl { }
 
 /**
  *  A ArrayType unknown AST node.
@@ -88,11 +79,6 @@ class ForLoopParameters extends AstNode instanceof ForLoopParametersImpl { }
 class ImportFunctionality extends AstNode instanceof ImportFunctionalityImpl { }
 
 /**
- *  A Infrastructure unknown AST node.
- */
-class Infrastructure extends AstNode instanceof InfrastructureImpl { }
-
-/**
  *  A LoopEnumerator unknown AST node.
  */
 class LoopEnumerator extends AstNode instanceof LoopEnumeratorImpl { }
@@ -121,16 +107,6 @@ class NegatedType extends AstNode instanceof NegatedTypeImpl { }
  *  A OutputDeclaration unknown AST node.
  */
 class OutputDeclaration extends AstNode instanceof OutputDeclarationImpl { }
-
-/**
- *  A Parameter unknown AST node.
- */
-class Parameter extends AstNode instanceof ParameterImpl { }
-
-/**
- *  A ParameterDeclaration unknown AST node.
- */
-class ParameterDeclaration extends AstNode instanceof ParameterDeclarationImpl { }
 
 /**
  *  A ParameterizedType unknown AST node.
@@ -182,10 +158,6 @@ class TypeDeclaration extends AstNode instanceof TypeDeclarationImpl { }
  */
 class UnionType extends AstNode instanceof UnionTypeImpl { }
 
-/**
- *  A UserDefinedFunction unknown AST node.
- */
-class UserDefinedFunction extends AstNode instanceof UserDefinedFunctionImpl { }
 
 /**
  *  A VariableDeclaration unknown AST node.
