@@ -1,0 +1,1 @@
+| app.bicep:12:26:12:30 | false | CSRF protection (csrfAlwaysCheck) is explicitly disabled in Grafana configuration, which can lead to cross-site request forgery attacks. |
