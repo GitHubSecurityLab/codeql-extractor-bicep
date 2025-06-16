@@ -1,0 +1,1 @@
+| app.bicep:18:21:18:24 | true | Grafana SMTP configuration has SSL verification disabled (skipVerify=true), which can lead to man-in-the-middle attacks. |

@@ -1,0 +1,1 @@
+| app.bicep:11:18:13:7 | Snapshots | External snapshots are enabled in Grafana configuration, which could lead to unintended sharing of dashboard data with external services. |

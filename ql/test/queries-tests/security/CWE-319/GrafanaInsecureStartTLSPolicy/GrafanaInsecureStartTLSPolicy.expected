@@ -1,0 +1,2 @@
+| app.bicep:13:25:13:36 | String | Insecure StartTLS policy 'NoStartTLS' configured in Grafana SMTP settings. This may allow email communications to be sent unencrypted. Use 'MandatoryStartTLS' instead. |
+| app.bicep:33:25:33:47 | String | Insecure StartTLS policy 'OpportunisticStartTLS' configured in Grafana SMTP settings. This may allow email communications to be sent unencrypted. Use 'MandatoryStartTLS' instead. |

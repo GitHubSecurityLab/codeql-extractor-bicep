@@ -1,0 +1,1 @@
+| app.bicep:6:1:15:1 | GrafanaResource | Grafana instance is configured without zone redundancy, which may reduce availability in case of zone failures. |

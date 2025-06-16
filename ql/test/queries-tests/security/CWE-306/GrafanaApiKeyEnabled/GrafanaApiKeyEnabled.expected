@@ -1,0 +1,1 @@
+| app.bicep:10:13:10:21 | String | Grafana API key feature is enabled, which can increase the attack surface. Consider disabling API keys if not strictly necessary. |
