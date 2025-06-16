@@ -1,6 +1,6 @@
 /**
  * @name Redis Cache without data backup
- * @description Redis Cache without data backup configuration risks data loss in case of failures.
+ * @description Redis Cache with both AOF and RDB backups disabled risks data loss in case of failures.
  * @kind problem
  * @problem.severity warning
  * @security-severity 3.5
@@ -14,14 +14,31 @@
 
 import bicep
 import codeql.bicep.Concepts
-import codeql.bicep.frameworks.Microsoft.Cache
 
-from Cache::RedisCacheResource redis, Cache::CacheProperties::RedisConfiguration config 
-where 
-  config = redis.getRedisConfiguration() and
+from Expr output, Cache::RedisCacheResource redis, Cache::CacheProperties::RedisConfiguration config
+where
+  // If the resource doesn't have a Redis configuration, its an issue.
+  not exists(redis.getRedisConfiguration()) and
+  output = redis.getProperties()
+  or
   (
-    not exists(string aofBackupEnabled | aofBackupEnabled = config.aofBackupEnabled()) and
-    not exists(string rdbBackupEnabled | rdbBackupEnabled = config.rdbBackupEnabled())
+    // We only consider Redis Cache resources that have a configuration.
+    config = redis.getRedisConfiguration() and
+    // If they don't have any backup enabled, we consider it a risk.
+    (
+      not config.hasAofBackupEnabled() and
+      not config.hasRdbBackupEnabled() and
+      output = config
+    )
+    or
+    config.hasAofBackupEnabled() and
+    config.aofBackupEnabled() = "false" and
+    output = config
+    or
+    config.hasRdbBackupEnabled() and
+    config.rdbBackupEnabled() = "false" and
+    output = config
   )
-select redis,
-  "Redis Cache '" + redis.getName() + "' does not have either AOF or RDB backups enabled, risking data loss."
+select output,
+  "Redis Cache '" + redis.getName() +
+    "' has both AOF and RDB backups disabled (or not configured), risking data loss."

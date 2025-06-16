@@ -1,0 +1,1 @@
+| app.bicep:13:1:19:1 | RedisCacheResource | Redis Cache 'public-redis' has public network access enabled, exposing it to the internet. |

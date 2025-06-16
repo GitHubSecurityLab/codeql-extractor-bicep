@@ -1,0 +1,2 @@
+| app.bicep:15:1:23:1 | RedisCacheResource | Redis Cache 'no-aad-redis' is not using Azure Active Directory (AAD) authentication. |
+| app.bicep:26:1:34:1 | RedisCacheResource | Redis Cache 'disabled-aad-redis' is not using Azure Active Directory (AAD) authentication. |

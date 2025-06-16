@@ -1,0 +1,5 @@
+| app.bicep:19:25:21:5 | RedisConfiguration | Redis Cache 'unsafe-memory-1-redis' uses potentially unsafe memory policy 'allkeys-lru' which may cause unexpected data loss. |
+| app.bicep:30:25:32:5 | RedisConfiguration | Redis Cache 'unsafe-memory-2-redis' uses potentially unsafe memory policy 'allkeys-random' which may cause unexpected data loss. |
+| app.bicep:41:25:43:5 | RedisConfiguration | Redis Cache 'unsafe-memory-3-redis' uses potentially unsafe memory policy 'volatile-lru' which may cause unexpected data loss. |
+| app.bicep:52:25:54:5 | RedisConfiguration | Redis Cache 'unsafe-memory-4-redis' uses potentially unsafe memory policy 'volatile-random' which may cause unexpected data loss. |
+| app.bicep:63:25:65:5 | RedisConfiguration | Redis Cache 'unsafe-memory-5-redis' uses potentially unsafe memory policy 'volatile-ttl' which may cause unexpected data loss. |

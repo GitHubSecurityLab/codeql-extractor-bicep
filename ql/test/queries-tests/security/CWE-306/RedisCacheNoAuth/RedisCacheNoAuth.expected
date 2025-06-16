@@ -1,0 +1,1 @@
+| app.bicep:26:1:34:1 | RedisCacheResource | Redis Cache 'noauth-redis' has authentication disabled, allowing unauthenticated access. |
