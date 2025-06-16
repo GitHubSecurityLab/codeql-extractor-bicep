@@ -26,6 +26,6 @@ where
   security = configs.getSecurity() and
   security.hasCsrfAlwaysCheck() and
   security.csrfAlwaysCheck() = false
-select security, 
+select security.getCsrfAlwaysCheck(), 
        "CSRF protection (csrfAlwaysCheck) is explicitly disabled in Grafana configuration, " +
        "which can lead to cross-site request forgery attacks."
