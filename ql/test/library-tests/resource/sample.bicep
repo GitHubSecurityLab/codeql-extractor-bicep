@@ -23,6 +23,9 @@ resource linuxVm 'Microsoft.Compute/virtualMachines@2020-06-01' = {
           id: nic.id
         }
       ]
+      'subnet': {
+        id: existingSubnet.id
+      }
     }
   }
 }
