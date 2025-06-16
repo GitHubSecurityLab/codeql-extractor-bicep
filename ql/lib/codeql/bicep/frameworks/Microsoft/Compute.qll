@@ -1,7 +1,9 @@
 private import bicep
 
 /**
- * A resource of type Microsoft.Compute/virtualMachines
+ * Module for Azure Compute resource types.
+ * Provides classes for working with virtual machines, disks, and related resources.
+ * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.compute/
  */
 module Compute {
   /**
@@ -49,6 +51,7 @@ module Compute {
 
   /**
    * The properties module for Microsoft.Compute/virtualMachines resources.
+   * Contains classes for hardware profile, network profile, storage profile, and other VM properties.
    */
   module VirtualMachinesProperties {
     /**

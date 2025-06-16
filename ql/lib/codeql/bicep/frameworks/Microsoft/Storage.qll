@@ -24,6 +24,10 @@ module Storage {
      */
     StringLiteral getKind() { result = this.getProperty("kind") }
 
+    /**
+     * Gets the encryption settings for the storage account.
+     * Returns an object containing encryption-related configuration.
+     */
     DiskEncryption::EncryptionSettings getEncryptionSettings() {
       result = this.getProperties().getProperty("encryption")
     }

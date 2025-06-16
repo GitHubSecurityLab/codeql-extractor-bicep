@@ -1,3 +1,9 @@
+/**
+ * AST nodes for Bicep resources and objects.
+ *
+ * This module defines CodeQL classes for representing Bicep resource declarations, objects, and object properties in the AST.
+ */
+
 private import AstNodes
 private import codeql.Locations
 private import Expr
@@ -8,13 +14,24 @@ private import internal.ObjectProperty
 private import internal.Object
 
 /**
- *  A Object unknown AST node.
+ * An object literal node in the Bicep AST.
+ *
+ * Represents an object value, providing access to its properties.
  */
 class Object extends Expr instanceof ObjectImpl {
+  /**
+   * Gets all properties of the object as `ObjectProperty` nodes.
+   */
   ObjectProperty getProperties() { result = ObjectImpl.super.getProperties() }
 
+  /**
+   * Gets the property at the specified index in the object.
+   */
   ObjectProperty getProp(int i) { result = ObjectImpl.super.getProperty(i) }
 
+  /**
+   * Gets the value of the property with the given name, if it exists.
+   */
   Expr getProperty(string name) {
     exists(ObjectProperty property |
       property = this.getProperties() and
@@ -26,38 +43,60 @@ class Object extends Expr instanceof ObjectImpl {
 }
 
 /**
- *  A ObjectProperty unknown AST node.
+ * An object property node in the Bicep AST.
+ *
+ * Represents a property of an object, with a name and value.
  */
 class ObjectProperty extends Expr instanceof ObjectPropertyImpl {
+  /**
+   * Gets the name of the property as an identifier.
+   */
   Idents getName() { result = ObjectPropertyImpl.super.getName() }
 
+  /**
+   * Gets the value of the property as an expression.
+   */
   Expr getValue() { result = ObjectPropertyImpl.super.getValue() }
 }
 
 /**
- *  A ResourceDeclaration unknown AST node.
+ * A resource declaration node in the Bicep AST.
+ *
+ * Represents a resource declaration, including its identifier, name, and body.
  */
 class ResourceDeclaration extends AstNode instanceof ResourceDeclarationImpl {
   /**
-   *  The name of the resource instance
+   * Gets the identifier of the resource instance.
    */
   Idents getIdentifier() { result = ResourceDeclarationImpl.super.getIdentifier() }
 
   /**
-   *  The name of the resource instance.
+   * Gets the name of the resource instance as a literal.
    */
   Literals getName() { result = ResourceDeclarationImpl.super.getName() }
 
   /**
-   *  The object that represents the resource.
+   * Gets the object that represents the resource body.
    */
   Object getBody() { result = ResourceDeclarationImpl.super.getObject() }
 
+  /**
+   * Gets all properties of the resource body as `ObjectProperty` nodes.
+   */
   ObjectProperty getProperties() { result = this.getBody().getProperties() }
 
+  /**
+   * Gets the value of the property with the given name from the resource body.
+   */
   Expr getProperty(string name) { result = this.getBody().getProperty(name) }
 }
 
+/**
+ * Resolves a resource from an expression, if possible.
+ *
+ * @param expr The expression to resolve as a resource.
+ * @return The resolved resource, if found.
+ */
 Resource resolveResource(Expr expr) {
   exists(ResourceDeclaration resource |
     // Object having an id property needs to be resolved
@@ -78,19 +117,36 @@ Resource resolveResource(Expr expr) {
   )
 }
 
+/**
+ * A resource in the Bicep AST.
+ *
+ * Provides access to resource type, identifier, name, properties, parent, and location.
+ */
 class Resource extends TResource {
   private ResourceDeclaration resource;
 
+  /**
+   * Constructs a resource from a resource declaration.
+   */
   Resource() { this = TResourceDeclaration(resource) }
 
+  /**
+   * Gets the resource type as a string.
+   */
   string getResourceType() {
     exists(StringLiteral sl | sl = resource.getName() | result = sl.getValue())
   }
 
+  /**
+   * Gets the identifier of the resource.
+   */
   Identifier getIdentifier() {
     result = resource.getIdentifier()
   }
 
+  /**
+   * Gets the name of the resource as a string.
+   */
   string getName() {
     exists(StringLiteral name |
       name = resource.getProperty("name") and
@@ -98,17 +154,35 @@ class Resource extends TResource {
     )
   }
 
+  /**
+   * Gets the value of the property with the given name from the resource.
+   */
   Expr getProperty(string name) { result = resource.getProperty(name) }
 
+  /**
+   * Gets the parent resource, if any.
+   */
   Resource getParent() { result = resolveResource(this.getProperty("parent")) }
 
+  /**
+   * Gets a string representation of the resource.
+   */
   string toString() { result = resource.toString() }
 
+  /**
+   * Gets the primary QL class name for the resource.
+   */
   string getAPrimaryQlClass() { result = "Resource" }
 
+  /**
+   * Gets the location of the resource in the source code.
+   */
   Location getLocation() { result = resource.getLocation() }
 }
 
+/**
+ * Cached resource type for efficient lookups.
+ */
 cached
 private module Cached {
   cached

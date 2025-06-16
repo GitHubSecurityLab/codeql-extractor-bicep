@@ -79,6 +79,11 @@ module Containers {
     override string toString() { result = "ContainerResource" }
   }
 
+  /**
+   * Represents a Microsoft.ContainerRegistry/registries resource.
+   * Provides access to Azure Container Registry properties and settings.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.containerregistry/registries
+   */
   class ContainerRegistry extends AzureResource {
     /**
      * Constructs a ContainerRegistry for Microsoft.ContainerRegistry/containerRegistries resources (2025-02-02-preview).
@@ -87,9 +92,16 @@ module Containers {
       this.getResourceType().regexpMatch("^Microsoft.ContainerRegistry/registries@.*$")
     }
 
+    /**
+     * Returns a string representation of the container registry resource.
+     */
     override string toString() { result = "ContainerRegistry" }
   }
 
+  /**
+   * Module containing property classes for container app resources.
+   * Provides access to configuration, secrets, templates, and container specs.
+   */
   module ContainerProperties {
     /**
      * Represents the properties object for a container app resource (2025-02-02-preview).
@@ -137,11 +149,15 @@ module Containers {
        */
       StringLiteral getWorkloadProfileName() { result = this.getProperty("workloadProfileName") }
 
+      /**
+       * Returns a string representation of the container properties.
+       */
       override string toString() { result = "ContainerProperties" }
     }
 
     /**
      * Represents the configuration object for a container app resource.
+     * Provides access to ingress settings, secrets, and other configuration options.
      */
     class ContainerConfiguration extends Object {
       private Properties properties;
@@ -161,6 +177,12 @@ module Containers {
        */
       ContainerSecret getSecrets() { result = this.getProperty("secrets").(Array).getElements() }
 
+      /**
+       * Returns a specific secret by name from the configuration.
+       * 
+       * @param name The name of the secret to retrieve
+       * @return The secret with the specified name, if it exists
+       */
       ContainerSecret getSecret(string name) {
         exists(ContainerSecret secret |
           secret = this.getSecrets() and
@@ -374,6 +396,9 @@ module Containers {
 
       /**
        * Returns a specific environment variable by name.
+       * 
+       * @param name The name of the environment variable to retrieve
+       * @return The environment variable with the specified name, if it exists
        */
       ContainerEnv getEnv(string name) {
         exists(ContainerEnv env |

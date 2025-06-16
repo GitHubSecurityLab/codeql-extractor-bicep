@@ -2,10 +2,15 @@ private import bicep
 private import codeql.bicep.Concepts
 
 module Cache {
+  /**
+   * Abstract base class for all Azure Cache resources.
+   * Serves as a common type for Redis and other cache resources.
+   */
   abstract class CacheResource extends AzureResource { }
 
   /**
    * Represents an Azure Cache for Redis resource.
+   * See: https://learn.microsoft.com/en-us/azure/templates/microsoft.cache/redis
    */
   class RedisCacheResource extends CacheResource, Resource {
     /**
@@ -18,6 +23,9 @@ module Cache {
      */
     CacheProperties::Properties getProperties() { result = this.getProperty("properties") }
 
+    /**
+     * Returns the Redis configuration object for the Redis cache resource.
+     */
     CacheProperties::RedisConfiguration getRedisConfiguration() {
       result = this.getProperties().getProperty("redisConfiguration")
     }

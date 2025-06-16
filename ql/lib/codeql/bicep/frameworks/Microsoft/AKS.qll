@@ -45,6 +45,9 @@ module AKS {
       result = this.getProperties().getNetworkProfile()
     }
 
+    /**
+     * Returns a string representation of the managed container resource.
+     */
     override string toString() { result = "ManagedContainerResource" }
   }
 

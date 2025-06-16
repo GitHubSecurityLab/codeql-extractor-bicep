@@ -82,6 +82,9 @@ class Sku extends Object {
    */
   string tier() { result = this.getTier().getValue() }
 
+  /**
+   * Returns a string representation of the SKU.
+   */
   string toString() { result = "SKU" }
 }
 
@@ -104,5 +107,8 @@ class Tags extends Object {
    */
   Literals getTag(string key) { result = this.getProperty(key) }
 
+  /**
+   * Returns a string representation of the Tags object.
+   */
   string toString() { result = "Tags" }
 }

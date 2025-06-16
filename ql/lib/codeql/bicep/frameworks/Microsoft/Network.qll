@@ -322,9 +322,16 @@ module Network {
     }
   }
 
+  /**
+   * Represents a network profile configuration for Azure resources.
+   * Provides access to network plugin, policy, and other network-related settings.
+   */
   class NetworkProfile extends Object {
     private Resource resource;
 
+    /**
+     * Constructs a NetworkProfile object for the given resource.
+     */
     NetworkProfile() {
       exists(Object props |
         props = resource.getProperty("properties") and
@@ -332,16 +339,34 @@ module Network {
       )
     }
 
+    /**
+     * Returns the resource this network profile belongs to.
+     */
     Resource getResource() { result = resource }
 
+    /**
+     * Returns the networkPlugin property.
+     */
     StringLiteral getNetworkPlugin() { result = this.getProperty("networkPlugin") }
 
+    /**
+     * Returns the networkPlugin property as a string value.
+     */
     string networkPlugin() { result = this.getNetworkPlugin().getValue() }
 
+    /**
+     * Returns the networkPolicy property.
+     */
     StringLiteral getNetworkPolicy() { result = this.getProperty("networkPolicy") }
 
+    /**
+     * Returns the networkPolicy property as a string value.
+     */
     string networkPolicy() { result = this.getNetworkPolicy().getValue() }
 
+    /**
+     * Returns a string representation of the NetworkProfile.
+     */
     string toString() { result = "NetworkProfile" }
   }
 }

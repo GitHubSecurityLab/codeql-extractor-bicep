@@ -1,5 +1,7 @@
 /**
  * Literals in the AST.
+ *
+ * This module defines CodeQL classes for representing literal values in the Bicep AST, including arrays, booleans, nulls, nullable return types, numbers, strings, and string content.
  */
 
 private import AstNodes
@@ -16,23 +18,38 @@ private import internal.String
 private import internal.StringContent
 
 /**
- * A literal in the AST.
+ * A literal node in the Bicep AST.
+ *
+ * This is the base class for all literal values (arrays, booleans, nulls, numbers, strings, etc.).
  */
 final class Literals extends AstNode instanceof LiteralsImpl { }
 
 /**
- *  A Array unknown AST node.
+ * An array literal node in the Bicep AST.
+ *
+ * Represents an array value, providing access to its elements.
  */
 class Array extends Literals instanceof ArrayImpl {
+  /**
+   * Gets all elements of the array as expressions.
+   */
   Expr getElements() { result = ArrayImpl.super.getElements() }
 
+  /**
+   * Gets the element at the specified index in the array.
+   */
   Expr getElement(int index) { result = ArrayImpl.super.getElement(index) }
 }
 
 /**
- *  A Boolean unknown AST node.
+ * A boolean literal node in the Bicep AST.
+ *
+ * Represents a boolean value (`true` or `false`).
  */
 class Boolean extends Literals instanceof BooleanImpl {
+  /**
+   * Gets the boolean value represented by this node.
+   */
   boolean getBool() {
     exists(string bl |
       bl = BooleanImpl.super.getValue().toLowerCase() and
@@ -51,26 +68,40 @@ class Boolean extends Literals instanceof BooleanImpl {
 class BooleanLiteral = Boolean;
 
 /**
- * A Null literal in the AST.
+ * A null literal node in the Bicep AST.
+ *
+ * Represents a `null` value.
  */
 final class NullLiteral extends Literals instanceof NullImpl { }
 
 /**
- * A NullableReturnType literal in the AST.
+ * A nullable return type literal node in the Bicep AST.
+ *
+ * Represents a nullable return type value.
  */
 final class NullableReturnTypeLiteral extends Literals instanceof NullableReturnTypeImpl { }
 
 /**
- *  A Number unknown AST node.
+ * A number literal node in the Bicep AST.
+ *
+ * Represents a numeric value.
  */
 class Number extends Literals instanceof NumberImpl {
+  /**
+   * Gets the integer value represented by this node.
+   */
   int getValue() { result = NumberImpl.super.getValue().toInt() }
 }
 
 /**
- * A String literal in the AST.
+ * A string literal node in the Bicep AST.
+ *
+ * Represents a string value.
  */
 class StringLiteral extends Literals instanceof StringImpl {
+  /**
+   * Gets the string value represented by this node.
+   */
   string getValue() {
     exists(StringContentLiteral content |
       content = this.getAChild() and
@@ -80,8 +111,13 @@ class StringLiteral extends Literals instanceof StringImpl {
 }
 
 /**
- * A StringContent literal in the AST.
+ * A string content literal node in the Bicep AST.
+ *
+ * Represents the content of a string literal.
  */
 class StringContentLiteral extends Literals instanceof StringContentImpl {
+  /**
+   * Gets the string content value represented by this node.
+   */
   string getValue() { result = StringContentImpl.super.getValue() }
 }
