@@ -21,5 +21,5 @@ where
   config = redis.getRedisConfiguration() and
   unsafePolicy = config.maxMemoryPolicy() and
   unsafePolicy in ["allkeys-lru", "allkeys-random", "volatile-lru", "volatile-random", "volatile-ttl"]
-select redis,
+select config,
   "Redis Cache '" + redis.getName() + "' uses potentially unsafe memory policy '" + unsafePolicy + "' which may cause unexpected data loss."

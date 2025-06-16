@@ -1,6 +1,6 @@
 # Redis Cache without data backup
 
-Redis Cache instances without backup configuration risk data loss in case of failures or disasters. This issue falls under [CWE-693: Protection Mechanism Failure](https://cwe.mitre.org/data/definitions/693.html), as it represents a failure to protect critical data.
+Redis Cache instances with both AOF and RDB backups disabled risk data loss in case of failures or disasters. This issue falls under [CWE-693: Protection Mechanism Failure](https://cwe.mitre.org/data/definitions/693.html), as it represents a failure to protect critical data.
 
 ## Problem Description
 
@@ -9,7 +9,7 @@ Azure Cache for Redis offers two types of persistence options:
 1. RDB (Redis Database) snapshots - periodic full backups
 2. AOF (Append Only File) persistence - continuous logging of write operations
 
-When neither backup method is enabled, the Redis cache becomes vulnerable to data loss from:
+When both backup methods are disabled or not configured, the Redis cache becomes vulnerable to data loss from:
 
 - Service outages or crashes
 - Accidental data deletion

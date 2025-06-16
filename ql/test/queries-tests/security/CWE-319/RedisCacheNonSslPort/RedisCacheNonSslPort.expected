@@ -1,0 +1,2 @@
+| app.bicep:14:1:20:1 | RedisCacheResource | Redis Cache 'insecure-redis' has non-SSL port enabled, which allows unencrypted connections. |
+| app.bicep:23:1:29:1 | RedisCacheResource | Redis Cache 'explicit-default-redis' has non-SSL port enabled, which allows unencrypted connections. |

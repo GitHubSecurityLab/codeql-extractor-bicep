@@ -1,0 +1,6 @@
+| app.bicep:62:15:69:3 | Object | Redis Cache 'nobackup-redis' has both AOF and RDB backups disabled (or not configured), risking data loss. |
+| app.bicep:82:25:85:5 | Object | Redis Cache 'aof-backup-redis' has both AOF and RDB backups disabled (or not configured), risking data loss. |
+| app.bicep:82:25:85:5 | Object | Redis Cache 'both-backup-redis' has both AOF and RDB backups disabled (or not configured), risking data loss. |
+| app.bicep:82:25:85:5 | Object | Redis Cache 'disabled-backup-redis' has both AOF and RDB backups disabled (or not configured), risking data loss. |
+| app.bicep:82:25:85:5 | Object | Redis Cache 'nobackup-redis' has both AOF and RDB backups disabled (or not configured), risking data loss. |
+| app.bicep:82:25:85:5 | Object | Redis Cache 'rdb-backup-redis' has both AOF and RDB backups disabled (or not configured), risking data loss. |
