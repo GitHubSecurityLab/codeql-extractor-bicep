@@ -1,2 +1,1 @@
-| app.bicep:12:1:19:1 | RedisCacheResource | TLS is disabled for this resource |
 | app.bicep:22:1:29:1 | RedisCacheResource | TLS is disabled for this resource |
