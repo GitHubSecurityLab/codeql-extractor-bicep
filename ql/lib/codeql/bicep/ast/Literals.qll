@@ -34,8 +34,7 @@ class Array extends Literals instanceof ArrayImpl {
  */
 class Boolean extends Literals instanceof BooleanImpl {
   boolean getBool() {
-    exists(string bl |
-      bl = BooleanImpl.super.getValue().toLowerCase() and
+    exists(string bl | bl = BooleanImpl.super.getValue().toLowerCase() |
       bl = "true" and
       result = true
       or
