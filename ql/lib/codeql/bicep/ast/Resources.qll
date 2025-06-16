@@ -15,10 +15,17 @@ class Object extends Expr instanceof ObjectImpl {
 
   ObjectProperty getProp(int i) { result = ObjectImpl.super.getProperty(i) }
 
+  /**
+   *  Get the value of a property by its name.
+   */
   Expr getProperty(string name) {
     exists(ObjectProperty property |
       property = this.getProperties() and
-      property.getName().getName() = name
+      (
+        exists(Idents ident | ident = property.getName() | ident.getName() = name)
+        or
+        exists(StringLiteral str | str = property.getName() | str.getValue() = name)
+      )
     |
       result = property.getValue()
     )
@@ -29,7 +36,7 @@ class Object extends Expr instanceof ObjectImpl {
  *  A ObjectProperty unknown AST node.
  */
 class ObjectProperty extends Expr instanceof ObjectPropertyImpl {
-  Idents getName() { result = ObjectPropertyImpl.super.getName() }
+  Expr getName() { result = ObjectPropertyImpl.super.getName() }
 
   Expr getValue() { result = ObjectPropertyImpl.super.getValue() }
 }
@@ -87,9 +94,7 @@ class Resource extends TResource {
     exists(StringLiteral sl | sl = resource.getName() | result = sl.getValue())
   }
 
-  Identifier getIdentifier() {
-    result = resource.getIdentifier()
-  }
+  Identifier getIdentifier() { result = resource.getIdentifier() }
 
   string getName() {
     exists(StringLiteral name |
