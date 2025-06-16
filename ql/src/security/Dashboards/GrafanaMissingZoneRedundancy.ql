@@ -24,6 +24,6 @@ where
     not props.hasZoneRedundancy() or
     props.zoneRedundancy() = "Disabled"
   )
-select grafana, 
+select props.getZoneRedundancy(), 
        "Grafana instance is configured without zone redundancy, which may reduce availability " +
        "in case of zone failures."
