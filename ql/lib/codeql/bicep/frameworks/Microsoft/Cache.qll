@@ -19,7 +19,7 @@ module Cache {
     CacheProperties::Properties getProperties() { result = this.getProperty("properties") }
 
     CacheProperties::RedisConfiguration getRedisConfiguration() {
-      result = this.getProperties().getProperty("redisConfiguration")
+      result = this.getProperties().getRedisConfiguration()
     }
 
     /**
@@ -99,6 +99,10 @@ module Cache {
        * Returns the parent RedisCacheResource.
        */
       RedisCacheResource getRedisCacheResource() { result = redisCache }
+
+      RedisConfiguration getRedisConfiguration() {
+        result = this.getProperty("redisConfiguration")
+      }
 
       override string toString() { result = "CacheProperties[" + redisCache.getName() + "]" }
     }
