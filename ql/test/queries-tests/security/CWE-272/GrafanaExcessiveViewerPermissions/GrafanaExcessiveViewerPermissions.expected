@@ -1,0 +1,1 @@
+| app.bicep:11:14:13:7 | Users | Excessive permissions granted to Grafana viewers (viewersCanEdit=true). This allows viewers to make temporary edits to dashboards they have access to. |
