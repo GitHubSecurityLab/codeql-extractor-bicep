@@ -7,6 +7,7 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Stmts
 private import Identifier
 private import Stmts
 private import Type
@@ -16,7 +17,7 @@ private import Parameters
 /**
  *  A UserDefinedFunction AST Node.
  */
-class UserDefinedFunctionImpl extends TUserDefinedFunction, AstNode {
+class UserDefinedFunctionImpl extends TUserDefinedFunction, StmtsImpl {
   private BICEP::UserDefinedFunction ast;
 
   override string getAPrimaryQlClass() { result = "UserDefinedFunction" }
