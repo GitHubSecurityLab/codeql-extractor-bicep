@@ -1,0 +1,2 @@
+| app.bicep:4:1:14:1 | DatabaseResource[cosmosdb] | CosmosDB account 'vulnerable-cosmosdb-no-policy' does not have a backup policy configured, which may result in data loss. |
+| app.bicep:17:1:24:1 | DatabaseResource[cosmosdb] | CosmosDB account 'vulnerable-cosmosdb-minimal' does not have a backup policy configured, which may result in data loss. |

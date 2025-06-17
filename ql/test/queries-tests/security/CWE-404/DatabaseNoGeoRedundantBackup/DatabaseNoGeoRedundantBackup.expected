@@ -1,0 +1,3 @@
+| app.bicep:10:13:13:5 | Backup | Database 'vulnerable-postgresql-no-geo' does not have geo-redundant backup enabled, which may result in data loss during regional disasters. |
+| app.bicep:24:13:27:5 | Backup | Database 'vulnerable-mysql-disabled-geo' does not have geo-redundant backup enabled, which may result in data loss during regional disasters. |
+| app.bicep:38:13:41:5 | Backup | Database 'vulnerable-mariadb-no-geo' does not have geo-redundant backup enabled, which may result in data loss during regional disasters. |
