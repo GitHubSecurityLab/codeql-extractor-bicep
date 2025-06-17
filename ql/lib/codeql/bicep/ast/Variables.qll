@@ -38,6 +38,11 @@ private predicate variableDecl(AstNode node, string name) {
     node = vardelc
   )
   or
+  exists(Resource resource |
+    resource.getIdentifier().getName() = name and
+    node = resource.getResourceDeclaration()
+  )
+  or
   exists(OutputDeclaration output |
     output.getIdentifier().getName() = name and
     node = output
@@ -75,9 +80,9 @@ class Variable extends MkVariable {
   Type getType() {
     result = this.getParameter().getType()
     or
-    result = this.getOutput().getType() 
+    result = this.getOutput().getType()
   }
-  
+
   /**
    * Gets the parameter of this variable, if any.
    */
@@ -167,6 +172,8 @@ class VariableWriteAccess extends VariableAccess {
     // SET
     this.getAstNode().getParent() instanceof VariableDeclaration
     or
+    this.getAstNode().getParent() instanceof ResourceDeclaration
+    or
     // Output
     this.getAstNode().getParent() instanceof OutputDeclaration
   }
@@ -193,7 +200,7 @@ cached
 private module Cached {
   cached
   newtype TVariable =
-    TResource(Resource resource, string name) { resource.getName() = name } or
+    TResource(Resource resource, string name) { resource.getIdentifier().getName() = name } or
     TVariableDecl(VariableDeclaration varDecl, string name) {
       varDecl.getIdentifier().getName() = name
     } or

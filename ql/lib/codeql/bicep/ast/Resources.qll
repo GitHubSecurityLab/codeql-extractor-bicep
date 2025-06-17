@@ -96,6 +96,8 @@ class Resource extends TResource {
 
   Identifier getIdentifier() { result = resource.getIdentifier() }
 
+  ResourceDeclaration getResourceDeclaration() { result = resource }
+
   string getName() {
     exists(StringLiteral name |
       name = resource.getProperty("name") and
