@@ -8,6 +8,7 @@ dependencies:
   codeql/yaml: "^1.0.0"
   codeql/controlflow: "^1.0.0"
   codeql/dataflow: "^1.1.0"
+  codeql/threat-models: "^1.0.0"
   codeql/regex: "^1.0.0"
   codeql/ssa: "^1.0.0"
 dbscheme: bicep.dbscheme

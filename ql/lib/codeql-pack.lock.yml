@@ -9,10 +9,12 @@ dependencies:
     version: 1.0.12
   codeql/ssa:
     version: 1.0.12
+  codeql/threat-models:
+    version: 1.0.25
   codeql/typetracking:
     version: 1.0.12
   codeql/util:
     version: 1.0.12
   codeql/yaml:
-    version: 1.0.23
+    version: 1.0.25
 compiled: false
