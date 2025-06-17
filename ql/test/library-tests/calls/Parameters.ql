@@ -5,6 +5,6 @@ query predicate parameters(Parameter parameter) {
 }
 
 query predicate parameter(Parameter param, Identifier name, string type) {
-    param.getName() = name and
+    param.getIdentifier() = name and
     param.getType().getType() = type 
 }
