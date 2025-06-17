@@ -7,6 +7,7 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Stmts
 private import Identifier
 private import Type
 private import Expr
@@ -14,7 +15,7 @@ private import Expr
 /**
  *  A ParameterDeclaration AST Node.
  */
-class ParameterDeclarationImpl extends TParameterDeclaration, AstNode {
+class ParameterDeclarationImpl extends TParameterDeclaration, StmtsImpl {
   private BICEP::ParameterDeclaration ast;
 
   override string getAPrimaryQlClass() { result = "ParameterDeclaration" }
