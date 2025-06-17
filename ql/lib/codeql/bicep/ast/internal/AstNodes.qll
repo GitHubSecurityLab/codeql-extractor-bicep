@@ -88,7 +88,7 @@ class TIdents = TIdentifier or TPropertyIdentifier;
  */
 class TStmts =
   TInfrastructure or TAssertStatement or TForStatement or TIfStatement or TImportStatement or
-      TImportWithStatement or TStatement or TUsingStatement;
+      TImportWithStatement or TStatement or TUsingStatement or TVariableDeclaration;
 
 /**
  * A expersion value in a Bicep program

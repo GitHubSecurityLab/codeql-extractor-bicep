@@ -1,5 +1,4 @@
 private import AstNodes
-
 private import internal.Array
 private import internal.ArrayType
 private import internal.Boolean
@@ -28,13 +27,11 @@ private import internal.Type
 private import internal.TypeArguments
 private import internal.TypeDeclaration
 private import internal.UnionType
-private import internal.VariableDeclaration
 
 /**
  *  A ArrayType unknown AST node.
  */
 class ArrayType extends AstNode instanceof ArrayTypeImpl { }
-
 
 /**
  *  A CompatibleIdentifier unknown AST node.
@@ -101,12 +98,10 @@ class ModuleDeclaration extends AstNode instanceof ModuleDeclarationImpl { }
  */
 class NegatedType extends AstNode instanceof NegatedTypeImpl { }
 
-
 /**
  *  A ParameterizedType unknown AST node.
  */
 class ParameterizedType extends AstNode instanceof ParameterizedTypeImpl { }
-
 
 /**
  *  A ParenthesizedType unknown AST node.
@@ -132,12 +127,10 @@ class TestBlock extends AstNode instanceof TestBlockImpl { }
  *  A Type unknown AST node.
  */
 class Type extends AstNode instanceof TypeImpl {
-    /**
-     *  Returns the type of this AST node.
-     */
-    string getType() {
-        result = TypeImpl.super.getType()
-    }
+  /**
+   *  Returns the type of this AST node.
+   */
+  string getType() { result = TypeImpl.super.getType() }
 }
 
 /**
@@ -154,9 +147,3 @@ class TypeDeclaration extends AstNode instanceof TypeDeclarationImpl { }
  *  A UnionType unknown AST node.
  */
 class UnionType extends AstNode instanceof UnionTypeImpl { }
-
-
-/**
- *  A VariableDeclaration unknown AST node.
- */
-class VariableDeclaration extends AstNode instanceof VariableDeclarationImpl { }

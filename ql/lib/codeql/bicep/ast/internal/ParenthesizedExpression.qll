@@ -3,11 +3,11 @@
  *
  *  WARNING: this file is generated, do not edit manually
  */
+
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Expr
-
 
 /**
  *  A ParenthesizedExpression AST Node.
@@ -21,6 +21,7 @@ class ParenthesizedExpressionImpl extends TParenthesizedExpression, ExprImpl {
 
   override string toString() { result = ast.toString() }
 
+  ExprImpl getExpression(int index) { toTreeSitter(result) = ast.getChild(index) }
 
-
+  ExprImpl getExpressions() { result = this.getExpression(_) }
 }
