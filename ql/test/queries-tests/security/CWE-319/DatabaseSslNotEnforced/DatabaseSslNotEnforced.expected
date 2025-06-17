@@ -1,0 +1,3 @@
+| app.bicep:8:21:8:30 | String | Database 'vulnerable-postgresql-no-ssl' has SSL enforcement disabled, allowing unencrypted connections that may expose data in transit. |
+| app.bicep:19:21:19:30 | String | Database 'vulnerable-mysql-no-ssl' has SSL enforcement disabled, allowing unencrypted connections that may expose data in transit. |
+| app.bicep:30:21:30:30 | String | Database 'vulnerable-mariadb-no-ssl' has SSL enforcement disabled, allowing unencrypted connections that may expose data in transit. |
