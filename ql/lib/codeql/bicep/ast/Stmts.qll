@@ -141,7 +141,9 @@ class UserDefinedFunction extends AstNode instanceof UserDefinedFunctionImpl {
  */
 class Parameter extends AstNode instanceof ParameterImpl {
   /** Gets the name of the parameter. */
-  Idents getName() { result = ParameterImpl.super.getName() }
+  Idents getIdentifier() { result = ParameterImpl.super.getName() }
+
+  string getName() { result = this.getIdentifier().getName() }
 
   /** Gets the type of the parameter. */
   Type getType() { result = ParameterImpl.super.getType() }
