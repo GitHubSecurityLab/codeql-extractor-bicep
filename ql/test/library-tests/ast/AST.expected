@@ -1,3 +1,100 @@
+ast
+| conditions.bicep:1:1:1:39 | ParameterDeclaration |
+| conditions.bicep:1:1:1:39 | ParameterDeclaration |
+| conditions.bicep:1:1:1:39 | ParameterDeclaration |
+| conditions.bicep:1:1:12:2 | Infrastructure |
+| conditions.bicep:1:7:1:26 | enableStorageAccount |
+| conditions.bicep:1:7:1:26 | enableStorageAccount |
+| conditions.bicep:1:7:1:26 | enableStorageAccount |
+| conditions.bicep:1:28:1:31 | Type |
+| conditions.bicep:1:28:1:31 | bool |
+| conditions.bicep:1:35:1:39 | false |
+| conditions.bicep:1:35:1:39 | false |
+| conditions.bicep:1:35:1:39 | false |
+| conditions.bicep:2:1:2:54 | ParameterDeclaration |
+| conditions.bicep:2:1:2:54 | ParameterDeclaration |
+| conditions.bicep:2:1:2:54 | ParameterDeclaration |
+| conditions.bicep:2:7:2:24 | storageAccountName |
+| conditions.bicep:2:7:2:24 | storageAccountName |
+| conditions.bicep:2:7:2:24 | storageAccountName |
+| conditions.bicep:2:26:2:31 | Type |
+| conditions.bicep:2:26:2:31 | string |
+| conditions.bicep:2:35:2:54 | String |
+| conditions.bicep:2:35:2:54 | String |
+| conditions.bicep:2:35:2:54 | String |
+| conditions.bicep:2:36:2:53 | examplestorageacct |
+| conditions.bicep:4:1:12:1 | ResourceDeclaration |
+| conditions.bicep:4:1:12:1 | ResourceDeclaration |
+| conditions.bicep:4:1:12:1 | ResourceDeclaration |
+| conditions.bicep:4:10:4:23 | storageAccount |
+| conditions.bicep:4:10:4:23 | storageAccount |
+| conditions.bicep:4:10:4:23 | storageAccount |
+| conditions.bicep:4:25:4:70 | String |
+| conditions.bicep:4:25:4:70 | String |
+| conditions.bicep:4:25:4:70 | String |
+| conditions.bicep:4:26:4:69 | Microsoft.Storage/storageAccounts@2022-09-01 |
+| conditions.bicep:4:74:12:1 | IfStatement |
+| conditions.bicep:4:77:4:98 | ParenthesizedExpression |
+| conditions.bicep:4:77:4:98 | ParenthesizedExpression |
+| conditions.bicep:4:77:4:98 | ParenthesizedExpression |
+| conditions.bicep:4:78:4:97 | enableStorageAccount |
+| conditions.bicep:4:78:4:97 | enableStorageAccount |
+| conditions.bicep:4:78:4:97 | enableStorageAccount |
+| conditions.bicep:4:100:12:1 | Object |
+| conditions.bicep:4:100:12:1 | Object |
+| conditions.bicep:4:100:12:1 | Object |
+| conditions.bicep:5:3:5:6 | name |
+| conditions.bicep:5:3:5:6 | name |
+| conditions.bicep:5:3:5:6 | name |
+| conditions.bicep:5:3:5:26 | ObjectProperty |
+| conditions.bicep:5:9:5:26 | storageAccountName |
+| conditions.bicep:5:9:5:26 | storageAccountName |
+| conditions.bicep:5:9:5:26 | storageAccountName |
+| conditions.bicep:6:3:6:10 | location |
+| conditions.bicep:6:3:6:10 | location |
+| conditions.bicep:6:3:6:10 | location |
+| conditions.bicep:6:3:6:36 | ObjectProperty |
+| conditions.bicep:6:13:6:25 | resourceGroup |
+| conditions.bicep:6:13:6:25 | resourceGroup |
+| conditions.bicep:6:13:6:25 | resourceGroup |
+| conditions.bicep:6:13:6:27 | CallExpression |
+| conditions.bicep:6:13:6:27 | CallExpression |
+| conditions.bicep:6:13:6:27 | CallExpression |
+| conditions.bicep:6:13:6:36 | MemberExpression |
+| conditions.bicep:6:13:6:36 | MemberExpression |
+| conditions.bicep:6:13:6:36 | MemberExpression |
+| conditions.bicep:6:26:6:27 | Arguments |
+| conditions.bicep:6:29:6:36 | location |
+| conditions.bicep:7:3:7:5 | sku |
+| conditions.bicep:7:3:7:5 | sku |
+| conditions.bicep:7:3:7:5 | sku |
+| conditions.bicep:7:3:9:3 | ObjectProperty |
+| conditions.bicep:7:8:9:3 | Object |
+| conditions.bicep:7:8:9:3 | Object |
+| conditions.bicep:7:8:9:3 | Object |
+| conditions.bicep:8:5:8:8 | name |
+| conditions.bicep:8:5:8:8 | name |
+| conditions.bicep:8:5:8:8 | name |
+| conditions.bicep:8:5:8:24 | ObjectProperty |
+| conditions.bicep:8:11:8:24 | String |
+| conditions.bicep:8:11:8:24 | String |
+| conditions.bicep:8:11:8:24 | String |
+| conditions.bicep:8:12:8:23 | Standard_LRS |
+| conditions.bicep:10:3:10:6 | kind |
+| conditions.bicep:10:3:10:6 | kind |
+| conditions.bicep:10:3:10:6 | kind |
+| conditions.bicep:10:3:10:19 | ObjectProperty |
+| conditions.bicep:10:9:10:19 | String |
+| conditions.bicep:10:9:10:19 | String |
+| conditions.bicep:10:9:10:19 | String |
+| conditions.bicep:10:10:10:18 | StorageV2 |
+| conditions.bicep:11:3:11:12 | properties |
+| conditions.bicep:11:3:11:12 | properties |
+| conditions.bicep:11:3:11:12 | properties |
+| conditions.bicep:11:3:11:16 | ObjectProperty |
+| conditions.bicep:11:15:11:16 | Object |
+| conditions.bicep:11:15:11:16 | Object |
+| conditions.bicep:11:15:11:16 | Object |
 | data.bicep:1:1:1:10 | Comment |
 | data.bicep:1:1:62:4 | Infrastructure |
 | data.bicep:2:1:6:1 | VariableDeclaration |
@@ -1013,3 +1110,62 @@
 | sample.bicep:98:15:98:20 | MemberExpression |
 | sample.bicep:98:15:98:20 | MemberExpression |
 | sample.bicep:98:19:98:20 | id |
+strings
+| conditions.bicep:2:35:2:54 | String | examplestorageacct |
+| conditions.bicep:4:25:4:70 | String | Microsoft.Storage/storageAccounts@2022-09-01 |
+| conditions.bicep:8:11:8:24 | String | Standard_LRS |
+| conditions.bicep:10:9:10:19 | String | StorageV2 |
+| data.bicep:3:3:3:7 | String | abc |
+| data.bicep:4:3:4:7 | String | def |
+| data.bicep:5:3:5:7 | String | ghi |
+| data.bicep:8:24:8:28 | String | abc |
+| data.bicep:8:31:8:35 | String | def |
+| data.bicep:8:38:8:42 | String | ghi |
+| data.bicep:10:19:10:23 | String | abc |
+| data.bicep:10:26:10:30 | String | def |
+| data.bicep:11:5:11:9 | String | ghi |
+| data.bicep:27:40:27:50 | String | test name |
+| data.bicep:27:57:27:65 | String | 123-abc |
+| data.bicep:30:9:30:19 | String | test name |
+| data.bicep:31:7:31:15 | String | 123-abc |
+| data.bicep:36:35:36:45 | String | test name |
+| data.bicep:36:52:36:60 | String | 123-abc |
+| data.bicep:41:13:41:25 | String | whats up? |
+| data.bicep:42:18:42:24 | String | north |
+| data.bicep:42:28:42:34 | String | south |
+| data.bicep:42:38:42:43 | String | east |
+| data.bicep:42:47:42:52 | String | west |
+| data.bicep:43:19:43:62 | String | storage${CallExpression} |
+| data.bicep:46:13:46:24 | String | hello! |
+| data.bicep:49:14:50:9 | String | \nhello! |
+| data.bicep:53:14:55:3 | String | \nhello!\n |
+| data.bicep:58:14:62:3 | String | \n  this\n    is\n      indented\n |
+| sample.bicep:2:35:2:80 | String | toylaunch${CallExpression} |
+| sample.bicep:3:23:3:28 | String | myVM |
+| sample.bicep:4:30:4:40 | String | azureuser |
+| sample.bicep:5:30:5:43 | String | P@ssw0rd123! |
+| sample.bicep:6:25:6:32 | String | myVnet |
+| sample.bicep:7:27:7:36 | String | mySubnet |
+| sample.bicep:8:29:8:40 | String | myPublicIP |
+| sample.bicep:9:24:9:30 | String | myNIC |
+| sample.bicep:11:25:11:70 | String | Microsoft.Storage/storageAccounts@2021-06-01 |
+| sample.bicep:15:11:15:24 | String | Standard_LRS |
+| sample.bicep:17:9:17:19 | String | StorageV2 |
+| sample.bicep:19:17:19:21 | String | Hot |
+| sample.bicep:23:15:23:60 | String | Microsoft.Network/virtualNetworks@2021-05-01 |
+| sample.bicep:29:9:29:21 | String | 10.0.0.0/16 |
+| sample.bicep:36:26:36:38 | String | 10.0.0.0/24 |
+| sample.bicep:43:19:43:66 | String | Microsoft.Network/publicIPAddresses@2021-05-01 |
+| sample.bicep:47:31:47:39 | String | Dynamic |
+| sample.bicep:51:14:51:61 | String | Microsoft.Network/networkInterfaces@2021-05-01 |
+| sample.bicep:57:15:57:25 | String | ipconfig1 |
+| sample.bicep:62:38:62:46 | String | Dynamic |
+| sample.bicep:72:13:72:58 | String | Microsoft.Compute/virtualMachines@2021-07-01 |
+| sample.bicep:77:15:77:31 | String | Standard_DS1_v2 |
+| sample.bicep:86:20:86:30 | String | Canonical |
+| sample.bicep:87:16:87:29 | String | UbuntuServer |
+| sample.bicep:88:14:88:24 | String | 18.04-LTS |
+| sample.bicep:89:18:89:25 | String | latest |
+| sample.bicep:92:23:92:33 | String | FromImage |
+ifCondition
+| conditions.bicep:4:74:12:1 | IfStatement | conditions.bicep:4:77:4:98 | ParenthesizedExpression | conditions.bicep:4:100:12:1 | Object |
