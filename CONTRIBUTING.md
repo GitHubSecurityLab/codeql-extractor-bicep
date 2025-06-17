@@ -78,6 +78,7 @@ python scripts/coverage.py
 ```
 
 This will:
+
 - Load the existing `.coverage.json` file
 - Run `codeql resolve queries` to discover all available queries
 - Update the coverage data with query metadata
@@ -112,6 +113,7 @@ The generated coverage report includes:
 #### Understanding Coverage Data
 
 The coverage script tracks:
+
 - **Total Queries**: All queries discovered in `ql/src/`
 - **Covered Queries**: Queries that have associated tests (initially 0, updated as tests are added)
 - **Categories**: Query categories like `security` and `diagnostics`
