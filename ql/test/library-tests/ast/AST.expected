@@ -1110,6 +1110,44 @@ ast
 | sample.bicep:98:15:98:20 | MemberExpression |
 | sample.bicep:98:15:98:20 | MemberExpression |
 | sample.bicep:98:19:98:20 | id |
+infra
+| conditions.bicep:1:1:12:2 | Infrastructure | 0 | conditions.bicep:1:1:1:39 | ParameterDeclaration |
+| conditions.bicep:1:1:12:2 | Infrastructure | 1 | conditions.bicep:2:1:2:54 | ParameterDeclaration |
+| conditions.bicep:1:1:12:2 | Infrastructure | 2 | conditions.bicep:4:1:12:1 | ResourceDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 0 | data.bicep:2:1:6:1 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 1 | data.bicep:8:1:8:43 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 2 | data.bicep:10:1:11:10 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 3 | data.bicep:13:1:13:28 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 4 | data.bicep:14:1:14:41 | OutputDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 5 | data.bicep:15:1:15:41 | OutputDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 6 | data.bicep:17:1:17:13 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 7 | data.bicep:18:1:18:46 | OutputDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 8 | data.bicep:21:1:21:29 | ParameterDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 9 | data.bicep:24:1:24:24 | ParameterDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 10 | data.bicep:27:1:27:92 | ParameterDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 11 | data.bicep:29:1:34:1 | ParameterDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 12 | data.bicep:36:1:37:12 | ParameterDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 13 | data.bicep:41:1:41:25 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 14 | data.bicep:42:1:42:52 | TypeDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 15 | data.bicep:43:1:43:62 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 16 | data.bicep:46:1:46:24 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 17 | data.bicep:49:1:50:9 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 18 | data.bicep:53:1:55:3 | VariableDeclaration |
+| data.bicep:1:1:62:4 | Infrastructure | 19 | data.bicep:58:1:62:3 | VariableDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 0 | sample.bicep:1:1:1:48 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 1 | sample.bicep:2:1:2:80 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 2 | sample.bicep:3:1:3:28 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 3 | sample.bicep:4:1:4:40 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 4 | sample.bicep:5:1:5:43 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 5 | sample.bicep:6:1:6:32 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 6 | sample.bicep:7:1:7:36 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 7 | sample.bicep:8:1:8:40 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 8 | sample.bicep:9:1:9:30 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 9 | sample.bicep:11:1:21:1 | ResourceDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 10 | sample.bicep:23:1:41:1 | ResourceDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 11 | sample.bicep:43:1:49:1 | ResourceDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 12 | sample.bicep:51:1:70:1 | ResourceDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 13 | sample.bicep:72:1:103:1 | ResourceDeclaration |
 strings
 | conditions.bicep:2:35:2:54 | String | examplestorageacct |
 | conditions.bicep:4:25:4:70 | String | Microsoft.Storage/storageAccounts@2022-09-01 |
