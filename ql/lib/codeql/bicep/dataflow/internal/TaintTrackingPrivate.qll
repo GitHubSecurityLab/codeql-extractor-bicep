@@ -45,3 +45,16 @@ private module Cached {
 }
 
 import Cached
+
+import SpeculativeTaintFlow
+
+private module SpeculativeTaintFlow {
+  private import codeql.bicep.dataflow.internal.DataFlowDispatch as DataFlowDispatch
+  private import codeql.bicep.dataflow.internal.DataFlowPublic as DataFlowPublic
+
+  /**
+   * Holds if the additional step from `src` to `sink` should be considered in
+   * speculative taint flow exploration.
+   */
+  predicate speculativeTaintStep(DataFlow::Node src, DataFlow::Node sink) { none() }
+}
