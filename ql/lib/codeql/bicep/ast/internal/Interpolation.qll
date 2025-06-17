@@ -21,4 +21,7 @@ class InterpolationImpl extends TInterpolation, ExprImpl {
 
   override string toString() { result = ast.toString() }
 
+  ExprImpl getExpression() {
+    toTreeSitter(result) = ast.getChild()
+  }
 }

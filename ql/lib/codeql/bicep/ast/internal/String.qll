@@ -3,11 +3,11 @@
  *
  *  WARNING: this file is generated, do not edit manually
  */
+
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Literals
-
 
 /**
  *  A String AST Node.
@@ -20,13 +20,15 @@ class StringImpl extends TString, LiteralsImpl {
   StringImpl() { this = TString(ast) }
 
   override string toString() { result = ast.toString() }
+
   /**
    *  Get the literal value
-   * 
+   *
    *  TODO: This is broken.
    */
   override string getValue() { result = ast.getChild(_).toString() }
 
-
-
+  AstNode getChild(int index) {
+    toTreeSitter(result) = ast.getChild(index)
+  }
 }

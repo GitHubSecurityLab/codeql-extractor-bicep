@@ -66,15 +66,33 @@ class Number extends Literals instanceof NumberImpl {
   int getValue() { result = NumberImpl.super.getValue().toInt() }
 }
 
+class String = StringLiteral;
+
 /**
  * A String literal in the AST.
  */
 class StringLiteral extends Literals instanceof StringImpl {
+  /**
+   * Gets the value of the string literal.
+   */
   string getValue() {
-    exists(StringContentLiteral content |
-      content = this.getAChild() and
-      result = content.getValue()
+    result = concat(int index, string output |
+      exists(StringContentLiteral content |
+        content = StringImpl.super.getChild(index) and
+        output = content.getValue()
+      )
+      or
+      exists(Interpolation interpolation |
+        interpolation = StringImpl.super.getChild(index) and
+        output = interpolation.getValue()
+      )
+    |
+      output order by index
     )
+  }
+
+  Interpolation getInterpolation(int index) {
+    result = StringImpl.super.getChild(index)
   }
 }
 
