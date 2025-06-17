@@ -75,7 +75,7 @@ class Infrastructure extends AstNode instanceof InfrastructureImpl {
  * Represents a parameter declaration node in the AST.
  * Provides access to the identifier, name, type, and default value of the parameter.
  */
-class ParameterDeclaration extends AstNode instanceof ParameterDeclarationImpl {
+class ParameterDeclaration extends Stmts instanceof ParameterDeclarationImpl {
   /** Gets the identifier of the parameter declaration. */
   Identifier getIdentifier() { result = ParameterDeclarationImpl.super.getName() }
 
@@ -94,7 +94,7 @@ class ParameterDeclaration extends AstNode instanceof ParameterDeclarationImpl {
  * Represents an output declaration node in the AST.
  * Provides access to the identifier, name, type, and value of the output.
  */
-class OutputDeclaration extends AstNode instanceof OutputDeclarationImpl {
+class OutputDeclaration extends Stmts instanceof OutputDeclarationImpl {
   /** Gets the identifier of the output declaration. */
   Identifier getIdentifier() { result = OutputDeclarationImpl.super.getIdentifier() }
 
@@ -112,7 +112,7 @@ class OutputDeclaration extends AstNode instanceof OutputDeclarationImpl {
  * Represents a user-defined function node in the AST.
  * Provides access to the identifier, name, return type, parameters, and body of the function.
  */
-class UserDefinedFunction extends AstNode instanceof UserDefinedFunctionImpl {
+class UserDefinedFunction extends Stmts instanceof UserDefinedFunctionImpl {
   /** Gets the identifier of the user-defined function. */
   Identifier getIdentifier() { result = UserDefinedFunctionImpl.super.getName() }
 
