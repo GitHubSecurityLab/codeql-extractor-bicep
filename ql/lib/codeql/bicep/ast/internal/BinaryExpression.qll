@@ -21,6 +21,12 @@ class BinaryExpressionImpl extends TBinaryExpression, ExprImpl {
 
   override string toString() { result = ast.toString() }
 
+  ExprImpl getLeft() { toTreeSitter(result) = ast.getLeft() }
 
+  ExprImpl getRight() { toTreeSitter(result) = ast.getRight() }
+
+  string getOperator() {
+    result = ast.getOperator()
+  }
 
 }

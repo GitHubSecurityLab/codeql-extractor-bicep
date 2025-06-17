@@ -50,7 +50,13 @@ final class ForStatementStmt extends Stmts instanceof ForStatementImpl { }
 /**
  * A IfStatement statement
  */
-final class IfStatementStmt extends Stmts instanceof IfStatementImpl { }
+class IfStatement extends Stmts instanceof IfStatementImpl { 
+  /** Gets the condition of the if statement. */
+  Expr getCondition() { result = IfStatementImpl.super.getCondition() }
+
+  /** Gets the body of the if statement. */
+  Expr getBody() { result = IfStatementImpl.super.getBody() }
+}
 
 /**
  * A ImportStatement statement
