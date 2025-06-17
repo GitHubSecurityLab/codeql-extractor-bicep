@@ -16,7 +16,6 @@ private import internal.NullableType
 private import internal.ParenthesizedExpression
 private import internal.PrimaryExpression
 private import internal.ResourceExpression
-private import internal.SubscriptExpression
 private import internal.TernaryExpression
 private import internal.UnaryExpression
 private import Idents
@@ -121,7 +120,21 @@ final class NullableType extends Expr instanceof NullableTypeImpl { }
 /**
  * A ParenthesizedExpression expression in the AST.
  */
-final class ParenthesizedExpression extends Expr instanceof ParenthesizedExpressionImpl { }
+class ParenthesizedExpression extends Expr instanceof ParenthesizedExpressionImpl { 
+  /**
+   * Gets the expression contained within the parentheses.
+   */
+  Expr getExpression(int index) {
+    result = ParenthesizedExpressionImpl.super.getExpression(index)
+  }
+
+  /**
+   *  Get the expressions contained within the parentheses.
+   */
+  Expr getExpressions() {
+    result = ParenthesizedExpressionImpl.super.getExpressions()
+  }
+}
 
 /**
  * A PrimaryExpression expression in the AST.
@@ -132,11 +145,6 @@ final class PrimaryExpression extends Expr instanceof PrimaryExpressionImpl { }
  * A ResourceExpression expression in the AST.
  */
 final class ResourceExpression extends Expr instanceof ResourceExpressionImpl { }
-
-/**
- * A SubscriptExpression expression in the AST.
- */
-final class SubscriptExpression extends Expr instanceof SubscriptExpressionImpl { }
 
 /**
  * A TernaryExpression expression in the AST.

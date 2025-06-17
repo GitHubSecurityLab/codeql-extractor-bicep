@@ -3,11 +3,11 @@
  *
  *  WARNING: this file is generated, do not edit manually
  */
+
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Expr
-
 
 /**
  *  A SubscriptExpression AST Node.
@@ -21,6 +21,7 @@ class SubscriptExpressionImpl extends TSubscriptExpression, ExprImpl {
 
   override string toString() { result = ast.toString() }
 
+  ExprImpl getIndex() { toTreeSitter(result) = ast.getIndex() }
 
-
+  ExprImpl getObject() { toTreeSitter(result) = ast.getObject() }
 }
