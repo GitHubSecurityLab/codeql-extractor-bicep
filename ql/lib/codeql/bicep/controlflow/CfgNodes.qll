@@ -3,10 +3,10 @@
 private import bicep
 private import BasicBlocks
 private import ControlFlowGraph
-private import internal.ControlFlowGraphImpl as CfgImpl
+import internal.ControlFlowGraphImpl
 
 /** A control-flow node that wraps an AST expression. */
-class ExprCfgNode extends CfgImpl::AstCfgNode {
+class ExprCfgNode extends AstCfgNode {
   string getAPrimaryQlClass() { result = "ExprCfgNode" }
 
   Expr e;
@@ -18,7 +18,7 @@ class ExprCfgNode extends CfgImpl::AstCfgNode {
 }
 
 /** A control-flow node that wraps an AST statement. */
-class StmtsCfgNode extends CfgImpl::AstCfgNode {
+class StmtsCfgNode extends AstCfgNode {
   string getAPrimaryQlClass() { result = "StmtsCfgNode" }
 
   Stmts s;
