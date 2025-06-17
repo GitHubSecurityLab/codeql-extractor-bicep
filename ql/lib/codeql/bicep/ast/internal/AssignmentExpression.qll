@@ -3,11 +3,11 @@
  *
  *  WARNING: this file is generated, do not edit manually
  */
+
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Expr
-
 
 /**
  *  A AssignmentExpression AST Node.
@@ -21,6 +21,7 @@ class AssignmentExpressionImpl extends TAssignmentExpression, ExprImpl {
 
   override string toString() { result = ast.toString() }
 
+  ExprImpl getLeft() { toTreeSitter(result) = ast.getLeft() }
 
-
+  ExprImpl getRight() { toTreeSitter(result) = ast.getRight() }
 }

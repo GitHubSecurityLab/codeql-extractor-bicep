@@ -30,12 +30,37 @@ final class Expr extends AstNode instanceof ExprImpl { }
 /**
  * A AssignmentExpression expression in the AST.
  */
-final class AssignmentExpression extends Expr instanceof AssignmentExpressionImpl { }
+class AssignmentExpression extends Expr instanceof AssignmentExpressionImpl {
+  /**
+   * Gets the left operand of the assignment expression.
+   */
+  Expr getLeft() { result = AssignmentExpressionImpl.super.getLeft() }
+
+  /**
+   * Gets the right operand of the assignment expression.
+   */
+  Expr getRight() { result = AssignmentExpressionImpl.super.getRight() }
+}
 
 /**
  * A BinaryExpression expression in the AST.
  */
-final class BinaryExpression extends Expr instanceof BinaryExpressionImpl { }
+class BinaryExpression extends Expr instanceof BinaryExpressionImpl {
+  /**
+   * Gets the left operand of the binary expression.
+   */
+  Expr getLeft() { result = BinaryExpressionImpl.super.getLeft() }
+
+  /**
+   * Gets the right operand of the binary expression.
+   */
+  Expr getRight() { result = BinaryExpressionImpl.super.getRight() }
+
+  /**
+   * Gets the operator of the binary expression.
+   */
+  string getOperator() { result = BinaryExpressionImpl.super.getOperator() }
+}
 
 /**
  * A Expression expression in the AST.
@@ -45,7 +70,18 @@ final class Expression extends Expr instanceof ExpressionImpl { }
 /**
  * A Interpolation literal in the AST.
  */
-final class Interpolation extends Expr instanceof InterpolationImpl { }
+final class Interpolation extends Expr instanceof InterpolationImpl {
+  /**
+   *  Gets the expression contained within the interpolation.
+   */
+  Expr getExpression() {
+    result = InterpolationImpl.super.getExpression()
+  }
+
+  string getValue() {
+    result = "${" + this.getExpression().toString() + "}"
+  }
+}
 
 /**
  * A LambdaExpression expression in the AST.
@@ -69,9 +105,7 @@ class MemberExpression extends Expr instanceof MemberExpressionImpl {
   /**
    * Gets the full name of the member expression, which includes the namespace and the member name.
    */
-  string getFullName() {
-    result = this.getNamespace().getName() + "." + this.getName().getName()
-  }
+  string getFullName() { result = this.getNamespace().getName() + "." + this.getName().getName() }
 }
 
 /**
