@@ -5,6 +5,7 @@ version: "0.2.0"
 ecosystems:
   - Docs
   - GitHub
+  - CodeQL
 
 locations:
   - name: "GitHub Action"
