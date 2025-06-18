@@ -18,7 +18,7 @@
 
 ```yaml
 - name: Initialize and Analyze Bicep
-  uses: GitHubSecurityLab/codeql-extractor-bicep@v0.1.0
+  uses: GitHubSecurityLab/codeql-extractor-bicep@v0.2.0
 ```
 
 ## Features
