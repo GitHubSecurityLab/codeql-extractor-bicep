@@ -1,8 +1,23 @@
 {
   "queries": [
     {
+      "path": "ql/src/security/CWE-404/DatabaseNoGeoRedundantBackup.ql",
+      "name": "DatabaseNoGeoRedundantBackup",
+      "category": "security",
+      "cwe": "CWE-404",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-404/CosmosDBNoBackupPolicy.ql",
+      "name": "CosmosDBNoBackupPolicy",
+      "category": "security",
+      "cwe": "CWE-404",
+      "covered": false,
+      "test_files": []
+    },
+    {
       "path": "ql/src/security/CWE-200/PublicResource.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-200/PublicResource.ql",
       "name": "PublicResource",
       "category": "security",
       "cwe": "CWE-200",
@@ -11,7 +26,6 @@
     },
     {
       "path": "ql/src/security/CWE-200/GrafanaExternalSnapshotsEnabled.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-200/GrafanaExternalSnapshotsEnabled.ql",
       "name": "GrafanaExternalSnapshotsEnabled",
       "category": "security",
       "cwe": "CWE-200",
@@ -19,8 +33,127 @@
       "test_files": []
     },
     {
+      "path": "ql/src/security/CWE-319/DatabaseSslNotEnforced.ql",
+      "name": "DatabaseSslNotEnforced",
+      "category": "security",
+      "cwe": "CWE-319",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-319/GrafanaInsecureStartTLSPolicy.ql",
+      "name": "GrafanaInsecureStartTLSPolicy",
+      "category": "security",
+      "cwe": "CWE-319",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-319/RedisCacheNonSslPort.ql",
+      "name": "RedisCacheNonSslPort",
+      "category": "security",
+      "cwe": "CWE-319",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-319/SslEnforement.ql",
+      "name": "SslEnforement",
+      "category": "security",
+      "cwe": "CWE-319",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-327/TlsDisabled.ql",
+      "name": "TlsDisabled",
+      "category": "security",
+      "cwe": "CWE-327",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-327/WeakTlsVersion.ql",
+      "name": "WeakTlsVersion",
+      "category": "security",
+      "cwe": "CWE-327",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-327/DatabaseWeakTlsVersion.ql",
+      "name": "DatabaseWeakTlsVersion",
+      "category": "security",
+      "cwe": "CWE-327",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-311/AKSWithoutDiskEncryption.ql",
+      "name": "AKSWithoutDiskEncryption",
+      "category": "security",
+      "cwe": "CWE-311",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-311/DatabaseNoInfrastructureEncryption.ql",
+      "name": "DatabaseNoInfrastructureEncryption",
+      "category": "security",
+      "cwe": "CWE-311",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-942/InsecureCorsAllMethods.ql",
+      "name": "InsecureCorsAllMethods",
+      "category": "security",
+      "cwe": "CWE-942",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-942/InsecureCorsWildcardOrigin.ql",
+      "name": "InsecureCorsWildcardOrigin",
+      "category": "security",
+      "cwe": "CWE-942",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-942/InsecureCorsAllowCredentialsWildcard.ql",
+      "name": "InsecureCorsAllowCredentialsWildcard",
+      "category": "security",
+      "cwe": "CWE-942",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-942/InsecureCorsAllHeaders.ql",
+      "name": "InsecureCorsAllHeaders",
+      "category": "security",
+      "cwe": "CWE-942",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-284/AKSPublicNetworkAccess.ql",
+      "name": "AKSPublicNetworkAccess",
+      "category": "security",
+      "cwe": "CWE-284",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-284/AKSRbacDisabled.ql",
+      "name": "AKSRbacDisabled",
+      "category": "security",
+      "cwe": "CWE-284",
+      "covered": false,
+      "test_files": []
+    },
+    {
       "path": "ql/src/security/CWE-284/DatabasePublicNetworkAccess.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-284/DatabasePublicNetworkAccess.ql",
       "name": "DatabasePublicNetworkAccess",
       "category": "security",
       "cwe": "CWE-284",
@@ -29,7 +162,6 @@
     },
     {
       "path": "ql/src/security/CWE-284/RedisCachePublicNetwork.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-284/RedisCachePublicNetwork.ql",
       "name": "RedisCachePublicNetwork",
       "category": "security",
       "cwe": "CWE-284",
@@ -37,143 +169,7 @@
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-306/RedisCacheNoAuth.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-306/RedisCacheNoAuth.ql",
-      "name": "RedisCacheNoAuth",
-      "category": "security",
-      "cwe": "CWE-306",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-306/GrafanaApiKeyEnabled.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-306/GrafanaApiKeyEnabled.ql",
-      "name": "GrafanaApiKeyEnabled",
-      "category": "security",
-      "cwe": "CWE-306",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-319/GrafanaInsecureStartTLSPolicy.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-319/GrafanaInsecureStartTLSPolicy.ql",
-      "name": "GrafanaInsecureStartTLSPolicy",
-      "category": "security",
-      "cwe": "CWE-319",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-319/DatabaseSslNotEnforced.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-319/DatabaseSslNotEnforced.ql",
-      "name": "DatabaseSslNotEnforced",
-      "category": "security",
-      "cwe": "CWE-319",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-319/SslEnforement.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-319/SslEnforement.ql",
-      "name": "SslEnforement",
-      "category": "security",
-      "cwe": "CWE-319",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-319/RedisCacheNonSslPort.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-319/RedisCacheNonSslPort.ql",
-      "name": "RedisCacheNonSslPort",
-      "category": "security",
-      "cwe": "CWE-319",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-352/GrafanaCsrfDisabled.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-352/GrafanaCsrfDisabled.ql",
-      "name": "GrafanaCsrfDisabled",
-      "category": "security",
-      "cwe": "CWE-352",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-327/DatabaseWeakTlsVersion.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-327/DatabaseWeakTlsVersion.ql",
-      "name": "DatabaseWeakTlsVersion",
-      "category": "security",
-      "cwe": "CWE-327",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-327/WeakTlsVersion.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-327/WeakTlsVersion.ql",
-      "name": "WeakTlsVersion",
-      "category": "security",
-      "cwe": "CWE-327",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-327/TlsDisabled.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-327/TlsDisabled.ql",
-      "name": "TlsDisabled",
-      "category": "security",
-      "cwe": "CWE-327",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/AKS/AKSPublicApi.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/AKS/AKSPublicApi.ql",
-      "name": "AKSPublicApi",
-      "category": "security",
-      "cwe": "",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/AKS/AKSKubeDashboardEnabled.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/AKS/AKSKubeDashboardEnabled.ql",
-      "name": "AKSKubeDashboardEnabled",
-      "category": "security",
-      "cwe": "",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/AKS/AKSPrivateApiEnabled.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/AKS/AKSPrivateApiEnabled.ql",
-      "name": "AKSPrivateApiEnabled",
-      "category": "security",
-      "cwe": "",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/Dashboards/GrafanaMissingZoneRedundancy.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/Dashboards/GrafanaMissingZoneRedundancy.ql",
-      "name": "GrafanaMissingZoneRedundancy",
-      "category": "security",
-      "cwe": "",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/Storage/SupportHttpTraffic.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/Storage/SupportHttpTraffic.ql",
-      "name": "SupportHttpTraffic",
-      "category": "security",
-      "cwe": "",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/Storage/PublicAccess.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/Storage/PublicAccess.ql",
+      "path": "ql/src/security/storage/PublicAccess.ql",
       "name": "PublicAccess",
       "category": "security",
       "cwe": "",
@@ -181,35 +177,39 @@
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-272/GrafanaExcessiveEditorPermissions.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-272/GrafanaExcessiveEditorPermissions.ql",
-      "name": "GrafanaExcessiveEditorPermissions",
+      "path": "ql/src/security/storage/SupportHttpTraffic.ql",
+      "name": "SupportHttpTraffic",
       "category": "security",
-      "cwe": "CWE-272",
+      "cwe": "",
       "covered": false,
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-272/GrafanaExcessiveViewerPermissions.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-272/GrafanaExcessiveViewerPermissions.ql",
-      "name": "GrafanaExcessiveViewerPermissions",
+      "path": "ql/src/security/AKS/AKSPrivateApiEnabled.ql",
+      "name": "AKSPrivateApiEnabled",
       "category": "security",
-      "cwe": "CWE-272",
+      "cwe": "",
       "covered": false,
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-311/DatabaseNoInfrastructureEncryption.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-311/DatabaseNoInfrastructureEncryption.ql",
-      "name": "DatabaseNoInfrastructureEncryption",
+      "path": "ql/src/security/AKS/AKSKubeDashboardEnabled.ql",
+      "name": "AKSKubeDashboardEnabled",
       "category": "security",
-      "cwe": "CWE-311",
+      "cwe": "",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/AKS/AKSPublicApi.ql",
+      "name": "AKSPublicApi",
+      "category": "security",
+      "cwe": "",
       "covered": false,
       "test_files": []
     },
     {
       "path": "ql/src/security/CWE-400/RedisCacheUnsafeMemoryPolicy.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-400/RedisCacheUnsafeMemoryPolicy.ql",
       "name": "RedisCacheUnsafeMemoryPolicy",
       "category": "security",
       "cwe": "CWE-400",
@@ -217,53 +217,23 @@
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-942/InsecureCorsAllHeaders.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-942/InsecureCorsAllHeaders.ql",
-      "name": "InsecureCorsAllHeaders",
+      "path": "ql/src/security/CWE-400/AKSNodeAutoScalingDisabled.ql",
+      "name": "AKSNodeAutoScalingDisabled",
       "category": "security",
-      "cwe": "CWE-942",
+      "cwe": "CWE-400",
       "covered": false,
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-942/InsecureCorsAllowCredentialsWildcard.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-942/InsecureCorsAllowCredentialsWildcard.ql",
-      "name": "InsecureCorsAllowCredentialsWildcard",
+      "path": "ql/src/security/CWE-668/AKSInsecureNetworkPolicy.ql",
+      "name": "AKSInsecureNetworkPolicy",
       "category": "security",
-      "cwe": "CWE-942",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-942/InsecureCorsWildcardOrigin.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-942/InsecureCorsWildcardOrigin.ql",
-      "name": "InsecureCorsWildcardOrigin",
-      "category": "security",
-      "cwe": "CWE-942",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-942/InsecureCorsAllMethods.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-942/InsecureCorsAllMethods.ql",
-      "name": "InsecureCorsAllMethods",
-      "category": "security",
-      "cwe": "CWE-942",
-      "covered": false,
-      "test_files": []
-    },
-    {
-      "path": "ql/src/security/CWE-693/RedisCacheNoBackup.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-693/RedisCacheNoBackup.ql",
-      "name": "RedisCacheNoBackup",
-      "category": "security",
-      "cwe": "CWE-693",
+      "cwe": "CWE-668",
       "covered": false,
       "test_files": []
     },
     {
       "path": "ql/src/security/CWE-295/GrafanaSmtpSslVerificationDisabled.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-295/GrafanaSmtpSslVerificationDisabled.ql",
       "name": "GrafanaSmtpSslVerificationDisabled",
       "category": "security",
       "cwe": "CWE-295",
@@ -271,17 +241,23 @@
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-798/RedisCacheNoAAD.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-798/RedisCacheNoAAD.ql",
-      "name": "RedisCacheNoAAD",
+      "path": "ql/src/security/CWE-693/RedisCacheNoBackup.ql",
+      "name": "RedisCacheNoBackup",
       "category": "security",
-      "cwe": "CWE-798",
+      "cwe": "CWE-693",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/Dashboards/GrafanaMissingZoneRedundancy.ql",
+      "name": "GrafanaMissingZoneRedundancy",
+      "category": "security",
+      "cwe": "",
       "covered": false,
       "test_files": []
     },
     {
       "path": "ql/src/security/CWE-798/HardcodedSmtpCredentials.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-798/HardcodedSmtpCredentials.ql",
       "name": "HardcodedSmtpCredentials",
       "category": "security",
       "cwe": "CWE-798",
@@ -289,26 +265,71 @@
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-404/CosmosDBNoBackupPolicy.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-404/CosmosDBNoBackupPolicy.ql",
-      "name": "CosmosDBNoBackupPolicy",
+      "path": "ql/src/security/CWE-798/RedisCacheNoAAD.ql",
+      "name": "RedisCacheNoAAD",
       "category": "security",
-      "cwe": "CWE-404",
+      "cwe": "CWE-798",
       "covered": false,
       "test_files": []
     },
     {
-      "path": "ql/src/security/CWE-404/DatabaseNoGeoRedundantBackup.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/security/CWE-404/DatabaseNoGeoRedundantBackup.ql",
-      "name": "DatabaseNoGeoRedundantBackup",
+      "path": "ql/src/security/CWE-306/RedisCacheNoAuth.ql",
+      "name": "RedisCacheNoAuth",
       "category": "security",
-      "cwe": "CWE-404",
+      "cwe": "CWE-306",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-306/AKSLocalAccountsEnabled.ql",
+      "name": "AKSLocalAccountsEnabled",
+      "category": "security",
+      "cwe": "CWE-306",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-306/GrafanaApiKeyEnabled.ql",
+      "name": "GrafanaApiKeyEnabled",
+      "category": "security",
+      "cwe": "CWE-306",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-352/GrafanaCsrfDisabled.ql",
+      "name": "GrafanaCsrfDisabled",
+      "category": "security",
+      "cwe": "CWE-352",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-272/GrafanaExcessiveViewerPermissions.ql",
+      "name": "GrafanaExcessiveViewerPermissions",
+      "category": "security",
+      "cwe": "CWE-272",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-272/GrafanaExcessiveEditorPermissions.ql",
+      "name": "GrafanaExcessiveEditorPermissions",
+      "category": "security",
+      "cwe": "CWE-272",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/testing/test.ql",
+      "name": "test",
+      "category": "testing",
+      "cwe": "",
       "covered": false,
       "test_files": []
     },
     {
       "path": "ql/src/diagnostics/ExtractionErrors.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/diagnostics/ExtractionErrors.ql",
       "name": "ExtractionErrors",
       "category": "diagnostics",
       "cwe": "",
@@ -317,7 +338,6 @@
     },
     {
       "path": "ql/src/diagnostics/SuccessfullyExtractedFiles.ql",
-      "absolute_path": "/home/geekmasher/development/github/codeql-extractor-bicep/ql/src/diagnostics/SuccessfullyExtractedFiles.ql",
       "name": "SuccessfullyExtractedFiles",
       "category": "diagnostics",
       "cwe": "",
@@ -326,27 +346,29 @@
     }
   ],
   "metadata": {
-    "total_queries": 36,
+    "total_queries": 43,
     "covered_queries": 0,
     "categories": [
+      "testing",
       "diagnostics",
       "security"
     ],
     "cwes": [
-      "CWE-200",
-      "CWE-306",
+      "CWE-668",
       "CWE-311",
-      "CWE-942",
       "CWE-400",
+      "CWE-306",
+      "CWE-352",
       "CWE-319",
-      "CWE-693",
-      "CWE-327",
+      "CWE-942",
+      "CWE-272",
       "CWE-284",
       "CWE-295",
-      "CWE-404",
-      "CWE-352",
+      "CWE-200",
+      "CWE-327",
       "CWE-798",
-      "CWE-272"
+      "CWE-693",
+      "CWE-404"
     ],
     "coverage_percentage": 0.0
   }
