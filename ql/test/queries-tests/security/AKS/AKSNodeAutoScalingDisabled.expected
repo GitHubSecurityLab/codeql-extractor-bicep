@@ -1,0 +1,17 @@
+| aks-security-examples.bicep:9:7:16:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:14:7:19:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:33:7:38:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:58:7:63:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:78:7:83:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:98:7:103:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:141:7:147:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:161:7:167:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:188:7:193:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:208:7:213:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:228:7:233:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:253:7:258:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:276:7:281:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:299:7:304:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:322:7:327:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:358:7:363:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
+| app.bicep:378:7:383:7 | AgentPoolProfile | AKS agent pool 'agentpool' has auto-scaling disabled, which may lead to resource constraints during high load. |
