@@ -1,5 +1,26 @@
 mcr
 | app.bicep:2:1:70:1 | ManagedContainerResource |
+| example1-basic-cluster.bicep:5:1:43:1 | ManagedContainerResource |
+| example2-production-cluster.bicep:5:1:188:1 | ManagedContainerResource |
+| example3-ml-optimized-cluster.bicep:5:1:196:1 | ManagedContainerResource |
 mcrAgents
-| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:9:7:18:7 | AgentPoolProfiles |
-| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:19:7:26:7 | AgentPoolProfiles |
+| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:9:7:18:7 | AgentPoolProfile |
+| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:19:7:26:7 | AgentPoolProfile |
+| example1-basic-cluster.bicep:5:1:43:1 | ManagedContainerResource | example1-basic-cluster.bicep:12:7:19:7 | AgentPoolProfile |
+| example2-production-cluster.bicep:5:1:188:1 | ManagedContainerResource | example2-production-cluster.bicep:27:7:46:7 | AgentPoolProfile |
+| example2-production-cluster.bicep:5:1:188:1 | ManagedContainerResource | example2-production-cluster.bicep:47:7:67:7 | AgentPoolProfile |
+| example2-production-cluster.bicep:5:1:188:1 | ManagedContainerResource | example2-production-cluster.bicep:68:7:91:7 | AgentPoolProfile |
+| example3-ml-optimized-cluster.bicep:5:1:196:1 | ManagedContainerResource | example3-ml-optimized-cluster.bicep:22:7:36:7 | AgentPoolProfile |
+| example3-ml-optimized-cluster.bicep:5:1:196:1 | ManagedContainerResource | example3-ml-optimized-cluster.bicep:37:7:55:7 | AgentPoolProfile |
+| example3-ml-optimized-cluster.bicep:5:1:196:1 | ManagedContainerResource | example3-ml-optimized-cluster.bicep:56:7:79:7 | AgentPoolProfile |
+| example3-ml-optimized-cluster.bicep:5:1:196:1 | ManagedContainerResource | example3-ml-optimized-cluster.bicep:80:7:96:7 | AgentPoolProfile |
+mcrOsProfile
+| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:51:19:60:5 | OsProfile[linux] |
+| example2-production-cluster.bicep:5:1:188:1 | ManagedContainerResource | example2-production-cluster.bicep:163:19:172:5 | OsProfile[linux] |
+| example2-production-cluster.bicep:5:1:188:1 | ManagedContainerResource | example2-production-cluster.bicep:174:21:178:5 | OsProfile[windows] |
+| example3-ml-optimized-cluster.bicep:5:1:196:1 | ManagedContainerResource | example3-ml-optimized-cluster.bicep:162:19:171:5 | OsProfile[linux] |
+mcrNetworkProfiles
+| app.bicep:2:1:70:1 | ManagedContainerResource | app.bicep:28:21:32:5 | NetworkProfile |
+| example1-basic-cluster.bicep:5:1:43:1 | ManagedContainerResource | example1-basic-cluster.bicep:21:21:24:5 | NetworkProfile |
+| example2-production-cluster.bicep:5:1:188:1 | ManagedContainerResource | example2-production-cluster.bicep:95:21:103:5 | NetworkProfile |
+| example3-ml-optimized-cluster.bicep:5:1:196:1 | ManagedContainerResource | example3-ml-optimized-cluster.bicep:100:21:105:5 | NetworkProfile |
