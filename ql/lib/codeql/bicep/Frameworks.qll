@@ -4,6 +4,7 @@ import frameworks.Microsoft.Containers
 import frameworks.Microsoft.Dashboards
 import frameworks.Microsoft.General
 import frameworks.Microsoft.AKS
+import frameworks.Microsoft.Profiles
 import frameworks.Microsoft.Network
 import frameworks.Microsoft.Storage
 import frameworks.Microsoft.Databases
