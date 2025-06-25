@@ -144,9 +144,40 @@ module NetworkingProfiles {
     NetworkProfile() { this = properties.getProperty("networkProfile") }
 
     /**
-     * Returns a string representation of the network profile.
+     * Returns the network interfaces property of the network profile.
      */
-    string toString() { result = "NetworkProfile" }
+    StringLiteral getNetworkPlugin() { result = this.getProperty("networkPlugin") }
+
+    predicate hasNetworkPlugin() { exists(this.getNetworkPlugin()) }
+
+    string networkPlugin() { result = this.getNetworkPlugin().getValue() }
+
+    /**
+     * Returns the network policy for the virtual machine.
+     */
+    StringLiteral getNetworkPolicy() { result = this.getProperty("networkPolicy") }
+
+    predicate hasNetworkPolicy() { exists(this.getNetworkPolicy()) }
+
+    string networkPolicy() { result = this.getNetworkPolicy().getValue() }
+
+    StringLiteral getLoadBalancerSku() { result = this.getProperty("loadBalancerSku") }
+
+    predicate hasLoadBalancerSku() { exists(this.getLoadBalancerSku()) }
+
+    string loadBalancerSku() { result = this.getLoadBalancerSku().getValue() }
+
+    StringLiteral getOutboundType() { result = this.getProperty("outboundType") }
+
+    string outboundType() { result = this.getOutboundType().getValue() }
+
+    predicate hasOutboundType() { exists(this.getOutboundType()) }
+
+    StringLiteral getServiceCidr() { result = this.getProperty("serviceCidr") }
+
+    predicate hasServiceCidr() { exists(this.getServiceCidr()) }
+
+    string serviceCidr() { result = this.getServiceCidr().getValue() }
 
     /**
      * Returns the network interfaces for the virtual machine.
@@ -161,6 +192,11 @@ module NetworkingProfiles {
     private Object getNetworkInterfacesObject() {
       result = this.getProperty("networkInterfaces").(Array).getElements()
     }
+
+    /**
+     * Returns a string representation of the network profile.
+     */
+    string toString() { result = "NetworkProfile" }
   }
 }
 
@@ -235,5 +271,46 @@ module StorageProfiles {
      * Returns the version property of the image reference.
      */
     Expr getVersion() { result = this.getProperty("version") }
+  }
+}
+
+module SecurityProfiles {
+  /**
+   * Represents the security profile for a managed AKS cluster.
+   */
+  class SecurityProfile extends Object {
+    private ResourceProperties properties;
+
+    /**
+     * Constructs a SecurityProfile object for the given properties.
+     */
+    SecurityProfile() { this = properties.getProperty("securityProfile") }
+
+    /**
+     * Gets the Azure Key Vault KMS property.
+     */
+    Expr getAzureKeyVaultKms() { result = this.getProperty("azureKeyVaultKms") }
+
+    /**
+     * Gets the defender property.
+     */
+    Expr getDefender() { result = this.getProperty("defender") }
+
+    /**
+     * Gets the image cleaner property.
+     */
+    Expr getImageCleaner() { result = this.getProperty("imageCleaner") }
+
+    /**
+     * Gets the node restriction property.
+     */
+    Expr getNodeRestriction() { result = this.getProperty("nodeRestriction") }
+
+    /**
+     * Gets the workload identity property.
+     */
+    Expr getWorkloadIdentity() { result = this.getProperty("workloadIdentity") }
+
+    string toString() { result = "SecurityProfile" }
   }
 }

@@ -43,7 +43,7 @@ abstract class ResourceProperties extends Object {
   /**
    * Returns a string representation of the resource properties object.
    */
-  string toString() { result = super.toString() }
+  string toString() { result = "ResourceProperties" }
 }
 
 /**
