@@ -1,0 +1,1 @@
+| app.bicep:25:1:41:1 | ManagedContainerResource | AKS cluster has RBAC disabled, which can lead to unauthorized access to the cluster. |
