@@ -80,7 +80,7 @@ module AKS {
     /**
      * Returns the security profile.
      */
-    SecurityProfile getSecurityProfile() {
+    SecurityProfiles::SecurityProfile getSecurityProfile() {
       result = this.getProperties().getSecurityProfile()
     }
 
@@ -247,7 +247,7 @@ module AKS {
       /**
        * Gets the security profile for the cluster.
        */
-      SecurityProfile getSecurityProfile() { result = this.getProperty("securityProfile") }
+      SecurityProfiles::SecurityProfile getSecurityProfile() { result = this.getProperty("securityProfile") }
 
       /**
        * Gets the service mesh profile for the cluster.
@@ -585,7 +585,7 @@ module AKS {
       /**
        * Gets the Windows profile.
        */
-      Expr getWindowsProfile() { result = this.getProperty("windowsProfile") }
+      OsProfiles::WindowsProfile getWindowsProfile() { result = this.getProperty("windowsProfile") }
 
       /**
        * Gets the power state.
@@ -979,44 +979,6 @@ module AKS {
       string toString() { result = "AzureMonitorProfile" }
     }
 
-    /**
-     * Represents the security profile for a managed AKS cluster.
-     */
-    class SecurityProfile extends Object {
-      private Properties properties;
-
-      /**
-       * Constructs a SecurityProfile object for the given properties.
-       */
-      SecurityProfile() { this = properties.getProperty("securityProfile") }
-
-      /**
-       * Gets the Azure Key Vault KMS property.
-       */
-      Expr getAzureKeyVaultKms() { result = this.getProperty("azureKeyVaultKms") }
-
-      /**
-       * Gets the defender property.
-       */
-      Expr getDefender() { result = this.getProperty("defender") }
-
-      /**
-       * Gets the image cleaner property.
-       */
-      Expr getImageCleaner() { result = this.getProperty("imageCleaner") }
-
-      /**
-       * Gets the node restriction property.
-       */
-      Expr getNodeRestriction() { result = this.getProperty("nodeRestriction") }
-
-      /**
-       * Gets the workload identity property.
-       */
-      Expr getWorkloadIdentity() { result = this.getProperty("workloadIdentity") }
-
-      string toString() { result = "SecurityProfile" }
-    }
 
     /**
      * Represents the service mesh profile for a managed AKS cluster.
