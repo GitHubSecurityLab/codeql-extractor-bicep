@@ -98,6 +98,15 @@ module AKS {
       result = this.getProperties().getAzureMonitorProfile()
     }
 
+    /**
+     *  Returns OS profiles for the cluster.
+     */
+    OsProfiles::OsProfile getOsProfile() {
+      result = this.getProperties().getLinuxProfile()
+      or
+      result = this.getProperties().getWindowsProfile()
+    }
+
     override string toString() { result = "ManagedContainerResource" }
   }
 
@@ -191,7 +200,7 @@ module AKS {
       /**
        * Gets the network profile for the cluster.
        */
-      Network::NetworkProfile getNetworkProfile() { result = this.getProperty("networkProfile") }
+      NetworkingProfiles::NetworkProfile getNetworkProfile() { result = this.getProperty("networkProfile") }
 
       /**
        * Gets the API server access profile for the cluster.
@@ -248,7 +257,7 @@ module AKS {
       /**
        * Gets the storage profile for the cluster.
        */
-      StorageProfile getStorageProfile() { result = this.getProperty("storageProfile") }
+      StorageProfiles::StorageProfile getStorageProfile() { result = this.getProperty("storageProfile") }
 
       /**
        * Gets the workload auto scaler profile for the cluster.
@@ -260,12 +269,12 @@ module AKS {
       /**
        * Gets the Windows profile for the cluster.
        */
-      Profiles::WindowsProfile getWindowsProfile() { result = this.getProperty("windowsProfile") }
+      OsProfiles::WindowsProfile getWindowsProfile() { result = this.getProperty("windowsProfile") }
 
       /**
        * Gets the Linux profile for the cluster.
        */
-      Profiles::LinuxProfile getLinuxProfile() { result = this.getProperty("linuxProfile") }
+      OsProfiles::LinuxProfile getLinuxProfile() { result = this.getProperty("linuxProfile") }
 
       /**
        * Gets the HTTP proxy configuration for the cluster.
@@ -561,7 +570,7 @@ module AKS {
       /**
        * Gets the network profile.
        */
-      Expr getNetworkProfile() { result = this.getProperty("networkProfile") }
+      NetworkingProfiles::NetworkProfile getNetworkProfile() { result = this.getProperty("networkProfile") }
 
       /**
        * Gets the security profile.
@@ -700,7 +709,7 @@ module AKS {
        */
       predicate hasCount() { exists(this.getCount()) }
 
-      string getToString() { result = "AgentPoolProfile" }
+      string toString() { result = "AgentPoolProfile" }
     }
 
     /**
@@ -1031,40 +1040,6 @@ module AKS {
       Boolean getIstioEnabled() { result = this.getProperty("istioEnabled") }
 
       string toString() { result = "ServiceMeshProfile" }
-    }
-
-    /**
-     * Represents the storage profile for a managed AKS cluster.
-     */
-    class StorageProfile extends Object {
-      private Properties properties;
-
-      /**
-       * Constructs a StorageProfile object for the given properties.
-       */
-      StorageProfile() { this = properties.getProperty("storageProfile") }
-
-      /**
-       * Gets the blob CSI driver property.
-       */
-      Expr getBlobCSIDriver() { result = this.getProperty("blobCSIDriver") }
-
-      /**
-       * Gets the disk CSI driver property.
-       */
-      Expr getDiskCSIDriver() { result = this.getProperty("diskCSIDriver") }
-
-      /**
-       * Gets the file CSI driver property.
-       */
-      Expr getFileCSIDriver() { result = this.getProperty("fileCSIDriver") }
-
-      /**
-       * Gets the snapshot controller property.
-       */
-      Expr getSnapshotController() { result = this.getProperty("snapshotController") }
-
-      string toString() { result = "StorageProfile" }
     }
 
     /**
