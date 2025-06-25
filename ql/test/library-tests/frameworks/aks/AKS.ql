@@ -8,6 +8,12 @@ query predicate mcrAgents(
   mcr.getAgentPoolProfiles() = agents
 }
 
-query predicate mcrOsProfile(AKS::ManagedContainerResource mcr, Profiles::OsProfile osProfile) {
+query predicate mcrOsProfile(AKS::ManagedContainerResource mcr, OsProfiles::OsProfile osProfile) {
   mcr.getOsProfile() = osProfile
+}
+
+query predicate mcrNetworkProfiles(
+  AKS::ManagedContainerResource mcr, NetworkingProfiles::NetworkProfile networkProfile
+) {
+  mcr.getNetworkProfile() = networkProfile
 }
