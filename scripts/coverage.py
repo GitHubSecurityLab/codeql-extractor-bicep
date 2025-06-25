@@ -93,7 +93,6 @@ def process_query_paths(queries: List[str], project_root: Path) -> List[Dict[str
         # Extract query metadata
         query_info = {
             "path": str(relative_path),
-            "absolute_path": query_path,
             "name": Path(query_path).stem,
             "category": extract_category_from_path(relative_path),
             "cwe": extract_cwe_from_path(relative_path),
