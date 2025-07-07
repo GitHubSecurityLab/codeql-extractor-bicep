@@ -1,21 +1,21 @@
 webApps
-| app.bicep:7:1:25:1 | (no string representation) |
-| app.bicep:28:1:45:1 | AppService[${appServiceName}-insecure] |
-| app.bicep:48:1:70:1 | AppService[${appServiceName}-secure] |
-| app.bicep:73:1:84:1 | DeploymentSlot[${MemberExpression}/staging] |
-| app.bicep:87:1:100:1 | (no string representation) |
-| app.bicep:103:1:115:1 | AppService[${appServiceName}-function] |
-| test-sites.bicep:9:1:16:1 | (no string representation) |
-| test-sites.bicep:19:1:72:1 | (no string representation) |
-| test-sites.bicep:75:1:107:1 | (no string representation) |
+| app.bicep:7:1:25:1 | AppServicePlan[appServicePlan] |
+| app.bicep:28:1:45:1 | AppService[insecureAppService] |
+| app.bicep:48:1:70:1 | AppService[secureAppService] |
+| app.bicep:73:1:84:1 | DeploymentSlot[testSlot] |
+| app.bicep:87:1:100:1 | StaticWebApp[staticSite] |
+| app.bicep:103:1:115:1 | AppService[functionApp] |
+| test-sites.bicep:9:1:16:1 | AppServicePlan[appServicePlan] |
+| test-sites.bicep:19:1:72:1 | AppService[webApp] |
+| test-sites.bicep:75:1:107:1 | AppService[functionApp] |
 webSites
-| app.bicep:28:1:45:1 | AppService[${appServiceName}-insecure] |
-| app.bicep:48:1:70:1 | AppService[${appServiceName}-secure] |
-| app.bicep:103:1:115:1 | AppService[${appServiceName}-function] |
-| test-sites.bicep:19:1:72:1 | (no string representation) |
-| test-sites.bicep:75:1:107:1 | (no string representation) |
+| app.bicep:28:1:45:1 | AppService[insecureAppService] |
+| app.bicep:48:1:70:1 | AppService[secureAppService] |
+| app.bicep:103:1:115:1 | AppService[functionApp] |
+| test-sites.bicep:19:1:72:1 | AppService[webApp] |
+| test-sites.bicep:75:1:107:1 | AppService[functionApp] |
 webSlots
-| app.bicep:73:1:84:1 | DeploymentSlot[${MemberExpression}/staging] |
+| app.bicep:73:1:84:1 | DeploymentSlot[testSlot] |
 webServerFarms
-| app.bicep:7:1:25:1 | (no string representation) |
-| test-sites.bicep:9:1:16:1 | (no string representation) |
+| app.bicep:7:1:25:1 | AppServicePlan[appServicePlan] |
+| test-sites.bicep:9:1:16:1 | AppServicePlan[appServicePlan] |
