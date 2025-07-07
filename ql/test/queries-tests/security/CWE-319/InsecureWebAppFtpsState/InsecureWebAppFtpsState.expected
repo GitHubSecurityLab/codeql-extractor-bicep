@@ -1,0 +1,2 @@
+| app.bicep:4:1:12:1 | AppService[webAppBad1] | Azure Web App allows insecure FTP protocol: AllAllowed. Use 'FtpsOnly' or 'Disabled' instead. |
+| app.bicep:15:1:23:1 | AppService[webAppBad2] | Azure Web App allows insecure FTP protocol: FtpOnly. Use 'FtpsOnly' or 'Disabled' instead. |
