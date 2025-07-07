@@ -23,6 +23,16 @@ abstract class AzureResource extends Resource {
   string resourceLocation() { result = this.getProperty("location").(StringLiteral).getValue() }
 
   /**
+   * Get the kind of the resource as a StringLiteral.
+   */
+  StringLiteral getKind() { result = this.getProperty("kind") }
+
+  /**
+   * Gets the kind of the resource as a string value.
+   */
+  string kind() { result = this.getKind().getValue() }
+
+  /**
    * Gets the SKU object for the resource.
    * @return The SKU object representing the resource's SKU.
    */

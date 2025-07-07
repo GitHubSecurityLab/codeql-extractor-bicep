@@ -35,11 +35,6 @@ module AKS {
     Expr getExtendedLocation() { result = this.getProperty("extendedLocation") }
 
     /**
-     * Returns the kind property.
-     */
-    StringLiteral getKind() { result = this.getProperty("kind") }
-
-    /**
      * Returns the kubernetesVersion property.
      */
     StringLiteral getKubernetesVersion() { result = this.getProperties().getKubernetesVersion() }

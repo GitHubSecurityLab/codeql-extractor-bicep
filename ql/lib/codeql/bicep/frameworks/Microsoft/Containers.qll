@@ -22,11 +22,6 @@ module Containers {
     Expr getIdentity() { result = this.getProperty("identity") }
 
     /**
-     * Returns the kind property.
-     */
-    StringLiteral getKind() { result = this.getProperty("kind") }
-
-    /**
      * Returns the managedBy property.
      */
     StringLiteral getManagedBy() { result = this.getProperty("managedBy") }

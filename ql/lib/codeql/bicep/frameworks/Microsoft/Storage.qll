@@ -19,11 +19,6 @@ module Storage {
      */
     StorageAccountProperies::Properties getProperties() { result = this.getProperty("properties") }
 
-    /**
-     * Gets the kind of the storage account (e.g., StorageV2, BlobStorage).
-     */
-    StringLiteral getKind() { result = this.getProperty("kind") }
-
     DiskEncryption::EncryptionSettings getEncryptionSettings() {
       result = this.getProperties().getProperty("encryption")
     }
