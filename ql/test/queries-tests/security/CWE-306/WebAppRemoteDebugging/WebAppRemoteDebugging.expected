@@ -1,0 +1,2 @@
+| app.bicep:4:1:12:1 | AppService[webAppBad1] | Azure Web App has remote debugging enabled, which should not be used in production environments |
+| app.bicep:15:1:24:1 | AppService[webAppBad2] | Azure Web App has remote debugging enabled, which should not be used in production environments |
