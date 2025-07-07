@@ -33,6 +33,14 @@
       "test_files": []
     },
     {
+      "path": "ql/src/security/CWE-319/InsecureWebAppTlsVersion.ql",
+      "name": "InsecureWebAppTlsVersion",
+      "category": "security",
+      "cwe": "CWE-319",
+      "covered": false,
+      "test_files": []
+    },
+    {
       "path": "ql/src/security/CWE-319/DatabaseSslNotEnforced.ql",
       "name": "DatabaseSslNotEnforced",
       "category": "security",
@@ -51,6 +59,14 @@
     {
       "path": "ql/src/security/CWE-319/RedisCacheNonSslPort.ql",
       "name": "RedisCacheNonSslPort",
+      "category": "security",
+      "cwe": "CWE-319",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-319/InsecureWebAppFtpsState.ql",
+      "name": "InsecureWebAppFtpsState",
       "category": "security",
       "cwe": "CWE-319",
       "covered": false,
@@ -133,6 +149,14 @@
       "name": "InsecureCorsAllHeaders",
       "category": "security",
       "cwe": "CWE-942",
+      "covered": false,
+      "test_files": []
+    },
+    {
+      "path": "ql/src/security/CWE-284/WebAppPublicNetworkAccess.ql",
+      "name": "WebAppPublicNetworkAccess",
+      "category": "security",
+      "cwe": "CWE-284",
       "covered": false,
       "test_files": []
     },
@@ -297,6 +321,14 @@
       "test_files": []
     },
     {
+      "path": "ql/src/security/CWE-306/WebAppRemoteDebugging.ql",
+      "name": "WebAppRemoteDebugging",
+      "category": "security",
+      "cwe": "CWE-306",
+      "covered": false,
+      "test_files": []
+    },
+    {
       "path": "ql/src/security/CWE-352/GrafanaCsrfDisabled.ql",
       "name": "GrafanaCsrfDisabled",
       "category": "security",
@@ -346,29 +378,29 @@
     }
   ],
   "metadata": {
-    "total_queries": 43,
+    "total_queries": 47,
     "covered_queries": 0,
     "categories": [
-      "testing",
+      "security",
       "diagnostics",
-      "security"
+      "testing"
     ],
     "cwes": [
-      "CWE-668",
-      "CWE-311",
-      "CWE-400",
-      "CWE-306",
-      "CWE-352",
-      "CWE-319",
-      "CWE-942",
-      "CWE-272",
-      "CWE-284",
-      "CWE-295",
       "CWE-200",
-      "CWE-327",
+      "CWE-311",
       "CWE-798",
+      "CWE-352",
       "CWE-693",
-      "CWE-404"
+      "CWE-400",
+      "CWE-295",
+      "CWE-284",
+      "CWE-319",
+      "CWE-272",
+      "CWE-404",
+      "CWE-942",
+      "CWE-306",
+      "CWE-668",
+      "CWE-327"
     ],
     "coverage_percentage": 0.0
   }
