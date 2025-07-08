@@ -14,6 +14,7 @@
  * - SlotResource: Class for Microsoft.Web/sites/slots resources (Deployment Slots)
  * - StaticSitesResource: Class for Microsoft.Web/staticSites resources (Static Web Apps)
  * - HostingEnvironmentsResource: Class for Microsoft.Web/hostingEnvironments resources (App Service Environments)
+ * - ExtendedLocation: Class for extended location configuration
  */
 
 private import bicep
@@ -58,14 +59,12 @@ module Web {
     /**
      * Gets the kind of App Service (e.g., "app", "functionapp", "api").
      */
-    StringLiteral getKind() { result = this.getProperty("kind") }
+    String getKind() { result = this.getProperty("kind") }
 
     /**
      * Returns the kind of App Service as a string.
      */
-    string kind() {
-      exists(StringLiteral kind | kind = this.getKind() and result = kind.getValue())
-    }
+    string kind() { exists(String kind | kind = this.getKind() and result = kind.getValue()) }
 
     /**
      * Checks if the site is a function app.
@@ -81,109 +80,83 @@ module Web {
     }
 
     /**
-     * Returns true if HTTPS-only setting is enabled.
-     */
-    predicate isHttpsOnly() {
-      exists(BooleanLiteral httpsOnly |
-        httpsOnly = this.getProperties().getHttpsOnly() and
-        httpsOnly.getBool() = true
-      )
-    }
-
-    /**
      * Gets the extendedLocation configuration.
      */
-    Object getExtendedLocation() { result = this.getProperty("extendedLocation") }
+    ExtendedLocation getExtendedLocation() { result = this.getProperty("extendedLocation") }
+
+    /**
+     * Gets the virtualNetworkSubnetId property.
+     */
+    String getVirtualNetworkSubnetId() { result = this.getProperties().getVirtualNetworkSubnetId() }
 
     /**
      * Gets the clientAffinityEnabled flag.
      */
-    BooleanLiteral getClientAffinityEnabled() { result = this.getProperty("clientAffinityEnabled") }
-
-    /**
-     * Returns true if client affinity is enabled.
-     */
-    predicate isClientAffinityEnabled() {
-      exists(BooleanLiteral clientAffinity |
-        clientAffinity = this.getClientAffinityEnabled() and
-        clientAffinity.getBool() = true
-      )
-    }
+    Boolean getClientAffinityEnabled() { result = this.getProperties().getClientAffinityEnabled() }
 
     /**
      * Gets the clientCertEnabled flag.
      */
-    BooleanLiteral getClientCertEnabled() { result = this.getProperty("clientCertEnabled") }
+    Boolean getClientCertEnabled() { result = this.getProperties().getClientCertEnabled() }
 
     /**
-     * Returns true if client certificates are enabled.
+     * Returns true if the site has client certificates enabled.
      */
-    predicate isClientCertEnabled() {
-      exists(BooleanLiteral clientCert |
-        clientCert = this.getClientCertEnabled() and
-        clientCert.getBool() = true
-      )
-    }
-
-    /**
-     * Gets the clientCertMode setting.
-     */
-    StringLiteral getClientCertMode() { result = this.getProperty("clientCertMode") }
+    predicate isClientCertEnabled() { this.getProperties().isClientCertEnabled() }
 
     /**
      * Gets the hostNameSslStates array.
      */
-    Array getHostNameSslStates() { result = this.getProperty("hostNameSslStates") }
+    Array getHostNameSslStates() { result = this.getProperties().getHostNameSslStates() }
 
     /**
      * Gets the hyperV setting.
      */
-    BooleanLiteral getHyperV() { result = this.getProperty("hyperV") }
-
-    /**
-     * Returns true if Hyper-V is enabled.
-     */
-    predicate isHyperVEnabled() {
-      exists(BooleanLiteral hyperv |
-        hyperv = this.getHyperV() and
-        hyperv.getBool() = true
-      )
-    }
+    Boolean getHyperV() { result = this.getProperties().getHyperV() }
 
     /**
      * Gets the keyVaultReferenceIdentity.
      */
-    StringLiteral getKeyVaultReferenceIdentity() {
-      result = this.getProperty("keyVaultReferenceIdentity")
-    }
+    String getKeyVaultReferenceIdentity() { result = this.getProperties().getKeyVaultReferenceIdentity() }
 
     /**
      * Gets the redundancyMode.
      */
-    StringLiteral getRedundancyMode() { result = this.getProperty("redundancyMode") }
+    String getRedundancyMode() { result = this.getProperties().getRedundancyMode() }
 
     /**
      * Gets the storageAccountRequired flag.
      */
-    BooleanLiteral getStorageAccountRequired() {
-      result = this.getProperty("storageAccountRequired")
-    }
+    Boolean getStorageAccountRequired() { result = this.getProperties().getStorageAccountRequired() }
+
+    /**
+     * Returns true if client affinity is enabled.
+     */
+    predicate isClientAffinityEnabled() { this.getProperties().isClientAffinityEnabled() }
+
+    /**
+     * Returns true if Hyper-V is enabled.
+     */
+    predicate isHyperVEnabled() { this.getProperties().isHyperVEnabled() }
 
     /**
      * Returns true if a storage account is required.
      */
-    predicate isStorageAccountRequired() {
-      exists(BooleanLiteral storageReq |
-        storageReq = this.getStorageAccountRequired() and
-        storageReq.getBool() = true
-      )
-    }
+    predicate isStorageAccountRequired() { this.getProperties().isStorageAccountRequired() }
 
     /**
-     * Gets the virtualNetworkSubnetId.
+     * Gets the httpsOnly flag for the site.
      */
-    StringLiteral getVirtualNetworkSubnetId() {
-      result = this.getProperty("virtualNetworkSubnetId")
+    Boolean getHttpsOnly() { result = this.getProperties().getHttpsOnly() }
+
+    /**
+     * Returns true if the site has HTTPS-only mode enabled.
+     */
+    predicate isHttpsOnly() {
+      exists(Boolean httpsOnly |
+        httpsOnly = this.getHttpsOnly() and
+        httpsOnly.getBool() = true
+      )
     }
 
     override string toString() { result = "AppService[" + this.getIdentifier().getName() + "]" }
@@ -212,36 +185,33 @@ module Web {
     /**
      * Gets whether the App Service Plan is reserved (for Linux).
      */
-    BooleanLiteral getReserved() { result = this.getProperty("reserved") }
+    Boolean getReserved() { result = this.getProperty("reserved") }
 
     /**
      * Returns true if the App Service Plan is reserved (for Linux).
      */
     predicate isReserved() {
-      exists(BooleanLiteral reserved |
+      exists(Boolean reserved |
         reserved = this.getReserved() and
         reserved.getBool() = true
       )
     }
 
     /**
+     * Gets whether zone redundant deployment is enabled.
+     */
+    Boolean getZoneRedundant() { result = this.getProperties().getZoneRedundant() }
+    
+    /**
+     * Returns true if zone redundant deployment is enabled.
+     */
+    predicate isZoneRedundant() { this.getProperties().isZoneRedundant() }
+
+    /**
      * Gets the hosting environment profile.
      */
-    Object getHostingEnvironmentProfile() { result = this.getProperty("hostingEnvironmentProfile") }
-
-    /**
-     * Gets whether zone redundancy is enabled.
-     */
-    BooleanLiteral getZoneRedundant() { result = this.getProperty("zoneRedundant") }
-
-    /**
-     * Returns true if zone redundancy is enabled.
-     */
-    predicate isZoneRedundant() {
-      exists(BooleanLiteral zoneRedundant |
-        zoneRedundant = this.getZoneRedundant() and
-        zoneRedundant.getBool() = true
-      )
+    HostingEnvironmentProfile getHostingEnvironmentProfile() { 
+        result = this.getProperties().getHostingEnvironmentProfile() 
     }
 
     override string toString() { result = "AppServicePlan[" + this.getIdentifier().getName() + "]" }
@@ -260,7 +230,7 @@ module Web {
     /**
      * Gets the properties object for the deployment slot.
      */
-    SitesProperties::Properties getProperties() { result = this.getProperty("properties") }
+    SlotProperties::Properties getProperties() { result = this.getProperty("properties") }
 
     /**
      * Gets the identity configuration for the deployment slot.
@@ -270,27 +240,12 @@ module Web {
     /**
      * Gets the kind of the deployment slot.
      */
-    StringLiteral getKind() { result = this.getProperty("kind") }
+    String getKind() { result = this.getProperty("kind") }
 
     /**
      * Returns the kind of the deployment slot as a string.
      */
     string kind() { result = this.getKind().getValue() }
-
-    /**
-     * Gets the HTTPS-only flag for the deployment slot.
-     */
-    BooleanLiteral getHttpsOnly() { result = this.getProperty("httpsOnly") }
-
-    /**
-     * Returns true if HTTPS-only setting is enabled for the deployment slot.
-     */
-    predicate isHttpsOnly() {
-      exists(BooleanLiteral httpsOnly |
-        httpsOnly = this.getHttpsOnly() and
-        httpsOnly.getBool() = true
-      )
-    }
 
     /**
      * Gets the parent site name.
@@ -314,6 +269,16 @@ module Web {
       )
     }
 
+    /**
+     * Gets the HTTPS-only flag for the deployment slot.
+     */
+    Boolean getHttpsOnly() { result = this.getProperties().getHttpsOnly() }
+    
+    /**
+     * Returns true if HTTPS-only setting is enabled for the deployment slot.
+     */
+    predicate isHttpsOnly() { this.getProperties().isHttpsOnly() }
+
     override string toString() { result = "DeploymentSlot[" + this.getIdentifier().getName() + "]" }
   }
 
@@ -336,11 +301,6 @@ module Web {
      * Gets the identity configuration for the Static Web App.
      */
     SitesProperties::SiteIdentity getIdentity() { result = this.getProperty("identity") }
-
-    /**
-     * Gets the SKU object for the Static Web App.
-     */
-    override Sku getSku() { result = this.getProperty("sku") }
 
     override string toString() { result = "StaticWebApp[" + this.getIdentifier().getName() + "]" }
   }
@@ -367,7 +327,7 @@ module Web {
     /**
      * Gets the kind of the App Service Environment.
      */
-    StringLiteral getKind() { result = this.getProperty("kind") }
+    String getKind() { result = this.getProperty("kind") }
 
     /**
      * Returns the kind of the App Service Environment as a string.
@@ -380,6 +340,156 @@ module Web {
   }
 
   /**
+   * Represents an extended location configuration.
+   */
+  class ExtendedLocation extends Object {
+    private WebResource parent;
+
+    /**
+     * Constructs an ExtendedLocation object.
+     */
+    ExtendedLocation() {
+      this = parent.getProperty("extendedLocation")
+    }
+
+    /**
+     * Gets the name of the extended location.
+     */
+    String getName() { result = this.getProperty("name") }
+
+    /**
+     * Gets the type of the extended location.
+     */
+    String getType() { result = this.getProperty("type") }
+
+    string toString() { result = "ExtendedLocation" }
+  }
+
+  /**
+   * Represents a hosting environment profile configuration.
+   */
+  class HostingEnvironmentProfile extends Object {
+    /**
+     * Constructs a HostingEnvironmentProfile object.
+     */
+    HostingEnvironmentProfile() {
+      // This object can be referenced from multiple parent types
+      exists(WebResource resource | this = resource.getProperty("hostingEnvironmentProfile")) or
+      exists(SitesProperties::Properties props | this = props.getProperty("hostingEnvironmentProfile")) or
+      exists(SlotProperties::Properties props | this = props.getProperty("hostingEnvironmentProfile")) or
+      exists(ServerFarmsProperties::Properties props | this = props.getProperty("hostingEnvironmentProfile"))
+    }
+
+    /**
+     * Gets the ID of the hosting environment.
+     */
+    String getId() { result = this.getProperty("id") }
+
+    /**
+     * Gets the name of the hosting environment.
+     */
+    String getName() { result = this.getProperty("name") }
+
+    string toString() { result = "HostingEnvironmentProfile" }
+  }
+
+  /**
+   * Represents an application stack configuration.
+   */
+  class ApplicationStack extends Object {
+    private SitesProperties::SiteConfig parent;
+
+    /**
+     * Constructs an ApplicationStack object.
+     */
+    ApplicationStack() {
+      this = parent.getProperty("applicationStack")
+    }
+
+    string toString() { result = "ApplicationStack" }
+  }
+
+  /**
+   * Represents app settings configuration.
+   */
+  class AppSettings extends Object {
+    private SitesProperties::SiteConfig parent;
+
+    /**
+     * Constructs an AppSettings object.
+     */
+    AppSettings() {
+      this = parent.getProperty("appSettings")
+    }
+
+    string toString() { result = "AppSettings" }
+  }
+
+  /**
+   * Represents user-assigned identities configuration.
+   */
+  class UserAssignedIdentities extends Object {
+    private SitesProperties::SiteIdentity parent;
+
+    /**
+     * Constructs a UserAssignedIdentities object.
+     */
+    UserAssignedIdentities() {
+      this = parent.getProperty("userAssignedIdentities")
+    }
+
+    string toString() { result = "UserAssignedIdentities" }
+  }
+
+  /**
+   * Represents repository branch configuration.
+   */
+  class RepositoryBranch extends Object {
+    private StaticSitesProperties::Properties parent;
+
+    /**
+     * Constructs a RepositoryBranch object.
+     */
+    RepositoryBranch() {
+      this = parent.getProperty("repositoryBranch")
+    }
+
+    /**
+     * Gets the name of the branch.
+     */
+    String getName() { result = this.getProperty("name") }
+
+    string toString() { result = "RepositoryBranch" }
+  }
+
+  /**
+   * Represents an HTTPS certificate configuration.
+   */
+  class HttpsCertificate extends Object {
+    private SitesProperties::HttpsCertificates parent;
+    private int index;
+
+    /**
+     * Constructs an HttpsCertificate object.
+     */
+    HttpsCertificate() {
+      this = parent.getElement(index)
+    }
+
+    /**
+     * Gets the name of the certificate.
+     */
+    String getName() { result = this.getProperty("name") }
+
+    /**
+     * Gets the thumbprint of the certificate.
+     */
+    String getThumbprint() { result = this.getProperty("thumbprint") }
+
+    string toString() { result = "HttpsCertificate" }
+  }
+
+  /**
    * Module containing properties and configurations for Microsoft.Web/sites resources.
    */
   module SitesProperties {
@@ -387,12 +497,12 @@ module Web {
      * Represents the properties object for a Microsoft.Web/sites resource.
      */
     class Properties extends ResourceProperties {
-      private SitesResource site;
+      private SitesResource parent;
 
       /**
        * Constructs a Properties object for the given site.
        */
-      Properties() { this = site.getProperty("properties") }
+      Properties() { this = parent.getProperty("properties") }
 
       /**
        * Gets the site configuration.
@@ -402,42 +512,43 @@ module Web {
       /**
        * Gets the serverFarmId (App Service Plan ID).
        */
-      StringLiteral getServerFarmId() { result = this.getProperty("serverFarmId") }
+      String getServerFarmId() { result = this.getProperty("serverFarmId") }
 
       /**
        * Gets the hostingEnvironmentProfile.
        */
-      Object getHostingEnvironmentProfile() {
+      HostingEnvironmentProfile getHostingEnvironmentProfile() {
         result = this.getProperty("hostingEnvironmentProfile")
       }
 
       /**
        * Gets the public network access setting.
        */
-      StringLiteral getPublicNetworkAccess() { result = this.getProperty("publicNetworkAccess") }
+      String getPublicNetworkAccess() { result = this.getProperty("publicNetworkAccess") }
 
       /**
        * Gets the HTTPS-only flag for the App Service.
        */
-      BooleanLiteral getHttpsOnly() { result = this.getProperty("httpsOnly") }
+      Boolean getHttpsOnly() { result = this.getProperty("httpsOnly") }
 
       /**
        * Gets the virtualNetworkSubnetId.
        */
-      StringLiteral getVirtualNetworkSubnetId() {
-        result = this.getProperty("virtualNetworkSubnetId")
+      String getVirtualNetworkSubnetId() { 
+        result = this.getProperty("virtualNetworkSubnetId") or
+        result = parent.getProperty("virtualNetworkSubnetId") 
       }
 
       /**
        * Gets the enabled value.
        */
-      BooleanLiteral getEnabled() { result = this.getProperty("enabled") }
+      Boolean getEnabled() { result = this.getProperty("enabled") }
 
       /**
        * Returns true if the site is enabled.
        */
       predicate isEnabled() {
-        exists(BooleanLiteral enabled |
+        exists(Boolean enabled |
           enabled = this.getEnabled() and
           enabled.getBool() = true
         )
@@ -446,13 +557,13 @@ module Web {
       /**
        * Gets the client certificate mode.
        */
-      StringLiteral getClientCertMode() { result = this.getProperty("clientCertMode") }
+      String getClientCertMode() { result = this.getProperty("clientCertMode") }
 
       /**
        * Returns true if client certificate is required.
        */
       predicate isClientCertRequired() {
-        exists(StringLiteral mode |
+        exists(String mode |
           mode = this.getClientCertMode() and
           mode.getValue() = "Required"
         )
@@ -461,9 +572,7 @@ module Web {
       /**
        * Gets the client certificate exclusion paths.
        */
-      StringLiteral getClientCertExclusionPaths() {
-        result = this.getProperty("clientCertExclusionPaths")
-      }
+      String getClientCertExclusionPaths() { result = this.getProperty("clientCertExclusionPaths") }
 
       /**
        * Gets the container size.
@@ -473,7 +582,7 @@ module Web {
       /**
        * Gets the custom domain verification ID.
        */
-      StringLiteral getCustomDomainVerificationId() {
+      String getCustomDomainVerificationId() {
         result = this.getProperty("customDomainVerificationId")
       }
 
@@ -485,18 +594,114 @@ module Web {
       /**
        * Gets the default hostname.
        */
-      StringLiteral getDefaultHostname() { result = this.getProperty("defaultHostname") }
+      String getDefaultHostname() { result = this.getProperty("defaultHostname") }
 
       /**
        * Gets the https certificate settings.
        */
       HttpsCertificates getHttpsCertificates() { result = this.getProperty("httpsCertificates") }
+      
+      /**
+       * Gets the clientAffinityEnabled flag.
+       */
+      Boolean getClientAffinityEnabled() { 
+        result = this.getProperty("clientAffinityEnabled") or
+        result = parent.getProperty("clientAffinityEnabled") 
+      }
+
+      /**
+       * Returns true if client affinity is enabled.
+       */
+      predicate isClientAffinityEnabled() {
+        exists(Boolean clientAffinity |
+          clientAffinity = this.getClientAffinityEnabled() and
+          clientAffinity.getBool() = true
+        )
+      }
+
+      /**
+       * Gets the clientCertEnabled flag.
+       */
+      Boolean getClientCertEnabled() { 
+        result = this.getProperty("clientCertEnabled") or
+        result = parent.getProperty("clientCertEnabled") 
+      }
+
+      /**
+       * Returns true if client certificates are enabled.
+       */
+      predicate isClientCertEnabled() {
+        exists(Boolean clientCert |
+          clientCert = this.getClientCertEnabled() and
+          clientCert.getBool() = true
+        )
+      }
+
+      /**
+       * Gets the hostNameSslStates array.
+       */
+      Array getHostNameSslStates() { 
+        result = this.getProperty("hostNameSslStates") or
+        result = parent.getProperty("hostNameSslStates") 
+      }
+
+      /**
+       * Gets the hyperV setting.
+       */
+      Boolean getHyperV() { 
+        result = this.getProperty("hyperV") or
+        result = parent.getProperty("hyperV") 
+      }
+
+      /**
+       * Returns true if Hyper-V is enabled.
+       */
+      predicate isHyperVEnabled() {
+        exists(Boolean hyperv |
+          hyperv = this.getHyperV() and
+          hyperv.getBool() = true
+        )
+      }
+
+      /**
+       * Gets the keyVaultReferenceIdentity.
+       */
+      String getKeyVaultReferenceIdentity() { 
+        result = this.getProperty("keyVaultReferenceIdentity") or
+        result = parent.getProperty("keyVaultReferenceIdentity") 
+      }
+
+      /**
+       * Gets the redundancyMode.
+       */
+      String getRedundancyMode() { 
+        result = this.getProperty("redundancyMode") or
+        result = parent.getProperty("redundancyMode") 
+      }
+
+      /**
+       * Gets the storageAccountRequired flag.
+       */
+      Boolean getStorageAccountRequired() { 
+        result = this.getProperty("storageAccountRequired") or
+        result = parent.getProperty("storageAccountRequired") 
+      }
+
+      /**
+       * Returns true if a storage account is required.
+       */
+      predicate isStorageAccountRequired() {
+        exists(Boolean storageReq |
+          storageReq = this.getStorageAccountRequired() and
+          storageReq.getBool() = true
+        )
+      }
 
       /**
        * Returns true if public network access is enabled.
        */
       predicate isPublicNetworkAccessEnabled() {
-        not exists(StringLiteral publicNetworkAccess |
+        not exists(String publicNetworkAccess |
           publicNetworkAccess = this.getPublicNetworkAccess() and
           publicNetworkAccess.getValue() = "Disabled"
         )
@@ -509,35 +714,33 @@ module Web {
      * Represents the site configuration for a Microsoft.Web/sites resource.
      */
     class SiteConfig extends Object {
-      private Properties properties;
+      private Properties parent;
 
       /**
        * Constructs a SiteConfig object.
        */
-      SiteConfig() { this = properties.getProperty("siteConfig") }
+      SiteConfig() { this = parent.getProperty("siteConfig") }
 
       /**
        * Gets the minimum TLS version.
        */
-      StringLiteral getMinTlsVersion() { result = this.getProperty("minTlsVersion") }
+      String getMinTlsVersion() { result = this.getProperty("minTlsVersion") }
 
       /**
        * Gets the ftps state setting.
        */
-      StringLiteral getFtpsState() { result = this.getProperty("ftpsState") }
+      String getFtpsState() { result = this.getProperty("ftpsState") }
 
       /**
        * Gets whether remote debugging is enabled.
        */
-      BooleanLiteral getRemoteDebuggingEnabled() {
-        result = this.getProperty("remoteDebuggingEnabled")
-      }
+      Boolean getRemoteDebuggingEnabled() { result = this.getProperty("remoteDebuggingEnabled") }
 
       /**
        * Returns true if remote debugging is enabled.
        */
       predicate isRemoteDebuggingEnabled() {
-        exists(BooleanLiteral debugEnabled |
+        exists(Boolean debugEnabled |
           debugEnabled = this.getRemoteDebuggingEnabled() and
           debugEnabled.getBool() = true
         )
@@ -546,20 +749,18 @@ module Web {
       /**
        * Gets the remote debugging version.
        */
-      StringLiteral getRemoteDebuggingVersion() {
-        result = this.getProperty("remoteDebuggingVersion")
-      }
+      String getRemoteDebuggingVersion() { result = this.getProperty("remoteDebuggingVersion") }
 
       /**
        * Gets whether HTTP 2.0 is enabled.
        */
-      BooleanLiteral getHttp20Enabled() { result = this.getProperty("http20Enabled") }
+      Boolean getHttp20Enabled() { result = this.getProperty("http20Enabled") }
 
       /**
        * Returns true if HTTP 2.0 is enabled.
        */
       predicate isHttp20Enabled() {
-        exists(BooleanLiteral http20 |
+        exists(Boolean http20 |
           http20 = this.getHttp20Enabled() and
           http20.getBool() = true
         )
@@ -568,7 +769,7 @@ module Web {
       /**
        * Gets whether Always On is enabled.
        */
-      BooleanLiteral getAlwaysOn() { result = this.getProperty("alwaysOn") }
+      Boolean getAlwaysOn() { result = this.getProperty("alwaysOn") }
 
       /**
        * Returns the Always On setting as a boolean.
@@ -579,7 +780,7 @@ module Web {
        * Returns true if Always On is enabled.
        */
       predicate isAlwaysOn() {
-        exists(BooleanLiteral alwaysOn |
+        exists(Boolean alwaysOn |
           alwaysOn = this.getAlwaysOn() and
           alwaysOn.getBool() = true
         )
@@ -588,13 +789,13 @@ module Web {
       /**
        * Gets whether web sockets are enabled.
        */
-      BooleanLiteral getWebSocketsEnabled() { result = this.getProperty("webSocketsEnabled") }
+      Boolean getWebSocketsEnabled() { result = this.getProperty("webSocketsEnabled") }
 
       /**
        * Returns true if web sockets are enabled.
        */
       predicate areWebSocketsEnabled() {
-        exists(BooleanLiteral webSockets |
+        exists(Boolean webSockets |
           webSockets = this.getWebSocketsEnabled() and
           webSockets.getBool() = true
         )
@@ -603,7 +804,7 @@ module Web {
       /**
        * Gets the application stack.
        */
-      Object getApplicationStack() { result = this.getProperty("applicationStack") }
+      ApplicationStack getApplicationStack() { result = this.getProperty("applicationStack") }
 
       /**
        * Gets the connection strings.
@@ -613,7 +814,7 @@ module Web {
       /**
        * Gets the app settings.
        */
-      Object getAppSettings() { result = this.getProperty("appSettings") }
+      AppSettings getAppSettings() { result = this.getProperty("appSettings") }
 
       /**
        * Gets the CORS settings.
@@ -623,17 +824,17 @@ module Web {
       /**
        * Gets the Linux FX version.
        */
-      StringLiteral getLinuxFxVersion() { result = this.getProperty("linuxFxVersion") }
+      String getLinuxFxVersion() { result = this.getProperty("linuxFxVersion") }
 
       /**
        * Gets the Windows FX version.
        */
-      StringLiteral getWindowsFxVersion() { result = this.getProperty("windowsFxVersion") }
+      String getWindowsFxVersion() { result = this.getProperty("windowsFxVersion") }
 
       /**
        * Gets the health check path.
        */
-      StringLiteral getHealthCheckPath() { result = this.getProperty("healthCheckPath") }
+      String getHealthCheckPath() { result = this.getProperty("healthCheckPath") }
 
       string toString() { result = "SiteConfig" }
     }
@@ -642,12 +843,12 @@ module Web {
      * Represents the CORS settings for a site configuration.
      */
     class CorsSettings extends Object {
-      private SiteConfig siteConfig;
+      private SiteConfig parent;
 
       /**
        * Constructs a CorsSettings object.
        */
-      CorsSettings() { this = siteConfig.getProperty("cors") }
+      CorsSettings() { this = parent.getProperty("cors") }
 
       /**
        * Gets the allowed origins.
@@ -657,13 +858,13 @@ module Web {
       /**
        * Gets whether credentials are supported.
        */
-      BooleanLiteral getSupportCredentials() { result = this.getProperty("supportCredentials") }
+      Boolean getSupportCredentials() { result = this.getProperty("supportCredentials") }
 
       /**
        * Returns true if credentials are supported.
        */
       predicate areCredentialsSupported() {
-        exists(BooleanLiteral credentials |
+        exists(Boolean credentials |
           credentials = this.getSupportCredentials() and
           credentials.getBool() = true
         )
@@ -676,17 +877,17 @@ module Web {
      * Represents the HTTPS certificates configuration for a site.
      */
     class HttpsCertificates extends Array {
-      private Properties properties;
+      private Properties parent;
 
       /**
        * Constructs an HttpsCertificates object.
        */
-      HttpsCertificates() { this = properties.getProperty("httpsCertificates") }
+      HttpsCertificates() { this = parent.getProperty("httpsCertificates") }
 
       /**
        * Gets a certificate by index.
        */
-      Object getCertificate(int index) { result = this.getElement(index) }
+      HttpsCertificate getCertificate(int index) { result = this.getElement(index) }
 
       string toString() { result = "HttpsCertificates" }
     }
@@ -695,17 +896,17 @@ module Web {
      * Represents the identity configuration for a Microsoft.Web/sites resource.
      */
     class SiteIdentity extends Object {
-      private SitesResource site;
+      private SitesResource parent;
 
       /**
        * Constructs a SiteIdentity object.
        */
-      SiteIdentity() { this = site.getProperty("identity") }
+      SiteIdentity() { this = parent.getProperty("identity") }
 
       /**
        * Gets the type of managed identity.
        */
-      StringLiteral getType() { result = this.getProperty("type") }
+      String getType() { result = this.getProperty("type") }
 
       /**
        * Returns the managed identity type as a string.
@@ -731,7 +932,9 @@ module Web {
       /**
        * Gets the user-assigned identities.
        */
-      Object getUserAssignedIdentities() { result = this.getProperty("userAssignedIdentities") }
+      UserAssignedIdentities getUserAssignedIdentities() {
+        result = this.getProperty("userAssignedIdentities")
+      }
 
       string toString() { result = "SiteIdentity" }
     }
@@ -745,32 +948,28 @@ module Web {
      * Represents the properties object for a Microsoft.Web/staticSites resource.
      */
     class Properties extends ResourceProperties {
-      private StaticSitesResource staticSite;
+      private StaticSitesResource parent;
 
       /**
        * Constructs a Properties object for the given static site.
        */
-      Properties() { this = staticSite.getProperty("properties") }
+      Properties() { this = parent.getProperty("properties") }
 
       /**
        * Gets the staging environment policy.
        */
-      StringLiteral getStagingEnvironmentPolicy() {
-        result = this.getProperty("stagingEnvironmentPolicy")
-      }
+      String getStagingEnvironmentPolicy() { result = this.getProperty("stagingEnvironmentPolicy") }
 
       /**
        * Gets whether private endpoint connections are allowed.
        */
-      BooleanLiteral getAllowConfigFileUpdates() {
-        result = this.getProperty("allowConfigFileUpdates")
-      }
+      Boolean getAllowConfigFileUpdates() { result = this.getProperty("allowConfigFileUpdates") }
 
       /**
        * Returns true if config file updates are allowed.
        */
       predicate areConfigFileUpdatesAllowed() {
-        exists(BooleanLiteral allowUpdates |
+        exists(Boolean allowUpdates |
           allowUpdates = this.getAllowConfigFileUpdates() and
           allowUpdates.getBool() = true
         )
@@ -779,30 +978,28 @@ module Web {
       /**
        * Gets the branch configuration for the repository.
        */
-      Object getRepositoryBranch() { result = this.getProperty("repositoryBranch") }
+      RepositoryBranch getRepositoryBranch() { result = this.getProperty("repositoryBranch") }
 
       /**
        * Gets the repository token for the Static Web App.
        */
-      StringLiteral getRepositoryToken() { result = this.getProperty("repositoryToken") }
+      String getRepositoryToken() { result = this.getProperty("repositoryToken") }
 
       /**
        * Gets the repository URL for the Static Web App.
        */
-      StringLiteral getRepositoryUrl() { result = this.getProperty("repositoryUrl") }
+      String getRepositoryUrl() { result = this.getProperty("repositoryUrl") }
 
       /**
        * Gets whether private endpoint connections are allowed.
        */
-      BooleanLiteral getAllowPrivateEndpoints() {
-        result = this.getProperty("allowPrivateEndpoints")
-      }
+      Boolean getAllowPrivateEndpoints() { result = this.getProperty("allowPrivateEndpoints") }
 
       /**
        * Returns true if private endpoints are allowed.
        */
       predicate arePrivateEndpointsAllowed() {
-        exists(BooleanLiteral allowEndpoints |
+        exists(Boolean allowEndpoints |
           allowEndpoints = this.getAllowPrivateEndpoints() and
           allowEndpoints.getBool() = true
         )
@@ -820,12 +1017,12 @@ module Web {
      * Represents the properties object for a Microsoft.Web/hostingEnvironments resource.
      */
     class Properties extends ResourceProperties {
-      private HostingEnvironmentsResource hostingEnv;
+      private HostingEnvironmentsResource parent;
 
       /**
        * Constructs a Properties object for the given hosting environment.
        */
-      Properties() { this = hostingEnv.getProperty("properties") }
+      Properties() { this = parent.getProperty("properties") }
 
       /**
        * Gets the dedicated host count.
@@ -835,13 +1032,13 @@ module Web {
       /**
        * Gets whether zone redundancy is enabled.
        */
-      BooleanLiteral getZoneRedundant() { result = this.getProperty("zoneRedundant") }
+      Boolean getZoneRedundant() { result = this.getProperty("zoneRedundant") }
 
       /**
        * Returns true if zone redundancy is enabled.
        */
       predicate isZoneRedundant() {
-        exists(BooleanLiteral zoneRedundant |
+        exists(Boolean zoneRedundant |
           zoneRedundant = this.getZoneRedundant() and
           zoneRedundant.getBool() = true
         )
@@ -850,7 +1047,7 @@ module Web {
       /**
        * Gets the internal load balancing mode.
        */
-      StringLiteral getInternalLoadBalancingMode() {
+      String getInternalLoadBalancingMode() {
         result = this.getProperty("internalLoadBalancingMode")
       }
 
@@ -873,17 +1070,17 @@ module Web {
      * Represents the virtual network configuration for an App Service Environment.
      */
     class VnetConfiguration extends Object {
-      private Properties props;
+      private Properties parent;
 
       /**
        * Constructs a VnetConfiguration object.
        */
-      VnetConfiguration() { this = props.getProperty("virtualNetworkProfile") }
+      VnetConfiguration() { this = parent.getProperty("virtualNetworkProfile") }
 
       /**
        * Gets the subnet ID.
        */
-      StringLiteral getSubnetId() { result = this.getProperty("id") }
+      String getSubnetId() { result = this.getProperty("id") }
 
       /**
        * Gets the subnet resource ID.
@@ -902,17 +1099,17 @@ module Web {
      * Represents the properties object for a Microsoft.Web/serverfarms resource.
      */
     class Properties extends ResourceProperties {
-      private ServerFarmsResource serverFarm;
+      private ServerFarmsResource parent;
 
       /**
        * Constructs a Properties object for the given server farm.
        */
-      Properties() { this = serverFarm.getProperty("properties") }
+      Properties() { this = parent.getProperty("properties") }
 
       /**
        * Gets the compute mode.
        */
-      StringLiteral getComputeMode() { result = this.getProperty("computeMode") }
+      String getComputeMode() { result = this.getProperty("computeMode") }
 
       /**
        * Returns the compute mode as a string.
@@ -922,7 +1119,7 @@ module Web {
       /**
        * Gets the worker size.
        */
-      StringLiteral getWorkerSize() { result = this.getProperty("workerSize") }
+      String getWorkerSize() { result = this.getProperty("workerSize") }
 
       /**
        * Returns the worker size as a string.
@@ -952,13 +1149,13 @@ module Web {
       /**
        * Gets the per site scaling setting.
        */
-      BooleanLiteral getPerSiteScaling() { result = this.getProperty("perSiteScaling") }
+      Boolean getPerSiteScaling() { result = this.getProperty("perSiteScaling") }
 
       /**
        * Returns true if per-site scaling is enabled.
        */
       predicate isPerSiteScalingEnabled() {
-        exists(BooleanLiteral perSiteScaling |
+        exists(Boolean perSiteScaling |
           perSiteScaling = this.getPerSiteScaling() and
           perSiteScaling.getBool() = true
         )
@@ -967,13 +1164,13 @@ module Web {
       /**
        * Gets the elastic scaling setting.
        */
-      BooleanLiteral getElasticScaleEnabled() { result = this.getProperty("elasticScaleEnabled") }
+      Boolean getElasticScaleEnabled() { result = this.getProperty("elasticScaleEnabled") }
 
       /**
        * Returns true if elastic scaling is enabled.
        */
       predicate isElasticScaleEnabled() {
-        exists(BooleanLiteral elasticScale |
+        exists(Boolean elasticScale |
           elasticScale = this.getElasticScaleEnabled() and
           elasticScale.getBool() = true
         )
@@ -982,31 +1179,95 @@ module Web {
       /**
        * Gets whether zone redundant deployment is enabled.
        */
-      BooleanLiteral getZoneRedundant() { result = this.getProperty("zoneRedundant") }
+      Boolean getZoneRedundant() { result = this.getProperty("zoneRedundant") }
 
       /**
        * Returns true if zone redundant deployment is enabled.
        */
       predicate isZoneRedundant() {
-        exists(BooleanLiteral zoneRedundant |
+        exists(Boolean zoneRedundant |
           zoneRedundant = this.getZoneRedundant() and
           zoneRedundant.getBool() = true
         )
       }
 
       /**
-       * Gets the maximum number of workers.
+       * Gets the hosting environment profile.
        */
-      Number getMaximumElasticWorkerCount() {
-        result = this.getProperty("maximumElasticWorkerCount")
+      HostingEnvironmentProfile getHostingEnvironmentProfile() {
+        result = parent.getProperty("hostingEnvironmentProfile")
+      }
+      
+      /**
+       * Gets whether the App Service Plan is reserved (for Linux).
+       */
+      Boolean getReserved() { result = parent.getProperty("reserved") }
+
+      /**
+       * Returns true if the App Service Plan is reserved (for Linux).
+       */
+      predicate isReserved() {
+        exists(Boolean reserved |
+          reserved = this.getReserved() and
+          reserved.getBool() = true
+        )
+      }
+
+      override string toString() { result = "ServerFarmProperties" }
+    }
+  }
+
+  /**
+   * Module containing property classes for Deployment Slot resources.
+   */
+  module SlotProperties {
+    /**
+     * Represents the properties object for a Microsoft.Web/sites/slots resource.
+     */
+    class Properties extends ResourceProperties {
+      private SlotResource parent;
+
+      /**
+       * Constructs a Properties object for the given slot.
+       */
+      Properties() { this = parent.getProperty("properties") }
+
+      /**
+       * Gets the HTTPS-only flag for the deployment slot.
+       */
+      Boolean getHttpsOnly() { 
+        result = this.getProperty("httpsOnly") or
+        result = parent.getProperty("httpsOnly") 
       }
 
       /**
-       * Returns the maximum number of workers as an integer.
+       * Returns true if HTTPS-only setting is enabled for the deployment slot.
        */
-      int maximumElasticWorkerCount() { result = this.getMaximumElasticWorkerCount().getValue() }
+      predicate isHttpsOnly() {
+        exists(Boolean httpsOnly |
+          httpsOnly = this.getHttpsOnly() and
+          httpsOnly.getBool() = true
+        )
+      }
 
-      override string toString() { result = "ServerFarmProperties" }
+      /**
+       * Gets the site configuration.
+       */
+      SitesProperties::SiteConfig getSiteConfig() { result = this.getProperty("siteConfig") }
+
+      /**
+       * Gets the serverFarmId (App Service Plan ID).
+       */
+      String getServerFarmId() { result = this.getProperty("serverFarmId") }
+
+      /**
+       * Gets the hostingEnvironmentProfile.
+       */
+      HostingEnvironmentProfile getHostingEnvironmentProfile() {
+        result = this.getProperty("hostingEnvironmentProfile")
+      }
+      
+      override string toString() { result = "SlotProperties" }
     }
   }
 }

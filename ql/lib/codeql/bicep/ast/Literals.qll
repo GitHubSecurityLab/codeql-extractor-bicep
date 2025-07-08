@@ -74,6 +74,10 @@ class Boolean extends Literals instanceof BooleanImpl {
       result = false
     )
   }
+
+  boolean getValue() {
+    result = this.getBool()
+  }
 }
 
 /**
