@@ -37,34 +37,6 @@
 | Categories | 3 |
 | CWE Categories | 15 |
 
-### Coverage by Category
-
-| Category | Covered | Total | Percentage |
-|----------|---------|-------|------------|
-| Diagnostics | 0 | 2 | 0.0% |
-| Security | 0 | 44 | 0.0% |
-| Testing | 0 | 1 | 0.0% |
-
-### Coverage by CWE
-
-| CWE | Description | Covered | Total | Percentage |
-|-----|-------------|---------|-------|------------|
-| CWE-200 | Information Exposure | 0 | 2 | 0.0% |
-| CWE-272 | Least Privilege Violation | 0 | 2 | 0.0% |
-| CWE-284 | Improper Access Control | 0 | 5 | 0.0% |
-| CWE-295 | Improper Certificate Validation | 0 | 1 | 0.0% |
-| CWE-306 | Missing Authentication | 0 | 4 | 0.0% |
-| CWE-311 | Missing Encryption | 0 | 2 | 0.0% |
-| CWE-319 | Cleartext Transmission | 0 | 6 | 0.0% |
-| CWE-327 | Broken/Risky Crypto Algorithm | 0 | 3 | 0.0% |
-| CWE-352 | Cross-Site Request Forgery | 0 | 1 | 0.0% |
-| CWE-400 | Resource Exhaustion | 0 | 2 | 0.0% |
-| CWE-404 | Improper Resource Shutdown | 0 | 2 | 0.0% |
-| CWE-668 | Security Vulnerability | 0 | 1 | 0.0% |
-| CWE-693 | Protection Mechanism Failure | 0 | 1 | 0.0% |
-| CWE-798 | Hard-coded Credentials | 0 | 2 | 0.0% |
-| CWE-942 | Overly Permissive CORS | 0 | 4 | 0.0% |
-
 *Last updated: 2025-07-07 17:17:11 UTC*
 
 <!-- COVERAGE-REPORT:END -->
