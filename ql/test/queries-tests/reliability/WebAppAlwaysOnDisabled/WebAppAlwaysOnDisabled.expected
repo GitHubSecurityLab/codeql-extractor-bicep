@@ -1,0 +1,2 @@
+| webapp-without-alwayson | Azure Web App doesn't have Always On enabled, which can lead to poor reliability and potential security issues due to cold starts. |
+| webapp-with-alwayson-disabled | Azure Web App doesn't have Always On enabled, which can lead to poor reliability and potential security issues due to cold starts. |
