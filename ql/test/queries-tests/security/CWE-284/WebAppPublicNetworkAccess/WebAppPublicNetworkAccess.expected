@@ -1,0 +1,2 @@
+| app.bicep:46:1:54:1 | AppService[insecureWebApp] | Azure Web App has unrestricted public network access without VNet integration, potentially increasing attack surface. |
+| app.bicep:57:1:65:1 | AppService[explicitlyInsecureWebApp] | Azure Web App has unrestricted public network access without VNet integration, potentially increasing attack surface. |

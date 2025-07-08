@@ -1,0 +1,2 @@
+| app.bicep:17:1:27:1 | AppService[insecureWebApp] | Azure Web App is not configured with HTTPS-only mode, potentially allowing insecure HTTP connections. |
+| app.bicep:30:1:37:1 | AppService[explicitlyInsecureWebApp] | Azure Web App is not configured with HTTPS-only mode, potentially allowing insecure HTTP connections. |
