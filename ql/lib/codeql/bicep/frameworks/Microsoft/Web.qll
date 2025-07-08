@@ -63,7 +63,7 @@ module Web {
     /**
      * Returns the kind of App Service as a string.
      */
-    string kind() { 
+    string kind() {
       exists(StringLiteral kind | kind = this.getKind() and result = kind.getValue())
     }
 
@@ -75,22 +75,17 @@ module Web {
     /**
      * Checks if the site is a regular web app.
      */
-    predicate isWebApp() { 
+    predicate isWebApp() {
       this.kind().regexpMatch(".*app.*") and
       not this.isFunctionApp()
     }
-
-    /**
-     * Gets the HTTPS-only flag for the App Service.
-     */
-    BooleanLiteral getHttpsOnly() { result = this.getProperty("httpsOnly") }
 
     /**
      * Returns true if HTTPS-only setting is enabled.
      */
     predicate isHttpsOnly() {
       exists(BooleanLiteral httpsOnly |
-        httpsOnly = this.getHttpsOnly() and
+        httpsOnly = this.getProperties().getHttpsOnly() and
         httpsOnly.getBool() = true
       )
     }
@@ -158,7 +153,9 @@ module Web {
     /**
      * Gets the keyVaultReferenceIdentity.
      */
-    StringLiteral getKeyVaultReferenceIdentity() { result = this.getProperty("keyVaultReferenceIdentity") }
+    StringLiteral getKeyVaultReferenceIdentity() {
+      result = this.getProperty("keyVaultReferenceIdentity")
+    }
 
     /**
      * Gets the redundancyMode.
@@ -168,7 +165,9 @@ module Web {
     /**
      * Gets the storageAccountRequired flag.
      */
-    BooleanLiteral getStorageAccountRequired() { result = this.getProperty("storageAccountRequired") }
+    BooleanLiteral getStorageAccountRequired() {
+      result = this.getProperty("storageAccountRequired")
+    }
 
     /**
      * Returns true if a storage account is required.
@@ -183,7 +182,9 @@ module Web {
     /**
      * Gets the virtualNetworkSubnetId.
      */
-    StringLiteral getVirtualNetworkSubnetId() { result = this.getProperty("virtualNetworkSubnetId") }
+    StringLiteral getVirtualNetworkSubnetId() {
+      result = this.getProperty("virtualNetworkSubnetId")
+    }
 
     override string toString() { result = "AppService[" + this.getIdentifier().getName() + "]" }
   }
@@ -296,7 +297,7 @@ module Web {
      */
     string getParentSiteName() {
       // Parse from the resource name which is in the format "siteName/slotName"
-      exists(string fullName | 
+      exists(string fullName |
         fullName = this.getName() and
         result = fullName.regexpCapture("([^/]+)/.*", 1)
       )
@@ -307,7 +308,7 @@ module Web {
      */
     string getSlotName() {
       // Parse from the resource name which is in the format "siteName/slotName"
-      exists(string fullName | 
+      exists(string fullName |
         fullName = this.getName() and
         result = fullName.regexpCapture("[^/]+/(.*)", 1)
       )
@@ -352,12 +353,16 @@ module Web {
     /**
      * Constructs a HostingEnvironmentsResource for Microsoft.Web/hostingEnvironments resources.
      */
-    HostingEnvironmentsResource() { this.getResourceType().regexpMatch("^Microsoft.Web/hostingEnvironments@.*") }
+    HostingEnvironmentsResource() {
+      this.getResourceType().regexpMatch("^Microsoft.Web/hostingEnvironments@.*")
+    }
 
     /**
      * Gets the properties object for the App Service Environment.
      */
-    HostingEnvironmentsProperties::Properties getProperties() { result = this.getProperty("properties") }
+    HostingEnvironmentsProperties::Properties getProperties() {
+      result = this.getProperty("properties")
+    }
 
     /**
      * Gets the kind of the App Service Environment.
@@ -369,7 +374,9 @@ module Web {
      */
     string kind() { result = this.getKind().getValue() }
 
-    override string toString() { result = "AppServiceEnvironment[" + this.getIdentifier().getName() + "]" }
+    override string toString() {
+      result = "AppServiceEnvironment[" + this.getIdentifier().getName() + "]"
+    }
   }
 
   /**
@@ -400,7 +407,9 @@ module Web {
       /**
        * Gets the hostingEnvironmentProfile.
        */
-      Object getHostingEnvironmentProfile() { result = this.getProperty("hostingEnvironmentProfile") }
+      Object getHostingEnvironmentProfile() {
+        result = this.getProperty("hostingEnvironmentProfile")
+      }
 
       /**
        * Gets the public network access setting.
@@ -408,9 +417,16 @@ module Web {
       StringLiteral getPublicNetworkAccess() { result = this.getProperty("publicNetworkAccess") }
 
       /**
+       * Gets the HTTPS-only flag for the App Service.
+       */
+      BooleanLiteral getHttpsOnly() { result = this.getProperty("httpsOnly") }
+
+      /**
        * Gets the virtualNetworkSubnetId.
        */
-      StringLiteral getVirtualNetworkSubnetId() { result = this.getProperty("virtualNetworkSubnetId") }
+      StringLiteral getVirtualNetworkSubnetId() {
+        result = this.getProperty("virtualNetworkSubnetId")
+      }
 
       /**
        * Gets the enabled value.
@@ -431,7 +447,7 @@ module Web {
        * Gets the client certificate mode.
        */
       StringLiteral getClientCertMode() { result = this.getProperty("clientCertMode") }
-      
+
       /**
        * Returns true if client certificate is required.
        */
@@ -445,7 +461,9 @@ module Web {
       /**
        * Gets the client certificate exclusion paths.
        */
-      StringLiteral getClientCertExclusionPaths() { result = this.getProperty("clientCertExclusionPaths") }
+      StringLiteral getClientCertExclusionPaths() {
+        result = this.getProperty("clientCertExclusionPaths")
+      }
 
       /**
        * Gets the container size.
@@ -455,7 +473,9 @@ module Web {
       /**
        * Gets the custom domain verification ID.
        */
-      StringLiteral getCustomDomainVerificationId() { result = this.getProperty("customDomainVerificationId") }
+      StringLiteral getCustomDomainVerificationId() {
+        result = this.getProperty("customDomainVerificationId")
+      }
 
       /**
        * Gets the daily memory time quota.
@@ -509,7 +529,9 @@ module Web {
       /**
        * Gets whether remote debugging is enabled.
        */
-      BooleanLiteral getRemoteDebuggingEnabled() { result = this.getProperty("remoteDebuggingEnabled") }
+      BooleanLiteral getRemoteDebuggingEnabled() {
+        result = this.getProperty("remoteDebuggingEnabled")
+      }
 
       /**
        * Returns true if remote debugging is enabled.
@@ -524,7 +546,9 @@ module Web {
       /**
        * Gets the remote debugging version.
        */
-      StringLiteral getRemoteDebuggingVersion() { result = this.getProperty("remoteDebuggingVersion") }
+      StringLiteral getRemoteDebuggingVersion() {
+        result = this.getProperty("remoteDebuggingVersion")
+      }
 
       /**
        * Gets whether HTTP 2.0 is enabled.
@@ -545,6 +569,11 @@ module Web {
        * Gets whether Always On is enabled.
        */
       BooleanLiteral getAlwaysOn() { result = this.getProperty("alwaysOn") }
+
+      /**
+       * Returns the Always On setting as a boolean.
+       */
+      boolean alwaysOn() { result = this.getAlwaysOn().getBool() }
 
       /**
        * Returns true if Always On is enabled.
@@ -657,9 +686,7 @@ module Web {
       /**
        * Gets a certificate by index.
        */
-      Object getCertificate(int index) { 
-        result = this.getElement(index)
-      }
+      Object getCertificate(int index) { result = this.getElement(index) }
 
       string toString() { result = "HttpsCertificates" }
     }
@@ -728,12 +755,16 @@ module Web {
       /**
        * Gets the staging environment policy.
        */
-      StringLiteral getStagingEnvironmentPolicy() { result = this.getProperty("stagingEnvironmentPolicy") }
+      StringLiteral getStagingEnvironmentPolicy() {
+        result = this.getProperty("stagingEnvironmentPolicy")
+      }
 
       /**
        * Gets whether private endpoint connections are allowed.
        */
-      BooleanLiteral getAllowConfigFileUpdates() { result = this.getProperty("allowConfigFileUpdates") }
+      BooleanLiteral getAllowConfigFileUpdates() {
+        result = this.getProperty("allowConfigFileUpdates")
+      }
 
       /**
        * Returns true if config file updates are allowed.
@@ -763,7 +794,9 @@ module Web {
       /**
        * Gets whether private endpoint connections are allowed.
        */
-      BooleanLiteral getAllowPrivateEndpoints() { result = this.getProperty("allowPrivateEndpoints") }
+      BooleanLiteral getAllowPrivateEndpoints() {
+        result = this.getProperty("allowPrivateEndpoints")
+      }
 
       /**
        * Returns true if private endpoints are allowed.
@@ -817,7 +850,9 @@ module Web {
       /**
        * Gets the internal load balancing mode.
        */
-      StringLiteral getInternalLoadBalancingMode() { result = this.getProperty("internalLoadBalancingMode") }
+      StringLiteral getInternalLoadBalancingMode() {
+        result = this.getProperty("internalLoadBalancingMode")
+      }
 
       /**
        * Gets the cluster settings.
@@ -827,7 +862,9 @@ module Web {
       /**
        * Gets the virtual network configuration.
        */
-      VnetConfiguration getVirtualNetworkProfile() { result = this.getProperty("virtualNetworkProfile") }
+      VnetConfiguration getVirtualNetworkProfile() {
+        result = this.getProperty("virtualNetworkProfile")
+      }
 
       override string toString() { result = "HostingEnvironmentProperties" }
     }
@@ -960,7 +997,9 @@ module Web {
       /**
        * Gets the maximum number of workers.
        */
-      Number getMaximumElasticWorkerCount() { result = this.getProperty("maximumElasticWorkerCount") }
+      Number getMaximumElasticWorkerCount() {
+        result = this.getProperty("maximumElasticWorkerCount")
+      }
 
       /**
        * Returns the maximum number of workers as an integer.
