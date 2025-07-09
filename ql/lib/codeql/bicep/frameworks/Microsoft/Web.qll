@@ -117,7 +117,9 @@ module Web {
     /**
      * Gets the keyVaultReferenceIdentity.
      */
-    String getKeyVaultReferenceIdentity() { result = this.getProperties().getKeyVaultReferenceIdentity() }
+    String getKeyVaultReferenceIdentity() {
+      result = this.getProperties().getKeyVaultReferenceIdentity()
+    }
 
     /**
      * Gets the redundancyMode.
@@ -127,7 +129,9 @@ module Web {
     /**
      * Gets the storageAccountRequired flag.
      */
-    Boolean getStorageAccountRequired() { result = this.getProperties().getStorageAccountRequired() }
+    Boolean getStorageAccountRequired() {
+      result = this.getProperties().getStorageAccountRequired()
+    }
 
     /**
      * Returns true if client affinity is enabled.
@@ -201,7 +205,7 @@ module Web {
      * Gets whether zone redundant deployment is enabled.
      */
     Boolean getZoneRedundant() { result = this.getProperties().getZoneRedundant() }
-    
+
     /**
      * Returns true if zone redundant deployment is enabled.
      */
@@ -210,8 +214,8 @@ module Web {
     /**
      * Gets the hosting environment profile.
      */
-    HostingEnvironmentProfile getHostingEnvironmentProfile() { 
-        result = this.getProperties().getHostingEnvironmentProfile() 
+    HostingEnvironmentProfile getHostingEnvironmentProfile() {
+      result = this.getProperties().getHostingEnvironmentProfile()
     }
 
     override string toString() { result = "AppServicePlan[" + this.getIdentifier().getName() + "]" }
@@ -273,7 +277,7 @@ module Web {
      * Gets the HTTPS-only flag for the deployment slot.
      */
     Boolean getHttpsOnly() { result = this.getProperties().getHttpsOnly() }
-    
+
     /**
      * Returns true if HTTPS-only setting is enabled for the deployment slot.
      */
@@ -348,9 +352,7 @@ module Web {
     /**
      * Constructs an ExtendedLocation object.
      */
-    ExtendedLocation() {
-      this = parent.getProperty("extendedLocation")
-    }
+    ExtendedLocation() { this = parent.getProperty("extendedLocation") }
 
     /**
      * Gets the name of the extended location.
@@ -375,9 +377,15 @@ module Web {
     HostingEnvironmentProfile() {
       // This object can be referenced from multiple parent types
       exists(WebResource resource | this = resource.getProperty("hostingEnvironmentProfile")) or
-      exists(SitesProperties::Properties props | this = props.getProperty("hostingEnvironmentProfile")) or
-      exists(SlotProperties::Properties props | this = props.getProperty("hostingEnvironmentProfile")) or
-      exists(ServerFarmsProperties::Properties props | this = props.getProperty("hostingEnvironmentProfile"))
+      exists(SitesProperties::Properties props |
+        this = props.getProperty("hostingEnvironmentProfile")
+      ) or
+      exists(SlotProperties::Properties props |
+        this = props.getProperty("hostingEnvironmentProfile")
+      ) or
+      exists(ServerFarmsProperties::Properties props |
+        this = props.getProperty("hostingEnvironmentProfile")
+      )
     }
 
     /**
@@ -402,9 +410,7 @@ module Web {
     /**
      * Constructs an ApplicationStack object.
      */
-    ApplicationStack() {
-      this = parent.getProperty("applicationStack")
-    }
+    ApplicationStack() { this = parent.getProperty("applicationStack") }
 
     string toString() { result = "ApplicationStack" }
   }
@@ -418,9 +424,7 @@ module Web {
     /**
      * Constructs an AppSettings object.
      */
-    AppSettings() {
-      this = parent.getProperty("appSettings")
-    }
+    AppSettings() { this = parent.getProperty("appSettings") }
 
     string toString() { result = "AppSettings" }
   }
@@ -434,9 +438,7 @@ module Web {
     /**
      * Constructs a UserAssignedIdentities object.
      */
-    UserAssignedIdentities() {
-      this = parent.getProperty("userAssignedIdentities")
-    }
+    UserAssignedIdentities() { this = parent.getProperty("userAssignedIdentities") }
 
     string toString() { result = "UserAssignedIdentities" }
   }
@@ -450,9 +452,7 @@ module Web {
     /**
      * Constructs a RepositoryBranch object.
      */
-    RepositoryBranch() {
-      this = parent.getProperty("repositoryBranch")
-    }
+    RepositoryBranch() { this = parent.getProperty("repositoryBranch") }
 
     /**
      * Gets the name of the branch.
@@ -472,9 +472,7 @@ module Web {
     /**
      * Constructs an HttpsCertificate object.
      */
-    HttpsCertificate() {
-      this = parent.getElement(index)
-    }
+    HttpsCertificate() { this = parent.getElement(index) }
 
     /**
      * Gets the name of the certificate.
@@ -534,9 +532,9 @@ module Web {
       /**
        * Gets the virtualNetworkSubnetId.
        */
-      String getVirtualNetworkSubnetId() { 
+      String getVirtualNetworkSubnetId() {
         result = this.getProperty("virtualNetworkSubnetId") or
-        result = parent.getProperty("virtualNetworkSubnetId") 
+        result = parent.getProperty("virtualNetworkSubnetId")
       }
 
       /**
@@ -600,13 +598,13 @@ module Web {
        * Gets the https certificate settings.
        */
       HttpsCertificates getHttpsCertificates() { result = this.getProperty("httpsCertificates") }
-      
+
       /**
        * Gets the clientAffinityEnabled flag.
        */
-      Boolean getClientAffinityEnabled() { 
+      Boolean getClientAffinityEnabled() {
         result = this.getProperty("clientAffinityEnabled") or
-        result = parent.getProperty("clientAffinityEnabled") 
+        result = parent.getProperty("clientAffinityEnabled")
       }
 
       /**
@@ -622,9 +620,9 @@ module Web {
       /**
        * Gets the clientCertEnabled flag.
        */
-      Boolean getClientCertEnabled() { 
+      Boolean getClientCertEnabled() {
         result = this.getProperty("clientCertEnabled") or
-        result = parent.getProperty("clientCertEnabled") 
+        result = parent.getProperty("clientCertEnabled")
       }
 
       /**
@@ -640,17 +638,17 @@ module Web {
       /**
        * Gets the hostNameSslStates array.
        */
-      Array getHostNameSslStates() { 
+      Array getHostNameSslStates() {
         result = this.getProperty("hostNameSslStates") or
-        result = parent.getProperty("hostNameSslStates") 
+        result = parent.getProperty("hostNameSslStates")
       }
 
       /**
        * Gets the hyperV setting.
        */
-      Boolean getHyperV() { 
+      Boolean getHyperV() {
         result = this.getProperty("hyperV") or
-        result = parent.getProperty("hyperV") 
+        result = parent.getProperty("hyperV")
       }
 
       /**
@@ -666,25 +664,25 @@ module Web {
       /**
        * Gets the keyVaultReferenceIdentity.
        */
-      String getKeyVaultReferenceIdentity() { 
+      String getKeyVaultReferenceIdentity() {
         result = this.getProperty("keyVaultReferenceIdentity") or
-        result = parent.getProperty("keyVaultReferenceIdentity") 
+        result = parent.getProperty("keyVaultReferenceIdentity")
       }
 
       /**
        * Gets the redundancyMode.
        */
-      String getRedundancyMode() { 
+      String getRedundancyMode() {
         result = this.getProperty("redundancyMode") or
-        result = parent.getProperty("redundancyMode") 
+        result = parent.getProperty("redundancyMode")
       }
 
       /**
        * Gets the storageAccountRequired flag.
        */
-      Boolean getStorageAccountRequired() { 
+      Boolean getStorageAccountRequired() {
         result = this.getProperty("storageAccountRequired") or
-        result = parent.getProperty("storageAccountRequired") 
+        result = parent.getProperty("storageAccountRequired")
       }
 
       /**
@@ -1197,7 +1195,7 @@ module Web {
       HostingEnvironmentProfile getHostingEnvironmentProfile() {
         result = parent.getProperty("hostingEnvironmentProfile")
       }
-      
+
       /**
        * Gets whether the App Service Plan is reserved (for Linux).
        */
@@ -1235,9 +1233,9 @@ module Web {
       /**
        * Gets the HTTPS-only flag for the deployment slot.
        */
-      Boolean getHttpsOnly() { 
+      Boolean getHttpsOnly() {
         result = this.getProperty("httpsOnly") or
-        result = parent.getProperty("httpsOnly") 
+        result = parent.getProperty("httpsOnly")
       }
 
       /**
@@ -1266,7 +1264,7 @@ module Web {
       HostingEnvironmentProfile getHostingEnvironmentProfile() {
         result = this.getProperty("hostingEnvironmentProfile")
       }
-      
+
       override string toString() { result = "SlotProperties" }
     }
   }
