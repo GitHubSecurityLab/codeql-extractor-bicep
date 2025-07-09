@@ -1,2 +1,2 @@
-| webapp-without-alwayson | Azure Web App doesn't have Always On enabled, which can lead to poor reliability and potential security issues due to cold starts. |
-| webapp-with-alwayson-disabled | Azure Web App doesn't have Always On enabled, which can lead to poor reliability and potential security issues due to cold starts. |
+| app.bicep:17:1:27:1 | AppService[webAppWithoutAlwaysOn] | Azure Web App doesn't have Always On enabled, which can lead to poor reliability and potential security issues due to cold starts. |
+| app.bicep:30:1:40:1 | AppService[webAppWithAlwaysOnDisabled] | Azure Web App doesn't have Always On enabled, which can lead to poor reliability and potential security issues due to cold starts. |

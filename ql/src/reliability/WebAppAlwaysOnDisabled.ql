@@ -13,7 +13,6 @@
  */
 
 import bicep
-import codeql.bicep.frameworks.Microsoft.Web
 
 from Web::SitesResource site, Web::SitesProperties::SiteConfig config
 where
