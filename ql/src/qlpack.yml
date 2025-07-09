@@ -1,5 +1,5 @@
 name: githubsecuritylab/bicep-queries
-version: 0.2.2
+version: 0.2.3
 groups: 
   - bicep
   - queries
