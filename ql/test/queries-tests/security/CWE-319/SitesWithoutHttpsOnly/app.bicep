@@ -22,18 +22,8 @@ resource insecureWebApp 'Microsoft.Web/sites@2022-03-01' = {
     siteConfig: {
       ftpsState: 'AllAllowed'  // Insecure: allows non-secure FTP
     }
+    httpsOnly: false  // Explicitly insecure: allows HTTP
   }
-  // Missing httpsOnly property or set to false
-}
-
-// Insecure: Web App with HTTPS Only explicitly set to false
-resource explicitlyInsecureWebApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: 'explicitly-insecure-webapp'
-  location: location
-  properties: {
-    serverFarmId: appServicePlan.id
-  }
-  httpsOnly: false  // Explicitly insecure: allows HTTP
 }
 
 // Secure: Web App with HTTPS Only enabled
@@ -45,40 +35,19 @@ resource secureWebApp 'Microsoft.Web/sites@2022-03-01' = {
     siteConfig: {
       ftpsState: 'FtpsOnly'  // Secure: only allows FTPS
     }
+    httpsOnly: true  // Secure: enforces HTTPS
   }
-  httpsOnly: true  // Secure: enforces HTTPS
 }
 
-// Secure: Web App with HTTPS Only, client certs, and VNet integration
-resource highlySecureWebApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: 'highly-secure-webapp'
-  location: location
-  properties: {
-    serverFarmId: appServicePlan.id
-    virtualNetworkSubnetId: '/subscriptions/{sub}/resourceGroups/{rg}/providers/Microsoft.Network/virtualNetworks/{vnet}/subnets/{subnet}'
-    clientCertEnabled: true
-    clientCertMode: 'Required'
-    publicNetworkAccess: 'Disabled'
-    siteConfig: {
-      ftpsState: 'Disabled'
-      minTlsVersion: '1.2'
-      remoteDebuggingEnabled: false
-      alwaysOn: true
-    }
-  }
-  httpsOnly: true
-}
-
-// Insecure: Web App with remote debugging enabled
-resource debuggableWebApp 'Microsoft.Web/sites@2022-03-01' = {
-  name: 'debuggable-webapp'
+// Insecure: Web App with missing httpsOnly property
+resource missingHttpsOnlyWebApp 'Microsoft.Web/sites@2022-03-01' = {
+  name: 'missing-httpsonly-webapp'
   location: location
   properties: {
     serverFarmId: appServicePlan.id
     siteConfig: {
-      remoteDebuggingEnabled: true  // Insecure: enables remote debugging
-      remoteDebuggingVersion: 'VS2019'
+      ftpsState: 'AllAllowed'  // Insecure: allows non-secure FTP
     }
+    // httpsOnly is not specified - defaults to false in Azure
   }
-  httpsOnly: true
 }
