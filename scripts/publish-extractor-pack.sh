@@ -10,7 +10,7 @@ LATEST_RELEASE=$(gh release list | head -n 1 | awk '{print $1}' | sed 's/v//')
 
 if which codeql >/dev/null; then
   CODEQL_BINARY="codeql"
-elif gh codeql >/dev/null; then
+elif gh codeql version >/dev/null 2>&1; then
   CODEQL_BINARY="gh codeql"
 else
   gh extension install github/gh-codeql
