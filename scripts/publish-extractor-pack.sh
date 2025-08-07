@@ -8,7 +8,7 @@ EXTRACTOR_VERSION=$(grep version $EXTRACTOR_INFO | awk '{print $2}')
 
 LATEST_RELEASE=$(gh release list | head -n 1 | awk '{print $1}' | sed 's/v//')
 
-if which codeql >/dev/null; then
+if which codeql >/dev/null 2>&1; then
   CODEQL_BINARY="codeql"
 elif gh codeql version >/dev/null 2>&1; then
   CODEQL_BINARY="gh codeql"
