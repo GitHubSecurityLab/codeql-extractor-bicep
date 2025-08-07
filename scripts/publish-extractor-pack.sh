@@ -8,6 +8,15 @@ EXTRACTOR_VERSION=$(grep version $EXTRACTOR_INFO | awk '{print $2}')
 
 LATEST_RELEASE=$(gh release list | head -n 1 | awk '{print $1}' | sed 's/v//')
 
+if which codeql >/dev/null; then
+  CODEQL_BINARY="codeql"
+elif gh codeql >/dev/null; then
+  CODEQL_BINARY="gh codeql"
+else
+  gh extension install github/gh-codeql
+  CODEQL_BINARY="gh codeql"
+fi
+
 echo "[+] ${EXTRACTOR_NAME} (${EXTRACTOR_VERSION})"
 echo "[+] Last release: ${LATEST_RELEASE}"
 
@@ -20,8 +29,9 @@ if [ "$LATEST_RELEASE" != "$EXTRACTOR_VERSION" ]; then
         exit 1
     fi
 
-    # echo "[+] Add queries to extractor-pack"
-    # $CODEQL_BINARY pack create --output=./extractor-pack/queries ./ql/src
+    echo "[+] Add queries to extractor-pack"
+    $CODEQL_BINARY pack create --output=./extractor-pack/qlpacks ./ql/lib
+    $CODEQL_BINARY pack create --output=./extractor-pack/qlpacks ./ql/src
 
     # bundle extractor
     tar czf extractor-$EXTRACTOR_NAME.tar.gz extractor-pack
