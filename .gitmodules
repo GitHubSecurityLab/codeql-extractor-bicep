@@ -1,3 +1,3 @@
 [submodule "extractor/tree-sitter"]
 	path = extractor/tree-sitter
-	url = https://github.com/tree-sitter-grammars/tree-sitter-bicep
+	url = https://github.com/geekmasher/tree-sitter-bicep
