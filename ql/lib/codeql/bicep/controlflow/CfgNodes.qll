@@ -147,12 +147,6 @@ class VariableWriteAccessCfgNode extends VariableAccessCfgNode {
 
 /** Provides classes for control-flow nodes that wrap AST expressions. */
 module ExprNodes {
-  /** A mapping from a child of an expression to an expression. */
-  abstract class ExprChildMapping extends Expr {
-    /** Holds if `n` is a relevant child of this expression. */
-    abstract predicate relevantChild(AstNode n);
-  }
-
   /** A mapping from a child of a literal to a literal. */
   abstract class LiteralChildMapping extends AstNode {
     /** Holds if `n` is a relevant child of this literal. */
@@ -241,7 +235,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of an Arguments expression to the expression. */
-  abstract class ArgumentsChildMapping extends ExprNodes::ExprChildMapping, Arguments {
+  abstract class ArgumentsChildMapping extends ExprChildMapping, Arguments {
     override predicate relevantChild(AstNode n) { n = this.getArgument(_) }
   }
 
@@ -255,7 +249,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of an AssignmentExpression to the expression. */
-  abstract class AssignmentExpressionChildMapping extends ExprNodes::ExprChildMapping,
+  abstract class AssignmentExpressionChildMapping extends ExprChildMapping,
     AssignmentExpression
   {
     override predicate relevantChild(AstNode n) { n = this.getLeft() or n = this.getRight() }
@@ -271,7 +265,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of a BinaryExpression to the expression. */
-  abstract class BinaryExpressionChildMapping extends ExprNodes::ExprChildMapping, BinaryExpression {
+  abstract class BinaryExpressionChildMapping extends ExprChildMapping, BinaryExpression {
     override predicate relevantChild(AstNode n) { n = this.getLeft() or n = this.getRight() }
   }
 
@@ -297,7 +291,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of an Interpolation to the expression. */
-  abstract class InterpolationChildMapping extends ExprNodes::ExprChildMapping, Interpolation {
+  abstract class InterpolationChildMapping extends ExprChildMapping, Interpolation {
     override predicate relevantChild(AstNode n) { n = this.getExpression() }
   }
 
@@ -411,7 +405,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of a Parameter to the expression. */
-  abstract class ParameterChildMapping extends ExprNodes::ExprChildMapping, Parameter {
+  abstract class ParameterChildMapping extends ExprChildMapping, Parameter {
     override predicate relevantChild(AstNode n) { n = this.getIdentifier() or n = this.getType() }
   }
 
@@ -425,7 +419,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of Parameters to the expression. */
-  abstract class ParametersChildMaping extends ExprNodes::ExprChildMapping, Parameters {
+  abstract class ParametersChildMaping extends ExprChildMapping, Parameters {
     override predicate relevantChild(AstNode n) { n = this.getParameter(_) }
   }
 
@@ -546,7 +540,7 @@ module StmtNodes {
   abstract class UserDefinedFunctionChildMapping extends StmtChildMapping, UserDefinedFunction {
     override predicate relevantChild(AstNode n) {
       n = this.getIdentifier() or
-      n = this.getDeclaredParameters() or
+      n = this.getParameters() or
       n = this.getReturnType() or
       n = this.getBody()
     }
