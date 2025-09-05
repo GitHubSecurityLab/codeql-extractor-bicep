@@ -1,0 +1,82 @@
+name: Request new CodeQL Query
+description: Request a new Bicep analysis query for the CodeQL library
+title: "[Query]: "
+labels: ["feature", "enhancement", "query"]
+assignees:
+  - GeekMasher
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this query request! 
+        
+        CodeQL queries help identify security vulnerabilities, bugs, and quality issues in Bicep code. Providing detailed information will help us create effective queries that address real-world needs.
+  - type: dropdown
+    id: query-type
+    attributes:
+      label: Query Type
+      description: What type of query are you requesting?
+      options:
+        - Security
+        - Performance Optimization
+        - Code Quality
+        - Maintainability
+        - Bug Detection
+        - Framework-specific Issues
+        - Other
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: description
+    attributes:
+      label: Query Description
+      description: Please provide a clear description of the query you want to create
+      placeholder: Describe the issue this query should detect...
+      value: "This query should identify the following issue(s):"
+    validations:
+      required: true
+
+  - type: dropdown
+    id: query-severity
+    attributes:
+      label: Expected Severity
+      description: What is the expected severity level of issues found by this query?
+      options:
+        - Critical
+        - High
+        - Medium
+        - Low
+        - Informational
+      default: 2
+    validations:
+      required: true
+
+  - type: textarea
+    id: examples
+    attributes:
+      label: Code Example
+      description: Provide an example
+      placeholder: Example of vulnerabilities or issues this query should detect
+      value: "```bicep\n// Code example\n```"
+    validations:
+      required: false
+
+  - type: input
+    id: references
+    attributes:
+      label: References
+      description: Links to CVEs, research papers, articles, or other resources that describe this issue
+      placeholder: "e.g., https://cve.mitre.org/..."
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/advanced-security/policy-as-code/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
