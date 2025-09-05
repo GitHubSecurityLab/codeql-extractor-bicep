@@ -9,3 +9,4 @@ import ast.Misc
 import ast.Idents
 import ast.Variables
 import ast.Resources
+import ast.Types
