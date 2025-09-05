@@ -8,6 +8,51 @@ private import BasicBlocks
 private import ControlFlowGraph
 import internal.ControlFlowGraphImpl
 
+/**
+ * A class for mapping parent-child AST nodes to parent-child CFG nodes.
+ */
+abstract private class ChildMapping extends AstNode {
+  /**
+   * Holds if `child` is a (possibly nested) child of this expression
+   * for which we would like to find a matching CFG child.
+   */
+  abstract predicate relevantChild(AstNode child);
+
+  pragma[nomagic]
+  abstract predicate reachesBasicBlock(AstNode child, CfgNode cfn, BasicBlock bb);
+
+  /**
+   * Holds if there is a control-flow path from `cfn` to `cfnChild`, where `cfn`
+   * is a control-flow node for this expression, and `cfnChild` is a control-flow
+   * node for `child`.
+   *
+   * The path never escapes the syntactic scope of this expression.
+   */
+  cached
+  predicate hasCfgChild(AstNode child, CfgNode cfn, CfgNode cfnChild) {
+    this.reachesBasicBlock(child, cfn, cfnChild.getBasicBlock()) and
+    cfnChild.getAstNode() = child
+  }
+}
+
+/**
+ * A class for mapping parent-child AST nodes to parent-child CFG nodes.
+ */
+abstract private class ExprChildMapping extends Expr, ChildMapping {
+  pragma[nomagic]
+  override predicate reachesBasicBlock(AstNode child, CfgNode cfn, BasicBlock bb) {
+    this.relevantChild(child) and
+    cfn = this.getAControlFlowNode() and
+    bb.getANode() = cfn
+    or
+    exists(BasicBlock mid |
+      this.reachesBasicBlock(child, cfn, mid) and
+      bb = mid.getAPredecessor() and
+      not mid.getANode().getAstNode() = child
+    )
+  }
+}
+
 /** A control-flow node that wraps an AST expression. */
 class ExprCfgNode extends AstCfgNode {
   string getAPrimaryQlClass() { result = "ExprCfgNode" }
@@ -42,6 +87,62 @@ class LiteralsCfgNode extends AstCfgNode {
 
   /** Gets the underlying literal. */
   Literals getLiteral() { result = l }
+}
+
+class VariableCfgNode extends AstCfgNode {
+  string getAPrimaryQlClass() { result = "VariableCfgNode" }
+
+  Variable v;
+
+  VariableCfgNode() { v.getAstNode() = this.getAstNode() }
+
+  /**
+   * Gets the underlying `Variable` expression.
+   */
+  Variable getExpr() { result = v }
+
+  /** Gets the name of the variable. */
+  string getName() { result = v.getName() }
+}
+
+/** A control-flow node that wraps a `VariableAccess` AST expression. */
+class VariableAccessCfgNode extends AstCfgNode {
+  string getAPrimaryQlClass() { result = "VariableAccessCfgNode" }
+
+  VariableAccess v;
+
+  VariableAccessCfgNode() { v.getAstNode() = this.getAstNode() }
+
+  /**
+   * Gets the underlying `VariableAccess` expression.
+   */
+  VariableAccess getExpr() { result = v }
+
+  /** Gets the variable */
+  VariableCfgNode getTarget() { result.getExpr() = v.getVariable() }
+}
+
+/** A control-flow node that wraps a `VariableReadAccess` AST expression. */
+class VariableReadAccessCfgNode extends VariableAccessCfgNode {
+  override string getAPrimaryQlClass() { result = "VariableReadAccessCfgNode" }
+
+  override VariableReadAccess v;
+
+  override VariableReadAccess getExpr() { result = super.getExpr() }
+
+  Variable getVariable() { result = v.getVariable() }
+}
+
+class VariableWriteAccessCfgNode extends VariableAccessCfgNode {
+  override string getAPrimaryQlClass() { result = "VariableWriteAccessCfgNode" }
+
+  override VariableWriteAccess v;
+
+  override VariableWriteAccess getExpr() { result.asExpr() = v.asExpr() }
+
+  Variable getVariable() { result = v.getVariable() }
+
+  final ExprCfgNode getReceiver() { result.getExpr() = v.asExpr() }
 }
 
 /** Provides classes for control-flow nodes that wrap AST expressions. */
@@ -140,7 +241,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of an Arguments expression to the expression. */
-  abstract class ArgumentsChildMapping extends ExprChildMapping, Arguments {
+  abstract class ArgumentsChildMapping extends ExprNodes::ExprChildMapping, Arguments {
     override predicate relevantChild(AstNode n) { n = this.getArgument(_) }
   }
 
@@ -154,7 +255,9 @@ module ExprNodes {
   }
 
   /** A mapping from a child of an AssignmentExpression to the expression. */
-  abstract class AssignmentExpressionChildMapping extends ExprChildMapping, AssignmentExpression {
+  abstract class AssignmentExpressionChildMapping extends ExprNodes::ExprChildMapping,
+    AssignmentExpression
+  {
     override predicate relevantChild(AstNode n) { n = this.getLeft() or n = this.getRight() }
   }
 
@@ -168,7 +271,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of a BinaryExpression to the expression. */
-  abstract class BinaryExpressionChildMapping extends ExprChildMapping, BinaryExpression {
+  abstract class BinaryExpressionChildMapping extends ExprNodes::ExprChildMapping, BinaryExpression {
     override predicate relevantChild(AstNode n) { n = this.getLeft() or n = this.getRight() }
   }
 
@@ -194,7 +297,7 @@ module ExprNodes {
   }
 
   /** A mapping from a child of an Interpolation to the expression. */
-  abstract class InterpolationChildMapping extends ExprChildMapping, Interpolation {
+  abstract class InterpolationChildMapping extends ExprNodes::ExprChildMapping, Interpolation {
     override predicate relevantChild(AstNode n) { n = this.getExpression() }
   }
 
@@ -306,10 +409,177 @@ module ExprNodes {
 
     override UnaryExpression getExpr() { result = super.getExpr() }
   }
+
+  /** A mapping from a child of a Parameter to the expression. */
+  abstract class ParameterChildMapping extends ExprNodes::ExprChildMapping, Parameter {
+    override predicate relevantChild(AstNode n) { n = this.getIdentifier() or n = this.getType() }
+  }
+
+  /** A control-flow node that wraps a Parameter AST node. */
+  class ParameterCfgNode extends ExprCfgNode {
+    override string getAPrimaryQlClass() { result = "ParameterCfgNode" }
+
+    override Parameter e;
+
+    override Parameter getExpr() { result = super.getExpr() }
+  }
+
+  /** A mapping from a child of Parameters to the expression. */
+  abstract class ParametersChildMaping extends ExprNodes::ExprChildMapping, Parameters {
+    override predicate relevantChild(AstNode n) { n = this.getParameter(_) }
+  }
+
+  /** A control-flow node that wraps a Parameters AST node. */
+  class ParametersCfgNode extends ExprCfgNode {
+    override string getAPrimaryQlClass() { result = "ParametersCfgNode" }
+
+    override Parameters e;
+
+    override Parameters getExpr() { result = super.getExpr() }
+  }
 }
 
+/** Provides classes for control-flow nodes that wrap AST statements. */
 module StmtNodes {
-  /** A control-flow node that wraps a `Cmd` AST expression. */
+  /** A mapping from a child of a statement to a statement. */
+  abstract class StmtChildMapping extends Stmts {
+    /** Holds if `n` is a relevant child of this statement. */
+    abstract predicate relevantChild(AstNode n);
+  }
+
+  /** A control-flow node that wraps an AssertStatement AST node. */
+  class AssertStatementCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "AssertStatementCfgNode" }
+
+    override AssertStatementStmt s;
+
+    override AssertStatementStmt getStmt() { result = super.getStmt() }
+  }
+
+  /** A control-flow node that wraps a ForStatement AST node. */
+  class ForStatementCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "ForStatementCfgNode" }
+
+    override ForStatementStmt s;
+
+    override ForStatementStmt getStmt() { result = super.getStmt() }
+  }
+
+  /** A mapping from a child of an IfStatement to the statement. */
+  abstract class IfStatementChildMapping extends StmtChildMapping, IfStatement {
+    override predicate relevantChild(AstNode n) { n = this.getCondition() or n = this.getBody() }
+  }
+
+  /** A control-flow node that wraps an IfStatement AST node. */
+  class IfStatementCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "IfStatementCfgNode" }
+
+    override IfStatement s;
+
+    override IfStatement getStmt() { result = super.getStmt() }
+
+    /** Gets the condition CFG node */
+    final ExprCfgNode getCondition() {
+      result = this.getAPredecessor().(ExprCfgNode) and
+      result.getExpr() = this.getStmt().getCondition()
+    }
+
+    /** Gets the body CFG node */
+    final ExprCfgNode getBody() {
+      result = this.getAPredecessor().(ExprCfgNode) and
+      result.getExpr() = this.getStmt().getBody()
+    }
+  }
+
+  /** A control-flow node that wraps an ImportStatement AST node. */
+  class ImportStatementCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "ImportStatementCfgNode" }
+
+    override ImportStatementStmt s;
+
+    override ImportStatementStmt getStmt() { result = super.getStmt() }
+  }
+
+  /** A control-flow node that wraps an Infrastructure AST node. */
+  class InfrastructureCfgNode extends AstCfgNode {
+    string getAPrimaryQlClass() { result = "InfrastructureCfgNode" }
+
+    Infrastructure i;
+
+    InfrastructureCfgNode() { i = this.getAstNode() }
+
+    /** Gets the underlying Infrastructure. */
+    Infrastructure getInfrastructure() { result = i }
+  }
+
+  /** A mapping from a child of a ParameterDeclaration to the statement. */
+  abstract class ParameterDeclarationChildMapping extends StmtChildMapping, ParameterDeclaration {
+    override predicate relevantChild(AstNode n) {
+      n = this.getIdentifier() or n = this.getDefaultValue()
+    }
+  }
+
+  /** A control-flow node that wraps a ParameterDeclaration AST node. */
+  class ParameterDeclarationCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "ParameterDeclarationCfgNode" }
+
+    override ParameterDeclaration s;
+
+    override ParameterDeclaration getStmt() { result = super.getStmt() }
+  }
+
+  /** A mapping from a child of an OutputDeclaration to the statement. */
+  abstract class OutputDeclarationChildMapping extends StmtChildMapping, OutputDeclaration {
+    override predicate relevantChild(AstNode n) { n = this.getIdentifier() or n = this.getValue() }
+  }
+
+  /** A control-flow node that wraps an OutputDeclaration AST node. */
+  class OutputDeclarationCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "OutputDeclarationCfgNode" }
+
+    override OutputDeclaration s;
+
+    override OutputDeclaration getStmt() { result = super.getStmt() }
+  }
+
+  /** A mapping from a child of a UserDefinedFunction to the statement. */
+  abstract class UserDefinedFunctionChildMapping extends StmtChildMapping, UserDefinedFunction {
+    override predicate relevantChild(AstNode n) {
+      n = this.getIdentifier() or
+      n = this.getDeclaredParameters() or
+      n = this.getReturnType() or
+      n = this.getBody()
+    }
+  }
+
+  /** A control-flow node that wraps a UserDefinedFunction AST node. */
+  class UserDefinedFunctionCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "UserDefinedFunctionCfgNode" }
+
+    override UserDefinedFunction s;
+
+    override UserDefinedFunction getStmt() { result = super.getStmt() }
+  }
+
+  /** A control-flow node that wraps an ImportWithStatement AST node. */
+  class ImportWithStatementCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "ImportWithStatementCfgNode" }
+
+    override ImportWithStatementStmt s;
+
+    override ImportWithStatementStmt getStmt() { result = super.getStmt() }
+  }
+
+  /** A control-flow node that wraps a UsingStatement AST node. */
+  class UsingStatementCfgNode extends StmtsCfgNode {
+    override string getAPrimaryQlClass() { result = "UsingStatementCfgNode" }
+
+    override UsingStatementStmt s;
+
+    override UsingStatementStmt getStmt() { result = super.getStmt() }
+  }
+
+  /** A control-flow node that wraps a UserDefinedFunction AST node. */
   class CallCfgNode extends StmtsCfgNode {
     override string getAPrimaryQlClass() { result = "CallCfgNode" }
 

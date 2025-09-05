@@ -245,8 +245,61 @@ module Trees {
   private class NullableReturnTypeLiteralTree extends LeafTree instanceof NullableReturnTypeLiteral { }
 
   /**
-   *  ParameterDeclarationTree represents a parameter declaration in a Bicep program.
+   * A tree for AssertStatement in a Bicep program.
    */
+  private class AssertStatementTree extends StandardPostOrderTree instanceof AssertStatementStmt {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+  
+  /**
+   * A tree for ForStatement in a Bicep program.
+   */
+  private class ForStatementTree extends StandardPostOrderTree instanceof ForStatementStmt {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+  
+  /**
+   * A tree for IfStatement in a Bicep program.
+   */
+  private class IfStatementTree extends PreOrderTree instanceof IfStatement {
+    final override predicate propagatesAbnormal(AstNode child) { child = super.getCondition() }
+
+    override predicate succ(AstNode pred, AstNode succ, Completion c) {
+      // Start with the condition
+      pred = this and first(super.getCondition(), succ) and completionIsSimple(c)
+      or
+      // If condition is normal, go to the body
+      last(super.getCondition(), pred, c) and 
+      first(super.getBody(), succ) and 
+      completionIsNormal(c)
+    }
+
+    override predicate last(AstNode node, Completion c) {
+      node = super.getBody() and completionIsNormal(c)
+    }
+  }
+  
+  /**
+   * A tree for ImportStatement in a Bicep program.
+   */
+  private class ImportStatementTree extends StandardPostOrderTree instanceof ImportStatementStmt {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+  
+  /**
+   * A tree for ImportWithStatement in a Bicep program.
+   */
+  private class ImportWithStatementTree extends StandardPostOrderTree instanceof ImportWithStatementStmt {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+  
+  /**
+   * A tree for UsingStatement in a Bicep program.
+   */
+  private class UsingStatementTree extends StandardPostOrderTree instanceof UsingStatementStmt {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+
   private class ParameterDeclarationTree extends PreOrderTree instanceof ParameterDeclaration {
     final override predicate propagatesAbnormal(AstNode child) { child = super.getIdentifier() }
 
@@ -291,5 +344,23 @@ module Trees {
     override predicate last(AstNode node, Completion c) {
       node = super.getValue() and completionIsNormal(c)
     }
+  }
+  
+  /**
+   * A tree for Parameter in a Bicep program.
+   */
+  private class ParameterTree extends StandardPostOrderTree instanceof Parameter {
+    override AstNode getChildNode(int i) {
+      i = 0 and result = super.getIdentifier()
+      or
+      i = 1 and result = super.getType()
+    }
+  }
+  
+  /**
+   * A tree for Parameters in a Bicep program.
+   */
+  private class ParametersTree extends StandardPostOrderTree instanceof Parameters {
+    override AstNode getChildNode(int i) { result = super.getParameter(i) }
   }
 }
