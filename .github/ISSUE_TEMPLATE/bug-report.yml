@@ -1,0 +1,135 @@
+name: Bug Report
+description: Report an issue with the CodeQL Bicep extractor or queries
+title: "[Bug]: "
+labels: ["bug", "triage", "needs-investigation"]
+assignees:
+  - GeekMasher 
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this bug report!
+        
+        Complete and detailed bug reports help us identify issues faster and improve the CodeQL Bicep extractor and queries. Please provide as much relevant information as possible.
+  - type: dropdown
+    id: bug-type
+    attributes:
+      label: Bug Type
+      description: What component of the Bicep CodeQL system is affected?
+      options:
+        - Extractor (code parsing/analysis)
+        - Query (false positive/negative)
+        - Database generation
+        - Performance issue
+        - Documentation
+        - Other
+      default: 0
+    validations:
+      required: true
+      
+  - type: textarea
+    id: what-happened
+    attributes:
+      label: Bug Description
+      description: Please provide a clear description of the bug, including what you expected to happen and what actually happened
+      placeholder: Describe the issue in detail...
+      value: "When running the PHP extractor on my codebase, I encountered the following issue:"
+    validations:
+      required: true
+  - type: input
+    id: version
+    attributes:
+      label: CodeQL Version
+      description: What version of CodeQL are you running?
+      placeholder: e.g., 2.15.4, 3.0.0, etc.
+    validations:
+      required: true
+      
+  - type: input
+    id: bicep-version
+    attributes:
+      label: Bicep Version
+      description: What version of Bicep is in your codebase?
+      placeholder: e.g., 0.18.4, 0.20.0, etc.
+    validations:
+      required: false
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Execution Environment
+      description: Where are you running the CodeQL PHP extractor?
+      multiple: true
+      options:
+        - GitHub Actions
+        - CodeQL CLI
+        - VS Code CodeQL extension
+        - GitHub Code Scanning
+        - Custom CI pipeline
+        - Other
+  - type: textarea
+    id: reproduction-steps
+    attributes:
+      label: Steps to Reproduce
+      description: Please provide detailed steps to reproduce the issue
+      placeholder: |
+        1. Run command '...'
+        2. Open file '...'
+        3. See error '...'
+      value: "1. \n2. \n3. "
+    validations:
+      required: true
+
+  - type: textarea
+    id: code-sample
+    attributes:
+      label: Minimal Code Sample
+      description: If applicable, provide a minimal code sample that demonstrates the issue (with sensitive data removed)
+      placeholder: |
+        // Example Bicep code that triggers the issue
+        resource storageAccount 'Microsoft.Storage/storageAccounts@2022-09-01' = {
+          name: 'mystorage'
+          location: 'eastus'
+          // ...
+        }
+      render: bicep
+    validations:
+      required: false
+
+  - type: textarea
+    id: logs
+    attributes:
+      label: Log Output
+      description: Please copy and paste any relevant log output. This will be automatically formatted into code, so no need for backticks.
+      placeholder: Copy error messages, stack traces, or other relevant logs here
+      render: shell
+
+  - type: dropdown
+    id: operating-system
+    attributes:
+      label: Operating System
+      description: Which operating system are you using?
+      options:
+        - Windows
+        - macOS
+        - Linux
+        - Other
+    validations:
+      required: false
+
+  - type: textarea
+    id: additional-context
+    attributes:
+      label: Additional Context
+      description: Add any other context about the problem here
+      placeholder: Any other information that might be helpful, such as framework/library versions, related issues, etc.
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/advanced-security/policy-as-code/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

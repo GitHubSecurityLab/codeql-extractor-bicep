@@ -1,0 +1,74 @@
+name: Request Framework Support
+description: Request support for a new Bicep framework in CodeQL
+title: "[Framework]: "
+labels: ["feature", "enhancement", "framework"]
+assignees:
+  - GeekMasher
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this framework support request! Adding support for Bicep frameworks helps improve the quality and coverage of CodeQL analysis.
+  - type: dropdown
+    id: framework-type
+    attributes:
+      label: Framework Type
+      description: What type of Bicep framework are you requesting support for?
+      options:
+        - Azure Service Framework (e.g., AKS, App Service)
+        - Infrastructure Pattern (e.g., Hub-Spoke, Landing Zone)
+        - Module Collection (e.g., Azure Verified Modules)
+        - Template Library (e.g., Bicep Registry)
+        - Other
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: framework-info
+    attributes:
+      label: Framework Information
+      description: Please provide details about the framework you want supported
+      placeholder: Framework name, version, GitHub repository link, etc.
+      value: "Framework: \nVersion: \nWebsite/Repo: "
+    validations:
+      required: true
+  
+  - type: textarea
+    id: security-features
+    attributes:
+      label: Security Features
+      description: Please describe any security features or patterns specific to this framework that would benefit from CodeQL analysis
+      placeholder: Security mechanisms, authentication systems, CSRF protection, etc.
+      value: "Security features in this framework include:"
+    validations:
+      required: false
+
+  - type: textarea
+    id: example-code
+    attributes:
+      label: Example Code
+      description: Please provide example code snippets that show how the framework is typically used
+      placeholder: Framework-specific code examples (resources, modules, parameters, etc.)
+      value: "```bicep\n// Example framework usage\n```"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: vulnerable-patterns
+    attributes:
+      label: Known Vulnerable Patterns
+      description: If you're aware of any security vulnerabilities or problematic patterns specific to this framework, please describe them
+      placeholder: Common misconfigurations, known CVEs, typical security issues...
+      value: "Common vulnerability patterns include:"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/advanced-security/policy-as-code/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true

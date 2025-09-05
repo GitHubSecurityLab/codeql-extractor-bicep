@@ -1,0 +1,88 @@
+name: Request CodeQL Library Feature
+description: Request a new feature or enhancement for the Bicep CodeQL library
+title: "[Library]: "
+labels: ["feature", "enhancement", "library"]
+assignees:
+  - GeekMasher
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Thanks for taking the time to fill out this CodeQL library feature request! Enhancing the Bicep CodeQL library helps improve the quality and coverage of static analysis.
+  - type: dropdown
+    id: library-component
+    attributes:
+      label: Library Component(s)
+      description: Which CodeQL library component(s) does this feature request relate to? (Select all that apply)
+      options:
+        - AST (Abstract Syntax Tree)
+        - CFG (Control Flow Graph)
+        - Dataflow / TaintTracking
+        - ApiGraph
+        - TypeTracking
+        - Framework Support
+        - Security Analysis
+        - Other
+      multiple: true
+      default: 0
+    validations:
+      required: true
+
+  - type: textarea
+    id: feature-description
+    attributes:
+      label: Feature Description
+      description: Please provide a detailed description of the feature or enhancement you're requesting
+      placeholder: Explain what functionality you need and why it's important
+      value: "Feature: \nUse case: \nImportance: "
+    validations:
+      required: true
+  
+  - type: textarea
+    id: technical-details
+    attributes:
+      label: Technical Details
+      description: Please provide any relevant technical details about the feature request
+      placeholder: Implementation ideas, related CodeQL concepts, links to documentation, etc.
+      value: "Technical implementation details:"
+    validations:
+      required: false
+
+  - type: textarea
+    id: example-code
+    attributes:
+      label: Example Code
+      description: Please provide Bicep code examples that demonstrate the functionality you're requesting
+      placeholder: Bicep code that illustrates the patterns you want to analyze
+      value: "```bicep\n// Example Bicep code that should be analyzed\n```"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: example-query
+    attributes:
+      label: Example Query
+      description: If applicable, please provide an example CodeQL query that would use this feature
+      placeholder: A sketch of a CodeQL query that would benefit from this feature
+      value: "```ql\n// Example CodeQL query using the requested feature\n```"
+    validations:
+      required: false
+      
+  - type: textarea
+    id: benefits
+    attributes:
+      label: Expected Benefits
+      description: Please describe how this feature would improve the PHP CodeQL library
+      placeholder: Improved analysis accuracy, new detection capabilities, performance benefits...
+      value: "This feature would benefit CodeQL analysis by:"
+    validations:
+      required: false
+
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Code of Conduct
+      description: By submitting this issue, you agree to follow our [Code of Conduct](https://github.com/advanced-security/policy-as-code/blob/main/CODE_OF_CONDUCT.md)
+      options:
+        - label: I agree to follow this project's Code of Conduct
+          required: true
