@@ -15,6 +15,10 @@
         {
             "name": "Extractor",
             "path": "extractor"
+        },
+        {
+            "name": "GitHub",
+            "path": ".github"
         }
     ],
     "settings": {
