@@ -63,89 +63,233 @@ private module CfgImpl = Make<Location, Implementation>;
 
 import CfgImpl
 
-class InfrastructureScopeTree extends StandardTree, PreOrderTree, PostOrderTree, Scope::InfrastructureScope {
-  override AstNode getChildNode(int i) { result = super.getStmt(i) }
-}
-
-class StmtsTree extends StandardPostOrderTree instanceof Stmts {
-  override AstNode getChildNode(int i) {
-    //
-    i = 0 and result = super.getAChild()
-  }
-}
-
-class ExprTree extends StandardPostOrderTree instanceof Expr {
-  override AstNode getChildNode(int i) {
-    i = 0 and result = super.getAChild()
-  }
-}
-
-/**
- * A literal value in a Bicep program.
- */
-class LiteralTree extends LeafTree instanceof Literals { }
-
-/**
- * A Null literal value in a Bicep program.
- */
-class NullLiteralTree extends LeafTree instanceof NullLiteral { }
-
-/**
- * A NullableReturnType literal value in a Bicep program.
- */
-class NullableReturnTypeLiteralTree extends LeafTree instanceof NullableReturnTypeLiteral { }
-
-/**
- * A String literal value in a Bicep program.
- */
-class StringLiteralTree extends LeafTree instanceof StringLiteral { }
-
-/**
- * A StringContent literal value in a Bicep program.
- */
-class StringContentLiteralTree extends LeafTree instanceof StringContentLiteral { }
-
-/**
- *  ParameterDeclarationTree represents a parameter declaration in a Bicep program.
- */
-class ParameterDeclarationTree extends PreOrderTree instanceof ParameterDeclaration {
-  final override predicate propagatesAbnormal(AstNode child) { child = super.getIdentifier() }
-
-  override predicate succ(AstNode pred, AstNode succ, Completion c) {
-    // Start with the identifier
-    pred = this and first(super.getIdentifier(), succ) and completionIsSimple(c)
-    or
-    last(super.getIdentifier(), pred, c) and first(super.getDefaultValue(), succ) and completionIsNormal(c)
+module Trees {
+  private class InfrastructureScopeTree extends StandardTree, PreOrderTree, PostOrderTree,
+    Scope::InfrastructureScope
+  {
+    override AstNode getChildNode(int i) { result = super.getStmt(i) }
   }
 
-  override predicate last(AstNode node, Completion c) {
-    node = super.getDefaultValue() and completionIsNormal(c)
-  }
-}
-
-class UserDefinedFunctionTree extends StandardPostOrderTree instanceof UserDefinedFunction {
-  override AstNode getChildNode(int i) {
-    i = 0 and result = super.getIdentifier()
-    or
-    i = 1 and result = super.getParameters()
-    or
-    i = 2 and result = super.getReturnType()
-    or
-    i = 3 and result = super.getBody()
-  }
-}
-
-class OutputDeclarationTree extends PreOrderTree instanceof OutputDeclaration {
-  final override predicate propagatesAbnormal(AstNode child) { child = super.getIdentifier() }
-
-  override predicate succ(AstNode pred, AstNode succ, Completion c) {
-    // Start with the identifier
-    pred = this and first(super.getIdentifier(), succ) and completionIsSimple(c)
-    or
-    last(super.getIdentifier(), pred, c) and first(super.getValue(), succ) and completionIsNormal(c)
+  private class StmtsTree extends StandardPostOrderTree instanceof Stmts {
+    override AstNode getChildNode(int i) {
+      //
+      i = 0 and result = super.getAChild()
+    }
   }
 
-  override predicate last(AstNode node, Completion c) {
-    node = super.getValue() and completionIsNormal(c)
+  private class ExprTree extends StandardPostOrderTree instanceof Expr {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+
+  /**
+   * A tree for Arguments in a Bicep program.
+   */
+  private class ArgumentsTree extends StandardPostOrderTree instanceof Arguments {
+    override AstNode getChildNode(int i) { result = super.getArgument(i) }
+  }
+
+  /**
+   * A tree for AssignmentExpression in a Bicep program.
+   */
+  private class AssignmentExpressionTree extends StandardPostOrderTree instanceof AssignmentExpression {
+    override AstNode getChildNode(int i) {
+      i = 0 and result = super.getLeft()
+      or
+      i = 1 and result = super.getRight()
+    }
+  }
+
+  /**
+   * A tree for BinaryExpression in a Bicep program.
+   */
+  private class BinaryExpressionTree extends StandardPostOrderTree instanceof BinaryExpression {
+    override AstNode getChildNode(int i) {
+      i = 0 and result = super.getLeft()
+      or
+      i = 1 and result = super.getRight()
+    }
+  }
+
+  /**
+   * A tree for Interpolation in a Bicep program.
+   */
+  private class InterpolationTree extends StandardPostOrderTree instanceof Interpolation {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getExpression() }
+  }
+
+  /**
+   * A tree for LambdaExpression in a Bicep program.
+   */
+  private class LambdaExpressionTree extends StandardPostOrderTree instanceof LambdaExpression {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+
+  /**
+   * A tree for MemberExpression in a Bicep program.
+   */
+  private class MemberExpressionTree extends StandardPostOrderTree instanceof MemberExpression {
+    override AstNode getChildNode(int i) {
+      i = 0 and result = super.getNamespace()
+      or
+      i = 1 and result = super.getName()
+    }
+  }
+
+  /**
+   * A tree for NullableType in a Bicep program.
+   */
+  private class NullableTypeTree extends StandardPostOrderTree instanceof NullableType {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+
+  /**
+   * A tree for ParenthesizedExpression in a Bicep program.
+   */
+  private class ParenthesizedExpressionTree extends StandardPostOrderTree instanceof ParenthesizedExpression
+  {
+    override AstNode getChildNode(int i) { result = super.getExpression(i) }
+  }
+
+  /**
+   * A tree for ResourceExpression in a Bicep program.
+   */
+  private class ResourceExpressionTree extends StandardPostOrderTree instanceof ResourceExpression {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+
+  /**
+   * A tree for TernaryExpression in a Bicep program.
+   */
+  private class TernaryExpressionTree extends StandardPostOrderTree instanceof TernaryExpression {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+
+  /**
+   * A unary expression in the CFG.
+   */
+  private class UnaryExpressionTree extends StandardPostOrderTree instanceof UnaryExpression {
+    override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
+  }
+
+  /**
+   * A tree for Object in a Bicep program.
+   */
+  private class ObjectTree extends StandardPostOrderTree instanceof Object {
+    override AstNode getChildNode(int i) { result = super.getProp(i) }
+  }
+
+  /**
+   * A tree for ObjectProperty in a Bicep program.
+   */
+  private class ObjectPropertyTree extends StandardPostOrderTree instanceof ObjectProperty {
+    override AstNode getChildNode(int i) {
+      i = 0 and result = super.getName()
+      or
+      i = 1 and result = super.getValue()
+    }
+  }
+
+  /**
+   * A tree for SubscriptExpression in a Bicep program.
+   */
+  private class SubscriptExpressionTree extends StandardPostOrderTree instanceof SubscriptExpression {
+    override AstNode getChildNode(int i) {
+      i = 0 and result = super.getIdentifier()
+      or
+      i = 1 and result = super.getIndex()
+    }
+  }
+
+  /**
+   * A tree for Array in a Bicep program.
+   */
+  private class ArrayTree extends StandardPostOrderTree instanceof Array {
+    override AstNode getChildNode(int i) { result = super.getElement(i) }
+  }
+
+  /**
+   * A tree for Boolean literals in a Bicep program.
+   */
+  private class BooleanTree extends LeafTree instanceof Boolean { }
+
+  /**
+   * A tree for NullLiteral in a Bicep program.
+   */
+  private class NullLiteralTree extends LeafTree instanceof NullLiteral { }
+
+  /**
+   * A tree for Number literals in a Bicep program.
+   */
+  private class NumberTree extends LeafTree instanceof Number { }
+
+  /**
+   * A tree for String literals in a Bicep program.
+   */
+  private class StringLiteralTree extends StandardPostOrderTree instanceof StringLiteral {
+    override AstNode getChildNode(int i) { result = super.getInterpolation(i) }
+  }
+
+  /**
+   * A tree for StringContentLiteral in a Bicep program.
+   */
+  private class StringContentLiteralTree extends LeafTree instanceof StringContentLiteral { }
+
+  /**
+   * A literal value in a Bicep program.
+   */
+  private class LiteralTree extends LeafTree instanceof Literals { }
+
+  /**
+   * A NullableReturnType literal value in a Bicep program.
+   */
+  private class NullableReturnTypeLiteralTree extends LeafTree instanceof NullableReturnTypeLiteral { }
+
+  /**
+   *  ParameterDeclarationTree represents a parameter declaration in a Bicep program.
+   */
+  private class ParameterDeclarationTree extends PreOrderTree instanceof ParameterDeclaration {
+    final override predicate propagatesAbnormal(AstNode child) { child = super.getIdentifier() }
+
+    override predicate succ(AstNode pred, AstNode succ, Completion c) {
+      // Start with the identifier
+      pred = this and first(super.getIdentifier(), succ) and completionIsSimple(c)
+      or
+      last(super.getIdentifier(), pred, c) and
+      first(super.getDefaultValue(), succ) and
+      completionIsNormal(c)
+    }
+
+    override predicate last(AstNode node, Completion c) {
+      node = super.getDefaultValue() and completionIsNormal(c)
+    }
+  }
+
+  private class UserDefinedFunctionTree extends StandardPostOrderTree instanceof UserDefinedFunction {
+    override AstNode getChildNode(int i) {
+      i = 0 and result = super.getIdentifier()
+      or
+      i = 1 and result = super.getParameters()
+      or
+      i = 2 and result = super.getReturnType()
+      or
+      i = 3 and result = super.getBody()
+    }
+  }
+
+  private class OutputDeclarationTree extends PreOrderTree instanceof OutputDeclaration {
+    final override predicate propagatesAbnormal(AstNode child) { child = super.getIdentifier() }
+
+    override predicate succ(AstNode pred, AstNode succ, Completion c) {
+      // Start with the identifier
+      pred = this and first(super.getIdentifier(), succ) and completionIsSimple(c)
+      or
+      last(super.getIdentifier(), pred, c) and
+      first(super.getValue(), succ) and
+      completionIsNormal(c)
+    }
+
+    override predicate last(AstNode node, Completion c) {
+      node = super.getValue() and completionIsNormal(c)
+    }
   }
 }
