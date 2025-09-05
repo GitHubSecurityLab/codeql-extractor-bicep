@@ -1,0 +1,47 @@
+variables
+| data.bicep:2:1:6:1 | Variable[multiLineArray] |
+| data.bicep:8:1:8:43 | Variable[singleLineArray] |
+| data.bicep:10:1:11:10 | Variable[mixedArray] |
+| data.bicep:13:1:13:28 | Variable[exampleArray] |
+| data.bicep:14:1:14:41 | Variable[firstElement] |
+| data.bicep:15:1:15:41 | Variable[thirdElement] |
+| data.bicep:17:1:17:13 | Variable[index] |
+| data.bicep:18:1:18:46 | Variable[secondElement] |
+| data.bicep:21:1:21:29 | Variable[exampleBool] |
+| data.bicep:24:1:24:24 | Variable[exampleInt] |
+| data.bicep:27:1:27:92 | Variable[singleLineObject] |
+| data.bicep:29:1:34:1 | Variable[multiLineObject] |
+| data.bicep:36:1:37:12 | Variable[mixedObject] |
+| data.bicep:41:1:41:25 | Variable[myVar] |
+| data.bicep:43:1:43:62 | Variable[storageName] |
+| data.bicep:46:1:46:24 | Variable[myVar] |
+| data.bicep:49:1:50:9 | Variable[myVar2] |
+| data.bicep:53:1:55:3 | Variable[myVar3] |
+| data.bicep:58:1:62:3 | Variable[myVar4] |
+variableAccess
+| data.bicep:13:1:13:28 | Variable[exampleArray] | data.bicep:14:27:14:38 | VariableRead[exampleArray] |
+| data.bicep:13:1:13:28 | Variable[exampleArray] | data.bicep:15:27:15:38 | VariableRead[exampleArray] |
+| data.bicep:13:1:13:28 | Variable[exampleArray] | data.bicep:18:28:18:39 | VariableRead[exampleArray] |
+| data.bicep:14:1:14:41 | Variable[firstElement] | data.bicep:14:8:14:19 | VariableWrite[firstElement] |
+| data.bicep:15:1:15:41 | Variable[thirdElement] | data.bicep:15:8:15:19 | VariableWrite[thirdElement] |
+| data.bicep:17:1:17:13 | Variable[index] | data.bicep:18:41:18:45 | VariableRead[index] |
+| data.bicep:18:1:18:46 | Variable[secondElement] | data.bicep:18:8:18:20 | VariableWrite[secondElement] |
+| data.bicep:21:1:21:29 | Variable[exampleBool] | data.bicep:21:7:21:17 | VariableWrite[exampleBool] |
+| data.bicep:24:1:24:24 | Variable[exampleInt] | data.bicep:24:7:24:16 | VariableWrite[exampleInt] |
+| data.bicep:27:1:27:92 | Variable[singleLineObject] | data.bicep:27:7:27:22 | VariableWrite[singleLineObject] |
+| data.bicep:29:1:34:1 | Variable[multiLineObject] | data.bicep:29:7:29:21 | VariableWrite[multiLineObject] |
+| data.bicep:36:1:37:12 | Variable[mixedObject] | data.bicep:36:7:36:17 | VariableWrite[mixedObject] |
+variableRead
+| data.bicep:14:27:14:38 | VariableRead[exampleArray] |
+| data.bicep:15:27:15:38 | VariableRead[exampleArray] |
+| data.bicep:18:28:18:39 | VariableRead[exampleArray] |
+| data.bicep:18:41:18:45 | VariableRead[index] |
+variableWrite
+| data.bicep:14:8:14:19 | VariableWrite[firstElement] |
+| data.bicep:15:8:15:19 | VariableWrite[thirdElement] |
+| data.bicep:18:8:18:20 | VariableWrite[secondElement] |
+| data.bicep:21:7:21:17 | VariableWrite[exampleBool] |
+| data.bicep:24:7:24:16 | VariableWrite[exampleInt] |
+| data.bicep:27:7:27:22 | VariableWrite[singleLineObject] |
+| data.bicep:29:7:29:21 | VariableWrite[multiLineObject] |
+| data.bicep:36:7:36:17 | VariableWrite[mixedObject] |
