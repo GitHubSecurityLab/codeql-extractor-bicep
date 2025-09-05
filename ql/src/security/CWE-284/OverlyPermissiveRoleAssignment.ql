@@ -12,7 +12,7 @@
  *       CWE-284
  */
 
-import codeql.bicep.frameworks.Microsoft.Authorization
+import bicep
 
 from Authorization::RoleAssignmentResource roleAssignment, string roleType, string scopeType
 where

@@ -40,7 +40,12 @@ module Authorization {
     /**
      * Returns the name property of the role assignment (typically a GUID).
      */
-    StringLiteral getName() { result = this.getProperty("name") }
+    override string getName() {
+      exists(StringLiteral name |
+        name = this.getProperty("name") and
+        result = name.getValue()
+      )
+    }
 
     /**
      * Gets the role definition ID from the properties.
