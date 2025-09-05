@@ -1,0 +1,4 @@
+| app.bicep:13:1:23:2 | This role assignment grants excessive privileges: Contributor role assigned at subscription scope. Consider using a more restrictive role or narrowing the scope to specific resources. |
+| app.bicep:26:1:36:2 | This role assignment grants excessive privileges: Owner role assigned at subscription scope. Consider using a more restrictive role or narrowing the scope to specific resources. |
+| app.bicep:39:1:49:2 | This role assignment grants excessive privileges: Contributor role assigned at resource group scope. Consider using a more restrictive role or narrowing the scope to specific resources. |
+| app.bicep:52:1:62:2 | This role assignment grants excessive privileges: User Access Administrator role assigned at resource group scope. Consider using a more restrictive role or narrowing the scope to specific resources. |
