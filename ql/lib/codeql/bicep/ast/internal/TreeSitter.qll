@@ -48,13 +48,21 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "ReservedWord" }
   }
 
+  class UnderscoreDeclaration extends @bicep_underscore_declaration, AstNode { }
+
+  class UnderscoreExpression extends @bicep_underscore_expression, AstNode { }
+
+  class UnderscorePrimaryExpression extends @bicep_underscore_primary_expression, AstNode { }
+
+  class UnderscoreStatement extends @bicep_underscore_statement, AstNode { }
+
   /** A class representing `arguments` nodes. */
   class Arguments extends @bicep_arguments, AstNode {
     /** Gets the name of the primary QL class for this element. */
     final override string getAPrimaryQlClass() { result = "Arguments" }
 
     /** Gets the `i`th child of this node. */
-    final Expression getChild(int i) { bicep_arguments_child(this, i, result) }
+    final UnderscoreExpression getChild(int i) { bicep_arguments_child(this, i, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() { bicep_arguments_child(this, _, result) }
@@ -93,7 +101,7 @@ module BICEP {
     final Identifier getName() { bicep_assert_statement_def(this, result, _) }
 
     /** Gets the child of this node. */
-    final Expression getChild() { bicep_assert_statement_def(this, _, result) }
+    final UnderscoreExpression getChild() { bicep_assert_statement_def(this, _, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() {
@@ -110,7 +118,7 @@ module BICEP {
     final AstNode getLeft() { bicep_assignment_expression_def(this, result, _) }
 
     /** Gets the node corresponding to the field `right`. */
-    final Expression getRight() { bicep_assignment_expression_def(this, _, result) }
+    final UnderscoreExpression getRight() { bicep_assignment_expression_def(this, _, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() {
@@ -125,7 +133,7 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "BinaryExpression" }
 
     /** Gets the node corresponding to the field `left`. */
-    final Expression getLeft() { bicep_binary_expression_def(this, result, _, _) }
+    final UnderscoreExpression getLeft() { bicep_binary_expression_def(this, result, _, _) }
 
     /** Gets the node corresponding to the field `operator`. */
     final string getOperator() {
@@ -167,7 +175,7 @@ module BICEP {
     }
 
     /** Gets the node corresponding to the field `right`. */
-    final Expression getRight() { bicep_binary_expression_def(this, _, _, result) }
+    final UnderscoreExpression getRight() { bicep_binary_expression_def(this, _, _, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() {
@@ -191,7 +199,7 @@ module BICEP {
     final Arguments getArguments() { bicep_call_expression_def(this, result, _) }
 
     /** Gets the node corresponding to the field `function`. */
-    final Expression getFunction() { bicep_call_expression_def(this, _, result) }
+    final UnderscoreExpression getFunction() { bicep_call_expression_def(this, _, result) }
 
     /** Gets the child of this node. */
     final NullableReturnType getChild() { bicep_call_expression_child(this, result) }
@@ -221,8 +229,6 @@ module BICEP {
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() { bicep_compatible_identifier_def(this, result) }
   }
-
-  class Declaration extends @bicep_declaration, AstNode { }
 
   /** A class representing `decorator` nodes. */
   class Decorator extends @bicep_decorator, AstNode {
@@ -259,8 +265,6 @@ module BICEP {
     /** Gets the name of the primary QL class for this element. */
     final override string getAPrimaryQlClass() { result = "EscapeSequence" }
   }
-
-  class Expression extends @bicep_expression, AstNode { }
 
   /** A class representing `for_loop_parameters` nodes. */
   class ForLoopParameters extends @bicep_for_loop_parameters, AstNode {
@@ -356,7 +360,7 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "Infrastructure" }
 
     /** Gets the `i`th child of this node. */
-    final Statement getChild(int i) { bicep_infrastructure_child(this, i, result) }
+    final UnderscoreStatement getChild(int i) { bicep_infrastructure_child(this, i, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() { bicep_infrastructure_child(this, _, result) }
@@ -368,7 +372,7 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "Interpolation" }
 
     /** Gets the child of this node. */
-    final Expression getChild() { bicep_interpolation_def(this, result) }
+    final UnderscoreExpression getChild() { bicep_interpolation_def(this, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() { bicep_interpolation_def(this, result) }
@@ -380,7 +384,7 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "LambdaExpression" }
 
     /** Gets the `i`th child of this node. */
-    final Expression getChild(int i) { bicep_lambda_expression_child(this, i, result) }
+    final UnderscoreExpression getChild(int i) { bicep_lambda_expression_child(this, i, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() { bicep_lambda_expression_child(this, _, result) }
@@ -571,7 +575,9 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "ParenthesizedExpression" }
 
     /** Gets the `i`th child of this node. */
-    final Expression getChild(int i) { bicep_parenthesized_expression_child(this, i, result) }
+    final UnderscoreExpression getChild(int i) {
+      bicep_parenthesized_expression_child(this, i, result)
+    }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() {
@@ -590,8 +596,6 @@ module BICEP {
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() { bicep_parenthesized_type_def(this, result) }
   }
-
-  class PrimaryExpression extends @bicep_primary_expression, AstNode { }
 
   /** A class representing `primitive_type` tokens. */
   class PrimitiveType extends @bicep_token_primitive_type, Token {
@@ -623,7 +627,7 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "ResourceExpression" }
 
     /** Gets the node corresponding to the field `object`. */
-    final Expression getObject() { bicep_resource_expression_def(this, result, _) }
+    final UnderscoreExpression getObject() { bicep_resource_expression_def(this, result, _) }
 
     /** Gets the node corresponding to the field `resource`. */
     final Identifier getResource() { bicep_resource_expression_def(this, _, result) }
@@ -634,8 +638,6 @@ module BICEP {
       bicep_resource_expression_def(this, _, result)
     }
   }
-
-  class Statement extends @bicep_statement, AstNode { }
 
   /** A class representing `string` nodes. */
   class String extends @bicep_string__, AstNode {
@@ -661,10 +663,10 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "SubscriptExpression" }
 
     /** Gets the node corresponding to the field `index`. */
-    final Expression getIndex() { bicep_subscript_expression_def(this, result, _) }
+    final UnderscoreExpression getIndex() { bicep_subscript_expression_def(this, result, _) }
 
     /** Gets the node corresponding to the field `object`. */
-    final Expression getObject() { bicep_subscript_expression_def(this, _, result) }
+    final UnderscoreExpression getObject() { bicep_subscript_expression_def(this, _, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() {
@@ -691,13 +693,13 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "TernaryExpression" }
 
     /** Gets the node corresponding to the field `alternative`. */
-    final Expression getAlternative() { bicep_ternary_expression_def(this, result, _, _) }
+    final UnderscoreExpression getAlternative() { bicep_ternary_expression_def(this, result, _, _) }
 
     /** Gets the node corresponding to the field `condition`. */
-    final Expression getCondition() { bicep_ternary_expression_def(this, _, result, _) }
+    final UnderscoreExpression getCondition() { bicep_ternary_expression_def(this, _, result, _) }
 
     /** Gets the node corresponding to the field `consequence`. */
-    final Expression getConsequence() { bicep_ternary_expression_def(this, _, _, result) }
+    final UnderscoreExpression getConsequence() { bicep_ternary_expression_def(this, _, _, result) }
 
     /** Gets a field or child node of this node. */
     final override AstNode getAFieldOrChild() {
@@ -761,7 +763,7 @@ module BICEP {
     final override string getAPrimaryQlClass() { result = "UnaryExpression" }
 
     /** Gets the node corresponding to the field `argument`. */
-    final Expression getArgument() { bicep_unary_expression_def(this, result, _) }
+    final UnderscoreExpression getArgument() { bicep_unary_expression_def(this, result, _) }
 
     /** Gets the node corresponding to the field `operator`. */
     final string getOperator() {

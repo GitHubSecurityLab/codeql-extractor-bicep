@@ -109,18 +109,26 @@ yaml_locations(unique int locatable: @yaml_locatable ref,
 @yaml_locatable = @yaml_node | @yaml_error;
 
 /*- BICEP dbscheme -*/
+@bicep_underscore_declaration = @bicep_assert_statement | @bicep_metadata_declaration | @bicep_module_declaration | @bicep_output_declaration | @bicep_parameter_declaration | @bicep_resource_declaration | @bicep_test_block | @bicep_type_declaration | @bicep_user_defined_function | @bicep_variable_declaration
+
+@bicep_underscore_expression = @bicep_assignment_expression | @bicep_binary_expression | @bicep_lambda_expression | @bicep_ternary_expression | @bicep_unary_expression | @bicep_underscore_primary_expression
+
+@bicep_underscore_primary_expression = @bicep_array | @bicep_call_expression | @bicep_for_statement | @bicep_member_expression | @bicep_object | @bicep_parenthesized_expression | @bicep_resource_expression | @bicep_string__ | @bicep_subscript_expression | @bicep_token_boolean | @bicep_token_identifier | @bicep_token_null | @bicep_token_number
+
+@bicep_underscore_statement = @bicep_decorators | @bicep_import_functionality | @bicep_import_statement | @bicep_import_with_statement | @bicep_target_scope_assignment | @bicep_underscore_declaration | @bicep_using_statement
+
 #keyset[bicep_arguments, index]
 bicep_arguments_child(
   int bicep_arguments: @bicep_arguments ref,
   int index: int ref,
-  unique int child: @bicep_expression ref
+  unique int child: @bicep_underscore_expression ref
 );
 
 bicep_arguments_def(
   unique int id: @bicep_arguments
 );
 
-@bicep_array_child_type = @bicep_decorators | @bicep_expression
+@bicep_array_child_type = @bicep_decorators | @bicep_underscore_expression
 
 #keyset[bicep_array, index]
 bicep_array_child(
@@ -141,7 +149,7 @@ bicep_array_type_def(
 bicep_assert_statement_def(
   unique int id: @bicep_assert_statement,
   int name: @bicep_token_identifier ref,
-  int child: @bicep_expression ref
+  int child: @bicep_underscore_expression ref
 );
 
 @bicep_assignment_expression_left_type = @bicep_member_expression | @bicep_parenthesized_expression | @bicep_resource_expression | @bicep_subscript_expression | @bicep_token_identifier
@@ -149,7 +157,7 @@ bicep_assert_statement_def(
 bicep_assignment_expression_def(
   unique int id: @bicep_assignment_expression,
   int left: @bicep_assignment_expression_left_type ref,
-  int right: @bicep_expression ref
+  int right: @bicep_underscore_expression ref
 );
 
 case @bicep_binary_expression.operator of
@@ -175,9 +183,9 @@ case @bicep_binary_expression.operator of
 
 bicep_binary_expression_def(
   unique int id: @bicep_binary_expression,
-  int left: @bicep_expression ref,
+  int left: @bicep_underscore_expression ref,
   int operator: int ref,
-  int right: @bicep_expression ref
+  int right: @bicep_underscore_expression ref
 );
 
 bicep_call_expression_child(
@@ -188,15 +196,13 @@ bicep_call_expression_child(
 bicep_call_expression_def(
   unique int id: @bicep_call_expression,
   int arguments: @bicep_arguments ref,
-  int function: @bicep_expression ref
+  int function: @bicep_underscore_expression ref
 );
 
 bicep_compatible_identifier_def(
   unique int id: @bicep_compatible_identifier,
   int child: @bicep_token_identifier ref
 );
-
-@bicep_declaration = @bicep_assert_statement | @bicep_metadata_declaration | @bicep_module_declaration | @bicep_output_declaration | @bicep_parameter_declaration | @bicep_resource_declaration | @bicep_test_block | @bicep_type_declaration | @bicep_user_defined_function | @bicep_variable_declaration
 
 bicep_decorator_def(
   unique int id: @bicep_decorator,
@@ -214,8 +220,6 @@ bicep_decorators_def(
   unique int id: @bicep_decorators
 );
 
-@bicep_expression = @bicep_assignment_expression | @bicep_binary_expression | @bicep_lambda_expression | @bicep_primary_expression | @bicep_ternary_expression | @bicep_unary_expression
-
 @bicep_for_loop_parameters_child_type = @bicep_token_loop_enumerator | @bicep_token_loop_variable
 
 #keyset[bicep_for_loop_parameters, index]
@@ -229,14 +233,14 @@ bicep_for_loop_parameters_def(
   unique int id: @bicep_for_loop_parameters
 );
 
-@bicep_for_statement_body_type = @bicep_expression | @bicep_if_statement
+@bicep_for_statement_body_type = @bicep_if_statement | @bicep_underscore_expression
 
 bicep_for_statement_initializer(
   unique int bicep_for_statement: @bicep_for_statement ref,
   unique int initializer: @bicep_token_identifier ref
 );
 
-@bicep_for_statement_child_type = @bicep_expression | @bicep_for_loop_parameters
+@bicep_for_statement_child_type = @bicep_for_loop_parameters | @bicep_underscore_expression
 
 #keyset[bicep_for_statement, index]
 bicep_for_statement_child(
@@ -289,7 +293,7 @@ bicep_import_statement_def(
   unique int id: @bicep_import_statement
 );
 
-@bicep_import_with_statement_child_type = @bicep_expression | @bicep_string__ | @bicep_token_identifier
+@bicep_import_with_statement_child_type = @bicep_string__ | @bicep_token_identifier | @bicep_underscore_expression
 
 #keyset[bicep_import_with_statement, index]
 bicep_import_with_statement_child(
@@ -306,7 +310,7 @@ bicep_import_with_statement_def(
 bicep_infrastructure_child(
   int bicep_infrastructure: @bicep_infrastructure ref,
   int index: int ref,
-  unique int child: @bicep_statement ref
+  unique int child: @bicep_underscore_statement ref
 );
 
 bicep_infrastructure_def(
@@ -315,21 +319,21 @@ bicep_infrastructure_def(
 
 bicep_interpolation_def(
   unique int id: @bicep_interpolation,
-  int child: @bicep_expression ref
+  int child: @bicep_underscore_expression ref
 );
 
 #keyset[bicep_lambda_expression, index]
 bicep_lambda_expression_child(
   int bicep_lambda_expression: @bicep_lambda_expression ref,
   int index: int ref,
-  unique int child: @bicep_expression ref
+  unique int child: @bicep_underscore_expression ref
 );
 
 bicep_lambda_expression_def(
   unique int id: @bicep_lambda_expression
 );
 
-@bicep_member_expression_object_type = @bicep_expression | @bicep_parameterized_type
+@bicep_member_expression_object_type = @bicep_parameterized_type | @bicep_underscore_expression
 
 bicep_member_expression_def(
   unique int id: @bicep_member_expression,
@@ -337,7 +341,7 @@ bicep_member_expression_def(
   int property: @bicep_token_property_identifier ref
 );
 
-@bicep_metadata_declaration_child_type = @bicep_expression | @bicep_token_identifier
+@bicep_metadata_declaration_child_type = @bicep_token_identifier | @bicep_underscore_expression
 
 #keyset[bicep_metadata_declaration, index]
 bicep_metadata_declaration_child(
@@ -368,7 +372,7 @@ bicep_negated_type_def(
   int child: @bicep_type__ ref
 );
 
-@bicep_nullable_type_child_type = @bicep_array_type | @bicep_expression | @bicep_parenthesized_type | @bicep_token_primitive_type
+@bicep_nullable_type_child_type = @bicep_array_type | @bicep_parenthesized_type | @bicep_token_primitive_type | @bicep_underscore_expression
 
 bicep_nullable_type_def(
   unique int id: @bicep_nullable_type,
@@ -388,7 +392,7 @@ bicep_object_def(
   unique int id: @bicep_object
 );
 
-@bicep_object_property_child_type = @bicep_array_type | @bicep_compatible_identifier | @bicep_expression | @bicep_nullable_type | @bicep_parameterized_type | @bicep_resource_declaration | @bicep_string__ | @bicep_token_identifier | @bicep_token_primitive_type | @bicep_union_type
+@bicep_object_property_child_type = @bicep_array_type | @bicep_compatible_identifier | @bicep_nullable_type | @bicep_parameterized_type | @bicep_resource_declaration | @bicep_string__ | @bicep_token_identifier | @bicep_token_primitive_type | @bicep_underscore_expression | @bicep_union_type
 
 #keyset[bicep_object_property, index]
 bicep_object_property_child(
@@ -401,7 +405,7 @@ bicep_object_property_def(
   unique int id: @bicep_object_property
 );
 
-@bicep_output_declaration_child_type = @bicep_expression | @bicep_token_identifier | @bicep_type__
+@bicep_output_declaration_child_type = @bicep_token_identifier | @bicep_type__ | @bicep_underscore_expression
 
 #keyset[bicep_output_declaration, index]
 bicep_output_declaration_child(
@@ -427,7 +431,7 @@ bicep_parameter_def(
   unique int id: @bicep_parameter
 );
 
-@bicep_parameter_declaration_child_type = @bicep_expression | @bicep_token_identifier | @bicep_type__
+@bicep_parameter_declaration_child_type = @bicep_token_identifier | @bicep_type__ | @bicep_underscore_expression
 
 #keyset[bicep_parameter_declaration, index]
 bicep_parameter_declaration_child(
@@ -468,7 +472,7 @@ bicep_parameters_def(
 bicep_parenthesized_expression_child(
   int bicep_parenthesized_expression: @bicep_parenthesized_expression ref,
   int index: int ref,
-  unique int child: @bicep_expression ref
+  unique int child: @bicep_underscore_expression ref
 );
 
 bicep_parenthesized_expression_def(
@@ -479,8 +483,6 @@ bicep_parenthesized_type_def(
   unique int id: @bicep_parenthesized_type,
   int child: @bicep_type__ ref
 );
-
-@bicep_primary_expression = @bicep_array | @bicep_call_expression | @bicep_for_statement | @bicep_member_expression | @bicep_object | @bicep_parenthesized_expression | @bicep_resource_expression | @bicep_string__ | @bicep_subscript_expression | @bicep_token_boolean | @bicep_token_identifier | @bicep_token_null | @bicep_token_number
 
 @bicep_resource_declaration_child_type = @bicep_for_statement | @bicep_if_statement | @bicep_object | @bicep_string__ | @bicep_token_identifier
 
@@ -497,11 +499,9 @@ bicep_resource_declaration_def(
 
 bicep_resource_expression_def(
   unique int id: @bicep_resource_expression,
-  int object: @bicep_expression ref,
+  int object: @bicep_underscore_expression ref,
   int resource: @bicep_token_identifier ref
 );
-
-@bicep_statement = @bicep_declaration | @bicep_decorators | @bicep_import_functionality | @bicep_import_statement | @bicep_import_with_statement | @bicep_target_scope_assignment | @bicep_using_statement
 
 @bicep_string_child_type = @bicep_interpolation | @bicep_token_escape_sequence | @bicep_token_string_content
 
@@ -518,8 +518,8 @@ bicep_string_def(
 
 bicep_subscript_expression_def(
   unique int id: @bicep_subscript_expression,
-  int index: @bicep_expression ref,
-  int object: @bicep_expression ref
+  int index: @bicep_underscore_expression ref,
+  int object: @bicep_underscore_expression ref
 );
 
 bicep_target_scope_assignment_def(
@@ -529,9 +529,9 @@ bicep_target_scope_assignment_def(
 
 bicep_ternary_expression_def(
   unique int id: @bicep_ternary_expression,
-  int alternative: @bicep_expression ref,
-  int condition: @bicep_expression ref,
-  int consequence: @bicep_expression ref
+  int alternative: @bicep_underscore_expression ref,
+  int condition: @bicep_underscore_expression ref,
+  int consequence: @bicep_underscore_expression ref
 );
 
 @bicep_test_block_child_type = @bicep_object | @bicep_string__ | @bicep_token_identifier
@@ -565,7 +565,7 @@ bicep_type_arguments_def(
   unique int id: @bicep_type_arguments
 );
 
-@bicep_type_declaration_child_type = @bicep_array_type | @bicep_expression | @bicep_nullable_type | @bicep_parameterized_type | @bicep_token_identifier | @bicep_union_type
+@bicep_type_declaration_child_type = @bicep_array_type | @bicep_nullable_type | @bicep_parameterized_type | @bicep_token_identifier | @bicep_underscore_expression | @bicep_union_type
 
 #keyset[bicep_type_declaration, index]
 bicep_type_declaration_child(
@@ -586,11 +586,11 @@ case @bicep_unary_expression.operator of
 
 bicep_unary_expression_def(
   unique int id: @bicep_unary_expression,
-  int argument: @bicep_expression ref,
+  int argument: @bicep_underscore_expression ref,
   int operator: int ref
 );
 
-@bicep_union_type_child_type = @bicep_array_type | @bicep_expression | @bicep_member_expression | @bicep_negated_type | @bicep_nullable_type | @bicep_object | @bicep_parameterized_type | @bicep_parenthesized_type | @bicep_string__ | @bicep_token_boolean | @bicep_token_identifier | @bicep_token_null | @bicep_token_number | @bicep_token_primitive_type
+@bicep_union_type_child_type = @bicep_array_type | @bicep_member_expression | @bicep_negated_type | @bicep_nullable_type | @bicep_object | @bicep_parameterized_type | @bicep_parenthesized_type | @bicep_string__ | @bicep_token_boolean | @bicep_token_identifier | @bicep_token_null | @bicep_token_number | @bicep_token_primitive_type | @bicep_underscore_expression
 
 #keyset[bicep_union_type, index]
 bicep_union_type_child(
@@ -603,7 +603,7 @@ bicep_union_type_def(
   unique int id: @bicep_union_type
 );
 
-@bicep_user_defined_function_child_type = @bicep_expression | @bicep_parameters
+@bicep_user_defined_function_child_type = @bicep_parameters | @bicep_underscore_expression
 
 #keyset[bicep_user_defined_function, index]
 bicep_user_defined_function_child(
@@ -623,7 +623,7 @@ bicep_using_statement_def(
   int child: @bicep_string__ ref
 );
 
-@bicep_variable_declaration_child_type = @bicep_expression | @bicep_token_identifier
+@bicep_variable_declaration_child_type = @bicep_token_identifier | @bicep_underscore_expression
 
 #keyset[bicep_variable_declaration, index]
 bicep_variable_declaration_child(
