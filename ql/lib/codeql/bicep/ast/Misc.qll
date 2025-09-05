@@ -3,7 +3,6 @@ private import internal.Array
 private import internal.ArrayType
 private import internal.Boolean
 private import internal.CompatibleIdentifier
-private import internal.Declaration
 private import internal.Decorator
 private import internal.Decorators
 private import internal.DiagnosticComment
@@ -37,11 +36,6 @@ class ArrayType extends AstNode instanceof ArrayTypeImpl { }
  *  A CompatibleIdentifier unknown AST node.
  */
 class CompatibleIdentifier extends AstNode instanceof CompatibleIdentifierImpl { }
-
-/**
- *  A Declaration unknown AST node.
- */
-class Declaration extends AstNode instanceof DeclarationImpl { }
 
 /**
  *  A Decorator unknown AST node.

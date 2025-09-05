@@ -17,7 +17,7 @@ final class CfgScope = CfgScopeImpl;
  * A Infrastructure is a Sequence of statements.
  */
 final class InfrastructureScope extends CfgScopeImpl, Infrastructure {
-  override predicate scopeFirst(AstNode first) { first(this.getStatement(0), first) }
+  override predicate scopeFirst(AstNode first) { first(this.getStmt(0), first) }
 
   override predicate scopeLast(AstNode last, Completion c) { last(this, last, c) }
 }

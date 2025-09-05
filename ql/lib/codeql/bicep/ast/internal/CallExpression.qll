@@ -8,7 +8,6 @@ private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Expr
 private import Calls
-private import Expression
 private import Idents
 private import Arguments
 private import NullableReturnType

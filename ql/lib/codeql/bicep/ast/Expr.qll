@@ -9,13 +9,11 @@ private import internal.Expr
 private import internal.Arguments
 private import internal.AssignmentExpression
 private import internal.BinaryExpression
-private import internal.Expression
 private import internal.Interpolation
 private import internal.LambdaExpression
 private import internal.MemberExpression
 private import internal.NullableType
 private import internal.ParenthesizedExpression
-private import internal.PrimaryExpression
 private import internal.ResourceExpression
 private import internal.TernaryExpression
 private import internal.UnaryExpression
@@ -111,15 +109,6 @@ class BinaryExpression extends Expr instanceof BinaryExpressionImpl {
    */
   string getOperator() { result = BinaryExpressionImpl.super.getOperator() }
 }
-
-/**
- * A generic expression in the AST.
- * 
- * This class represents any expression that doesn't fit into other more 
- * specific expression categories. It serves as a base implementation for 
- * expressions in the Bicep language.
- */
-class Expression extends Expr instanceof ExpressionImpl { }
 
 /**
  * An interpolation expression in the AST.
@@ -236,15 +225,6 @@ class ParenthesizedExpression extends Expr instanceof ParenthesizedExpressionImp
     result = ParenthesizedExpressionImpl.super.getExpressions()
   }
 }
-
-/**
- * A primary expression in the AST.
- * 
- * Represents a basic, self-contained expression such as a literal value,
- * identifier, or other fundamental expression type. Primary expressions
- * serve as the building blocks for more complex expressions.
- */
-class PrimaryExpression extends Expr instanceof PrimaryExpressionImpl { }
 
 /**
  * A resource expression in the AST.

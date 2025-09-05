@@ -5,6 +5,7 @@
 private import AstNodes
 private import Idents
 private import Expr
+private import Calls
 private import Misc
 private import internal.AstNodes
 private import internal.TreeSitter
@@ -15,7 +16,6 @@ private import internal.IfStatement
 private import internal.ImportStatement
 private import internal.ImportWithStatement
 private import internal.Infrastructure
-private import internal.Statement
 private import internal.UsingStatement
 private import internal.Parameter
 private import internal.Parameters
@@ -53,6 +53,47 @@ class Stmts extends AstNode instanceof StmtsImpl {
    * @return A control-flow entry node for this statement
    */
   AstNode getAControlFlowEntryNode() { result = CfgImpl::getAControlFlowEntryNode(this) }
+}
+
+/**
+ * A sequence of statements in the PHP AST.
+ *
+ * This represents a list of statements that appear together in sequence.
+ */
+class StmtSequence extends AstNode instanceof StmtSequenceImpl {
+  /**
+   * Gets all statements in this sequence.
+   */
+  Stmts getStmts() { none() }
+
+  /**
+   * Gets the statement at the specified index within this sequence.
+   */
+  Stmts getStmt(int index) { none() }
+
+  /**
+   * Get all callables defined in this program.
+   */
+  Callable getCallables() {
+    result = this.getStmts()
+  }
+
+  /**
+   * Get a callable by its name.
+   */
+  Callable getCallable(string name) {
+    exists(Callable c | c = this.getCallables() and c.getName() = name | result = c)
+  }
+
+  /**
+   * Gets the number of statements in this sequence.
+   */
+  int getNumberOfStatements() { result = count(int i | exists(this.getStmt(i))) }
+
+  /**
+   * Gets the last statement of the sequence
+   */
+  Stmts getLastStmt() { result = this.getStmt(this.getNumberOfStatements() - 1) }
 }
 
 /**
@@ -118,14 +159,10 @@ final class ImportStatementStmt extends Stmts instanceof ImportStatementImpl { }
  * statements and declarations that define the infrastructure to be deployed.
  * This is essentially the entry point of a Bicep program.
  */
-class Infrastructure extends AstNode instanceof InfrastructureImpl {
-  /** 
-   * Gets the statement at the specified index in the infrastructure.
-   * 
-   * @param index The index of the statement to retrieve
-   * @return The statement at the specified index
-   */
-  Stmts getStatement(int index) { result = InfrastructureImpl.super.getStatement(index) }
+class Infrastructure extends StmtSequence instanceof InfrastructureImpl {
+  override Stmts getStmts() { result = InfrastructureImpl.super.getStmts() }
+
+  override Stmts getStmt(int index) { result = InfrastructureImpl.super.getStmt(index) }
 }
 
 /**
@@ -359,15 +396,6 @@ class Parameters extends AstNode instanceof ParametersImpl {
  * or transformations applied to the imported items.
  */
 final class ImportWithStatementStmt extends Stmts instanceof ImportWithStatementImpl { }
-
-/**
- * A generic statement in the AST.
- * 
- * This class represents any statement that doesn't fit into other more specific
- * statement categories. It serves as a base implementation for statements
- * in the Bicep language.
- */
-final class StatementStmt extends Stmts instanceof StatementImpl { }
 
 /**
  * A using statement in the AST.
