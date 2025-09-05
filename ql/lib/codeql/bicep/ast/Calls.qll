@@ -6,6 +6,8 @@ private import Misc
 private import internal.Calls
 private import internal.CallExpression
 private import internal.LambdaExpression
+private import internal.UserDefinedFunction
+private import internal.Type
 
 /**
  * Represents a callable expression in the AST, such as a function or method call.
@@ -105,8 +107,8 @@ class CallExpression extends Call instanceof CallExpressionImpl {
  * filters, or other functional programming patterns. A lambda expression
  * consists of parameters and a body that defines the computation to be performed.
  */
-class LambdaExpression extends Expr instanceof LambdaExpressionImpl {
-  Idents getIdentifier() { none() }
+class LambdaExpression extends Callable instanceof LambdaExpressionImpl {
+  override Idents getIdentifier() { none() }
 
   /**
    * Gets the parameters of this lambda expression.
@@ -136,4 +138,56 @@ class LambdaExpression extends Expr instanceof LambdaExpressionImpl {
    * @return The number of parameters
    */
   int getNumberOfParameters() { result = LambdaExpressionImpl.super.getNumberOfParameters() }
+}
+
+/**
+ * A user-defined function in the AST.
+ *
+ * Represents a function declaration in Bicep, which can be called by name
+ * from other parts of the code. User-defined functions consist of a name,
+ * parameters, return type, and a body that defines the computation.
+ */
+class UserDefinedFunction extends Callable instanceof UserDefinedFunctionImpl {
+  /**
+   * Gets the identifier of this user-defined function.
+   *
+   * @return The identifier node of the function
+   */
+  override Idents getIdentifier() { result = UserDefinedFunctionImpl.super.getIdentifier() }
+
+  /**
+   * Gets the parameters of this user-defined function.
+   *
+   * @return The parameters node of the function
+   */
+  Expr getParameters() { result = UserDefinedFunctionImpl.super.getParameters() }
+
+  /**
+   * Gets the parameter at the specified index.
+   *
+   * @param n The index of the parameter to retrieve
+   * @return The parameter at the specified index
+   */
+  Expr getParameter(int n) { result = UserDefinedFunctionImpl.super.getParameter(n) }
+
+  /**
+   * Gets the return type of this user-defined function.
+   *
+   * @return The return type node of the function
+   */
+  Type getReturnType() { result = UserDefinedFunctionImpl.super.getReturnType() }
+
+  /**
+   * Gets the body of this user-defined function.
+   *
+   * @return The body node of the function
+   */
+  Stmts getBody() { result = UserDefinedFunctionImpl.super.getBody() }
+
+  /**
+   * Gets the number of parameters in this user-defined function.
+   *
+   * @return The number of parameters
+   */
+  int getNumberOfParameters() { result = UserDefinedFunctionImpl.super.getNumberOfParameters() }
 }
