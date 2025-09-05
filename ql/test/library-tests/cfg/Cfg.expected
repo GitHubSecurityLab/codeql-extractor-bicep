@@ -1,52 +1,19 @@
 | sample.bicep:1:1:1:48 | ParameterDeclaration | sample.bicep:1:1:103:1 | Infrastructure |  |
-| sample.bicep:1:1:1:48 | ParameterDeclaration | sample.bicep:1:1:103:1 | Infrastructure |  |
 | sample.bicep:1:1:1:48 | ParameterDeclaration | sample.bicep:1:7:1:14 | location |  |
 | sample.bicep:1:1:103:1 | Infrastructure | sample.bicep:1:1:103:1 | exit Infrastructure (normal) |  |
-| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:7:1:14 | location |  |
-| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:7:1:14 | location |  |
+| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
 | sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:7:1:14 | location |  |
 | sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:25:1:37 | resourceGroup |  |
-| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:25:1:37 | resourceGroup |  |
-| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:25:1:37 | resourceGroup |  |
+| sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:38:1:39 | Arguments |  |
 | sample.bicep:1:1:103:1 | enter Infrastructure | sample.bicep:1:41:1:48 | location |  |
 | sample.bicep:1:1:103:1 | exit Infrastructure (normal) | sample.bicep:1:1:103:1 | exit Infrastructure |  |
 | sample.bicep:1:7:1:14 | location | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:7:1:14 | location | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:7:1:14 | location | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:7:1:14 | location | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:7:1:14 | location | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:7:1:14 | location | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
 | sample.bicep:1:7:1:14 | location | sample.bicep:1:25:1:37 | resourceGroup |  |
-| sample.bicep:1:7:1:14 | location | sample.bicep:1:25:1:37 | resourceGroup |  |
-| sample.bicep:1:7:1:14 | location | sample.bicep:1:25:1:37 | resourceGroup |  |
+| sample.bicep:1:7:1:14 | location | sample.bicep:1:38:1:39 | Arguments |  |
 | sample.bicep:1:7:1:14 | location | sample.bicep:1:41:1:48 | location |  |
 | sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
-| sample.bicep:1:25:1:37 | resourceGroup | sample.bicep:1:25:1:39 | CallExpression |  |
 | sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:39 | CallExpression | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
-| sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
 | sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:1:48 | ParameterDeclaration |  |
 | sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:103:1 | Infrastructure | , BooleanSuccessor, BooleanSuccessor |
-| sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:103:1 | Infrastructure | , BooleanSuccessor, BooleanSuccessor |
-| sample.bicep:1:25:1:48 | MemberExpression | sample.bicep:1:1:103:1 | Infrastructure | , BooleanSuccessor, BooleanSuccessor |
-| sample.bicep:1:41:1:48 | location | sample.bicep:1:25:1:48 | MemberExpression |  |
-| sample.bicep:1:41:1:48 | location | sample.bicep:1:25:1:48 | MemberExpression |  |
+| sample.bicep:1:38:1:39 | Arguments | sample.bicep:1:25:1:39 | CallExpression |  |
 | sample.bicep:1:41:1:48 | location | sample.bicep:1:25:1:48 | MemberExpression |  |

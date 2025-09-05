@@ -7,11 +7,12 @@ private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
 private import Parameter
+private import Expr
 
 /**
  *  A Parameters AST Node.
  */
-class ParametersImpl extends TParameters, AstNode {
+class ParametersImpl extends TParameters, ExprImpl {
   private BICEP::Parameters ast;
 
   override string getAPrimaryQlClass() { result = "Parameters" }

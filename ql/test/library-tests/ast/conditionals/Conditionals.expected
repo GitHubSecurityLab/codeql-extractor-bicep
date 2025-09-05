@@ -1,0 +1,4 @@
+conditional
+| conditions.bicep:4:74:12:1 | IfStatement |
+ifCondition
+| conditions.bicep:4:74:12:1 | IfStatement | conditions.bicep:4:77:4:98 | ParenthesizedExpression | conditions.bicep:4:100:12:1 | Object |

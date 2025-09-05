@@ -9,6 +9,7 @@
  * - Sku: Represents the SKU of a resource, with access to name and tier.
  * - Tags: Represents the tags of a resource, with access to tag values by key.
  */
+
 private import bicep
 
 /**
@@ -18,18 +19,21 @@ private import bicep
 abstract class AzureResource extends Resource {
   /**
    * Gets the location of the resource as a string value.
+   *
    * @return The Azure region/location of the resource (e.g., "eastus").
    */
   string resourceLocation() { result = this.getProperty("location").(StringLiteral).getValue() }
 
   /**
    * Gets the SKU object for the resource.
+   *
    * @return The SKU object representing the resource's SKU.
    */
   Sku getSku() { result = this.getProperty("sku") }
 
   /**
    * Gets the Tags object for the resource.
+   *
    * @return The Tags object representing the resource's tags.
    */
   Tags getTags() { result = this.getProperty("tags") }
@@ -43,7 +47,7 @@ abstract class ResourceProperties extends Object {
   /**
    * Returns a string representation of the resource properties object.
    */
-  string toString() { result = "ResourceProperties" }
+  override string toString() { result = "ResourceProperties" }
 }
 
 /**
@@ -60,29 +64,33 @@ class Sku extends Object {
 
   /**
    * Gets the SKU name as a StringLiteral.
+   *
    * @return The SKU name property as a StringLiteral.
    */
   StringLiteral getName() { result = this.getProperty("name") }
 
   /**
    * Returns the SKU name (e.g., Basic, Standard, Premium).
+   *
    * @return The SKU name as a string.
    */
   string name() { result = this.getName().getValue() }
 
   /**
    * Gets the SKU tier as a StringLiteral.
+   *
    * @return The SKU tier property as a StringLiteral.
    */
   StringLiteral getTier() { result = this.getProperty("tier") }
 
   /**
    * Returns the SKU tier (e.g., Basic, Standard, Premium).
+   *
    * @return The SKU tier as a string.
    */
   string tier() { result = this.getTier().getValue() }
 
-  string toString() { result = "SKU" }
+  override string toString() { result = "SKU" }
 }
 
 /**
@@ -99,10 +107,11 @@ class Tags extends Object {
 
   /**
    * Gets the value of a tag by its key.
+   *
    * @param key The tag key to look up.
    * @return The value of the tag as a Literals object, or undefined if not present.
    */
   Literals getTag(string key) { result = this.getProperty(key) }
 
-  string toString() { result = "Tags" }
+  override string toString() { result = "Tags" }
 }

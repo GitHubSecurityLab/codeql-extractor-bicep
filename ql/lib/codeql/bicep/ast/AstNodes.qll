@@ -4,6 +4,7 @@ private import codeql.bicep.ast.internal.TreeSitter
 private import codeql.bicep.ast.internal.AstNodes
 private import codeql.bicep.ast.internal.TreeSitter
 private import codeql.bicep.controlflow.ControlFlowGraph
+private import Variables
 
 /**
  * An AST node of a Bicep program.
@@ -112,6 +113,20 @@ class AstNode extends TAstNode {
    * 
    * This returns the name of the most specific QL class that describes this node.
    * Used primarily for debugging and toString() representations.
+   * Gets the lexical scope containing this AST node.
+   */
+  cached
+  Scope getScope() {
+    result = this.getParent+() and
+    not exists(AstNode mid |
+      mid = this.getParent+() and
+      mid instanceof Scope and
+      mid.getParent+() = result
+    )
+  }
+
+  /**
+   * Gets the primary QL class for the ast node.
    */
   string getAPrimaryQlClass() { result = "???" }
 }

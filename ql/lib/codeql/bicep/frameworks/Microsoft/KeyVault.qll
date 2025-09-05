@@ -33,9 +33,7 @@ module KeyVault {
     /**
      * Gets the network ACLs for the Key Vault resource.
      */
-    Network::NetworkAcl getNetworkAcls() {
-      result = this.getProperties().getNetworkAcls()
-    }
+    Network::NetworkAcl getNetworkAcls() { result = this.getProperties().getNetworkAcls() }
 
     override string toString() { result = "Key Vault Resource" }
   }
@@ -172,9 +170,7 @@ module KeyVault {
       /**
        * Gets the network ACLs for the Key Vault.
        */
-      Network::NetworkAcl getNetworkAcls() {
-        result = this.getProperty("networkAcls")
-      }
+      Network::NetworkAcl getNetworkAcls() { result = this.getProperty("networkAcls") }
 
       /**
        * Gets all access policies for the Key Vault.
@@ -190,9 +186,7 @@ module KeyVault {
         result = this.getProperty("accessPolicies").(Array).getElement(index)
       }
 
-      override string toString() {
-        result = "Key Vault Properties"
-      }
+      override string toString() { result = "Key Vault Properties" }
     }
 
     /**
@@ -219,7 +213,7 @@ module KeyVault {
       /**
        * Returns a string representation of the access policy.
        */
-      string toString() { result = "AccessPolicy" }
+      override string toString() { result = "AccessPolicy" }
     }
 
     /**
@@ -276,7 +270,7 @@ module KeyVault {
       /**
        * Returns a string representation of the access policy permissions.
        */
-      string toString() { result = "AccessPolicyPermissions" }
+      override string toString() { result = "AccessPolicyPermissions" }
     }
   }
 }

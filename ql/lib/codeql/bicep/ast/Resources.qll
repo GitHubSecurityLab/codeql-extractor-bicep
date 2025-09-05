@@ -51,6 +51,8 @@ class Object extends Expr instanceof ObjectImpl {
       result = property.getValue()
     )
   }
+
+  override string toString() { result = "Object" }
 }
 
 /**

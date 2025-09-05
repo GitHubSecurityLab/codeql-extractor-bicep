@@ -45,7 +45,7 @@ module OsProfiles {
 
     SshConfig getSshConfig() { result = this.getProperty("ssh") }
 
-    string toString() { result = "OsProfile[" + profileType + "]" }
+  override string toString() { result = "OsProfile[" + profileType + "]" }
   }
 
   /**
@@ -108,7 +108,7 @@ module OsProfiles {
     /**
      * Returns a string representation of the SSH configuration.
      */
-    string toString() { result = "SshConfig" }
+  override string toString() { result = "SshConfig" }
   }
 
   class SshPublicKey extends Object {
@@ -127,7 +127,7 @@ module OsProfiles {
     /**
      * Returns a string representation of the SSH public key.
      */
-    string toString() { result = "SshConfigPublicKey" }
+  override string toString() { result = "SshConfigPublicKey" }
   }
 }
 
@@ -196,7 +196,7 @@ module NetworkingProfiles {
     /**
      * Returns a string representation of the network profile.
      */
-    string toString() { result = "NetworkProfile" }
+  override string toString() { result = "NetworkProfile" }
   }
 }
 
@@ -237,7 +237,7 @@ module StorageProfiles {
      */
     Expr getSnapshotController() { result = this.getProperty("snapshotController") }
 
-    string toString() { result = "StorageProfile" }
+  override string toString() { result = "StorageProfile" }
   }
 
   /**
@@ -311,6 +311,6 @@ module SecurityProfiles {
      */
     Expr getWorkloadIdentity() { result = this.getProperty("workloadIdentity") }
 
-    string toString() { result = "SecurityProfile" }
+  override string toString() { result = "SecurityProfile" }
   }
 }

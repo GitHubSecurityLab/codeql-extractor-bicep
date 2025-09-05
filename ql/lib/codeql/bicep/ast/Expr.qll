@@ -6,18 +6,17 @@ private import AstNodes
 private import internal.AstNodes
 private import internal.TreeSitter
 private import internal.Expr
+private import internal.Arguments
 private import internal.AssignmentExpression
 private import internal.BinaryExpression
-private import internal.Expression
 private import internal.Interpolation
-private import internal.LambdaExpression
 private import internal.MemberExpression
 private import internal.NullableType
 private import internal.ParenthesizedExpression
-private import internal.PrimaryExpression
 private import internal.ResourceExpression
 private import internal.TernaryExpression
 private import internal.UnaryExpression
+private import Stmts
 private import Idents
 private import Resources
 
@@ -29,7 +28,31 @@ private import Resources
  * Expressions can be nested and can appear in various contexts such as assignments,
  * parameter values, and return statements.
  */
-final class Expr extends AstNode instanceof ExprImpl { }
+class Expr extends Stmts instanceof ExprImpl { }
+
+/**
+ * Represents a collection of arguments in a function call.
+ * 
+ * This class models the set of arguments passed to a function, allowing
+ * access to individual arguments by index or to the complete set of arguments.
+ * Arguments are expressions that are passed to a function or method call.
+ */
+class Arguments extends Expr instanceof ArgumentsImpl {
+  /** 
+   * Gets the argument at the specified index.
+   * 
+   * @param index The zero-based index of the argument to retrieve
+   * @return The expression node of the argument at the specified index
+   */
+  Expr getArgument(int index) { result = ArgumentsImpl.super.getArgument(index) }
+
+  /** 
+   * Gets all arguments in the collection.
+   * 
+   * @return All argument expressions in this arguments collection
+   */
+  Expr getArguments() { result = ArgumentsImpl.super.getArguments() }
+}
 
 /**
  * An assignment expression in the AST.
@@ -88,22 +111,13 @@ class BinaryExpression extends Expr instanceof BinaryExpressionImpl {
 }
 
 /**
- * A generic expression in the AST.
- * 
- * This class represents any expression that doesn't fit into other more 
- * specific expression categories. It serves as a base implementation for 
- * expressions in the Bicep language.
- */
-final class Expression extends Expr instanceof ExpressionImpl { }
-
-/**
  * An interpolation expression in the AST.
  * 
  * Represents string interpolation expressions of the form ${expr} that appear within 
  * string literals. Interpolations allow embedding dynamic values or expressions 
  * within string literals.
  */
-final class Interpolation extends Expr instanceof InterpolationImpl {
+class Interpolation extends Expr instanceof InterpolationImpl {
   /**
    * Gets the expression contained within the interpolation.
    * 
@@ -124,14 +138,7 @@ final class Interpolation extends Expr instanceof InterpolationImpl {
   }
 }
 
-/**
- * A lambda expression in the AST.
- * 
- * Represents an anonymous function in Bicep, typically used for callbacks,
- * filters, or other functional programming patterns. A lambda expression
- * consists of parameters and a body that defines the computation to be performed.
- */
-final class LambdaExpression extends Expr instanceof LambdaExpressionImpl { }
+
 
 /**
  * A member expression in the AST.
@@ -171,7 +178,7 @@ class MemberExpression extends Expr instanceof MemberExpressionImpl {
  * 
  * This alias provides a shorter name for convenience.
  */
-final class MemberExpr = MemberExpression;
+class MemberExpr = MemberExpression;
 
 /**
  * A nullable type expression in the AST.
@@ -180,7 +187,7 @@ final class MemberExpr = MemberExpression;
  * after the type name (e.g., `string?`). Nullable types explicitly allow
  * the value to be null in addition to values of the underlying type.
  */
-final class NullableType extends Expr instanceof NullableTypeImpl { }
+class NullableType extends Expr instanceof NullableTypeImpl { }
 
 /**
  * A parenthesized expression in the AST.
@@ -213,22 +220,13 @@ class ParenthesizedExpression extends Expr instanceof ParenthesizedExpressionImp
 }
 
 /**
- * A primary expression in the AST.
- * 
- * Represents a basic, self-contained expression such as a literal value,
- * identifier, or other fundamental expression type. Primary expressions
- * serve as the building blocks for more complex expressions.
- */
-final class PrimaryExpression extends Expr instanceof PrimaryExpressionImpl { }
-
-/**
  * A resource expression in the AST.
  * 
  * Represents an expression that refers to or creates an Azure resource.
  * Resource expressions are fundamental to Bicep as they define the
  * infrastructure resources to be provisioned.
  */
-final class ResourceExpression extends Expr instanceof ResourceExpressionImpl { }
+class ResourceExpression extends Expr instanceof ResourceExpressionImpl { }
 
 /**
  * A ternary expression in the AST.
@@ -237,7 +235,7 @@ final class ResourceExpression extends Expr instanceof ResourceExpressionImpl { 
  * The expression evaluates the condition and returns one of two values based on whether
  * the condition is true or false.
  */
-final class TernaryExpression extends Expr instanceof TernaryExpressionImpl { }
+class TernaryExpression extends Expr instanceof TernaryExpressionImpl { }
 
 /**
  * A unary expression in the AST.
@@ -246,4 +244,4 @@ final class TernaryExpression extends Expr instanceof TernaryExpressionImpl { }
  * Examples include negation (`!expr`), numeric negation (`-expr`),
  * and other operations that apply to a single value.
  */
-final class UnaryExpression extends Expr instanceof UnaryExpressionImpl { }
+class UnaryExpression extends Expr instanceof UnaryExpressionImpl { }

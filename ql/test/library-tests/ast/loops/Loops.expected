@@ -1,0 +1,15 @@
+loops
+| loops.bicep:28:75:39:2 | ForStatement |
+| loops.bicep:43:67:54:2 | ForStatement |
+| loops.bicep:58:57:69:2 | ForStatement |
+| loops.bicep:73:85:84:2 | ForStatement |
+| loops.bicep:88:98:96:2 | ForStatement |
+| loops.bicep:109:14:117:6 | ForStatement |
+| loops.bicep:126:77:137:2 | ForStatement |
+| loops.bicep:140:34:143:2 | ForStatement |
+| loops.bicep:145:31:148:2 | ForStatement |
+loopsConditionals
+| loops.bicep:58:57:69:2 | ForStatement | loops.bicep:58:78:58:93 | environmentNames |
+| loops.bicep:88:98:96:2 | ForStatement | loops.bicep:88:119:88:134 | environmentNames |
+| loops.bicep:109:14:117:6 | ForStatement | loops.bicep:109:35:109:50 | environmentNames |
+| loops.bicep:145:31:148:2 | ForStatement | loops.bicep:145:52:145:67 | environmentNames |

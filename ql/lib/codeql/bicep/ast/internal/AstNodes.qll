@@ -15,12 +15,10 @@ newtype TAstNode =
   TCallExpression(BICEP::CallExpression r) or
   TComment(BICEP::Comment r) or
   TCompatibleIdentifier(BICEP::CompatibleIdentifier r) or
-  TDeclaration(BICEP::Declaration r) or
   TDecorator(BICEP::Decorator r) or
   TDecorators(BICEP::Decorators r) or
   TDiagnosticComment(BICEP::DiagnosticComment r) or
   TEscapeSequence(BICEP::EscapeSequence r) or
-  TExpression(BICEP::Expression r) or
   TForLoopParameters(BICEP::ForLoopParameters r) or
   TForStatement(BICEP::ForStatement r) or
   TIdentifier(BICEP::Identifier r) or
@@ -50,12 +48,10 @@ newtype TAstNode =
   TParameters(BICEP::Parameters r) or
   TParenthesizedExpression(BICEP::ParenthesizedExpression r) or
   TParenthesizedType(BICEP::ParenthesizedType r) or
-  TPrimaryExpression(BICEP::PrimaryExpression r) or
   TPrimitiveType(BICEP::PrimitiveType r) or
   TPropertyIdentifier(BICEP::PropertyIdentifier r) or
   TResourceDeclaration(BICEP::ResourceDeclaration r) or
   TResourceExpression(BICEP::ResourceExpression r) or
-  TStatement(BICEP::Statement r) or
   TString(BICEP::String r) or
   TStringContent(BICEP::StringContent r) or
   TSubscriptExpression(BICEP::SubscriptExpression r) or
@@ -87,23 +83,39 @@ class TIdents = TIdentifier or TPropertyIdentifier;
  * A statement in a Bicep program
  */
 class TStmts =
-  TInfrastructure or TAssertStatement or TForStatement or TIfStatement or TImportStatement or
-      TImportWithStatement or TStatement or TUsingStatement or TVariableDeclaration or
+  TExpr or TInfrastructure or TAssertStatement or TForStatement or TIfStatement or
+      TImportStatement or TImportWithStatement or TUsingStatement or TVariableDeclaration or
       TParameterDeclaration or TOutputDeclaration or TUserDefinedFunction;
+
+class TStmtSeq = TInfrastructure;
+
+class TScopes = TInfrastructure;
 
 /**
  * A expersion value in a Bicep program
  */
 class TExpr =
-  TLiterals or TConditionalExpr or TStmts or TIdents or TObject or TObjectProperty or
-      TAssignmentExpression or TBinaryExpression or TCallExpression or TExpression or
-      TLambdaExpression or TMemberExpression or TParenthesizedExpression or TPrimaryExpression or
-      TResourceExpression or TSubscriptExpression or TTernaryExpression or TUnaryExpression;
+  TLiterals or TConditionals or TCall or TCallable or TIdents or TObject or TObjectProperty or
+      TAssignmentExpression or TArguments or TBinaryExpression or TCallExpression or
+      TLambdaExpression or TMemberExpression or TParenthesizedExpression or TParameter or
+      TParameters or TResourceExpression or TSubscriptExpression or TTernaryExpression or
+      TUnaryExpression;
+
+class TConditionals = TIfStatement;
 
 /**
- * A expersion value in a Bicep program
+ * Call expression
  */
-class TConditionalExpr = TIfStatement;
+class TCall = TCallExpression;
+
+/**
+ * Callable functions, etc.
+ */
+class TCallable = TUserDefinedFunction or TLambdaExpression;
+
+class TLoops = TForStatement;
+
+class TTypes = TType or TTypeArguments;
 
 cached
 BICEP::AstNode toTreeSitter(TAstNode n) {
@@ -117,12 +129,10 @@ BICEP::AstNode toTreeSitter(TAstNode n) {
   n = TCallExpression(result) or
   n = TComment(result) or
   n = TCompatibleIdentifier(result) or
-  n = TDeclaration(result) or
   n = TDecorator(result) or
   n = TDecorators(result) or
   n = TDiagnosticComment(result) or
   n = TEscapeSequence(result) or
-  n = TExpression(result) or
   n = TForLoopParameters(result) or
   n = TForStatement(result) or
   n = TIdentifier(result) or
@@ -152,12 +162,10 @@ BICEP::AstNode toTreeSitter(TAstNode n) {
   n = TParameters(result) or
   n = TParenthesizedExpression(result) or
   n = TParenthesizedType(result) or
-  n = TPrimaryExpression(result) or
   n = TPrimitiveType(result) or
   n = TPropertyIdentifier(result) or
   n = TResourceDeclaration(result) or
   n = TResourceExpression(result) or
-  n = TStatement(result) or
   n = TString(result) or
   n = TStringContent(result) or
   n = TSubscriptExpression(result) or

@@ -13,7 +13,7 @@ private import Type
 /**
  *  A Parameter AST Node.
  */
-class ParameterImpl extends TParameter, AstNode {
+class ParameterImpl extends TParameter, ExprImpl {
   private BICEP::Parameter ast;
 
   override string getAPrimaryQlClass() { result = "Parameter" }

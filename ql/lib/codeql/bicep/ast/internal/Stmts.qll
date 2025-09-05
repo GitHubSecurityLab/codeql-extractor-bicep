@@ -9,3 +9,11 @@ private import Expr
 class StmtsImpl extends AstNode, TStmts {
   override string getAPrimaryQlClass() { result = "Stmts" }
 }
+
+class StmtSequenceImpl extends AstNode, TStmtSeq {
+  override string getAPrimaryQlClass() { result = "StmtSequence" }
+
+  abstract StmtsImpl getStmts();
+
+  abstract StmtsImpl getStmt(int index);
+}

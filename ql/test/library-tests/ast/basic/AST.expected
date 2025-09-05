@@ -1,0 +1,315 @@
+ast
+| sample.bicep:1:1:1:48 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure |
+| sample.bicep:1:7:1:14 | location |
+| sample.bicep:1:16:1:21 | Type |
+| sample.bicep:1:16:1:21 | string |
+| sample.bicep:1:25:1:37 | resourceGroup |
+| sample.bicep:1:25:1:39 | CallExpression |
+| sample.bicep:1:25:1:48 | MemberExpression |
+| sample.bicep:1:38:1:39 | Arguments |
+| sample.bicep:1:41:1:48 | location |
+| sample.bicep:2:1:2:80 | ParameterDeclaration |
+| sample.bicep:2:7:2:24 | storageAccountName |
+| sample.bicep:2:26:2:31 | Type |
+| sample.bicep:2:26:2:31 | string |
+| sample.bicep:2:35:2:80 | String |
+| sample.bicep:2:36:2:44 | toylaunch |
+| sample.bicep:2:45:2:79 | Interpolation |
+| sample.bicep:2:47:2:58 | uniqueString |
+| sample.bicep:2:47:2:78 | CallExpression |
+| sample.bicep:2:59:2:78 | Arguments |
+| sample.bicep:2:60:2:72 | resourceGroup |
+| sample.bicep:2:60:2:74 | CallExpression |
+| sample.bicep:2:60:2:77 | MemberExpression |
+| sample.bicep:2:73:2:74 | Arguments |
+| sample.bicep:2:76:2:77 | id |
+| sample.bicep:3:1:3:28 | ParameterDeclaration |
+| sample.bicep:3:7:3:12 | vmName |
+| sample.bicep:3:14:3:19 | Type |
+| sample.bicep:3:14:3:19 | string |
+| sample.bicep:3:23:3:28 | String |
+| sample.bicep:3:24:3:27 | myVM |
+| sample.bicep:4:1:4:40 | ParameterDeclaration |
+| sample.bicep:4:7:4:19 | adminUsername |
+| sample.bicep:4:21:4:26 | Type |
+| sample.bicep:4:21:4:26 | string |
+| sample.bicep:4:30:4:40 | String |
+| sample.bicep:4:31:4:39 | azureuser |
+| sample.bicep:5:1:5:43 | ParameterDeclaration |
+| sample.bicep:5:7:5:19 | adminPassword |
+| sample.bicep:5:21:5:26 | Type |
+| sample.bicep:5:21:5:26 | string |
+| sample.bicep:5:30:5:43 | String |
+| sample.bicep:5:31:5:42 | P@ssw0rd123! |
+| sample.bicep:6:1:6:32 | ParameterDeclaration |
+| sample.bicep:6:7:6:14 | vnetName |
+| sample.bicep:6:16:6:21 | Type |
+| sample.bicep:6:16:6:21 | string |
+| sample.bicep:6:25:6:32 | String |
+| sample.bicep:6:26:6:31 | myVnet |
+| sample.bicep:7:1:7:36 | ParameterDeclaration |
+| sample.bicep:7:7:7:16 | subnetName |
+| sample.bicep:7:18:7:23 | Type |
+| sample.bicep:7:18:7:23 | string |
+| sample.bicep:7:27:7:36 | String |
+| sample.bicep:7:28:7:35 | mySubnet |
+| sample.bicep:8:1:8:40 | ParameterDeclaration |
+| sample.bicep:8:7:8:18 | publicIpName |
+| sample.bicep:8:20:8:25 | Type |
+| sample.bicep:8:20:8:25 | string |
+| sample.bicep:8:29:8:40 | String |
+| sample.bicep:8:30:8:39 | myPublicIP |
+| sample.bicep:9:1:9:30 | ParameterDeclaration |
+| sample.bicep:9:7:9:13 | nicName |
+| sample.bicep:9:15:9:20 | Type |
+| sample.bicep:9:15:9:20 | string |
+| sample.bicep:9:24:9:30 | String |
+| sample.bicep:9:25:9:29 | myNIC |
+| sample.bicep:11:1:21:1 | ResourceDeclaration |
+| sample.bicep:11:10:11:23 | storageAccount |
+| sample.bicep:11:25:11:70 | String |
+| sample.bicep:11:26:11:69 | Microsoft.Storage/storageAccounts@2021-06-01 |
+| sample.bicep:11:74:21:1 | Object |
+| sample.bicep:12:3:12:6 | name |
+| sample.bicep:12:3:12:26 | ObjectProperty |
+| sample.bicep:12:9:12:26 | storageAccountName |
+| sample.bicep:13:3:13:10 | location |
+| sample.bicep:13:3:13:20 | ObjectProperty |
+| sample.bicep:13:13:13:20 | location |
+| sample.bicep:14:3:14:5 | sku |
+| sample.bicep:14:3:16:3 | ObjectProperty |
+| sample.bicep:14:8:16:3 | SKU |
+| sample.bicep:15:5:15:8 | name |
+| sample.bicep:15:5:15:24 | ObjectProperty |
+| sample.bicep:15:11:15:24 | String |
+| sample.bicep:15:12:15:23 | Standard_LRS |
+| sample.bicep:17:3:17:6 | kind |
+| sample.bicep:17:3:17:19 | ObjectProperty |
+| sample.bicep:17:9:17:19 | String |
+| sample.bicep:17:10:17:18 | StorageV2 |
+| sample.bicep:18:3:18:12 | properties |
+| sample.bicep:18:3:20:3 | ObjectProperty |
+| sample.bicep:18:15:20:3 | (no string representation) |
+| sample.bicep:19:5:19:14 | accessTier |
+| sample.bicep:19:5:19:21 | ObjectProperty |
+| sample.bicep:19:17:19:21 | String |
+| sample.bicep:19:18:19:20 | Hot |
+| sample.bicep:23:1:41:1 | ResourceDeclaration |
+| sample.bicep:23:10:23:13 | vnet |
+| sample.bicep:23:15:23:60 | String |
+| sample.bicep:23:16:23:59 | Microsoft.Network/virtualNetworks@2021-05-01 |
+| sample.bicep:23:64:41:1 | Object |
+| sample.bicep:24:3:24:6 | name |
+| sample.bicep:24:3:24:16 | ObjectProperty |
+| sample.bicep:24:9:24:16 | vnetName |
+| sample.bicep:25:3:25:10 | location |
+| sample.bicep:25:3:25:20 | ObjectProperty |
+| sample.bicep:25:13:25:20 | location |
+| sample.bicep:26:3:26:12 | properties |
+| sample.bicep:26:3:40:3 | ObjectProperty |
+| sample.bicep:26:15:40:3 | Object |
+| sample.bicep:27:5:27:16 | addressSpace |
+| sample.bicep:27:5:31:5 | ObjectProperty |
+| sample.bicep:27:19:31:5 | Object |
+| sample.bicep:28:7:28:21 | addressPrefixes |
+| sample.bicep:28:7:30:7 | ObjectProperty |
+| sample.bicep:28:24:30:7 | Array |
+| sample.bicep:29:9:29:21 | String |
+| sample.bicep:29:10:29:20 | 10.0.0.0/16 |
+| sample.bicep:32:5:32:11 | subnets |
+| sample.bicep:32:5:39:5 | ObjectProperty |
+| sample.bicep:32:14:39:5 | Array |
+| sample.bicep:33:7:38:7 | Object |
+| sample.bicep:34:9:34:12 | name |
+| sample.bicep:34:9:34:24 | ObjectProperty |
+| sample.bicep:34:15:34:24 | subnetName |
+| sample.bicep:35:9:35:18 | properties |
+| sample.bicep:35:9:37:9 | ObjectProperty |
+| sample.bicep:35:21:37:9 | Object |
+| sample.bicep:36:11:36:23 | addressPrefix |
+| sample.bicep:36:11:36:38 | ObjectProperty |
+| sample.bicep:36:26:36:38 | String |
+| sample.bicep:36:27:36:37 | 10.0.0.0/24 |
+| sample.bicep:43:1:49:1 | ResourceDeclaration |
+| sample.bicep:43:10:43:17 | publicIp |
+| sample.bicep:43:19:43:66 | String |
+| sample.bicep:43:20:43:65 | Microsoft.Network/publicIPAddresses@2021-05-01 |
+| sample.bicep:43:70:49:1 | Object |
+| sample.bicep:44:3:44:6 | name |
+| sample.bicep:44:3:44:20 | ObjectProperty |
+| sample.bicep:44:9:44:20 | publicIpName |
+| sample.bicep:45:3:45:10 | location |
+| sample.bicep:45:3:45:20 | ObjectProperty |
+| sample.bicep:45:13:45:20 | location |
+| sample.bicep:46:3:46:12 | properties |
+| sample.bicep:46:3:48:3 | ObjectProperty |
+| sample.bicep:46:15:48:3 | Object |
+| sample.bicep:47:5:47:28 | publicIPAllocationMethod |
+| sample.bicep:47:5:47:39 | ObjectProperty |
+| sample.bicep:47:31:47:39 | String |
+| sample.bicep:47:32:47:38 | Dynamic |
+| sample.bicep:51:1:70:1 | ResourceDeclaration |
+| sample.bicep:51:10:51:12 | nic |
+| sample.bicep:51:14:51:61 | String |
+| sample.bicep:51:15:51:60 | Microsoft.Network/networkInterfaces@2021-05-01 |
+| sample.bicep:51:65:70:1 | Object |
+| sample.bicep:52:3:52:6 | name |
+| sample.bicep:52:3:52:15 | ObjectProperty |
+| sample.bicep:52:9:52:15 | nicName |
+| sample.bicep:53:3:53:10 | location |
+| sample.bicep:53:3:53:20 | ObjectProperty |
+| sample.bicep:53:13:53:20 | location |
+| sample.bicep:54:3:54:12 | properties |
+| sample.bicep:54:3:69:3 | ObjectProperty |
+| sample.bicep:54:15:69:3 | Object |
+| sample.bicep:55:5:55:20 | ipConfigurations |
+| sample.bicep:55:5:68:5 | ObjectProperty |
+| sample.bicep:55:23:68:5 | Array |
+| sample.bicep:56:7:67:7 | Object |
+| sample.bicep:57:9:57:12 | name |
+| sample.bicep:57:9:57:25 | ObjectProperty |
+| sample.bicep:57:15:57:25 | String |
+| sample.bicep:57:16:57:24 | ipconfig1 |
+| sample.bicep:58:9:58:18 | properties |
+| sample.bicep:58:9:66:9 | ObjectProperty |
+| sample.bicep:58:21:66:9 | Object |
+| sample.bicep:59:11:59:16 | subnet |
+| sample.bicep:59:11:61:11 | ObjectProperty |
+| sample.bicep:59:19:61:11 | Object |
+| sample.bicep:60:13:60:14 | id |
+| sample.bicep:60:13:60:45 | ObjectProperty |
+| sample.bicep:60:17:60:20 | vnet |
+| sample.bicep:60:17:60:31 | MemberExpression |
+| sample.bicep:60:17:60:39 | MemberExpression |
+| sample.bicep:60:17:60:42 | SubscriptExpression |
+| sample.bicep:60:17:60:45 | MemberExpression |
+| sample.bicep:60:22:60:31 | properties |
+| sample.bicep:60:33:60:39 | subnets |
+| sample.bicep:60:41:60:41 | 0 |
+| sample.bicep:60:44:60:45 | id |
+| sample.bicep:62:11:62:35 | privateIPAllocationMethod |
+| sample.bicep:62:11:62:46 | ObjectProperty |
+| sample.bicep:62:38:62:46 | String |
+| sample.bicep:62:39:62:45 | Dynamic |
+| sample.bicep:63:11:63:25 | publicIPAddress |
+| sample.bicep:63:11:65:11 | ObjectProperty |
+| sample.bicep:63:28:65:11 | Object |
+| sample.bicep:64:13:64:14 | id |
+| sample.bicep:64:13:64:27 | ObjectProperty |
+| sample.bicep:64:17:64:24 | publicIp |
+| sample.bicep:64:17:64:27 | MemberExpression |
+| sample.bicep:64:26:64:27 | id |
+| sample.bicep:72:1:103:1 | ResourceDeclaration |
+| sample.bicep:72:10:72:11 | vm |
+| sample.bicep:72:13:72:58 | String |
+| sample.bicep:72:14:72:57 | Microsoft.Compute/virtualMachines@2021-07-01 |
+| sample.bicep:72:62:103:1 | Object |
+| sample.bicep:73:3:73:6 | name |
+| sample.bicep:73:3:73:14 | ObjectProperty |
+| sample.bicep:73:9:73:14 | vmName |
+| sample.bicep:74:3:74:10 | location |
+| sample.bicep:74:3:74:20 | ObjectProperty |
+| sample.bicep:74:13:74:20 | location |
+| sample.bicep:75:3:75:12 | properties |
+| sample.bicep:75:3:102:3 | ObjectProperty |
+| sample.bicep:75:15:102:3 | (no string representation) |
+| sample.bicep:76:5:76:19 | hardwareProfile |
+| sample.bicep:76:5:78:5 | ObjectProperty |
+| sample.bicep:76:22:78:5 | HardwareProfile |
+| sample.bicep:77:7:77:12 | vmSize |
+| sample.bicep:77:7:77:31 | ObjectProperty |
+| sample.bicep:77:15:77:31 | String |
+| sample.bicep:77:16:77:30 | Standard_DS1_v2 |
+| sample.bicep:79:5:79:13 | osProfile |
+| sample.bicep:79:5:83:5 | ObjectProperty |
+| sample.bicep:79:16:83:5 | OsProfile[general] |
+| sample.bicep:80:7:80:18 | computerName |
+| sample.bicep:80:7:80:26 | ObjectProperty |
+| sample.bicep:80:21:80:26 | vmName |
+| sample.bicep:81:7:81:19 | adminUsername |
+| sample.bicep:81:7:81:34 | ObjectProperty |
+| sample.bicep:81:22:81:34 | adminUsername |
+| sample.bicep:82:7:82:19 | adminPassword |
+| sample.bicep:82:7:82:34 | ObjectProperty |
+| sample.bicep:82:22:82:34 | adminPassword |
+| sample.bicep:84:5:84:18 | storageProfile |
+| sample.bicep:84:5:94:5 | ObjectProperty |
+| sample.bicep:84:21:94:5 | StorageProfile |
+| sample.bicep:85:7:85:20 | imageReference |
+| sample.bicep:85:7:90:7 | ObjectProperty |
+| sample.bicep:85:23:90:7 | Object |
+| sample.bicep:86:9:86:17 | publisher |
+| sample.bicep:86:9:86:30 | ObjectProperty |
+| sample.bicep:86:20:86:30 | String |
+| sample.bicep:86:21:86:29 | Canonical |
+| sample.bicep:87:9:87:13 | offer |
+| sample.bicep:87:9:87:29 | ObjectProperty |
+| sample.bicep:87:16:87:29 | String |
+| sample.bicep:87:17:87:28 | UbuntuServer |
+| sample.bicep:88:9:88:11 | sku |
+| sample.bicep:88:9:88:24 | ObjectProperty |
+| sample.bicep:88:14:88:24 | String |
+| sample.bicep:88:15:88:23 | 18.04-LTS |
+| sample.bicep:89:9:89:15 | version |
+| sample.bicep:89:9:89:25 | ObjectProperty |
+| sample.bicep:89:18:89:25 | String |
+| sample.bicep:89:19:89:24 | latest |
+| sample.bicep:91:7:91:12 | osDisk |
+| sample.bicep:91:7:93:7 | ObjectProperty |
+| sample.bicep:91:15:93:7 | Object |
+| sample.bicep:92:9:92:20 | createOption |
+| sample.bicep:92:9:92:33 | ObjectProperty |
+| sample.bicep:92:23:92:33 | String |
+| sample.bicep:92:24:92:32 | FromImage |
+| sample.bicep:95:5:95:18 | networkProfile |
+| sample.bicep:95:5:101:5 | ObjectProperty |
+| sample.bicep:95:21:101:5 | NetworkProfile |
+| sample.bicep:96:7:96:23 | networkInterfaces |
+| sample.bicep:96:7:100:7 | ObjectProperty |
+| sample.bicep:96:26:100:7 | Array |
+| sample.bicep:97:9:99:9 | Object |
+| sample.bicep:98:11:98:12 | id |
+| sample.bicep:98:11:98:20 | ObjectProperty |
+| sample.bicep:98:15:98:17 | nic |
+| sample.bicep:98:15:98:20 | MemberExpression |
+| sample.bicep:98:19:98:20 | id |
+infra
+| sample.bicep:1:1:103:1 | Infrastructure | 0 | sample.bicep:1:1:1:48 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 1 | sample.bicep:2:1:2:80 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 2 | sample.bicep:3:1:3:28 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 3 | sample.bicep:4:1:4:40 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 4 | sample.bicep:5:1:5:43 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 5 | sample.bicep:6:1:6:32 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 6 | sample.bicep:7:1:7:36 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 7 | sample.bicep:8:1:8:40 | ParameterDeclaration |
+| sample.bicep:1:1:103:1 | Infrastructure | 8 | sample.bicep:9:1:9:30 | ParameterDeclaration |
+strings
+| sample.bicep:2:35:2:80 | String | Interpolation |
+| sample.bicep:2:35:2:80 | String | toylaunch |
+| sample.bicep:3:23:3:28 | String | myVM |
+| sample.bicep:4:30:4:40 | String | azureuser |
+| sample.bicep:5:30:5:43 | String | P@ssw0rd123! |
+| sample.bicep:6:25:6:32 | String | myVnet |
+| sample.bicep:7:27:7:36 | String | mySubnet |
+| sample.bicep:8:29:8:40 | String | myPublicIP |
+| sample.bicep:9:24:9:30 | String | myNIC |
+| sample.bicep:11:25:11:70 | String | Microsoft.Storage/storageAccounts@2021-06-01 |
+| sample.bicep:15:11:15:24 | String | Standard_LRS |
+| sample.bicep:17:9:17:19 | String | StorageV2 |
+| sample.bicep:19:17:19:21 | String | Hot |
+| sample.bicep:23:15:23:60 | String | Microsoft.Network/virtualNetworks@2021-05-01 |
+| sample.bicep:29:9:29:21 | String | 10.0.0.0/16 |
+| sample.bicep:36:26:36:38 | String | 10.0.0.0/24 |
+| sample.bicep:43:19:43:66 | String | Microsoft.Network/publicIPAddresses@2021-05-01 |
+| sample.bicep:47:31:47:39 | String | Dynamic |
+| sample.bicep:51:14:51:61 | String | Microsoft.Network/networkInterfaces@2021-05-01 |
+| sample.bicep:57:15:57:25 | String | ipconfig1 |
+| sample.bicep:62:38:62:46 | String | Dynamic |
+| sample.bicep:72:13:72:58 | String | Microsoft.Compute/virtualMachines@2021-07-01 |
+| sample.bicep:77:15:77:31 | String | Standard_DS1_v2 |
+| sample.bicep:86:20:86:30 | String | Canonical |
+| sample.bicep:87:16:87:29 | String | UbuntuServer |
+| sample.bicep:88:14:88:24 | String | 18.04-LTS |
+| sample.bicep:89:18:89:25 | String | latest |
+| sample.bicep:92:23:92:33 | String | FromImage |

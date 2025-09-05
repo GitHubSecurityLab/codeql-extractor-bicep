@@ -64,7 +64,7 @@ private module CfgImpl = Make<Location, Implementation>;
 import CfgImpl
 
 class InfrastructureScopeTree extends StandardTree, PreOrderTree, PostOrderTree, Scope::InfrastructureScope {
-  override AstNode getChildNode(int i) { result = super.getStatement(i) }
+  override AstNode getChildNode(int i) { result = super.getStmt(i) }
 }
 
 class StmtsTree extends StandardPostOrderTree instanceof Stmts {
