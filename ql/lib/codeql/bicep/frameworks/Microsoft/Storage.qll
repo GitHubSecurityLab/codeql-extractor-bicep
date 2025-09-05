@@ -326,7 +326,7 @@ module Storage {
       /**
        * Converts the disk reference object to a string representation.
        */
-      string toString() { result = "DiskRef" }
+    override string toString() { result = "DiskRef" }
     }
   }
 
@@ -369,7 +369,7 @@ module Storage {
        */
       Services getServices() { result = this.getProperty("services") }
 
-      string toString() { result = "EncryptionSettings" }
+    override string toString() { result = "EncryptionSettings" }
     }
 
     /**
@@ -431,7 +431,7 @@ module Storage {
       /**
        * Gets the file service encryption settings.
        */
-      ServiceEncryption getFile() { result = this.getProperty("file") }
+      ServiceEncryption getFileProperty() { result = this.getProperty("file") }
 
       /**
        * Gets the queue service encryption settings.

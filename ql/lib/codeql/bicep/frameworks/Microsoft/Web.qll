@@ -364,7 +364,7 @@ module Web {
      */
     String getType() { result = this.getProperty("type") }
 
-    string toString() { result = "ExtendedLocation" }
+    override string toString() { result = "ExtendedLocation" }
   }
 
   /**
@@ -398,7 +398,7 @@ module Web {
      */
     String getName() { result = this.getProperty("name") }
 
-    string toString() { result = "HostingEnvironmentProfile" }
+    override string toString() { result = "HostingEnvironmentProfile" }
   }
 
   /**
@@ -412,7 +412,7 @@ module Web {
      */
     ApplicationStack() { this = parent.getProperty("applicationStack") }
 
-    string toString() { result = "ApplicationStack" }
+    override string toString() { result = "ApplicationStack" }
   }
 
   /**
@@ -426,7 +426,7 @@ module Web {
      */
     AppSettings() { this = parent.getProperty("appSettings") }
 
-    string toString() { result = "AppSettings" }
+    override string toString() { result = "AppSettings" }
   }
 
   /**
@@ -440,7 +440,7 @@ module Web {
      */
     UserAssignedIdentities() { this = parent.getProperty("userAssignedIdentities") }
 
-    string toString() { result = "UserAssignedIdentities" }
+    override string toString() { result = "UserAssignedIdentities" }
   }
 
   /**
@@ -459,7 +459,7 @@ module Web {
      */
     String getName() { result = this.getProperty("name") }
 
-    string toString() { result = "RepositoryBranch" }
+    override string toString() { result = "RepositoryBranch" }
   }
 
   /**
@@ -484,7 +484,7 @@ module Web {
      */
     String getThumbprint() { result = this.getProperty("thumbprint") }
 
-    string toString() { result = "HttpsCertificate" }
+    override string toString() { result = "HttpsCertificate" }
   }
 
   /**
@@ -834,7 +834,7 @@ module Web {
        */
       String getHealthCheckPath() { result = this.getProperty("healthCheckPath") }
 
-      string toString() { result = "SiteConfig" }
+      override string toString() { result = "SiteConfig" }
     }
 
     /**
@@ -868,7 +868,7 @@ module Web {
         )
       }
 
-      string toString() { result = "CorsSettings" }
+      override string toString() { result = "CorsSettings" }
     }
 
     /**
@@ -934,7 +934,7 @@ module Web {
         result = this.getProperty("userAssignedIdentities")
       }
 
-      string toString() { result = "SiteIdentity" }
+      override string toString() { result = "SiteIdentity" }
     }
   }
 
@@ -1085,7 +1085,7 @@ module Web {
        */
       string subnetId() { result = this.getSubnetId().getValue() }
 
-      string toString() { result = "VnetConfiguration" }
+      override string toString() { result = "VnetConfiguration" }
     }
   }
 

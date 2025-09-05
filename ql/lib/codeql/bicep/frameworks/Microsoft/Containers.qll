@@ -246,7 +246,7 @@ module Containers {
        */
       StringLiteral getTargetLabel() { result = this.getProperty("targetLabel") }
 
-      string toString() { result = "ContainerConfiguration" }
+      override string toString() { result = "ContainerConfiguration" }
     }
 
     /**
@@ -270,7 +270,7 @@ module Containers {
        */
       StringLiteral getValue() { result = this.getProperty("value") }
 
-      string toString() { result = "ContainerSecret" }
+      override string toString() { result = "ContainerSecret" }
     }
 
     /**
@@ -333,7 +333,7 @@ module Containers {
         result = this.getProperty("containers").(Array).getElement(index)
       }
 
-      string toString() { result = "ContainerTemplate" }
+      override string toString() { result = "ContainerTemplate" }
     }
 
     /**
@@ -384,7 +384,7 @@ module Containers {
         )
       }
 
-      string toString() { result = "ContainerProperty" }
+      override string toString() { result = "ContainerProperty" }
     }
 
     /**
@@ -415,7 +415,7 @@ module Containers {
        */
       StringLiteral getMemory() { result = this.getProperty("memory") }
 
-      string toString() { result = "ContainerResourceProperties" }
+      override string toString() { result = "ContainerResourceProperties" }
     }
 
     /**
@@ -444,7 +444,7 @@ module Containers {
        */
       StringLiteral getValue() { result = this.getProperty("value") }
 
-      string toString() { result = "ContainerEnv" }
+      override string toString() { result = "ContainerEnv" }
     }
 
     class ContainerRegistry extends Object {
@@ -476,7 +476,7 @@ module Containers {
         result = this.getProperty("password")
       }
 
-      string toString() { result = "ContainerRegistry" }
+      override string toString() { result = "ContainerRegistry" }
     }
   }
 }

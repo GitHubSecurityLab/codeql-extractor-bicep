@@ -507,7 +507,7 @@ module Cache {
       /**
        * Returns a string representation of the RedisConfiguration object.
        */
-      string toString() { result = "RedisConfiguration" }
+      override string toString() { result = "RedisConfiguration" }
     }
   }
 }

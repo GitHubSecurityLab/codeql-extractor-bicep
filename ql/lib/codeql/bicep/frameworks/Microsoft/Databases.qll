@@ -25,16 +25,12 @@ module Databases {
     /**
      * Returns the version property as a StringLiteral, if present.
      */
-    StringLiteral getVersion() {
-      result = this.getProperties().getProperty("version")
-    }
+    StringLiteral getVersion() { result = this.getProperties().getProperty("version") }
 
     /**
      * Returns the version property of the database resource, if present.
      */
-    string version() {
-      result = this.getVersion().getValue()
-    }
+    string version() { result = this.getVersion().getValue() }
 
     /**
      * Returns the publicNetworkAccess property as a StringLiteral, if present.
@@ -46,9 +42,7 @@ module Databases {
     /**
      * Returns the value of the publicNetworkAccess property, if present.
      */
-    string publicNetworkAccess() {
-      result = this.getPublicNetworkAccess().getValue()
-    }
+    string publicNetworkAccess() { result = this.getPublicNetworkAccess().getValue() }
 
     /**
      * Returns the sslEnforcement property as a StringLiteral, if present.
@@ -60,15 +54,14 @@ module Databases {
     /**
      * Returns the sslEnforcement property of the database resource, if present.
      */
-    string sslEnforcement() {
-      result = this.getSslEnforcement().getValue()
-    }
+    string sslEnforcement() { result = this.getSslEnforcement().getValue() }
 
     /**
      * Returns the infrastructureEncryption property of the database resource, if present.
      */
     string infrastructureEncryption() {
-      result = this.getProperties().getProperty("infrastructureEncryption").(StringLiteral).getValue()
+      result =
+        this.getProperties().getProperty("infrastructureEncryption").(StringLiteral).getValue()
     }
 
     /**
@@ -81,9 +74,7 @@ module Databases {
     /**
      * Returns the minimalTlsVersion property of the database resource, if present.
      */
-    string minimalTlsVersion() {
-      result = this.getMinimalTlsVersion().getValue()
-    }
+    string minimalTlsVersion() { result = this.getMinimalTlsVersion().getValue() }
 
     /**
      * Returns the storage profile for the database resource, if present.
@@ -265,7 +256,8 @@ module Databases {
   /**
    * Represents a database resource with a weak TLS version configuration.
    */
-  private class WeakDatabaseTlsVersion extends Cryptography::WeakTlsVersion instanceof DatabaseResource {
+  private class WeakDatabaseTlsVersion extends Cryptography::WeakTlsVersion instanceof DatabaseResource
+  {
     /**
      * Returns the minimalTlsVersion property as a StringLiteral for weak TLS version detection.
      */
@@ -291,9 +283,7 @@ module Databases {
        */
       Resource getResource() { result = resource }
 
-      override string toString() {
-        result = "DatabaseProperties[" + resource.databaseType() + "]"
-      }
+      override string toString() { result = "DatabaseProperties[" + resource.databaseType() + "]" }
     }
 
     /**
@@ -310,7 +300,7 @@ module Databases {
       /**
        * Returns a string representation of the backup object.
        */
-      string toString() { result = "Backup" }
+      override string toString() { result = "Backup" }
 
       /**
        * Returns the geoRedundantBackup property of the backup object.
@@ -334,7 +324,7 @@ module Databases {
       /**
        * Returns a string representation of the backup policy object.
        */
-      string toString() { result = "BackupPolicy" }
+      override string toString() { result = "BackupPolicy" }
 
       /**
        * Returns the type of the backup policy.
@@ -366,21 +356,17 @@ module Databases {
       /**
        * Returns a string representation of the storage profile object.
        */
-      string toString() { result = "StorageProfile" }
+      override string toString() { result = "StorageProfile" }
 
       /**
        * Returns the storageMB property of the storage profile.
        */
-      int storageMB() {
-        result = this.getProperty("storageMB").(Number).getValue()
-      }
+      int storageMB() { result = this.getProperty("storageMB").(Number).getValue() }
 
       /**
        * Returns the autoGrow property of the storage profile.
        */
-      string autoGrow() {
-        result = this.getProperty("autoGrow").(StringLiteral).getValue()
-      }
+      string autoGrow() { result = this.getProperty("autoGrow").(StringLiteral).getValue() }
     }
   }
 }

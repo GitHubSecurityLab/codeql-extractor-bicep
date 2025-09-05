@@ -709,7 +709,7 @@ module AKS {
        */
       predicate hasCount() { exists(this.getCount()) }
 
-      string toString() { result = "AgentPoolProfile" }
+      override string toString() { result = "AgentPoolProfile" }
     }
 
     /**
@@ -738,7 +738,7 @@ module AKS {
        */
       StringLiteral getPrivateDnsZone() { result = this.getProperty("privateDnsZone") }
 
-      string toString() { result = "ApiServerAccessProfile" }
+      override string toString() { result = "ApiServerAccessProfile" }
     }
 
     /**
@@ -758,7 +758,7 @@ module AKS {
        */
       AddonKubeDashboard getKubeDashboard() { result = this.getProperty("kubeDashboard") }
 
-      string toString() { result = "AddonProfiles" }
+      override string toString() { result = "AddonProfiles" }
     }
 
     /**
@@ -781,7 +781,7 @@ module AKS {
         result = this.getEnabled().getBool()
       }
 
-      string toString() { result = "AddonKubeDashboard" }
+      override string toString() { result = "AddonKubeDashboard" }
     }
 
     /**
@@ -800,7 +800,7 @@ module AKS {
        */
       Boolean getEnabled() { result = this.getProperty("enabled") }
 
-      string toString() { result = "AddonAzurePolicy" }
+      override string toString() { result = "AddonAzurePolicy" }
     }
 
     /**
@@ -849,7 +849,7 @@ module AKS {
        */
       predicate hasAdminGroupObjectIDs() { exists(this.getAdminGroupObjectIDs()) }
 
-      string toString() { result = "AADProfile" }
+      override string toString() { result = "AADProfile" }
     }
 
     /**
@@ -913,7 +913,7 @@ module AKS {
        */
       Boolean getSkipNodesWithSystemPods() { result = this.getProperty("skipNodesWithSystemPods") }
 
-      string toString() { result = "AutoScalerProfile" }
+      override string toString() { result = "AutoScalerProfile" }
     }
 
     /**
@@ -947,7 +947,7 @@ module AKS {
        */
       Expr getAutoUpgradeChannels() { result = this.getProperty("autoUpgradeChannels") }
 
-      string toString() { result = "AutoUpgradeProfile" }
+      override string toString() { result = "AutoUpgradeProfile" }
     }
 
     /**
@@ -976,7 +976,7 @@ module AKS {
        */
       Expr getProfiles() { result = this.getProperty("profiles") }
 
-      string toString() { result = "AzureMonitorProfile" }
+      override string toString() { result = "AzureMonitorProfile" }
     }
 
 
@@ -1001,7 +1001,7 @@ module AKS {
        */
       Boolean getIstioEnabled() { result = this.getProperty("istioEnabled") }
 
-      string toString() { result = "ServiceMeshProfile" }
+      override string toString() { result = "ServiceMeshProfile" }
     }
 
     /**
@@ -1025,7 +1025,7 @@ module AKS {
        */
       Expr getVerticalPodAutoscaler() { result = this.getProperty("verticalPodAutoscaler") }
 
-      string toString() { result = "WorkloadAutoScalerProfile" }
+      override string toString() { result = "WorkloadAutoScalerProfile" }
     }
 
     /**
@@ -1059,7 +1059,7 @@ module AKS {
        */
       StringLiteral getTrustedCa() { result = this.getProperty("trustedCa") }
 
-      string toString() { result = "HttpProxyConfig" }
+      override string toString() { result = "HttpProxyConfig" }
     }
 
     /**
@@ -1083,7 +1083,7 @@ module AKS {
        */
       Boolean getUserAssignedIdentityExceptions() { result = this.getProperty("userAssignedIdentityExceptions") }
 
-      string toString() { result = "PodIdentityProfile" }
+      override string toString() { result = "PodIdentityProfile" }
     }
 
     /**
@@ -1107,7 +1107,7 @@ module AKS {
        */
       StringLiteral getSecret() { result = this.getProperty("secret") }
 
-      string toString() { result = "ServicePrincipalProfile" }
+      override string toString() { result = "ServicePrincipalProfile" }
     }
 
     /**
@@ -1126,7 +1126,7 @@ module AKS {
        */
       Expr getWebApplicationFirewallProfile() { result = this.getProperty("webApplicationFirewallProfile") }
 
-      string toString() { result = "IngressProfile" }
+      override string toString() { result = "IngressProfile" }
     }
 
     /**
@@ -1145,7 +1145,7 @@ module AKS {
        */
       Boolean getEnabled() { result = this.getProperty("enabled") }
 
-      string toString() { result = "MetricsProfile" }
+      override string toString() { result = "MetricsProfile" }
     }
 
     /**
@@ -1169,7 +1169,7 @@ module AKS {
        */
       StringLiteral getIssuerURL() { result = this.getProperty("issuerURL") }
 
-      string toString() { result = "OidcIssuerProfile" }
+      override string toString() { result = "OidcIssuerProfile" }
     }
 
     /**
@@ -1188,7 +1188,7 @@ module AKS {
        */
       Boolean getEnabled() { result = this.getProperty("enabled") }
 
-      string toString() { result = "SafeguardsProfile" }
+      override string toString() { result = "SafeguardsProfile" }
     }
 
     /**
@@ -1207,7 +1207,7 @@ module AKS {
        */
       Boolean getEnabled() { result = this.getProperty("enabled") }
 
-      string toString() { result = "AIToolchainOperatorProfile" }
+      override string toString() { result = "AIToolchainOperatorProfile" }
     }
   }
 }

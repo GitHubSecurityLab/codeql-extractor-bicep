@@ -134,7 +134,7 @@ module Network {
 
     IpRule getIpRules() { result = this.getProperty("ipRules").(Array).getElements() }
 
-    string toString() { result = "Network ACL" }
+    override string toString() { result = "Network ACL" }
   }
 
   class IpRule extends Object {
@@ -146,7 +146,7 @@ module Network {
 
     StringLiteral getValue() { result = this.getProperty("value") }
 
-    string toString() { result = "IP Rule" }
+    override string toString() { result = "IP Rule" }
   }
 
   /**
@@ -206,7 +206,7 @@ module Network {
      */
     boolean allowInsecure() { result = this.getAllowInsecure().getBool() }
 
-    string toString() { result = "NetworkIngress" }
+    override string toString() { result = "NetworkIngress" }
   }
 
   /**
@@ -224,9 +224,7 @@ module Network {
     /**
      * Returns the 'allowCredentials' property as a Boolean.
      */
-    Boolean getAllowCredentials() {
-      result = this.getProperty("allowCredentials")
-    }
+    Boolean getAllowCredentials() { result = this.getProperty("allowCredentials") }
 
     /**
      * Returns the 'allowCredentials' property as a boolean.
@@ -236,37 +234,29 @@ module Network {
     /**
      * Returns the 'allowedOrigins' property as an array of StringLiterals.
      */
-    Array getAllowedOrigins() {
-      result = this.getProperty("allowedOrigins")
-    }
+    Array getAllowedOrigins() { result = this.getProperty("allowedOrigins") }
 
     /**
      * Returns the 'allowedMethods' property as an array of StringLiterals.
      */
-    Array getAllowedMethods() {
-      result = this.getProperty("allowedMethods")
-    }
+    Array getAllowedMethods() { result = this.getProperty("allowedMethods") }
 
     /**
      * Returns the 'allowedHeaders' property as an array of StringLiterals.
      */
-    Array getAllowedHeaders() {
-      result = this.getProperty("allowedHeaders")
-    }
+    Array getAllowedHeaders() { result = this.getProperty("allowedHeaders") }
 
     /**
      * Returns the 'exposedHeaders' property as an array of StringLiterals.
      */
-    Array getExposedHeaders() {
-      result = this.getProperty("exposedHeaders")
-    }
+    Array getExposedHeaders() { result = this.getProperty("exposedHeaders") }
 
     /**
      * Returns the 'maxAge' property as a Number.
      */
     Number getMaxAge() { result = this.getProperty("maxAge") }
 
-    string toString() { result = "CorsPolicy" }
+    override string toString() { result = "CorsPolicy" }
   }
 
   module VirtualNetworkProperties {
@@ -342,6 +332,6 @@ module Network {
 
     string networkPolicy() { result = this.getNetworkPolicy().getValue() }
 
-    string toString() { result = "NetworkProfile" }
+    override string toString() { result = "NetworkProfile" }
   }
 }

@@ -101,7 +101,7 @@ module Compute {
       /**
        * Returns a string representation of the hardware profile.
        */
-      string toString() { result = "HardwareProfile" }
+      override string toString() { result = "HardwareProfile" }
 
       /**
        * Returns the vmSize property of the hardware profile.
