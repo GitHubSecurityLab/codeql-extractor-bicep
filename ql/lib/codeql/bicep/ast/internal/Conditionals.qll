@@ -6,12 +6,17 @@ private import codeql.bicep.ast.AstNodes
 private import AstNodes
 private import TreeSitter
 private import Expr
+private import Stmts
+// Re-exports
+import ForStatement
 
 /**
  * Conditional statements.
  */
-class ConditionalExprImpl extends ExprImpl, TConditionalExpr {
+class ConditionalsImpl extends StmtsImpl, TConditionals {
   override string getAPrimaryQlClass() { result = "Conditional" }
 
   abstract ExprImpl getCondition();
+
+  abstract StmtSequenceImpl getBranch();
 }
