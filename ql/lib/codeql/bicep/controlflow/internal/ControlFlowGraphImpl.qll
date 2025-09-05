@@ -247,14 +247,14 @@ module Trees {
   /**
    * A tree for AssertStatement in a Bicep program.
    */
-  private class AssertStatementTree extends StandardPostOrderTree instanceof AssertStatementStmt {
+  private class AssertStatementTree extends StandardPostOrderTree instanceof AssertStatement {
     override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
   }
   
   /**
    * A tree for ForStatement in a Bicep program.
    */
-  private class ForStatementTree extends StandardPostOrderTree instanceof ForStatementStmt {
+  private class ForStatementTree extends StandardPostOrderTree instanceof ForStatement {
     override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
   }
   
@@ -282,21 +282,21 @@ module Trees {
   /**
    * A tree for ImportStatement in a Bicep program.
    */
-  private class ImportStatementTree extends StandardPostOrderTree instanceof ImportStatementStmt {
+  private class ImportStatementTree extends StandardPostOrderTree instanceof ImportStatement {
     override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
   }
   
   /**
    * A tree for ImportWithStatement in a Bicep program.
    */
-  private class ImportWithStatementTree extends StandardPostOrderTree instanceof ImportWithStatementStmt {
+  private class ImportWithStatementTree extends StandardPostOrderTree instanceof ImportWithStatement {
     override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
   }
   
   /**
    * A tree for UsingStatement in a Bicep program.
    */
-  private class UsingStatementTree extends StandardPostOrderTree instanceof UsingStatementStmt {
+  private class UsingStatementTree extends StandardPostOrderTree instanceof UsingStatement {
     override AstNode getChildNode(int i) { i = 0 and result = super.getAChild() }
   }
 

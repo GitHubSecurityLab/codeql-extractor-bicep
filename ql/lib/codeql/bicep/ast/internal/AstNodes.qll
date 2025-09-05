@@ -77,7 +77,7 @@ class TLiterals =
 /**
  *  A identifier in a SQL program
  */
-class TIdents = TIdentifier or TPropertyIdentifier;
+class TIdents = TIdentifier or TPropertyIdentifier or TCompatibleIdentifier;
 
 /**
  * A statement in a Bicep program
@@ -95,7 +95,7 @@ class TScopes = TInfrastructure;
  * A expersion value in a Bicep program
  */
 class TExpr =
-  TLiterals or TConditionals or TCall or TCallable or TIdents or TObject or TObjectProperty or
+  TLiterals or TConditionals or TCall or TCallable or TIdents or TTypes or TObject or TObjectProperty or
       TAssignmentExpression or TArguments or TBinaryExpression or TCallExpression or
       TLambdaExpression or TMemberExpression or TParenthesizedExpression or TParameter or
       TParameters or TResourceExpression or TSubscriptExpression or TTernaryExpression or
@@ -115,7 +115,12 @@ class TCallable = TUserDefinedFunction or TLambdaExpression;
 
 class TLoops = TForStatement;
 
-class TTypes = TType or TTypeArguments;
+/**
+ * Type expressions in a Bicep program
+ */
+class TTypes = TType or TTypeArguments or TArrayType or TNegatedType or
+    TParameterizedType or TParenthesizedType or TPrimitiveType or 
+    TTypeDeclaration or TUnionType or TNullableType;
 
 cached
 BICEP::AstNode toTreeSitter(TAstNode n) {

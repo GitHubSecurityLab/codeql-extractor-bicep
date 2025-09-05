@@ -6,11 +6,12 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Types
 
 /**
  *  A ParameterizedType AST Node.
  */
-class ParameterizedTypeImpl extends TParameterizedType, AstNode {
+class ParameterizedTypeImpl extends TParameterizedType, TypesImpl {
   private BICEP::ParameterizedType ast;
 
   override string getAPrimaryQlClass() { result = "ParameterizedType" }
@@ -18,6 +19,8 @@ class ParameterizedTypeImpl extends TParameterizedType, AstNode {
   ParameterizedTypeImpl() { this = TParameterizedType(ast) }
 
   override string toString() { result = ast.toString() }
+  
+  override string getValue() { result = ast.toString() }
 
 
 

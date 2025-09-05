@@ -8,6 +8,8 @@ private import Expr
  */
 class StmtsImpl extends AstNode, TStmts {
   override string getAPrimaryQlClass() { result = "Stmts" }
+
+  ExprImpl getExpr() { none() }
 }
 
 class StmtSequenceImpl extends AstNode, TStmtSeq {

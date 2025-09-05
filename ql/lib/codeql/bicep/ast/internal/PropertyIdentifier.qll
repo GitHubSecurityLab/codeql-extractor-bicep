@@ -1,7 +1,5 @@
 /**
  *  Internal implementation for PropertyIdentifier
- *
- *  WARNING: this file is generated, do not edit manually
  */
 
 private import AstNodes
@@ -11,8 +9,11 @@ private import Idents
 
 /**
  *  A PropertyIdentifier AST Node.
+ *  
+ *  Represents the name part of a property in an object literal. PropertyIdentifier
+ *  is a Token subtype in TreeSitter, which provides the getValue() method.
  */
-class PropertyIdentifierImpl extends TPropertyIdentifier, IdentsImpl {
+class PropertyIdentifierImpl extends IdentsImpl, TPropertyIdentifier {
   private BICEP::PropertyIdentifier ast;
 
   override string getAPrimaryQlClass() { result = "PropertyIdentifier" }
@@ -21,5 +22,10 @@ class PropertyIdentifierImpl extends TPropertyIdentifier, IdentsImpl {
 
   override string toString() { result = ast.toString() }
 
+  /**
+   * Gets the name of this property identifier as a string.
+   * 
+   * @return The name of this property identifier
+   */
   override string getName() { result = ast.getValue() }
 }

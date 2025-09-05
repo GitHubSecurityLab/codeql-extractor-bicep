@@ -7,6 +7,7 @@ private import AstNodes
 private import Calls
 private import Idents
 private import Stmts
+private import Types
 private import internal.Variables
 private import codeql.bicep.controlflow.BasicBlocks as BasicBlocks
 private import codeql.bicep.controlflow.ControlFlowGraph

@@ -3,6 +3,7 @@ private import Expr
 private import Stmts
 private import Idents
 private import Misc
+private import Types
 private import internal.Calls
 private import internal.CallExpression
 private import internal.LambdaExpression

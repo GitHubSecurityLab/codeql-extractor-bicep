@@ -445,18 +445,18 @@ module StmtNodes {
   class AssertStatementCfgNode extends StmtsCfgNode {
     override string getAPrimaryQlClass() { result = "AssertStatementCfgNode" }
 
-    override AssertStatementStmt s;
+    override AssertStatement s;
 
-    override AssertStatementStmt getStmt() { result = super.getStmt() }
+    override AssertStatement getStmt() { result = super.getStmt() }
   }
 
   /** A control-flow node that wraps a ForStatement AST node. */
   class ForStatementCfgNode extends StmtsCfgNode {
     override string getAPrimaryQlClass() { result = "ForStatementCfgNode" }
 
-    override ForStatementStmt s;
+    override ForStatement s;
 
-    override ForStatementStmt getStmt() { result = super.getStmt() }
+    override ForStatement getStmt() { result = super.getStmt() }
   }
 
   /** A mapping from a child of an IfStatement to the statement. */
@@ -489,9 +489,9 @@ module StmtNodes {
   class ImportStatementCfgNode extends StmtsCfgNode {
     override string getAPrimaryQlClass() { result = "ImportStatementCfgNode" }
 
-    override ImportStatementStmt s;
+    override ImportStatement s;
 
-    override ImportStatementStmt getStmt() { result = super.getStmt() }
+    override ImportStatement getStmt() { result = super.getStmt() }
   }
 
   /** A control-flow node that wraps an Infrastructure AST node. */
@@ -559,18 +559,18 @@ module StmtNodes {
   class ImportWithStatementCfgNode extends StmtsCfgNode {
     override string getAPrimaryQlClass() { result = "ImportWithStatementCfgNode" }
 
-    override ImportWithStatementStmt s;
+    override ImportWithStatement s;
 
-    override ImportWithStatementStmt getStmt() { result = super.getStmt() }
+    override ImportWithStatement getStmt() { result = super.getStmt() }
   }
 
   /** A control-flow node that wraps a UsingStatement AST node. */
   class UsingStatementCfgNode extends StmtsCfgNode {
     override string getAPrimaryQlClass() { result = "UsingStatementCfgNode" }
 
-    override UsingStatementStmt s;
+    override UsingStatement s;
 
-    override UsingStatementStmt getStmt() { result = super.getStmt() }
+    override UsingStatement getStmt() { result = super.getStmt() }
   }
 
   /** A control-flow node that wraps a UserDefinedFunction AST node. */

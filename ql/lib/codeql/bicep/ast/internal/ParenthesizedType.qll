@@ -6,11 +6,12 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Types
 
 /**
  *  A ParenthesizedType AST Node.
  */
-class ParenthesizedTypeImpl extends TParenthesizedType, AstNode {
+class ParenthesizedTypeImpl extends TParenthesizedType, TypesImpl {
   private BICEP::ParenthesizedType ast;
 
   override string getAPrimaryQlClass() { result = "ParenthesizedType" }
@@ -18,6 +19,8 @@ class ParenthesizedTypeImpl extends TParenthesizedType, AstNode {
   ParenthesizedTypeImpl() { this = TParenthesizedType(ast) }
 
   override string toString() { result = ast.toString() }
+  
+  override string getValue() { result = ast.toString() }
 
 
 
