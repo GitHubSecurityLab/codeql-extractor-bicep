@@ -30,6 +30,8 @@ if [ "$LATEST_RELEASE" != "$EXTRACTOR_VERSION" ]; then
     fi
 
     echo "[+] Add queries to extractor-pack"
+    $CODEQL_BINARY pack install install ql/lib
+
     $CODEQL_BINARY pack create --output=./extractor-pack/qlpacks ./ql/lib
     $CODEQL_BINARY pack create --output=./extractor-pack/qlpacks ./ql/src
 
