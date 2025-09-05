@@ -13,16 +13,31 @@ private import codeql.bicep.controlflow.ControlFlowGraph
 private import internal.VariableDeclaration
 
 /**
- *  A VariableDeclaration unknown AST node.
+ * Represents a variable declaration in the AST.
+ * 
+ * This class models a variable declaration in Bicep, which associates a name
+ * with a value. Variable declarations allow storing and reusing values throughout
+ * a template, making the template more readable and maintainable. They can refer
+ * to literals, expressions, or other variables and resources.
  */
 class VariableDeclaration extends AstNode instanceof VariableDeclarationImpl {
   /**
    * Gets the identifier of the variable declaration.
+   * 
+   * This is the name token of the variable as it appears in the source code.
+   * 
+   * @return The identifier node of the variable
    */
   Idents getIdentifier() { result = VariableDeclarationImpl.super.getIdentifier() }
 
   /**
    * Gets the initializer expression of the variable declaration.
+   * 
+   * This is the expression that provides the value for the variable.
+   * It could be a literal, a reference to another variable, a complex
+   * expression, or any other expression that produces a value.
+   * 
+   * @return The initializer expression of the variable
    */
   Expr getInitializer() { result = VariableDeclarationImpl.super.getInitializer() }
 }
@@ -50,7 +65,12 @@ private predicate variableDecl(AstNode node, string name) {
 }
 
 /**
- * Variable represents a variable defination.
+ * Represents a variable definition in the Bicep program.
+ * 
+ * This class models any named entity that can be referenced elsewhere in the code,
+ * including parameters, variables, outputs, and resources. It provides a unified
+ * interface for accessing information about variables regardless of their specific
+ * declaration type.
  */
 class Variable extends MkVariable {
   private AstNode node;
@@ -58,24 +78,54 @@ class Variable extends MkVariable {
 
   Variable() { this = MkVariable(node, name) }
 
+  /**
+   * Gets the name of this variable.
+   * 
+   * @return The name of the variable as a string
+   */
   string getName() { result = name }
 
+  /**
+   * Gets a string representation of this variable.
+   * 
+   * @return A string in the format "Variable[name]"
+   */
   string toString() { result = "Variable[" + name + "]" }
 
+  /**
+   * Gets the AST node that defines this variable.
+   * 
+   * This could be a parameter declaration, variable declaration, resource declaration, etc.
+   * 
+   * @return The AST node that defines this variable
+   */
   AstNode getAstNode() { result = node }
 
   /**
-   *  Get the location of this variable.
+   * Gets the source location of this variable.
+   * 
+   * This is the location of the AST node that defines the variable.
+   * 
+   * @return The source location of the variable definition
    */
   Location getLocation() { result = node.getLocation() }
 
   /**
-   * Geta the inner variable of this variable.
+   * Gets an access to this variable.
+   * 
+   * This returns any usage of the variable in the code.
+   * 
+   * @return A variable access that refers to this variable
    */
   VariableAccess getAnAccess() { result.getVariable() = this }
 
   /**
-   *  Gets the type of this variable, if any.
+   * Gets the type of this variable, if it can be determined.
+   * 
+   * This method attempts to find the type by looking at the variable's declaration,
+   * either as a parameter or an output.
+   * 
+   * @return The type of the variable, if available
    */
   Type getType() {
     result = this.getParameter().getType()
@@ -84,7 +134,9 @@ class Variable extends MkVariable {
   }
 
   /**
-   * Gets the parameter of this variable, if any.
+   * Gets the parameter declaration for this variable, if it is a parameter.
+   * 
+   * @return The parameter declaration for this variable, if any
    */
   ParameterDeclaration getParameter() {
     exists(ParameterDeclaration param |
@@ -95,7 +147,9 @@ class Variable extends MkVariable {
   }
 
   /**
-   * Gets the variable declaration of this variable, if any.
+   * Gets the output declaration for this variable, if it is an output.
+   * 
+   * @return The output declaration for this variable, if any
    */
   OutputDeclaration getOutput() {
     exists(OutputDeclaration output |
@@ -129,7 +183,11 @@ private predicate access(AstNode node, Variable v, string name) {
 }
 
 /**
- *  VariableAccess is a class that represents the access to a variable.
+ * Represents an access to a variable in the code.
+ * 
+ * This class models any usage of a variable (parameter, declared variable, 
+ * resource, output) within the Bicep code. It provides information about
+ * where the variable is accessed and which variable is being accessed.
  */
 class VariableAccess extends MkVariableAccess, TVariableAccess {
   private string name;
@@ -138,32 +196,76 @@ class VariableAccess extends MkVariableAccess, TVariableAccess {
 
   VariableAccess() { this = MkVariableAccess(node, v, name) }
 
+  /**
+   * Gets the name of the variable being accessed.
+   * 
+   * @return The name of the variable as a string
+   */
   string getName() { result = name }
 
+  /**
+   * Gets the AST node that represents this variable access.
+   * 
+   * This is typically an identifier node in the syntax tree.
+   * 
+   * @return The AST node for this variable access
+   */
   AstNode getAstNode() { result = node }
 
+  /**
+   * Gets the variable being accessed.
+   * 
+   * @return The variable that this access refers to
+   */
   Variable getVariable() { result = v }
 
+  /**
+   * Gets a string representation of this variable access.
+   * 
+   * @return A string in the format "VariableAccess[name]"
+   */
   string toString() { result = "VariableAccess[" + name + "]" }
 
   /**
-   *  Get the location of this variable.
+   * Gets the source location of this variable access.
+   * 
+   * This is the location in the source code where the variable is referenced.
+   * 
+   * @return The source location of the variable access
    */
   Location getLocation() { result = node.getLocation() }
 
   /**
-   *  Gets the type of this variable, if any.
+   * Gets the type of the variable being accessed, if it can be determined.
+   * 
+   * @return The type of the variable, if available
    */
   Type getType() { result = this.getVariable().getType() }
 
   /**
-   *  Gets the enclosing scope of this variable, if any.
+   * Gets the enclosing CFG scope of this variable access.
+   * 
+   * This is the control flow graph scope that contains this access.
+   * 
+   * @return The enclosing CFG scope
    */
   CfgScope getEnclosingCfgScope() { result = v.getEnclosingCfgScope() }
 
+  /**
+   * Gets the primary QL class for this AST node.
+   * 
+   * @return The name of the QL class ("VariableAccess")
+   */
   string getAPrimaryQlClass() { result = "VariableAccess" }
 }
 
+/**
+ * Represents a write access to a variable.
+ * 
+ * This class models places in the code where a variable's value is being
+ * defined or assigned. This includes declarations of parameters, variables,
+ * resources, and outputs.
+ */
 class VariableWriteAccess extends VariableAccess {
   VariableWriteAccess() {
     // Parameter
@@ -178,12 +280,29 @@ class VariableWriteAccess extends VariableAccess {
     this.getAstNode().getParent() instanceof OutputDeclaration
   }
 
+  /**
+   * Gets the primary QL class for this AST node.
+   * 
+   * @return The name of the QL class ("VariableWrite")
+   */
   override string getAPrimaryQlClass() { result = "VariableWrite" }
 }
 
+/**
+ * Represents a read access to a variable.
+ * 
+ * This class models places in the code where a variable's value is being
+ * used but not modified. This includes using the variable in expressions,
+ * passing it as an argument to functions, or referencing it in other contexts.
+ */
 class VariableReadAccess extends VariableAccess {
   VariableReadAccess() { not this instanceof VariableWriteAccess }
 
+  /**
+   * Gets the primary QL class for this AST node.
+   * 
+   * @return The name of the QL class ("VariableRead")
+   */
   override string getAPrimaryQlClass() { result = "VariableRead" }
 }
 
