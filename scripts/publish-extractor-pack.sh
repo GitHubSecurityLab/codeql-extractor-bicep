@@ -29,9 +29,12 @@ if [ "$LATEST_RELEASE" != "$EXTRACTOR_VERSION" ]; then
         exit 1
     fi
 
+    echo "[+] Install pack dependencies"
+    $CODEQL_BINARY pack install "./ql/lib"
+
     echo "[+] Add queries to extractor-pack"
-    $CODEQL_BINARY pack create --output=./extractor-pack/qlpacks ./ql/lib
-    $CODEQL_BINARY pack create --output=./extractor-pack/qlpacks ./ql/src
+    $CODEQL_BINARY pack create --output="./extractor-pack/qlpacks" "./ql/lib"
+    $CODEQL_BINARY pack create --output="./extractor-pack/qlpacks" "./ql/src"
 
     # bundle extractor
     tar czf extractor-$EXTRACTOR_NAME.tar.gz extractor-pack
