@@ -160,7 +160,7 @@ class UserDefinedFunction extends Callable instanceof UserDefinedFunctionImpl {
    *
    * @return The parameters node of the function
    */
-  Expr getParameters() { result = UserDefinedFunctionImpl.super.getParameters() }
+  Expr getParameters() { result = UserDefinedFunctionImpl.super.getParameter(_) }
 
   /**
    * Gets the parameter at the specified index.
