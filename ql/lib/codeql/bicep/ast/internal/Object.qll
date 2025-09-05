@@ -19,7 +19,7 @@ class ObjectImpl extends TObject, AstNode {
 
   ObjectImpl() { this = TObject(ast) }
 
-  override string toString() { result = ast.toString() }
+  // override string toString() { result = ast.toString() }
 
   ObjectPropertyImpl getProperty(int index) { toTreeSitter(result) = ast.getChild(index) }
 

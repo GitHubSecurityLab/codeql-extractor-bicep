@@ -8,4 +8,6 @@ private import Stmts
  */
 class ExprImpl extends StmtsImpl, TExpr {
   override string getAPrimaryQlClass() { result = "Expr" }
+
+  override string toString() { none() } 
 }
