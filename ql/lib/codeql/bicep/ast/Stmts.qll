@@ -341,7 +341,7 @@ class UserDefinedFunction extends Stmts instanceof UserDefinedFunctionImpl {
  * and a type, which constrains the kind of values that can be passed to the function
  * for that parameter.
  */
-class Parameter extends AstNode instanceof ParameterImpl {
+class Parameter extends Expr instanceof ParameterImpl {
   /** 
    * Gets the identifier of the parameter.
    * 
@@ -377,7 +377,7 @@ class Parameter extends AstNode instanceof ParameterImpl {
  * This class represents the collection of parameters in a function declaration,
  * allowing access to the individual parameter nodes.
  */
-class Parameters extends AstNode instanceof ParametersImpl {
+class Parameters extends Expr instanceof ParametersImpl {
   /** 
    * Gets the parameter at the specified index.
    * 

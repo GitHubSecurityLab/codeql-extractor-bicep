@@ -10,13 +10,13 @@ private import internal.Arguments
 private import internal.AssignmentExpression
 private import internal.BinaryExpression
 private import internal.Interpolation
-private import internal.LambdaExpression
 private import internal.MemberExpression
 private import internal.NullableType
 private import internal.ParenthesizedExpression
 private import internal.ResourceExpression
 private import internal.TernaryExpression
 private import internal.UnaryExpression
+private import Stmts
 private import Idents
 private import Resources
 
@@ -28,7 +28,7 @@ private import Resources
  * Expressions can be nested and can appear in various contexts such as assignments,
  * parameter values, and return statements.
  */
-class Expr extends AstNode instanceof ExprImpl { }
+class Expr extends Stmts instanceof ExprImpl { }
 
 /**
  * Represents a collection of arguments in a function call.
@@ -138,14 +138,7 @@ class Interpolation extends Expr instanceof InterpolationImpl {
   }
 }
 
-/**
- * A lambda expression in the AST.
- * 
- * Represents an anonymous function in Bicep, typically used for callbacks,
- * filters, or other functional programming patterns. A lambda expression
- * consists of parameters and a body that defines the computation to be performed.
- */
-class LambdaExpression extends Expr instanceof LambdaExpressionImpl { }
+
 
 /**
  * A member expression in the AST.

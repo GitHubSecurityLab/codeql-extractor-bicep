@@ -83,8 +83,8 @@ class TIdents = TIdentifier or TPropertyIdentifier;
  * A statement in a Bicep program
  */
 class TStmts =
-  TInfrastructure or TAssertStatement or TForStatement or TIfStatement or TImportStatement or
-      TImportWithStatement or TUsingStatement or TVariableDeclaration or
+  TExpr or TInfrastructure or TAssertStatement or TForStatement or TIfStatement or
+      TImportStatement or TImportWithStatement or TUsingStatement or TVariableDeclaration or
       TParameterDeclaration or TOutputDeclaration or TUserDefinedFunction;
 
 class TStmtSeq = TInfrastructure;
@@ -95,10 +95,10 @@ class TScopes = TInfrastructure;
  * A expersion value in a Bicep program
  */
 class TExpr =
-  TLiterals or TConditionals or TCall or TCallable or TStmts or TIdents or TObject or
-      TObjectProperty or TAssignmentExpression or TArguments or TBinaryExpression or TCallExpression or
-      TLambdaExpression or TMemberExpression or TParenthesizedExpression or
-      TResourceExpression or TSubscriptExpression or TTernaryExpression or
+  TLiterals or TConditionals or TCall or TCallable or TIdents or TObject or TObjectProperty or
+      TAssignmentExpression or TArguments or TBinaryExpression or TCallExpression or
+      TLambdaExpression or TMemberExpression or TParenthesizedExpression or TParameter or
+      TParameters or TResourceExpression or TSubscriptExpression or TTernaryExpression or
       TUnaryExpression;
 
 class TConditionals = TIfStatement;
@@ -111,7 +111,7 @@ class TCall = TCallExpression;
 /**
  * Callable functions, etc.
  */
-class TCallable = TUserDefinedFunction;
+class TCallable = TUserDefinedFunction or TLambdaExpression;
 
 class TLoops = TForStatement;
 

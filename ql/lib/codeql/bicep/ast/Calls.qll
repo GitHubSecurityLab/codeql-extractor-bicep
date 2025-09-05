@@ -5,10 +5,11 @@ private import Idents
 private import Misc
 private import internal.Calls
 private import internal.CallExpression
+private import internal.LambdaExpression
 
 /**
  * Represents a callable expression in the AST, such as a function or method call.
- * 
+ *
  * This abstract class serves as the base for any expression that represents
  * a call to a function or method. It provides common functionality for accessing
  * the name and identifier of the called entity.
@@ -16,16 +17,16 @@ private import internal.CallExpression
 class Callable extends Expr, Stmts instanceof CallableImpl {
   /**
    * Gets the identifier of the callable expression.
-   * 
+   *
    * This is the name token that identifies what function or method is being called.
-   * 
+   *
    * @return The identifier node of the callable
    */
   abstract Idents getIdentifier();
 
   /**
    * Gets the name of the callable expression as a string.
-   * 
+   *
    * This is a convenience method that returns the name from the identifier.
    *
    * @return The name of the callable
@@ -34,7 +35,7 @@ class Callable extends Expr, Stmts instanceof CallableImpl {
 
   /**
    * Checks if the callable expression has a specific name.
-   * 
+   *
    * This is useful for identifying calls to known functions by name.
    *
    * @param name The name to check against
@@ -43,56 +44,96 @@ class Callable extends Expr, Stmts instanceof CallableImpl {
   predicate hasName(string name) { this.getName() = name }
 }
 
-class Call extends Expr instanceof CallImpl {}
+class Call extends Expr instanceof CallImpl { }
 
 /**
  * Represents a function or method call expression in the AST.
- * 
+ *
  * This class models a function call in Bicep, consisting of an identifier
  * (the function name) followed by arguments in parentheses. Function calls
  * invoke functions defined in the language, user-defined functions, or
  * module functions to compute values or perform operations.
  */
 class CallExpression extends Call instanceof CallExpressionImpl {
-  /** 
+  /**
    * Gets the identifier of the call expression.
-   * 
+   *
    * This is the name token that identifies what function is being called.
-   * 
+   *
    * @return The identifier node of the function being called
    */
   Idents getIdentifier() { result = CallExpressionImpl.super.getIdentifier() }
 
-  /** 
+  /**
    * Gets the name of the call expression as a string.
-   * 
+   *
    * This is a convenience method that returns the name from the identifier.
-   * 
+   *
    * @return The name of the function being called
    */
   string getName() { result = this.getIdentifier().getName() }
 
-  /** 
+  /**
    * Gets the argument at the specified index.
-   * 
+   *
    * @param index The zero-based index of the argument to retrieve
    * @return The expression node of the argument at the specified index
    */
   Expr getArgument(int index) { result = this.getDeclaredArguments().getArgument(index) }
 
-  /** 
+  /**
    * Gets all arguments of the call expression.
-   * 
+   *
    * @return All argument expressions passed to the function
    */
   Expr getArguments() { result = this.getDeclaredArguments().getArguments() }
 
-  /** 
+  /**
    * Gets the arguments collection node of the call expression.
-   * 
+   *
    * This provides access to the AST node that contains all the arguments.
-   * 
+   *
    * @return The arguments node of the call expression
    */
   Arguments getDeclaredArguments() { result = CallExpressionImpl.super.getArguments() }
+}
+
+/**
+ * A lambda expression in the AST, which represents an anonymous function.
+ *
+ * Represents an anonymous function in Bicep, typically used for callbacks,
+ * filters, or other functional programming patterns. A lambda expression
+ * consists of parameters and a body that defines the computation to be performed.
+ */
+class LambdaExpression extends Expr instanceof LambdaExpressionImpl {
+  Idents getIdentifier() { none() }
+
+  /**
+   * Gets the parameters of this lambda expression.
+   *
+   * @return The parameters of the lambda expression
+   */
+  Expr getParameters() { result = LambdaExpressionImpl.super.getParameters() }
+
+  /**
+   * Gets the parameter at the specified index.
+   *
+   * @param n The index of the parameter to retrieve
+   * @return The parameter at the specified index
+   */
+  Expr getParameter(int n) { result = LambdaExpressionImpl.super.getParameter(n) }
+
+  /**
+   * Gets the body of this lambda expression.
+   *
+   * @return The body of the lambda expression
+   */
+  Stmts getBody() { result = LambdaExpressionImpl.super.getBody() }
+
+  /**
+   * Gets the number of parameters in this lambda expression.
+   *
+   * @return The number of parameters
+   */
+  int getNumberOfParameters() { result = LambdaExpressionImpl.super.getNumberOfParameters() }
 }
