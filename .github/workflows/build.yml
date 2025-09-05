@@ -28,6 +28,7 @@ jobs:
         with:
           filters: |
             src:
+              - '.release.yml'
               - 'extractor/**'
               - 'rust-toolchain.toml'
               - 'Cargo.*'
