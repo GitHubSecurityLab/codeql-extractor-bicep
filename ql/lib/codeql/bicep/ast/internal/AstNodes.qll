@@ -91,19 +91,35 @@ class TStmts =
       TImportWithStatement or TStatement or TUsingStatement or TVariableDeclaration or
       TParameterDeclaration or TOutputDeclaration or TUserDefinedFunction;
 
-/**
- * A expersion value in a Bicep program
- */
-class TExpr =
-  TLiterals or TConditionalExpr or TStmts or TIdents or TObject or TObjectProperty or
-      TAssignmentExpression or TBinaryExpression or TCallExpression or TExpression or
-      TLambdaExpression or TMemberExpression or TParenthesizedExpression or TPrimaryExpression or
-      TResourceExpression or TSubscriptExpression or TTernaryExpression or TUnaryExpression;
+class TStmtSeq = TInfrastructure;
+
+class TScopes = TInfrastructure;
 
 /**
  * A expersion value in a Bicep program
  */
-class TConditionalExpr = TIfStatement;
+class TExpr =
+  TLiterals or TConditionals or TCall or TCallable or TStmts or TIdents or TObject or
+      TObjectProperty or TAssignmentExpression or TArguments or TBinaryExpression or TCallExpression or
+      TExpression or TLambdaExpression or TMemberExpression or TParenthesizedExpression or
+      TPrimaryExpression or TResourceExpression or TSubscriptExpression or TTernaryExpression or
+      TUnaryExpression;
+
+class TConditionals = TIfStatement;
+
+/**
+ * Call expression
+ */
+class TCall = TCallExpression;
+
+/**
+ * Callable functions, etc.
+ */
+class TCallable = TUserDefinedFunction;
+
+class TLoops = TForStatement;
+
+class TTypes = TType or TTypeArguments;
 
 cached
 BICEP::AstNode toTreeSitter(TAstNode n) {
