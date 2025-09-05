@@ -21,7 +21,6 @@ private import internal.Parameter
 private import internal.Parameters
 private import internal.ParameterDeclaration
 private import internal.OutputDeclaration
-private import internal.UserDefinedFunction
 // CFG
 private import codeql.bicep.CFG
 private import codeql.bicep.controlflow.internal.ControlFlowGraphImpl as CfgImpl
@@ -260,78 +259,6 @@ class OutputDeclaration extends Stmts instanceof OutputDeclarationImpl {
    * @return The value expression of the output
    */
   Expr getValue() { result = OutputDeclarationImpl.super.getValue() }
-}
-
-/**
- * Represents a user-defined function in the AST.
- * 
- * User-defined functions allow creating reusable pieces of logic in Bicep templates.
- * They encapsulate calculations or transformations that can be called from multiple
- * places in the template, promoting code reuse and maintainability.
- */
-class UserDefinedFunction extends Stmts instanceof UserDefinedFunctionImpl {
-  /** 
-   * Gets the identifier of the user-defined function.
-   * 
-   * This is the name token of the function as it appears in the source code.
-   * 
-   * @return The identifier node of the function
-   */
-  Identifier getIdentifier() { result = UserDefinedFunctionImpl.super.getName() }
-
-  /** 
-   * Gets the name of the user-defined function as a string.
-   * 
-   * This is a convenience method that returns the name from the identifier.
-   * 
-   * @return The name of the function
-   */
-  string getName() { result = this.getIdentifier().getName() }
-
-  /** 
-   * Gets the return type of the user-defined function.
-   * 
-   * This specifies what kind of value the function returns,
-   * such as 'string', 'int', 'bool', or more complex types.
-   * 
-   * @return The return type node of the function
-   */
-  Type getReturnType() { result = UserDefinedFunctionImpl.super.getReturnType() }
-
-  /** 
-   * Gets the declared parameters node of the user-defined function.
-   * 
-   * This contains all the parameter declarations for the function.
-   * 
-   * @return The parameters node of the function
-   */
-  Parameters getDeclaredParameters() { result = UserDefinedFunctionImpl.super.getParameters() }
-
-  /** 
-   * Gets all individual parameters of the user-defined function.
-   * 
-   * @return All parameter nodes of the function
-   */
-  Parameter getParameters() { result = this.getDeclaredParameters().getParameter(_) }
-
-  /** 
-   * Gets the parameter at the specified index.
-   * 
-   * @param index The index of the parameter to retrieve
-   * @return The parameter at the specified index
-   */
-  Parameter getParameter(int index) { result = this.getDeclaredParameters().getParameter(index) }
-
-  /** 
-   * Gets the body of the user-defined function.
-   * 
-   * This is the expression that defines the computation performed by the function.
-   * When the function is called, this expression is evaluated with the provided
-   * argument values bound to the function parameters.
-   * 
-   * @return The body expression of the function
-   */
-  Expr getBody() { result = UserDefinedFunctionImpl.super.getBody() }
 }
 
 /**
