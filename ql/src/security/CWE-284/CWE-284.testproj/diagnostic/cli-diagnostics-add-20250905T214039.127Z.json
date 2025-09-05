@@ -1,1 +1,0 @@
-{"timestamp":"2025-09-05T21:40:39.125600317Z","source":{"id":"cli/platform","name":"Platform"},"markdownMessage":"On the Linux (amd64; 6.11.0-1018-azure) platform.","visibility":{"cliSummaryTable":false,"statusPage":false,"telemetry":true},"attributes":{"arch":"amd64","version":"6.11.0-1018-azure","name":"Linux"}}
