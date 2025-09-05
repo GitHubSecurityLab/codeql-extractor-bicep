@@ -124,11 +124,21 @@ class TargetScopeAssignment extends AstNode instanceof TargetScopeAssignmentImpl
 class TestBlock extends AstNode instanceof TestBlockImpl { }
 
 /**
- *  A Type unknown AST node.
+ * A type node in the AST.
+ * 
+ * This class represents all type annotations in Bicep, including primitive types
+ * (like string, int, bool), complex types (like arrays, objects), and user-defined
+ * types. Types are used in parameter declarations, variable declarations, function
+ * return types, and other contexts to specify the kind of values that are expected.
  */
 class Type extends AstNode instanceof TypeImpl {
   /**
-   *  Returns the type of this AST node.
+   * Gets the name of this type as a string.
+   * 
+   * For primitive types, this will be the name of the type (e.g., "string", "int").
+   * For complex types, this will be a representation of the type structure.
+   * 
+   * @return The type name or representation as a string
    */
   string getType() { result = TypeImpl.super.getType() }
 }
