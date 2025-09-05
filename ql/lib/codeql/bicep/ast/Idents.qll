@@ -3,6 +3,7 @@ private import Expr
 private import internal.Idents
 private import internal.Identifier
 private import internal.PropertyIdentifier
+private import internal.CompatibleIdentifier
 
 /**
  * The base class for all identifiers in the AST.
@@ -42,6 +43,15 @@ class Identifier extends Idents instanceof IdentifierImpl {
  * Represents the name part of a property in an object literal. For example,
  * in the property `name: 'example'`, `name` is represented by a PropertyIdentifier.
  * Property identifiers are used as keys in object literals.
+ * 
+ * In Bicep, property identifiers appear in object literals and resource declarations:
+ * 
+ * ```bicep
+ * var myObject = {
+ *   name: 'value',  // 'name' is a PropertyIdentifier
+ *   type: 'string'  // 'type' is a PropertyIdentifier
+ * }
+ * ```
  */
 class PropertyIdentifier extends Idents instanceof PropertyIdentifierImpl {
     /**
@@ -50,4 +60,27 @@ class PropertyIdentifier extends Idents instanceof PropertyIdentifierImpl {
      * @return The name of this property identifier
      */
     override string getName() { result = PropertyIdentifierImpl.super.getName() }
+}
+
+/**
+ * A compatible identifier in the AST.
+ * 
+ * Represents an identifier that is compatible with certain naming conventions.
+ * Compatible identifiers are often used when a standard identifier is needed
+ * in contexts that have specific compatibility requirements.
+ */
+class CompatibleIdentifier extends Idents instanceof CompatibleIdentifierImpl {
+    /**
+     * Gets the name of this compatible identifier as a string.
+     * 
+     * @return The name of this compatible identifier
+     */
+    override string getName() { result = CompatibleIdentifierImpl.super.getName() }
+    
+    /**
+     * Gets the underlying identifier.
+     * 
+     * @return The underlying identifier
+     */
+    Identifier getIdentifier() { result = CompatibleIdentifierImpl.super.getIdentifier() }
 }

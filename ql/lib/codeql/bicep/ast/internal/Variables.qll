@@ -5,6 +5,7 @@ private import codeql.bicep.AST
 private import codeql.bicep.CFG
 private import codeql.Locations
 private import Expr
+private import Types
 
 /**
  * A scope in a Bicep program.
@@ -89,7 +90,7 @@ class VariableImpl extends MkVariable {
    *
    * @return The type of the variable, if available
    */
-  Type getType() {
+  TypesImpl getType() {
     result = this.getParameter().getType()
     or
     result = this.getOutput().getType()

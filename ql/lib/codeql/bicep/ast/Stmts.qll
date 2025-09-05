@@ -7,6 +7,7 @@ private import Idents
 private import Expr
 private import Calls
 private import Misc
+private import Types
 private import internal.AstNodes
 private import internal.TreeSitter
 private import internal.Stmts
@@ -52,6 +53,8 @@ class Stmts extends AstNode instanceof StmtsImpl {
    * @return A control-flow entry node for this statement
    */
   AstNode getAControlFlowEntryNode() { result = CfgImpl::getAControlFlowEntryNode(this) }
+
+  Expr getExpr() { result = StmtsImpl.super.getExpr() }
 }
 
 /**
@@ -102,45 +105,8 @@ class StmtSequence extends AstNode instanceof StmtSequenceImpl {
  * and raises an error if the condition is false. Assert statements are
  * useful for validating assumptions and ensuring inputs meet expected criteria.
  */
-final class AssertStatementStmt extends Stmts instanceof AssertStatementImpl { }
+class AssertStatement extends Stmts instanceof AssertStatementImpl { }
 
-/**
- * A for statement in the AST.
- * 
- * Represents a for loop in Bicep, which iterates over a collection of items.
- * For loops are commonly used for creating multiple instances of resources
- * or for processing arrays of configuration data.
- */
-final class ForStatementStmt extends Stmts instanceof ForStatementImpl { }
-
-/**
- * An if statement in the AST.
- * 
- * Represents a conditional statement in Bicep that executes certain code
- * only when a specific condition is true. If statements enable conditional
- * resource creation or property setting based on input parameters or other factors.
- */
-class IfStatement extends Stmts instanceof IfStatementImpl { 
-  /** 
-   * Gets the condition of the if statement.
-   * 
-   * This is the expression that is evaluated to determine whether
-   * the body of the if statement should be executed.
-   * 
-   * @return The condition expression
-   */
-  Expr getCondition() { result = IfStatementImpl.super.getCondition() }
-
-  /** 
-   * Gets the body of the if statement.
-   * 
-   * This is the expression or block that will be executed if the
-   * condition evaluates to true.
-   * 
-   * @return The body expression
-   */
-  Expr getBody() { result = IfStatementImpl.super.getBody() }
-}
 
 /**
  * An import statement in the AST.
@@ -149,7 +115,7 @@ class IfStatement extends Stmts instanceof IfStatementImpl {
  * namespaces, or resources into the current scope. Import statements enable
  * code reuse and modularization of Bicep templates.
  */
-final class ImportStatementStmt extends Stmts instanceof ImportStatementImpl { }
+class ImportStatement extends Stmts instanceof ImportStatementImpl { }
 
 /**
  * An infrastructure node in the AST.
@@ -322,7 +288,7 @@ class Parameters extends Expr instanceof ParametersImpl {
  * Import-with statements allow importing external modules with specific settings
  * or transformations applied to the imported items.
  */
-final class ImportWithStatementStmt extends Stmts instanceof ImportWithStatementImpl { }
+class ImportWithStatement extends Stmts instanceof ImportWithStatementImpl { }
 
 /**
  * A using statement in the AST.
@@ -331,4 +297,4 @@ final class ImportWithStatementStmt extends Stmts instanceof ImportWithStatement
  * an imported module or namespace. Using statements help improve readability
  * by allowing shorter references to external resources.
  */
-final class UsingStatementStmt extends Stmts instanceof UsingStatementImpl { }
+class UsingStatement extends Stmts instanceof UsingStatementImpl { }

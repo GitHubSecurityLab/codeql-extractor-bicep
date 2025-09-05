@@ -1,41 +1,19 @@
 private import AstNodes
 private import internal.Array
-private import internal.ArrayType
 private import internal.Boolean
-private import internal.CompatibleIdentifier
 private import internal.Decorator
 private import internal.Decorators
 private import internal.DiagnosticComment
 private import internal.EscapeSequence
 private import internal.ForLoopParameters
-private import internal.Identifier
 private import internal.ImportFunctionality
 private import internal.LoopEnumerator
 private import internal.LoopVariable
 private import internal.MetadataDeclaration
 private import internal.ModuleDeclaration
-private import internal.NegatedType
 private import internal.ObjectProperty
-private import internal.ParameterizedType
-private import internal.ParenthesizedType
-private import internal.PrimitiveType
-private import internal.PropertyIdentifier
 private import internal.TargetScopeAssignment
 private import internal.TestBlock
-private import internal.Type
-private import internal.TypeArguments
-private import internal.TypeDeclaration
-private import internal.UnionType
-
-/**
- *  A ArrayType unknown AST node.
- */
-class ArrayType extends AstNode instanceof ArrayTypeImpl { }
-
-/**
- *  A CompatibleIdentifier unknown AST node.
- */
-class CompatibleIdentifier extends AstNode instanceof CompatibleIdentifierImpl { }
 
 /**
  *  A Decorator unknown AST node.
@@ -88,26 +66,6 @@ class MetadataDeclaration extends AstNode instanceof MetadataDeclarationImpl { }
 class ModuleDeclaration extends AstNode instanceof ModuleDeclarationImpl { }
 
 /**
- *  A NegatedType unknown AST node.
- */
-class NegatedType extends AstNode instanceof NegatedTypeImpl { }
-
-/**
- *  A ParameterizedType unknown AST node.
- */
-class ParameterizedType extends AstNode instanceof ParameterizedTypeImpl { }
-
-/**
- *  A ParenthesizedType unknown AST node.
- */
-class ParenthesizedType extends AstNode instanceof ParenthesizedTypeImpl { }
-
-/**
- *  A PrimitiveType unknown AST node.
- */
-class PrimitiveType extends AstNode instanceof PrimitiveTypeImpl { }
-
-/**
  *  A TargetScopeAssignment unknown AST node.
  */
 class TargetScopeAssignment extends AstNode instanceof TargetScopeAssignmentImpl { }
@@ -116,38 +74,3 @@ class TargetScopeAssignment extends AstNode instanceof TargetScopeAssignmentImpl
  *  A TestBlock unknown AST node.
  */
 class TestBlock extends AstNode instanceof TestBlockImpl { }
-
-/**
- * A type node in the AST.
- * 
- * This class represents all type annotations in Bicep, including primitive types
- * (like string, int, bool), complex types (like arrays, objects), and user-defined
- * types. Types are used in parameter declarations, variable declarations, function
- * return types, and other contexts to specify the kind of values that are expected.
- */
-class Type extends AstNode instanceof TypeImpl {
-  /**
-   * Gets the name of this type as a string.
-   * 
-   * For primitive types, this will be the name of the type (e.g., "string", "int").
-   * For complex types, this will be a representation of the type structure.
-   * 
-   * @return The type name or representation as a string
-   */
-  string getType() { result = TypeImpl.super.getType() }
-}
-
-/**
- *  A TypeArguments unknown AST node.
- */
-class TypeArguments extends AstNode instanceof TypeArgumentsImpl { }
-
-/**
- *  A TypeDeclaration unknown AST node.
- */
-class TypeDeclaration extends AstNode instanceof TypeDeclarationImpl { }
-
-/**
- *  A UnionType unknown AST node.
- */
-class UnionType extends AstNode instanceof UnionTypeImpl { }

@@ -6,11 +6,12 @@
 private import AstNodes
 private import TreeSitter
 private import codeql.bicep.ast.AstNodes
+private import Types
 
 /**
  *  A UnionType AST Node.
  */
-class UnionTypeImpl extends TUnionType, AstNode {
+class UnionTypeImpl extends TUnionType, TypesImpl {
   private BICEP::UnionType ast;
 
   override string getAPrimaryQlClass() { result = "UnionType" }
@@ -18,6 +19,8 @@ class UnionTypeImpl extends TUnionType, AstNode {
   UnionTypeImpl() { this = TUnionType(ast) }
 
   override string toString() { result = ast.toString() }
+  
+  override string getValue() { result = ast.toString() }
 
 
 
