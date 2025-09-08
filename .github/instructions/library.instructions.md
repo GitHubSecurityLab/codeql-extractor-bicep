@@ -249,6 +249,8 @@ Predicates such as `toString`, `getAPrimaryQlClass`, and `getAPrimaryQlModule` s
 
 ## Testing
 
+- Follow: [Testing custom queries](https://docs.github.com/en/code-security/codeql-cli/using-the-advanced-functionality-of-the-codeql-cli/testing-custom-queries) best practices
+
 All tests should be stored in the `ql/tests/library-tests/` directory.
 AST, CFG, and Dataflow tests should be stored in the `ql/tests/library-tests/ast`, `ql/tests/library-tests/cfg`, and `ql/tests/library-tests/dataflow` directories respectively.
 
