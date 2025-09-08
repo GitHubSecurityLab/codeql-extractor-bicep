@@ -111,6 +111,8 @@ The documentation should include:
 
 ## Testing Query
 
+- Follow: [Testing custom queries](https://docs.github.com/en/code-security/codeql-cli/using-the-advanced-functionality-of-the-codeql-cli/testing-custom-queries) best practices
+
 After generating the query, run the CodeQL test command to ensure the query passes all tests.
 Use the `codeql-test` command to run the tests on the query file.
 
