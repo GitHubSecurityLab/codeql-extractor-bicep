@@ -1,0 +1,12 @@
+---
+sourceLocationPrefix: /home/runner/work/codeql-extractor-bicep/codeql-extractor-bicep/ql/src/security/CWE-284
+baselineLinesOfCode: 0
+unicodeNewlines: false
+columnKind: utf8
+primaryLanguage: bicep
+creationMetadata:
+  cliVersion: 2.23.0
+  creationTime: 2025-09-08T16:23:27.847657834Z
+finalised: true
+overlayBaseDatabase: false
+overlayDatabase: false
